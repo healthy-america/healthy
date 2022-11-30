@@ -12528,7 +12528,7 @@ CREATE TABLE `theme` (
 
 LOCK TABLES `theme` WRITE;
 /*!40000 ALTER TABLE `theme` DISABLE KEYS */;
-INSERT INTO `theme` VALUES (1,NULL,'Magento/blank','Magento Blank','preview_image_63878d8f81506.jpeg',0,'frontend',0,'Magento/blank'),(2,1,'Magento/luma','Magento Luma','preview_image_63878d8f8df70.jpeg',0,'frontend',0,'Magento/luma'),(3,NULL,'Magento/backend','Magento 2 backend',NULL,0,'adminhtml',0,'Magento/backend'),(4,1,'Mgs/blank','MGS Blank','preview_image_63878d8f9a06d.jpeg',0,'frontend',0,'Mgs/blank'),(5,4,'Mgs/claue','MGS Claue','preview_image_63878d8fa199e.jpeg',0,'frontend',0,'Mgs/claue'),(6,5,'Aventi/AventiTheme','AventiTheme',NULL,0,'frontend',0,'Aventi/AventiTheme');
+INSERT INTO `theme` VALUES (1,NULL,'Magento/blank','Magento Blank','preview_image_63878d8f81506.jpeg',0,'frontend',0,'Magento/blank'),(2,1,'Magento/luma','Magento Luma','preview_image_63878d8f8df70.jpeg',0,'frontend',0,'Magento/luma'),(3,NULL,'Magento/backend','Magento 2 backend',NULL,0,'adminhtml',0,'Magento/backend'),(4,1,'Mgs/blank','MGS Blank','preview_image_63878d8f9a06d.jpeg',0,'frontend',0,'Mgs/blank'),(5,4,'Mgs/claue','MGS Claue','preview_image_63878d8fa199e.jpeg',0,'frontend',0,'Mgs/claue');
 /*!40000 ALTER TABLE `theme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -13044,4 +13044,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 12:11:52
+-- Dump completed on 2022-11-30 12:25:53
