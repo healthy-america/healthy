@@ -1,0 +1,207 @@
+//**
+//** Aventi
+//** https://www.aventi.co/ 
+//**
+//  *********************************************
+
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common = true)  {
+
+    body#html-body{
+        header.page-header{
+            .top-header{
+                background-color: @primary-red;
+                padding: 7px;
+                .links_header{
+                    ul{
+                        display: flex;
+                        justify-content: flex-end;
+                        li{
+                            border-right: 2px solid @white;
+                            padding: 0 10px;
+                            a{
+                                color: @white;
+                                font-style: italic;
+                            }
+                        }
+
+                        :last-child{
+                            border-right: none;
+                        }
+                    }
+                }
+            }
+
+            .middle-header{
+                background-color: @white;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
+                .frame{
+                    .line{
+                        align-items: center;
+                        .megamenu_container{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 0;
+                            button.action.nav-tg{
+                                line-height: 1;
+                            }
+                            span{
+                                color: @black;
+                                font-weight: 500;
+                                margin-left: 10px;
+                            }
+                        }
+
+                        .logo_container{
+                            padding: 0;
+                        }
+
+                        .right_container{
+                            >div{
+                                display: flex;
+                                >div{
+                                    display: inline-block;
+                                }
+                                .search-form{
+                                    width: 90%;
+                                    .block.block-search{
+                                        width: 100%;
+                                        form.form.minisearch{
+                                            max-width: none;
+                                            .field.search{
+                                                input#search{
+                                                    height: 40px;
+                                                    padding-left: 60px;
+                                                }
+                                            }
+                                            .actions{
+                                                button{
+                                                    display: inline-block;
+                                                    opacity: 1;
+                                                    visibility: visible;
+                                                    right: unset;
+                                                    top: 3px;
+                                                    left: 3px;
+                                                    width: 34px;
+                                                    height: 34px;
+                                                    background-color: @medium-gray;
+                                                    border-radius: 50%;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .header-top-links{
+                                    .actions{
+                                        span.top-links {
+                                            i{
+                                                &::before{
+                                                    content: url('https://api.iconify.design/ant-design/user-outlined.svg?color=%234c4b49');
+                                                    transform: scale(1.8);
+                                                    display: block;
+                                                    line-height: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .minicart-wrapper{
+                                    float: none;
+                                    .action.showcart{
+                                        &::before{
+                                            content: url('https://api.iconify.design/bi/bag.svg?color=%234c4b49');
+                                            transform: scale(1.8);
+                                            display: block;
+                                            line-height: 0;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    
+}
+
+//
+//  Table (medida necesaria porque se usa como punto de quiebre en claue)
+//  _____________________________________________
+
+@media (max-width: 1200px) {
+    body#html-body{
+        header.page-header{
+
+            .middle-header{
+                .frame{
+                    .line{
+
+                        .right_container{
+                            >div{
+                                .search-form{
+                                    width: unset;
+                                }
+
+                                .minicart-wrapper{
+                                    .action.showcart{
+                                        &::before{
+                                            margin-right: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .logo_container{
+
+                            .logo{
+                                display: flex;
+                                justify-content: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    body#html-body{
+        header.page-header{
+            .top-header{
+                .links_header{
+                    ul{
+                       :nth-child(2), :nth-child(3){
+                        display: none;
+                       }
+                    }
+                }
+            }
+        }
+    }
+
+}
