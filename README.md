@@ -42,7 +42,7 @@ composer install
 
 5. Import database if exists
 ```bash
-mysql -uroot -proot magento_healthy < local_initial_magento_healthy.sql  
+mysql -uroot -proot magento_healthy < magento_healty_initialdb.sql  
 ```
 
 6. Enable configuration files
