@@ -11,8 +11,8 @@
             class: 'fadeIn animated message-' + message.type + ' ' + message.type + ' message',
             'data-ui-id': 'message-' + message.type
         }">
-            <div data-bind="html: $parent.prepareMessageForHtml(message.text)"></div>
-			<div class="close" data-bind="click: $parent.RemoveMessage"></div>
+            <div data-bind="afterRender: $parent.RemoveMessageAfterRender, html: $parent.prepareMessageForHtml(message.text)"></div>
+            <div class="close" data-bind="click: $parent.RemoveMessage"></div>
         </div>
     </div>
     <!-- /ko -->
@@ -23,8 +23,8 @@
             class: 'fadeIn animated message-' + message.type + ' ' + message.type + ' message',
             'data-ui-id': 'message-' + message.type
         }">
-            <div data-bind="html: $parent.prepareMessageForHtml(message.text)"></div>
-			<div class="close" data-bind="click: $parent.RemoveMessage"></div>
+            <div data-bind="afterRender: $parent.RemoveMessageAfterRender, html: $parent.prepareMessageForHtml(message.text)"></div>
+            <div class="close" data-bind="click: $parent.RemoveMessage"></div>
         </div>
     </div>
     <!-- /ko -->

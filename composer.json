@@ -21,7 +21,8 @@
         "cweagans/composer-patches": "^1.7",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
-        "magento/product-community-edition": "2.4.5-p1"
+        "magento/product-community-edition": "2.4.5-p1",
+        "magento/ece-tools": "*"
     },
     "autoload": {
         "exclude-from-classmap": [

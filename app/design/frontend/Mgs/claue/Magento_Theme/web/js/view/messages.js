@@ -6,7 +6,7 @@
 /**
  * @api
  */
- define([
+define([
     'jquery',
     'uiComponent',
     'Magento_Customer/js/customer-data',
@@ -23,8 +23,8 @@
             selector: '.page.messages .message',
             allowedTags: ['div', 'span', 'b', 'strong', 'i', 'em', 'u', 'a'],
             listens: {
-				isHidden: 'onHiddenChange'
-			}
+                isHidden: 'onHiddenChange'
+            }
         },
 
         /**
@@ -56,21 +56,30 @@
             return escaper.escapeHtml(message, this.allowedTags);
         },
 
+        RemoveMessageAfterRender: function () {
+            setTimeout(function () {
+                $('.page.messages .message').toggleClass('fadeIn fadeOut');
+                setTimeout(function () {
+                    $('.page.messages .message').hide();
+                }, 2000);
+            }, 3000);
+        },
+
         RemoveMessage: function () {
-			$('.page.messages .message').toggleClass('fadeIn fadeOut');
-			setTimeout(function () {
-				$('.page.messages .message').hide()
-			}, 2000);
-		},
+            $('.page.messages .message').toggleClass('fadeIn fadeOut');
+            setTimeout(function () {
+                $('.page.messages .message').hide();
+            }, 2000);
+        },
 
         onHiddenChange: function (isHidden) {
-			var self = this;
-			if (isHidden) {
-				setTimeout(function () {
-					self.RemoveMessage();
-				}, 5000);
-			}
-			this.isHidden(false);
-		}
+            var self = this;
+            if (isHidden) {
+                setTimeout(function () {
+                    self.RemoveMessage();
+                }, 5000);
+            }
+            this.isHidden(false);
+        }
     });
 });

@@ -18,7 +18,6 @@
 !/auth.json
 !/build_options.ini
 !/composer.json
-!/composer.lock
 !/magento-vars.php
 !/m2-hotfixes
 !/m2-hotfixes/**

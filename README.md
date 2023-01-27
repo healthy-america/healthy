@@ -40,6 +40,11 @@ cd yalitech
 composer install
 ```
 
+4. Install patches
+```bash
+ php ./vendor/bin/ece-patches apply
+```
+
 5. Import database if exists
 ```bash
 mysql -uroot -proot magento_healthy < magento_healty_initialdb.sql  
@@ -47,6 +52,27 @@ mysql -uroot -proot magento_healthy < magento_healty_initialdb.sql
 
 6. Enable configuration files
 ```bash
+bin/magento setup:config:set --backend-frontname=admin --db-host=localhost --db-name=magento_healthy --db-user=root --db-password=root
+```
+
+or
+
+```bash
 cp app/etc/env.php.sample app/etc/env.php
 cp app/etc/config.php.sample app/etc/config.php
+```
+
+7. Install project
+```bash
+bin/magento setup:install
+```
+
+8. Add urls if they don't exist
+
+```bash
+bin/magento setup:store-config:set --base-url="http://healthy.local/"
+```
+
+```bash
+bin/magento setup:store-config:set --base-url-secure="https://healthy.local/"
 ```
