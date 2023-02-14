@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="aventi" sortOrder="999" translate="label">
+            <label>AVENTI SOLUTIONS</label>
+        </tab>
+        <section id="integration" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>SAP Integration</label>
+            <tab>aventi</tab>
+            <resource>Aventi_SAP::config_aventi_sap</resource>
+            <group id="settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Connection settings</label>
+                <field id="url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Url</label>
+                    <comment>WebService URL</comment>
+                </field>
+                <field id="port" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Port</label>
+                    <comment/>
+                </field>
+                <field id="user" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+                    <label>User</label>
+                    <comment/>
+                </field>
+                <field id="password" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>Password</label>
+                    <comment/>
+                </field>
+                <field id="ws_products_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>WS URL Products</label>
+                    <comment><![CDATA[
+                        Url to sincronice products from SAP to Magento.
+                    ]]></comment>
+                </field>
+                <field id="ws_price_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
+                    <label>WS URL Price</label>
+                    <comment><![CDATA[
+                        Url to sincronice prices from SAP to Magento.
+                    ]]></comment>
+                </field>
+                <field id="ws_stock_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="text">
+                    <label>WS URL Stock</label>
+                    <comment><![CDATA[
+                        Url to sincronice stock from SAP to Magento.
+                    ]]></comment>
+                </field>
+                <field id="ws_stock_fast_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="text">
+                    <label>WS URL Stock (Fast Method)</label>
+                    <comment><![CDATA[
+                        Url to sincronice stock from SAP to Magento. (Fast method).
+                    ]]></comment>
+                </field>
+                <field id="ws_orders_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110" translate="label" type="text">
+                    <label>WS URL Orders</label>
+                    <comment><![CDATA[
+                        Url to sincronice orders from Magento to SAP.
+                    ]]></comment>
+                </field>
+                <field id="ws_customers_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120" translate="label" type="text">
+                    <label>WS URL Customers</label>
+                    <comment><![CDATA[
+                        Url to sincronice customers from SAP to Magento.
+                    ]]></comment>
+                </field>
+                <field id="send_notification" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="130" translate="label" type="select">
+                    <label>send notification</label>
+                    <comment>Report about change in the price</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="document" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+                <label>Create document default values</label>
+                <field id="serie" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Serie</label>
+                    <comment>Serie from document</comment>
+                </field>
+                <field id="whscode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>WhsCode</label>
+                    <comment>Warehouse code to items</comment>
+                </field>
+                <field id="cardcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+                    <label>CardCode</label>
+                    <comment>CardCode to create orders</comment>
+                </field>
+                <field id="slpcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>SlpCode</label>
+                    <comment>SlpCode to create orders</comment>
+                </field>
+                <field id="shipping" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>Shipping Code</label>
+                    <comment>Product shipping code to save the value</comment>
+                </field>
+            </group>
+            <group id="settings_template" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+                <label>Email Template Settings</label>
+                <field id="sap_email_template" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Delivery Email Template</label>
+                    <!--<source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>-->
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

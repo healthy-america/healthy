@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+<!--
+    Copyright © Aventi SAS All rights reserved.
+    See COPYING.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- SAP logger -->
+    <type name="Aventi\SAP\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+    <type name="Aventi\SAP\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">aventi_sap_debug</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Aventi\SAP\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Sales\Model\ResourceModel\Order\Grid" type="Magento\Sales\Model\ResourceModel\Grid">
+        <arguments>
+            <argument name="columns" xsi:type="array">
+                <item name="sap_id" xsi:type="string">sales_order.sap_id</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Command -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="Sincronice" xsi:type="object">Aventi\SAP\Console\Command\Sincronice</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- Rewrite -->
+    <preference for="Magento\Customer\Block\Adminhtml\Group\Edit\Form" type="Aventi\SAP\Block\Adminhtml\Group\Edit\Form"/>
+
+    <!-- Plugin -->
+    <type name="Magento\Customer\Controller\Adminhtml\Group\Save">
+        <plugin name="Aventi_SAP_Plugin_Magento_Customer_Controller_Adminhtml_Group_Save" type="Aventi\SAP\Plugin\Magento\Customer\Controller\Adminhtml\Group\Save" sortOrder="10" disabled="false"/>
+    </type>
+
+    <!-- Solution error: Cannot instantiate interface Magento\Framework\Filesystem\DriverInterface -->
+    <preference for="Magento\Framework\Filesystem\DriverInterface" type="Magento\Framework\Filesystem\Driver\File" />
+</config>
