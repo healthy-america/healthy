@@ -5,7 +5,7 @@
 		var	$_quickviewBaseUrl = 'aquickview/index/index';
 		var	$_baseUrl = '<?php echo str_replace("index.php/","",$this->getUrl()) ?>';
 		var $_quickviewUrl = $_baseUrl + $_quickviewBaseUrl;
-		
+
 		var	$_prdItem = $('.products.list.items.product-items .product-item');
 		var	$_prdItemAction = $('.products.list.items.product-items .product-item .actions-secondary');
 		var $_listItem = [];
@@ -22,7 +22,7 @@
 						if(typeof $_prdLink.attr('href') !== 'undefined' && $_prdLink.attr('href').replace($_baseUrl,"") != '#'){
 							var	$_prdPathLink = $_prdLink.attr('href').replace($_baseUrl,"");
 							$_prdPathLink = ($_prdPathLink.indexOf('index.php') >= 0 ) ? $_prdPathLink.replace('index.php/','') : $_prdPathLink;
-							
+
 							var	$quickviewAction = $_quickviewUrl + ("/catalog/product/id/") + $_prdItemId;
 							var	$_buttonHtml = '<a data-productid="'+$_prdItemId+'" class="action quickview" aria-label="<?= __('Quickview') ?>" title="<?= __('Quickview') ?>" href="'+$quickviewAction+'"><span><?= __('Quickview') ?></span></a>';
 							$_listItem.push($_buttonHtml);
@@ -48,14 +48,14 @@
 		'aQuickView'
 	], function($){
 		$('#loading_overlay').removeClass('loading');
-		
+
 		$(document).ready(function(){
 			includeQuickviewAction($);
 		});
-		
+
 		 $(document).on('click','.action.quickview',function(e){
 			 e.preventDefault();
-			 if($('body.catalog-product-view').size() > 0){
+			 if($('body.catalog-product-view').length  > 0){
 				 $('body').addClass('origin-catalog-product-view');
 			 }else {
 				 $('body').addClass('catalog-product-view');

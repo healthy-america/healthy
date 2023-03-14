@@ -298,17 +298,17 @@ switch ($type = $block->getType()) {
 
                                 <!-- Product Image-->
                                 <a href="<?php echo $_item->getProductUrl() ?>"
-                                   class="product photo product-item-photo <?php if ((basename($_item->getData('thumbnail')) != 'no_selection') && (basename($_item->getData('thumbnail')) != basename($_item->getData('small_image')))): ?> has-hover-image<?php endif ?>"
+                                   class="product photo product-item-photo <?php if ((basename($_item->getData('thumbnail') ?? '') != 'no_selection') && (basename($_item->getData('thumbnail')?? '') != basename($_item->getData('small_image')?? ''))): ?> has-hover-image<?php endif ?>"
                                    style="padding-bottom: <?php echo $padding ?>;" tabindex="-1">
                                     <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
-                                         class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad): ?>lazy<?php endif ?>"
+                                         class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
                                          loading="lazy"
                                          data-src="<?php echo $productImage ?>"/>
 
-                                    <?php if (basename($_item->getData('thumbnail')) != 'no_selection'): ?>
-                                        <?php if (basename($_item->getData('thumbnail')) != basename($_item->getData('small_image'))): ?>
+                                    <?php if (basename($_item->getData('thumbnail') ?? '') != 'no_selection'): ?>
+                                        <?php if (basename($_item->getData('thumbnail') ?? '') != basename($_item->getData('small_image') ?? '')): ?>
                                             <img src="<?php echo $baseImageHover; ?>" alt="<?php echo $_productNameStripped ?>"
-                                                 class="img-responsive img-hover-show <?php if ($lazyLoad): ?>lazy<?php endif ?>"
+                                                 class="img-responsive img-hover-show <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
                                                  loading="lazy"
                                                  data-src="<?php echo $productImageHover; ?>"/>
                                         <?php endif ?>

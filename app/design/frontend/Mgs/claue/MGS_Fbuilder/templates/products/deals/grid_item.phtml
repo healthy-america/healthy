@@ -38,12 +38,12 @@
             ?>
 
             <!-- Product Image-->
-            <a href="<?php  echo $_product->getProductUrl() ?>" class="product photo product-item-photo <?php if((basename($_product->getData('thumbnail')) !=  'no_selection') && (basename($_product->getData('thumbnail')) != basename($_product->getData('small_image')))): ?> has-hover-image<?php endif ?>" style="padding-bottom: <?php echo $padding ?>;"  tabindex="-1">
+            <a href="<?php  echo $_product->getProductUrl() ?>" class="product photo product-item-photo <?php if((basename($_product->getData('thumbnail') ?? '') !=  'no_selection') && (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? ''))): ?> has-hover-image<?php endif ?>" style="padding-bottom: <?php echo $padding ?>;"  tabindex="-1">
 
                 <img src="<?php echo $productImage ?>" alt="<?php echo $_productNameStripped ?>" class="img-responsive product-image-photo img-thumbnail"  data-src="<?php echo $productImage ?>"/>
 
-                <?php if(basename($_product->getData('thumbnail')) !=  'no_selection'): ?>
-                    <?php if(basename($_product->getData('thumbnail')) != basename($_product->getData('small_image'))): ?>
+                <?php if(basename($_product->getData('thumbnail') ?? '') !=  'no_selection'): ?>
+                    <?php if(basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? '')): ?>
                         <?php
                         $productThumbnail = $_imagehelper->init($_product, $image)->setImageFile($_product->getData('thumbnail'))->resize($size['width'], $size['height'])->getUrl();
                         ?>

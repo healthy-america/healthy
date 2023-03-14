@@ -9,7 +9,7 @@
                 $("input[name='customer[is_fbuilder_account]']").change(function(){
                     setAvailablePageDisplay();
                 });
-                $('#tab_customer').click(function () {
+                $('#tab_customer').on('click', function () {
                     setTimeout(function(){
                         setAvailablePageDisplay();
                         $("input[name='customer[is_fbuilder_account]']").change(function(){

@@ -25,7 +25,8 @@
 $helper = $this->helper('Magento\Search\Helper\Data');
 $helperInstantSearch= $this->helper('MGS\InstantSearch\Helper\Data');
 $getUrlForm = $helper->getResultUrl();
-if($helperInstantSearch->getSearchResultsPage() == 0) {
+
+if ($helperInstantSearch->getSearchResultsPage() == 0) {
     $getUrlForm = $block->getUrl("instantsearch/result");
 }
 ?>
@@ -33,19 +34,19 @@ if($helperInstantSearch->getSearchResultsPage() == 0) {
     <div class="block block-search">
         <button class="search-close" onclick="showHideFormSearch()"><i class="pe-7s-close"></i></button>
         <div class="block block-content">
-        <form class="form minisearch" id="search_mini_form" action="<?php /* @escapeNotVerified */ echo $getUrlForm; ?>" method="get">
+        <form class="form minisearch" id="search_mini_form" action="<?= $getUrlForm; ?>" method="get">
             <div class="field search">
                 <label class="label" for="search" data-role="minisearch-label">
-                    <span><?php /* @escapeNotVerified */ echo __('Search'); ?></span>
+                    <span><?= __('Search'); ?></span>
                 </label>
                 <div class="control">
                     <input id="search"
                            type="text"
-                           name="<?php /* @escapeNotVerified */ echo $helper->getQueryParamName() ?>"
-                           value="<?php /* @escapeNotVerified */ echo $helper->getEscapedQueryText() ?>"
-                           placeholder="<?php /* @escapeNotVerified */ echo __('Search entire store here...'); ?>"
+                           name="<?= $helper->getQueryParamName() ?>"
+                           value="<?= $helper->getEscapedQueryText() ?>"
+                           placeholder="<?= __('Search entire store here...') ?>"
                            class="input-text"
-                           maxlength="<?php /* @escapeNotVerified */ echo $helper->getMaxQueryLength();?>"
+                           maxlength="<?= $helper->getMaxQueryLength() ?>"
                            role="combobox"
                            aria-haspopup="false"
                            aria-autocomplete="both"
@@ -53,14 +54,14 @@ if($helperInstantSearch->getSearchResultsPage() == 0) {
                            autocomplete="off"
                            data-block="autocomplete-form"/>
                     <div id="search_autocomplete" class="search-autocomplete"></div>
-                    <?php echo $block->getChildHtml() ?>
+                    <?= $block->getChildHtml() ?>
                 </div>
             </div>
             <div class="actions">
                 <button type="submit"
-                        title="<?php echo $block->escapeHtml(__('Search')) ?>"
+                        title="<?= $block->escapeHtml(__('Search')) ?>"
                         class="action search">
-                    <span><?php /* @escapeNotVerified */ echo __('Search'); ?></span>
+                    <span><?= __('Search'); ?></span>
                 </button>
             </div>
         </form>
@@ -86,29 +87,39 @@ if($helperInstantSearch->getSearchResultsPage() == 0) {
     }
 }
 </script>
-<script type="text/javascript">
-    function showHideFormSearch(){
-        require([
-            'jquery'
-        ], function(jQuery){
-            (function($) {
-                if($('.search-form').hasClass('not-full')){
-                    $('html').toggleClass('search-not-full');
-                }
-                $('html').toggleClass('search-open');
-                $('.page-wrapper .block-search').toggleClass('active');
-                setTimeout(focusSearchField, 500);
-            })(jQuery);
-        });
-    }
 
-    function focusSearchField(){
-        require([
-            'jquery'
-        ], function(jQuery){
-            (function($) {
-                $('#search_mini_form input#search').focus();
-            })(jQuery);
-        });
+<script>
+    function showHideFormSearch() {
+        var searchFormNotFull = document.querySelector('.search-form.not-full');
+        var blockSearch = document.querySelector('.page-wrapper .block-search');
+        var searchInput = document.querySelector('#search_mini_form input#search');
+
+        if(searchFormNotFull){
+            document.documentElement.classList.toggle('search-not-full');
+        }
+        // Add class search-open to html
+        document.documentElement.classList.toggle('search-open');
+
+        if(blockSearch){
+            blockSearch.classList.toggle('active');
+        }
+
+        // When click Esc key to close search form
+        if(document.documentElement.classList.contains('search-open')){
+            document.addEventListener('keydown', function(event) {
+                if (event.keyCode === 27) {
+                    document.documentElement.classList.remove('search-open');
+                    if(blockSearch){
+                        blockSearch.classList.remove('active');
+                    }
+                }
+            });
+        }
+
+        if(searchInput){
+            setTimeout(function(){
+                searchInput.focus();
+            }, 500);
+        }
     }
 </script>

@@ -152,7 +152,7 @@ require([
 				}
 			}
 		});
-		
+
 		$(document).ready(function(){
 			$("[data-appear-animation]").each(function() {
 				$(this).addClass("appear-animation");
@@ -174,27 +174,27 @@ require([
 					$(this).addClass("appear-animation-visible");
 				}
 			});
-			
+
 			/* Progress Bar */
 			$('.mgs-progressbar .progress').css("width",
 				function() {
 					return $(this).attr("aria-valuenow") + "%";
 				}
 			)
-			
+
 			/* Progress Circle */
 			$('.mgs-progress-circle').each(function(){
 				var progressPercent = $(this).attr('progress-to');
 				$(this).attr('data-progress', progressPercent);
 			});
-			
+
 			$('.tab-title-ajax').each(function(){
-				$(this).find('a').click();
+				$(this).find('a').trigger('click');
 			});
-			
+
 		});
-		
-		
+
+
 	})(jQuery);
 });
 
@@ -213,7 +213,7 @@ require([
 	'Magento_Ui/js/modal/modal'
 ], function( $, modal ) {
 	$(document).ready(function(){
-		$('button.mgs-modal-popup-button').click(
+		$('button.mgs-modal-popup-button').on( 'click',
 			function(){
 				id = $(this).attr('data-button-id');
 				var popupContent = $('#mgs_modal_container_'+id).html();
@@ -228,9 +228,9 @@ require([
 					};
 					var newsletterPopup = modal(options, $('#modal_popup_'+id));
 					$('#modal_popup_'+id).trigger('openModal');
-					
+
 					$('.modal-'+id+' .pop-sletter-title').insertBefore('.modal-'+id+' .modal-header button');
-					$('.modal-'+id+' .action-close').click(function(){
+					$('.modal-'+id+' .action-close').on('click', function(){
 						$('.modal-'+id+' .modal-header .pop-sletter-title').remove();
 						setTimeout(function(){ $('.modals-wrapper .modal-'+id).remove(); $('#mgs_modal_container_'+id).html(popupContent) }, 500);
 					});
@@ -243,7 +243,7 @@ require([
 function getAjaxProductCollection(catId, attribute, blockType, productNum, blockId, useSlider, perrowDefault, perrowTablet, perrowMobile, numberRow, slideBy, hideName, hideReview, hidePrice, hideAddcart, hideAddwishlist, hideAddcompare, autoPlay, stopAuto, nav, dot, isLoop, hideNav, navTop, navPos, pagPos, isRtl, slideMargin, activeCatLink, CatLink){
 	require([
 		"jquery",
-		"mlazyload"
+        "mLazysizes",
 	], function($){
 		if(catId!=''){
 			var $contentContainer = $('#'+catId.toString() + blockId.toString());
@@ -292,21 +292,13 @@ function getAjaxProductCollection(catId, attribute, blockType, productNum, block
 						if(data!=''){
 							$contentContainer.append(data);
 							$contentContainer.removeClass('div-loading');
-							
-							$("img.lazy").unveil(25, function(){
-								var self = $(this);
-								setTimeout(function(){
-									self.removeClass('lazy');
-									self.parents('.parent_lazy').addClass('lazy_loaded');
-								}, 0);
-							});
-							
+
 							includeQuickviewAction($);
-							
-							$('button.tocart').click(function(event){
+
+							$('button.tocart').on('click', function(event){
 								event.preventDefault();
 								var formEl = $(this).parents('form:first');
-								
+
 								var data = formEl.serializeArray();
 								var formData = new FormData();
 								for(var i = 0; i < data.length; i++){
@@ -325,7 +317,7 @@ function getAjaxProductCollection(catId, attribute, blockType, productNum, block
 
 function initAjaxAddToCart(tag, actionId, url, formData){
 	require([
-		'jquery', 
+		'jquery',
 		'MGS_AjaxCart/js/config',
 		'Magento_Ui/js/modal/modal'
 	],function($, mgsConfig, modal){
@@ -340,12 +332,12 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 			}else{
 				tag.find('.tocart > span').text('Adding...');
 			}
-		} 
+		}
 		/*========================*/
-		
+
 		formData.append(mgsConfig.requestParamName, 1);
 		formData.append('ajax', 1);
-		
+
 		jQuery.ajax({
 			url: url,
 			data: formData,
@@ -353,13 +345,13 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 			dataType: 'json',
 			contentType: false,
 			cache: false,
-			processData:false, 
+			processData:false,
 			beforeSend: function(xhr, options) {
 				if(tag.find('.tocart').length){
 					tag.find('.tocart').addClass('disabled');
 				}else{
 					tag.addClass('disabled');
-				} 
+				}
 			},
 			success: function(response, status) {
 				/* Remove Loading Effect */
@@ -374,7 +366,7 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 					tag.removeClass('disabled');
 				}
 				/*========================*/
-				
+
 				if (status == 'success') {
 					if(response.backUrl){
 						formData.append('action_url', response.backUrl);
@@ -384,7 +376,7 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 							if(response.productView){
 								$('#ajaxcart_loading_overlay').addClass('loading');
 								/* Add to cart false - Show popup options */
-								if($('body.catalog-product-view').size() > 0){
+								if($('body.catalog-product-view').length > 0){
 									 $('body').addClass('origin-catalog-product-view');
 								}else {
 									 $('body').addClass('catalog-product-view');
@@ -405,11 +397,11 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 												title: false,
 												buttons: false
 											};
-											
+
 											var popup = modal(options, $('#ajaxcart_form_popup'+result.id_product));
 											$('#ajaxcart_form_popup'+result.id_product).html(result.product_detail);
 											$('#ajaxcart_form_popup'+result.id_product).trigger('contentUpdated');
-											$('#ajaxcart_form_popup'+result.id_product).modal('openModal').on('modalclosed', function() { 
+											$('#ajaxcart_form_popup'+result.id_product).modal('openModal').on('modalclosed', function() {
 												$('#ajaxcart_form_popup'+result.id_product).parents('.ajaxCartForm').remove();
 												$('body:not(.origin-catalog-product-view)').removeClass('catalog-product-view');
 											});
@@ -421,7 +413,7 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 								if(response.animationType == 'popup') {
 									/* Success Cart Popup */
 									$('body').append('<div id="popup_ajaxcart_success" class="popup__main popup--result"></div>');
-									
+
 									var options =
 									{
 										type: 'popup',
@@ -431,11 +423,11 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 										title: false,
 										buttons: false
 									};
-									
+
 									var popup = modal(options, $('#popup_ajaxcart_success'));
 									$('#popup_ajaxcart_success').html(response.ui + response.related);
 									$('#popup_ajaxcart_success').trigger('contentUpdated');
-									$('#popup_ajaxcart_success').modal('openModal').on('modalclosed', function() { 
+									$('#popup_ajaxcart_success').modal('openModal').on('modalclosed', function() {
 										$('#popup_ajaxcart_success').parents('.success-ajax--popup').remove();
 									});
 								}else if(response.animationType == 'flycart'){
@@ -451,26 +443,26 @@ function initAjaxAddToCart(tag, actionId, url, formData){
 										tag.removeClass('disabled');
 										$source = tag.closest('.product-item-info');
 									}
-									
+
 									var $animatedObject = jQuery('<div class="flycart-animated-add" style="position: absolute;z-index: 99999;">'+response.image+'</div>');
-									
+
 									var $_left = $source.offset().left - 1;
 									var $_top = $source.offset().top - 1;
-									
+
 									$animatedObject.css({top: $_top, left: $_left});
 									jQuery('html').append($animatedObject);
-									
+
 									if(jQuery(window).width() > 767){
 										var gotoX = jQuery("#fixed-cart-footer").offset().left + 20;
-										var gotoY = jQuery("#fixed-cart-footer").offset().top;      
-										
+										var gotoY = jQuery("#fixed-cart-footer").offset().top;
+
 										jQuery('#footer-cart-trigger').addClass('active');
 										jQuery('#footer-mini-cart').slideDown(300);
 									}else {
 										var gotoX = jQuery("#cart-top-action").offset().left;
-										var gotoY = jQuery("#cart-top-action").offset().top;      
+										var gotoY = jQuery("#cart-top-action").offset().top;
 									}
-									
+
 									$animatedObject.animate({
 										opacity: 0.6,
 										left: gotoX,

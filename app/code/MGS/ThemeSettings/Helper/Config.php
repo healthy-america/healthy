@@ -849,7 +849,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
                 $menuDropdownOpacity = 1;
             }
 
-            list($r, $g, $b) = sscanf($menuDropdownBackgroundColor, "#%02x%02x%02x");
+            list($r, $g, $b) = sscanf($menuDropdownBackgroundColor ?? '', "#%02x%02x%02x");
 
             if($menuDropdownBackgroundColor!=''){
                 $html .= '.navigation .dropdown-menu,header.page-header .navigation .nav-main-menu .multi-level li > ul.sub-menu, header.page-header .navigation .nav-main-menu li.mega-menu-fullwidth:not(.menu-2columns) > ul.dropdown-menu, .navigation .level0 .submenu, .navigation .level0 .dropdown-mega-menu, .header-area:not(.push-menu):not(.semi-push-menu) .horizontal-menu .mgs-megamenu--main .nav-main-menu li.level0:not(.menu-1columns)._hover .dropdown-mega-menu, .header-area .horizontal-menu .mgs-megamenu--main .nav-main-menu .mega-menu-item .dropdown-mega-menu{background-color:rgba('.$r.','.$g.','.$b.','.$menuDropdownOpacity.') !important;}';
@@ -857,7 +857,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
 
             /* Dropdown border color */
             $menuDropdownBorderColor = $this->getStoreConfig('fcolor/menu_fcolor/menu_dropdown_divide_color', $storeId);
-            list($r, $g, $b) = sscanf($menuDropdownBorderColor, "#%02x%02x%02x");
+            list($r, $g, $b) = sscanf($menuDropdownBorderColor ?? '', "#%02x%02x%02x");
             if($menuDropdownBorderColor!=''){
                 $html .= '.navigation .dropdown-menu,header.page-header .navigation .nav-main-menu .multi-level li > ul.sub-menu, header.page-header .navigation .nav-main-menu li.mega-menu-fullwidth:not(.menu-2columns) > ul.dropdown-menu,.navigation .level0 .submenu, .navigation .level0 .dropdown-mega-menu .sub-menu li.level2, .mega-menu-content hr{border-color:rgba('.$r.','.$g.','.$b.','.$menuDropdownOpacity.') !important;}';
             }
@@ -1094,10 +1094,6 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
             $html .= '.mgs-carousel-single .owl-nav button span{width:'.$singleNavWidth.'px}';
         }
 
-        if($lazyLoad && $lazyLoadImg != ""){
-            $html .= '.parent_lazy:not(.lazy_loaded) { background-image: url("'. $this->getMediaUrl() . 'mgs/setting/' . $lazyLoadImg.'") !important; }';
-        }
-
         if($singleNavHeight!=''){
             $html .= '.mgs-carousel-single .owl-nav button span, .mgs-carousel-single .owl-nav button span em{height:'.$singleNavHeight.'px; line-height:'.$singleNavHeight.'px}';
             $html .= '.mgs-carousel-single.nav-position-middle-outside .owl-nav button span, .mgs-carousel-single.nav-position-middle-inside .owl-nav button span{margin-top:-' . ($singleNavHeight/2) . 'px}';
@@ -1117,7 +1113,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
             }
             if($singleNavBackground!=''){
                 if($singleNavBackgroundTransparent>0 && $singleNavBackgroundTransparent<1){
-                    list($r, $g, $b) = sscanf($singleNavBackground, "#%02x%02x%02x");
+                    list($r, $g, $b) = sscanf($singleNavBackground ?? '', "#%02x%02x%02x");
                     $html .= '.mgs-carousel-single .owl-nav button span{background-color:rgba('.$r.', '.$g.', '.$b.', '.$singleNavBackgroundTransparent.')}';
                 }else{
                     $html .= '.mgs-carousel-single .owl-nav button span{background:'.$singleNavBackground.'}';
@@ -1132,11 +1128,11 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
             }
             if($singleNavHoverBackground!=''){
                 if($singleNavHoverBackgroundTransparent!=''){
-                    list($r, $g, $b) = sscanf($singleNavHoverBackground, "#%02x%02x%02x");
+                    list($r, $g, $b) = sscanf($singleNavHoverBackground ?? '', "#%02x%02x%02x");
                     $html .= '.mgs-carousel-single .owl-nav button span:hover{background-color:rgba('.$r.', '.$g.', '.$b.', '.$singleNavHoverBackgroundTransparent.')}';
                 }else{
                     if($singleNavBackgroundTransparent>0 && $singleNavBackgroundTransparent<1){
-                        list($r, $g, $b) = sscanf($singleNavHoverBackground, "#%02x%02x%02x");
+                        list($r, $g, $b) = sscanf($singleNavHoverBackground ?? '', "#%02x%02x%02x");
                         $html .= '.mgs-carousel-single .owl-nav button span:hover{background-color:rgba('.$r.', '.$g.', '.$b.', '.$singleNavBackgroundTransparent.')}';
                     }else{
                         $html .= '.mgs-carousel-single .owl-nav button span:hover{background:'.$singleNavHoverBackground.'}';
@@ -1210,7 +1206,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
             }
             if($multipleNavBackground!=''){
                 if($multipleNavBackgroundTransparent>0 && $multipleNavBackgroundTransparent<1){
-                    list($r, $g, $b) = sscanf($multipleNavBackground, "#%02x%02x%02x");
+                    list($r, $g, $b) = sscanf($multipleNavBackground ?? '', "#%02x%02x%02x");
                     $html .= '.mgs-carousel-multiple .owl-nav button span{background-color:rgba('.$r.', '.$g.', '.$b.', '.$multipleNavBackgroundTransparent.')}';
                 }else{
                     $html .= '.mgs-carousel-multiple .owl-nav button span{background:'.$multipleNavBackground.'}';
@@ -1225,11 +1221,11 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
             }
             if($multipleNavHoverBackground!=''){
                 if($multipleNavHoverBackgroundTransparent!=''){
-                    list($r, $g, $b) = sscanf($multipleNavHoverBackground, "#%02x%02x%02x");
+                    list($r, $g, $b) = sscanf($multipleNavHoverBackground ?? '', "#%02x%02x%02x");
                     $html .= '.mgs-carousel-multiple .owl-nav button span:hover{background-color:rgba('.$r.', '.$g.', '.$b.', '.$multipleNavHoverBackgroundTransparent.')}';
                 }else{
                     if($multipleNavBackgroundTransparent>0 && $multipleNavBackgroundTransparent<1){
-                        list($r, $g, $b) = sscanf($multipleNavHoverBackground, "#%02x%02x%02x");
+                        list($r, $g, $b) = sscanf($multipleNavHoverBackground ?? '', "#%02x%02x%02x");
                         $html .= '.mgs-carousel-multiple .owl-nav button span:hover{background-color:rgba('.$r.', '.$g.', '.$b.', '.$multipleNavBackgroundTransparent.')}';
                     }else{
                         $html .= '.mgs-carousel-multiple .owl-nav button span:hover{background:'.$multipleNavHoverBackground.'}';

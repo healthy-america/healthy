@@ -86,7 +86,7 @@
     ], function(jQuery){
         (function($) {
             /* Shipping & Discount Code */
-            $('.checkout-extra > .block > .title').click(function(){
+            $('.checkout-extra > .block > .title').on('click', function(){
                 $('.checkout-extra .block').removeClass('active');
                 $('.checkout-extra .block .title').removeClass('active');
                 $('.checkout-extra .block .content').removeClass('active');

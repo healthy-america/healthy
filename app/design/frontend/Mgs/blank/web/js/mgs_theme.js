@@ -6,13 +6,13 @@ require([
 		calAndSetHeightHeaderFooter();
 	});
 
-	$(window).resize(function(){
+	$(window).on('resize', function(){
 		calAndSetHeightHeaderFooter();
 	});
 
 	/* Header Sticky Menu */
 	if($('.active-sticky').length){
-		$(window).scroll(function(){
+		$(window).on('scroll', function(){
 			if($(this).scrollTop() > $('.active-sticky').height()){
 				$('.active-sticky').addClass('scrolling');
 			}else {

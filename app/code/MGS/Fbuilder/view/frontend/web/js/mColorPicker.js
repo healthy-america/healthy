@@ -29,7 +29,7 @@ var webBaseUrl = curentUrl.split('pub/static/');
 if(webBaseUrl.length==1){
 	webBaseUrl = curentUrl.split('static/');
 }
-var mediaImageFolder = webBaseUrl[0] + 'pub/media/mgs/fbuilder/images/';
+var mediaImageFolder = webBaseUrl[0] + 'media/mgs/fbuilder/images/';
 
 require([
 	'jquery'

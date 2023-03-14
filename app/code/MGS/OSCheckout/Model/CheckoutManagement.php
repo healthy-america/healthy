@@ -293,9 +293,9 @@ class CheckoutManagement implements CheckoutManagementInterface
         }
 
         $OSCheckoutDetails
-            ->setImageData($this->OSCheckoutHelper->jsonEncodeData($imageData))
-            ->setOptions($this->OSCheckoutHelper->jsonEncodeData($optionsData))
-            ->setRequestPath($this->OSCheckoutHelper->jsonEncodeData($requestPath));
+            ->setImageData($this->OSCheckoutHelper->jsonEncode($imageData))
+            ->setOptions($this->OSCheckoutHelper->jsonEncode($optionsData))
+            ->setRequestPath($this->OSCheckoutHelper->jsonEncode($requestPath));
 
         return $OSCheckoutDetails;
     }

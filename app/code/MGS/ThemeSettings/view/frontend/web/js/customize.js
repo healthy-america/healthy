@@ -16,24 +16,24 @@ require([
 	var activePanel = 0;
 	function panelAction(){
 		/* Open setting when click panel title */
-		$("button.panel-title-btn").click(function() {
+		$("button.panel-title-btn").on('click', function() {
 			activePanel = dataNumber = $(this).attr('data-number');
 			$('#panel'+dataNumber).show();
 			$('#panel-form').addClass('active-panel');
 		});
-		
+
 		/* Close setting */
-		$("button.btn-close-panel").click(function() {
+		$("button.btn-close-panel").on('click', function() {
 			activePanel = 0;
 			$('.panel-form-group').hide();
 			$('#panel-form').removeClass('active-panel');
 		});
-		
+
 		/* Responsive window */
-		$("button.responsive").click(function() {
+		$("button.responsive").on('click', function() {
 			$("button.responsive").removeClass('active');
 			$(this).addClass('active');
-			
+
 			var responsiveType = $(this).attr('data-responsive');
 			if(responsiveType!='full'){
 				$(".left-panel-collapsible").show();
@@ -43,18 +43,18 @@ require([
 				$(".preview .theme").removeClass('desktop').removeClass('phone');
 				$(".left-panel-collapsible").hide();
 			}
-			
+
 		});
-		
+
 		/* Color input */
 		if($('.panel-input-color').length){
 			$('.panel-input-color').attr('data-hex', true).mColorPicker();
-			
+
 			$('.panel-input-color').change(function(){
 				var backgroundColor = $(this).css("background-color");
 				$(this).css("color", backgroundColor);
 			});
-			
+
 			$('.panel-input-color').each(function(){
 				var inputColor = $(this);
 				var backgroundColor = inputColor.css("background-color");
@@ -67,8 +67,8 @@ require([
 					}
 					$.ajax({
 						url: WEB_URL_AJAX + 'mgsthemesetting/theme/save',
-						data: { 
-							id : inputColor.attr('id'), 
+						data: {
+							id : inputColor.attr('id'),
 							value : inputColor.val(),
 							style : loadStyle
 						},
@@ -85,7 +85,7 @@ require([
 					});
 				});
 			});
-			
+
 			/* Upload image */
 			$('.input-image').change(function(){
 				progress.show();
@@ -133,7 +133,7 @@ require([
 								}
 								$('#'+imageField.attr('data-id')+'_field .select-img').hide();
 								$('#'+imageField.attr('data-id')+'_field .img-action').show();
-								
+
 								if(loadStyle && (result.style!='')){
 									frameEl.contents().find("#themesetting_customize_temp").html(result.style);
 								}
@@ -147,9 +147,9 @@ require([
 					});
 				}
 			});
-			
+
 			/* Remove image */
-			$('.btn-button-remove').click(function(){
+			$('.btn-button-remove').on('click', function(){
 				progress.show();
 				var btn = $(this);
 				fileType = btn.attr('data-type');
@@ -159,10 +159,10 @@ require([
 				}
 				var imgEl = btn.attr('data-element');
 				var imgSrc = $('#'+imgEl+'_field .img-preview img').attr('src');
-				
+
 				$.ajax({
 					url: WEB_URL_AJAX + 'mgsthemesetting/theme/remove',
-					data: { 
+					data: {
 						id : imgEl,
 						src: imgSrc,
 						style : loadStyle
@@ -186,9 +186,9 @@ require([
 					}
 				});
 			});
-			
+
 			/* Checkbox boolean */
-			$('.checkbox-temp').click(function(){
+			$('.checkbox-temp').on('click', function(){
 				if($(this).prop("checked") == true){
 					var elementValue = 1;
 				}else{
@@ -197,9 +197,9 @@ require([
 				var realElId = $(this).attr('id').replace('_temp','');
 				$('#'+realElId).val(elementValue).change();
 			});
-			
+
 			/* Checkbox for multiple select */
-			$('.multiple-checkbox').click(function(){
+			$('.multiple-checkbox').on('click', function(){
 				var checkEl = $(this);
 				var checkValue = checkEl.val();
 				var inputElId = checkEl.attr('data-parent');
@@ -214,14 +214,14 @@ require([
 				inputValue.toString();
 				inputEl.val(inputValue).change();
 			});
-			
+
 			/* Slider range input */
 			$('.slider-input .slider').change(function(){
 				var sliderEl = $(this);
 				var dataInput = sliderEl.attr('data-input');
 				$('#'+dataInput).val(sliderEl.val()).change();
 			});
-			
+
 			$('.slider-input .slider').on('input', function() {
 				var sliderEl = $(this);
 				var dataInput = sliderEl.attr('data-input');
@@ -229,8 +229,8 @@ require([
 			});
 
 		}
-		
-		
+
+
 		/* Hidden fields with depend condition */
 		var arDependField = [];
 		$("div.field").each(function(order) {
@@ -238,14 +238,14 @@ require([
 				hiddenEl = $(this);
 				/* Hide field */
 				hiddenEl.hide();
-				
+
 				/* Show field if conditions are true */
 				var dataDepend = hiddenEl.attr('data-depend').toString();
 				dataDependReplace = dataDepend.replace(/==/g, ':').replace(/!=/g, ':').replace(/_and_/g, '-').replace(/_or_/g, '-');
-				
+
 				var arrCondition = dataDependReplace.split('-');
 				$.each( arrCondition, function( i, val ) {
-					var arrEl = val.split(':');		
+					var arrEl = val.split(':');
 					elId = arrEl[0];
 
 					dataDepend = dataDepend.replace(new RegExp(elId, 'g'), "$('#"+elId+"').val()");
@@ -254,7 +254,7 @@ require([
 				});
 			}
 		});
-		
+
 		if(arDependField.length){
 			$.each( arDependField, function( i, val ) {
 				if (typeof val !== 'undefined'){
@@ -263,7 +263,7 @@ require([
 					}else{
 						$('#'+val[1]).hide();
 					}
-					
+
 					$('#'+val[0]).change(function(){
 						if(eval(val[2])){
 							$('#'+val[1]).show();
@@ -274,7 +274,7 @@ require([
 				}
 			});
 		}
-		
+
 		/* On input change */
 		$(".panel-input").change(function() {
 			if(!$(this).hasClass("panel-input-color")){
@@ -296,8 +296,8 @@ require([
 				}
 				$.ajax({
 					url: WEB_URL_AJAX + 'mgsthemesetting/theme/save',
-					data: { 
-						id : elementId, 
+					data: {
+						id : elementId,
 						value : elementValue,
 						style : loadStyle
 					},
@@ -318,14 +318,14 @@ require([
 	$(document).ready(function(){
 		panelAction();
 	});
-	
+
 	/* Show loading progress on frame */
 	frameEl.load(function(){
 		$('#left-panel-container').css('opacity', '0.5');
 		progress.hide();
 		$.ajax({
 			url: WEB_URL_AJAX + 'mgsthemesetting/theme/navigation',
-			data: { 
+			data: {
 				activepanel : activePanel
 			},
 			success: function(data) {
@@ -334,7 +334,7 @@ require([
 				panelAction();
 			}
 		});
-		$(this).contents().find("a").click(function(){
+		$(this).contents().find("a").on('click', function(){
 			aEl = $(this);
 			if(aEl[0].hasAttribute('href') && btoa(aEl.attr('href'))!='' && btoa(aEl.attr('href'))!='#'){
 				progress.show();

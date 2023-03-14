@@ -1,7 +1,6 @@
 <?php $helper = $this->helper('MGS\ThemeSettings\Helper\Config') ?>
 <?php $fonts = $helper->getFonts(); ?>
 <?php $customFont = $helper->getCustomFonts(); ?>
-<?php //echo '<pre>'; print_r($customFont); die(); ?>
 <?php if(count($fonts)>0): ?>
 	<?php foreach($fonts as $font): ?>
 		<?php if(!isset($customFont[$font['css-name']])): ?>
@@ -50,60 +49,3 @@
 		</style>
 	<?php endif ?>
 <?php endif ?>
-
-<script type="text/javascript">
-	function setFontFamily(el){
-		require([
-			'jquery'
-		], function(jQuery){
-			(function($) {
-				fontName = $('#'+el).val().replace('+', ' ');
-				if(fontName!=''){
-					$('#'+el+'_heading').css({fontFamily:  '"'+fontName+'"'});
-				}else{
-					$('#'+el+'_heading').css({fontFamily:  'unset'});
-				}
-				setNoteLabel(el);
-			})(jQuery);
-		});
-	}
-	function setFontWeight(el){
-		require([
-			'jquery'
-		], function(jQuery){
-			(function($) {
-				weight = $('#'+el).val();
-				sampleEl = el.replace('weight', 'heading');
-				if(fontName!=''){
-					$('#'+sampleEl).css({fontWeight: weight});
-				}else{
-					$('#'+sampleEl).css({fontWeight:  'unset'});
-				}
-				setNoteLabel(el);
-			})(jQuery);
-		});
-	}
-	
-	function setNoteLabel(el){
-		require([
-			'jquery'
-		], function(jQuery){
-			(function($) {
-				el = el.replace('themestyle_font_','');
-				el = el.replace('_weight','');
-				fontFamily = 'themestyle_font_'+el;
-				fontWeight = fontFamily+'_weight';
-				noteEl = el+'_note';
-				
-				fontFamilyValue = $('#'+fontFamily).val();
-				fontWeightValue = $('#'+fontWeight).val();
-				if(fontFamilyValue!='' && fontWeightValue!=''){
-					$('#'+noteEl).show();
-					$('#'+noteEl+' span').html($('#'+fontFamily).val().replace('+', ' '));
-				}else{
-					$('#'+noteEl).hide();
-				}
-			})(jQuery);
-		});
-	}
-</script>

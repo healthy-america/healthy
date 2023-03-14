@@ -34,7 +34,7 @@ $lazyLoad = $themeSettingConfig->getStoreConfig('themesettings/general/lazy_load
                                     <?php endif ?>
                                     <a href="<?php echo $_post->getPostUrlWithNoCategory(); ?>"
                                        title="<?php echo strip_tags($_post->getTitle()) ?>">
-                                        <img class="img-responsive<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                                        <img class="img-responsive<?php if ($lazyLoad): ?> arrow-lazy<?php endif ?>"
                                              src="<?= $baseImage ?>" data-src="<?= $getThumbnailUrl; ?>"
                                              alt="<?php echo strip_tags($_post->getTitle()) ?>"/>
                                     </a>

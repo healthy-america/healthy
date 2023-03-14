@@ -464,18 +464,18 @@ use Magento\Framework\App\Action\Action;
 
             <!-- Product Image-->
             <a href="<?php echo $_product->getProductUrl() ?>"
-               class="product photo product-item-photo <?php if ((basename($_product->getData('thumbnail')) != 'no_selection') && (basename($_product->getData('thumbnail')) != basename($_product->getData('small_image')))): ?> has-hover-image<?php endif ?>"
+               class="product photo product-item-photo <?php if ((basename($_product->getData('thumbnail') ?? '') != 'no_selection') && (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? ''))): ?> has-hover-image<?php endif ?>"
                style="padding-bottom: <?php echo $padding ?>;" tabindex="-1">
 
                 <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
-                     class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad): ?>lazy<?php endif ?>"
+                     class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
                      loading="lazy"
                      data-src="<?php echo $productImage ?>"/>
 
-                <?php if (basename($_product->getData('thumbnail')) != 'no_selection'): ?>
-                    <?php if (basename($_product->getData('thumbnail')) != basename($_product->getData('small_image'))): ?>
+                <?php if (basename($_product->getData('thumbnail') ?? '') != 'no_selection'): ?>
+                    <?php if (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? '')): ?>
                         <img src="<?php echo $baseImageHover; ?>" alt="<?php echo $_productNameStripped ?>"
-                             class="img-responsive img-hover-show <?php if ($lazyLoad): ?>lazy<?php endif ?>"
+                             class="img-responsive img-hover-show <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
                              loading="lazy"
                              data-src="<?php echo $productImageHover; ?>"/>
                     <?php endif ?>

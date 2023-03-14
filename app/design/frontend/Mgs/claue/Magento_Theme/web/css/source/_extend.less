@@ -12,13 +12,13 @@
 @dot-bg-color: #e9f0f3;
 
 & when (@media-common = true) {
-	.customer-account-create{ 
-		.create{ 
-			.choice{ 
-				overflow:inherit; 
-				label{display:inline-block} 
-			} 
-		} 
+	.customer-account-create{
+		.create{
+			.choice{
+				overflow:inherit;
+				label{display:inline-block}
+			}
+		}
 	}
   .banner-auto-parts {
     h2.big-text {
@@ -293,6 +293,24 @@
       }
     }
   }
+    .page-title-wrapper {
+        h1.page-title+.breadcrumbs {
+            background-color: transparent;
+            margin: 0;
+            a, li {
+                color: #fff;;
+            }
+        }
+        &.ttbg-color,
+        &.ttbg-image {
+            margin-bottom: 30px;
+        }
+        &.ttbg-color {
+            &:before {
+                display: none;
+            }
+        }
+    }
 }
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {

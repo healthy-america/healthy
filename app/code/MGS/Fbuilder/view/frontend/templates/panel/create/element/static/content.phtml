@@ -80,7 +80,7 @@
     </script>
 <?php endif ?>
 
-<?php if ($helper->getStoreConfig('cms/wysiwyg/editor')=='mage/adminhtml/wysiwyg/tiny_mce/tinymce4Adapter'): ?>
+<?php if ($helper->getStoreConfig('cms/wysiwyg/editor')=='mage/adminhtml/wysiwyg/tiny_mce/tinymce5Adapter'): ?>
     <script type="text/javascript">
         require([
         "jquery", 
@@ -99,7 +99,7 @@
                 "width":"100%",  // defined width of editor
                 "height":"500px", // height of editor
                 //"plugins":[{"name":"image"}], // for image
-                "tinymce4":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
+                "tinymce5":{"toolbar":"formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link table charmap","plugins":"advlist autolink lists link charmap media noneditable table contextmenu paste code help table",
                 }
             });
             wysiwygcms_block_form_content.setup("exact");

@@ -4,20 +4,20 @@
     ], function(jQuery){
         (function($) {
             $(document).ajaxComplete(function() {
-                $('.fieldset-wrapper-title').click(function(){
+                $('.fieldset-wrapper-title').on('click', function(){
                     setTimeout(function(){
                         if(($('#togglecategory_form_description').length > 0) && ($('.copy-description-template').length==0)){
                             var buttonHtml = '<span class="copy-description-template"><button type="button" class="btn button" onclick="showHideCopyForm()"><span><?php echo __("Copy Description Template") ?></span></button><div class="mgs-file-form"><table><tbody><tr><td><label><?php echo __("Source:") ?></label></td><td style="white-space: nowrap;"><input type="text" class="admin__control-text category_id" placeholder="Category Id"></td><td><button type="button" class="action-check" onclick="loadAvailableStore(\'category\'); return false"><span><?php echo __("Check") ?></span></button><button type="button" class="action-save" onclick="copyCategoryDescriptionTemplate()"><span><?php echo __("Apply") ?></span></button></td></tr></tbody></table></div></span>';
                             $("#buttonscategory_form_description").append(buttonHtml);
                         }
                     },1000);
-                    
+
                 });
-                
+
             });
         })(jQuery);
     });
-    
+
     function showHideCopyForm(){
             require([
                 'jquery'
@@ -27,7 +27,7 @@
                 })(jQuery);
             });
         }
-        
+
     function loadAvailableStore(type){
             require([
                 'jquery'
@@ -63,7 +63,7 @@
                 })(jQuery);
             });
         }
-    
+
     function copyCategoryDescriptionTemplate(){
             require([
                 'jquery'
@@ -87,7 +87,7 @@
                             location.reload();
                         }
                     });
-                    
+
                 })(jQuery);
             });
         }

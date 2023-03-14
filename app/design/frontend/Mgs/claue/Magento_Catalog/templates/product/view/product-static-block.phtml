@@ -5,7 +5,7 @@
         ->toHtml(); ?>
 </div>
 
-<script type="text/javascript">
+<script>
     require([
         "jquery",
         "Magento_Ui/js/modal/modal"
@@ -22,10 +22,10 @@
         if($('#delivery-content').length){
             var popup2 = modal(options, $('#delivery-content'));
         }
-        $("#btn-guilde").click(function() {
+        $("#btn-guilde").on('click', function() {
             $('#guilde-content').modal('openModal');
         });
-        $("#btn-delivery").click(function() {
+        $("#btn-delivery").on('click', function() {
             $('#delivery-content').modal('openModal');
         });
     });

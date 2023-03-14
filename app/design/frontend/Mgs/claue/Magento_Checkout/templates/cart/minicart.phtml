@@ -53,7 +53,7 @@
     <?php else: ?>
         <?php $scriptString = <<<script
             require(['jquery'], function ($) {
-                $('a.action.showcart').click(function() {
+                $('a.action.showcart').on('click', function() {
                     $(document.body).trigger('processStart');
                 });
             });

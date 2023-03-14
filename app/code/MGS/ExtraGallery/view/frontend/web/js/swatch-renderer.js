@@ -73,8 +73,8 @@ define([
 			 * @private
 			 */
 			_ProductMediaCallback: function ($this, response) {
-				var isProductViewExist = $('body.catalog-product-view').size() > 0;
-				if($('.product_quickview_content').size() > 0){
+				var isProductViewExist = $('body.catalog-product-view').length > 0;
+				if($('.product_quickview_content').length > 0){
 					isProductViewExist = 1;
 				}
 				var $main = isProductViewExist ? $this.parents('.column.main') : $this.parents('.product-item-info'),
@@ -138,7 +138,7 @@ define([
 	        	} else {
 	        		initial = '';
 	        	}
-	            
+
 
 	            if (images[0].img === initial) {
 	                images = $.extend(true, [], this.options.mediaGalleryInitial);
@@ -317,7 +317,7 @@ define([
 					},
 				});
 
-				$('#horizontal-thumbnail .item-thumb').click(function(){
+				$('#horizontal-thumbnail .item-thumb').on('click', function(){
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
@@ -372,7 +372,7 @@ define([
 					},
 				});
 
-				$('#horizontal-thumbnail .item-thumb').click(function(){
+				$('#horizontal-thumbnail .item-thumb').on('click', function(){
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
@@ -487,7 +487,7 @@ define([
 					$('.product.media').height(hs);
 				});
 
-				$('#vertical-thumbnails .item-thumb').click(function(){
+				$('#vertical-thumbnails .item-thumb').on('click', function(){
 					$('#vertical-thumbnails .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);

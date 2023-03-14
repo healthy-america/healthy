@@ -138,6 +138,7 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
             <?php $_imageHelper = $this->helper('Magento\Catalog\Helper\Image'); ?>
             <?php $size = $themeHelper->getImageSize(); ?>
             <?php $padding = $themeHelper->getImagePadding(); ?>
+            <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
             <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
             <?php if ($block->getMode() == 'grid'): ?>
                 <?php $i = 0; ?>
@@ -157,13 +158,13 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                class="product photo product-item-photo <?php if ($productThumbnail && (basename($productThumbnail) != 'no_selection') && (basename($productThumbnail) != basename($_product->getData('small_image')))): ?> has-hover-image<?php endif ?>"
                                tabindex="-1">
                                 <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
-                                     class="img-responsive product-image-photo img-thumbnail<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                                     class="img-responsive product-image-photo img-thumbnail<?php if ($lazyLoad): ?> arrow-lazy<?php endif ?>"
                                      data-src="<?php echo $productImage ?>"/>
 
                                 <?php if ($productThumbnail && basename($productThumbnail) != 'no_selection'): ?>
                                     <?php if (basename($productThumbnail) != basename($_product->getData('small_image'))): ?>
                                         <img src="<?php echo $baseImageHover ?>" alt="<?php echo $_productNameStripped ?>"
-                                             class="img-responsive img-hover-show<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                                             class="img-responsive img-hover-show<?php if ($lazyLoad): ?> arrow-lazy<?php endif ?>"
                                              data-src="<?php echo $productImageHover ?>"/>
                                     <?php endif ?>
                                 <?php endif ?>
@@ -172,13 +173,13 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                             </a>
                             <!-- Product label-->
                             <?php echo $themeHelper->getProductLabel($_product); ?>
-							<?php if(!$_hideWishlist || !$_hideCompare): ?>
-								<ul data-role="add-to-links" class="actions-link actions-secondary">
-									<?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-										<?= $addToBlock->setProduct($_product)->getChildHtml() ?>
-									<?php endif; ?>
-								</ul>
-							<?php endif ?>
+                            <?php if(!$_hideWishlist || !$_hideCompare): ?>
+                                <ul data-role="add-to-links" class="actions-link actions-secondary">
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                    <?php endif; ?>
+                                </ul>
+                            <?php endif ?>
                             <?php if ($_product->isSaleable() && !$_hideAddCart): ?>
                                 <div class="action-mobile">
                                     <?php $postParams = $block->getAddToCartPostParams($_product); ?>
@@ -251,13 +252,13 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                        class="product photo product-item-photo <?php if ($productThumbnail && (basename($productThumbnail) != 'no_selection') && (basename($productThumbnail) != basename($_product->getData('small_image')))): ?> has-hover-image<?php endif ?>"
                                        tabindex="-1">
                                         <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
-                                             class="img-responsive product-image-photo img-thumbnail<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                                             class="img-responsive product-image-photo img-thumbnail<?php if ($lazyLoad): ?> arrow-lazy<?php endif ?>"
                                              data-src="<?php echo $productImage ?>"/>
 
                                         <?php if ($productThumbnail && basename($productThumbnail) != 'no_selection'): ?>
                                             <?php if (basename($productThumbnail) != basename($_product->getData('small_image'))): ?>
                                                 <img src="<?php echo $baseImageHover ?>" alt="<?php echo $_productNameStripped ?>"
-                                                     class="img-responsive img-hover-show<?php if ($lazyLoad): ?> lazy<?php endif ?>"
+                                                     class="img-responsive img-hover-show<?php if ($lazyLoad): ?> arrow-lazy<?php endif ?>"
                                                      data-src="<?php echo $productImageHover ?>"/>
                                             <?php endif ?>
                                         <?php endif ?>
@@ -321,15 +322,32 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                                 </form>
                                             <?php endif; ?>
                                         </li>
-                                        <?php if ($addToBlock = $block->getChildBlock('addto') && (!$_hideWishlist || !$_hideCompare)): ?>
-                                            <?php if(!$_hideCompare): ?>
-                                                <?= $addToBlock->setProduct($_product)->getChildHtml('compare'); ?>
-                                            <?php endif ?>
-
-                                            <?php if(!$_hideWishlist): ?>
-                                                <?= $addToBlock->setProduct($_product)->getChildHtml('wishlist'); ?>
-                                            <?php endif ?>
+                                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && !$_hideWishlist ): ?>
+                                            <li>
+                                                <button data-title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                                        class="action towishlist"
+                                                        title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                                        aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>"
+                                                        data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'
+                                                        data-action="add-to-wishlist"
+                                                        role="button">
+                                                    <i class="pe-7s-like"></i>
+                                                </button>
+                                            </li>
                                         <?php endif; ?>
+
+                                        <?php if(!$_hideCompare): ?>
+                                            <li>
+                                                <button data-title="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                                        class="action tocompare"
+                                                        title="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                                        aria-label="<?php echo $block->escapeHtml(__('Add to Compare')); ?>"
+                                                        data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product); ?>'
+                                                        role="button">
+                                                    <i class="pe-7s-graph3"></i>
+                                                </button>
+                                            </li>
+                                        <?php endif ?>
                                     </ul>
                                 </div>
                             </div>
@@ -362,7 +380,7 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
         'waypoints'
     ], function(jQuery){
         (function($) {
-            $('.filter-toggle .title').click(function(){
+            $('.filter-toggle .title').on('click', function(){
                 $('html').toggleClass('filter-open');
             });
         })(jQuery);
@@ -371,23 +389,16 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
 <script type="text/javascript">
 
     requirejs([
-
         'require',
-
         'jquery',
-
         'mgsmasonry',
-
         'mgsvisible'
-
     ], function( require, $, Masonry) {
-
         require( [ 'bridget' ], function( jQueryBridget ) {
 
             jQueryBridget( 'masonry', Masonry, $ );
 
             $(window).on('load', function() {
-
                 var $container = $('.product-list-masonry-change-product').masonry({
                     itemSelector: '.product-item-masonry',
                     columnWidth: '.product-item-masonry',
@@ -396,7 +407,6 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                 });
 
                 $('.layout-mode-button-group').on( 'click', 'a', function() {
-
                     $container.masonry({
                         columnWidth: '.product-item-masonry',
                         maxHeight: 0,
@@ -407,7 +417,6 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
 
                 // change is-checked class on buttons
                 $('.button-group').each( function( i, buttonGroup ) {
-
                     var $buttonGroup = $( buttonGroup );
 
                     $buttonGroup.on( 'click', 'a', function() {
@@ -420,14 +429,12 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
             });
 
             $(document).ajaxComplete(function() {
-
                 var $container = $('.product-list-masonry-change-product').masonry({
                     itemSelector: '.product-item-masonry',
                     columnWidth: '.product-item-masonry',
                     horizontalOrder: true,
                     initLayoutMasonry: true
                 });
-
 
                 $('.layout-mode-button-group').on( 'click', 'a', function() {
                     $container.masonry({
@@ -447,7 +454,7 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                     });
 
                 });
-                $(window).scroll(function(){
+                $(window).on('scroll', function(){
                     $(".product-list-masonry-change-product > .product-item-masonry").each(function(){
                         if($(this).visible(true,true,'vertical')) {
                             $(this).addClass('enable');
@@ -467,7 +474,7 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
 <script>
     require(['jquery', 'domReady!'], function ($) {
         $(document).ready(function(){
-            $(window).scroll(function(){
+            $(window).on('scroll', function(){
                 $('.category-product-actions .change-product-per-row a.active').trigger('click');
             });
         });

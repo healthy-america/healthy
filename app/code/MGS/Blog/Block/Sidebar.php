@@ -117,7 +117,7 @@ class Sidebar extends \Magento\Framework\View\Element\Template
             ->setOrder('created_at', 'DESC');
         $tags = [];
         foreach ($postCollection as $post) {
-            $postTags = explode(',', $post->getTags());
+            $postTags = explode(',', $post->getTags() ?? '');
             foreach ($postTags as $tag) {
                 if ($tag == null || $tag == '') continue;
                 $tags[] = trim($tag);
@@ -129,8 +129,8 @@ class Sidebar extends \Magento\Framework\View\Element\Template
     public function getCategoryByStore($store, $category_id) {
         $table = $this->resource->getTable('mgs_blog_category_update');
         $connection = $this->resource->getConnection();
-        $sql = "SELECT `field`, `value` 
-                 FROM `$table` 
+        $sql = "SELECT `field`, `value`
+                 FROM `$table`
                  WHERE `scope_id`= $store
                  AND `category_id`= $category_id ";
         $category = $connection->fetchAssoc($sql);
@@ -140,12 +140,12 @@ class Sidebar extends \Magento\Framework\View\Element\Template
     public function getPostByStore($store, $post_id) {
         $table = $this->resource->getTable('mgs_blog_post_update');
         $connection = $this->resource->getConnection();
-        $sql = "SELECT `field`, `value` 
-                 FROM `$table` 
+        $sql = "SELECT `field`, `value`
+                 FROM `$table`
                  WHERE `scope_id`= $store
                  AND `post_id`= $post_id ";
         $post = $connection->fetchAssoc($sql);
         return $post;
     }
-    
+
 }

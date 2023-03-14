@@ -2,7 +2,7 @@ require([
     'jquery',
     'Magento_Ui/js/modal/modal',
 ], function($, modal) {
-    jQuery('#product-addtocart-button').click(function(){
+    jQuery('#product-addtocart-button').on('click', function(){
         var form = jQuery('#product_addtocart_form');
         var isValid = form.valid();
         if(isValid){
@@ -28,10 +28,10 @@ require([
                                 $('.page.messages').hide();
 
                                 if($(document).find('.ajaxCartForm').length){
-                                    $(document).find('.ajaxCartForm .modal-header .action-close').click();
+                                    $(document).find('.ajaxCartForm .modal-header .action-close').trigger('click');
                                 }
                                 $('body').append('<div id="popup_ajaxcart_success" class="popup__main popup--result"></div>');
-                                    
+
                                 var options =
                                 {
                                     type: 'popup',
@@ -41,11 +41,11 @@ require([
                                     title: false,
                                     buttons: false
                                 };
-                                
+
                                 var popup = modal(options, $('#popup_ajaxcart_success'));
                                 $('#popup_ajaxcart_success').html(response.ui + response.related);
                                 $('#popup_ajaxcart_success').trigger('contentUpdated');
-                                $('#popup_ajaxcart_success').modal('openModal').on('modalclosed', function() { 
+                                $('#popup_ajaxcart_success').modal('openModal').on('modalclosed', function() {
                                     $('#popup_ajaxcart_success').parents('.success-ajax--popup').remove();
                                 });
                                 setTimeout(function () {
@@ -54,23 +54,23 @@ require([
                                 }, 2000);
                             } else if(response.animationType == 'flycart') {
                                 var $animatedObject = jQuery('<div class="flycart-animated-add" style="position: absolute;z-index: 99999;">'+response.image+'</div>');
-                            
+
                                 var left = $_this.offset().left;
                                 var top = $_this.offset().top;
-                                
+
                                 $animatedObject.css({top: top-1, left: left-1});
                                 jQuery('html').append($animatedObject);
-                                
+
                                 jQuery('#footer-cart-trigger').addClass('active');
                                 jQuery('#footer-mini-cart').slideDown(300);
-                                
+
                                 var gotoX = jQuery("#fixed-cart-footer").offset().left + 20;
                                 var gotoY = jQuery("#fixed-cart-footer").offset().top;
-                                
+
                                 if($(document).find('.ajaxCartForm').length){
-                                    $(document).find('.ajaxCartForm .modal-header .action-close').click();
+                                    $(document).find('.ajaxCartForm .modal-header .action-close').trigger('click');
                                 }
-                                
+
                                 $animatedObject.animate({
                                     opacity: 0.6,
                                     left: gotoX,
@@ -92,7 +92,7 @@ require([
                                 },5000);
                                 $("#product-addtocart-button > span").text('Add to cart');
                             }
-                            
+
                         }
                     }
                 }

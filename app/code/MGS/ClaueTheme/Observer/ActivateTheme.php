@@ -34,7 +34,7 @@ class ActivateTheme implements ObserverInterface
         $this->messageManager = $messageManager;
 		$this->cacheManager = $cacheManager;
     }
-	
+
     /**
      * @param \Magento\Framework\Event\Observer $observer
      * @return void
@@ -51,19 +51,24 @@ class ActivateTheme implements ObserverInterface
 				$domain = substr($domain, 0, strpos($domain, "/"));
 			}
 			$magentoVersion =  $this->metaData->getVersion() . ' - Claue V2.0.0';
-			
+
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, "https://shop.magesolution.com/licensekey/index/activate/item/20155150/theme/Claue/key/$keyValue/domain/$domain/version/$magentoVersion");
+			curl_setopt($ch, CURLOPT_URL, 'https://updates.arrowtheme.com/wp-json/arrow-market/v1/active-theme/');
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query(array('theme'=>'Claue', 'domain' => $domain, 'purchase_code' => $keyValue, 'magento_version' => $magentoVersion)));
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'ACTIVATE-THEMEFOREST-THEME');
 
-			$result = curl_exec($ch);
-			if($result=='Activated'){
+			$response = curl_exec($ch);
+            $response = trim($response);
+            $response = json_decode($response, true);
+
+			if($response['status']=='success'){
 				$this->messageManager->addSuccess(__('Claue theme has been successfully activated.'));
 			}else{
 				$this->configWriter->save('active_theme/activate/claue', NULL);
 				$this->cacheManager->clean(['config']);
-				$this->messageManager->addError($result);
+				$this->messageManager->addError($response['message'] ?? __('Claue theme has not been activated') );
 			}
 			curl_close($ch);
 		}else{

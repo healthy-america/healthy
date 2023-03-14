@@ -28,7 +28,7 @@
                         'jquery/ui'
                     ], function(jQuery){
                         (function($) {
-                            $('#fbuilder-accordion-<?php echo $blockId ?> .accordion-title-all').click(function(){
+                            $('#fbuilder-accordion-<?php echo $blockId ?> .accordion-title-all').on('click', function(){
                                 $(this).next().stop().animate({height: 'toggle'}, 200).toggleClass('ui-accordion-content-active');
                                 $(this).stop().toggleClass('ui-accordion-header-active');
                             });

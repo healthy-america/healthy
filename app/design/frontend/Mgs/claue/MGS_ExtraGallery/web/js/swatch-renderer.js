@@ -73,8 +73,8 @@ define([
 			 * @private
 			 */
 			_ProductMediaCallback: function ($this, response) {
-				var isProductViewExist = $('body.catalog-product-view').size() > 0;
-				if($('.product_quickview_content').size() > 0){
+				var isProductViewExist = $('body.catalog-product-view').length > 0;
+				if($('.product_quickview_content').length > 0){
 					isProductViewExist = 1;
 				}
 				var $main = isProductViewExist ? $this.parents('.column.main') : $this.parents('.product-item-info'),
@@ -315,7 +315,7 @@ define([
 					},
 				});
 
-				$('#horizontal-thumbnail .item-thumb').click(function(){
+				$('#horizontal-thumbnail .item-thumb').on('click', function(){
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
@@ -370,7 +370,7 @@ define([
 					},
 				});
 
-				$('#horizontal-thumbnail .item-thumb').click(function(){
+				$('#horizontal-thumbnail .item-thumb').on('click', function(){
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
@@ -411,7 +411,7 @@ define([
 					lazyLoad: false,
 					nav: true,
 					dots: false,
-					navText: ["<span></span>","<span></span>"],
+					navText: ["<i class='pe-7s-angle-left'></i>","<i class='pe-7s-angle-right'></i>"],
 					rtl: $_rtl
 				});
 
@@ -485,7 +485,7 @@ define([
 					$('.product.media').height(hs);
 				});
 
-				$('#vertical-thumbnails .item-thumb').click(function(){
+				$('#vertical-thumbnails .item-thumb').on('click', function(){
 					$('#vertical-thumbnails .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
@@ -566,7 +566,7 @@ define([
 					},
 					callbacks: {
 						elementParse: function(item) {
-							if(item.el.context.className == 'lb video-link') {
+							if(item.el[0].className == 'lb video-link') {
 								item.type = 'iframe';
 							} else {
 								item.type = 'image';

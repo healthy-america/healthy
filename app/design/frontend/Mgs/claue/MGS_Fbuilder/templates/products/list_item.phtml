@@ -42,11 +42,11 @@
 
             <!-- Product Image-->
             <a href="<?php echo $_product->getProductUrl() ?>"
-               class="product photo product-item-photo <?php if ((basename($_product->getData('thumbnail')) != 'no_selection') && (basename($_product->getData('thumbnail')) != basename($_product->getData('small_image')))): ?> has-hover-image<?php endif ?>"
+               class="product photo product-item-photo <?php if ((basename($_product->getData('thumbnail') ?? '') != 'no_selection') && (basename($_product->getData('thumbnail') ?? '') != basename($_product->getData('small_image') ?? ''))): ?> has-hover-image<?php endif ?>"
                style="padding-bottom: <?php echo $padding ?>;" tabindex="-1">
 
                 <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>"
-                     class="img-responsive <?php if ($lazyLoad): ?>lazy<?php endif ?>"
+                     class="img-responsive <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>"
                      loading="lazy"
                      data-src="<?php echo $productImage ?>"/>
             </a>

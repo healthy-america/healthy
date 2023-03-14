@@ -64,8 +64,7 @@ class QueryResponse implements ResponseInterface
     /**
      * {@inheritDoc}
      */
-    #[\ReturnTypeWillChange]
-    public function count()
+    public function count() : int
     {
         return $this->count;
     }
@@ -73,8 +72,7 @@ class QueryResponse implements ResponseInterface
     /**
      * {@inheritDoc}
      */
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator() : \Traversable
     {
         return new \ArrayIterator($this->documents);
     }

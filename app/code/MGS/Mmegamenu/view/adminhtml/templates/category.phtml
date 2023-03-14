@@ -31,7 +31,7 @@
 			})(jQuery);
 		});
 	}
-	
+
 	function changeType(el){
 		require([
 			'jquery',
@@ -53,7 +53,7 @@
 			})(jQuery);
 		});
 	}
-	
+
 	function setValueCheckbox(val, el){
 		require([
 			'jquery',
@@ -63,7 +63,7 @@
 					$('#container'+val+' .checkbox').each(function(i, obj) {
 						$(this).prop( "checked", true);
 					});
-					
+
 				} else {
 					$('#container'+val+' .checkbox').each(function(i, obj) {
 						$(this).prop( "checked", false);
@@ -72,7 +72,7 @@
 			})(jQuery);
 		});
 	}
-			
+
 	require([
 		'jquery',
 	], function(jQuery){
@@ -271,35 +271,35 @@
 			var plusImage = 'elbow-end-plus.gif';
 			var minusImage = 'elbow-end-minus.gif';
 			var initExpandedNodes = '';	// Cookie - initially expanded nodes;
-			var fileName = 'updateNode.php';	// External file called by AJAX	
+			var fileName = 'updateNode.php';	// External file called by AJAX
 			var timeoutEdit = 20;	// Lower value = shorter delay from mouse is pressed down to textbox appears.
-			
-			
+
+
 			var ajax = new sack();
 
-			$('#expand-all').click(function(){
+			$('#expand-all').on('click', function(){
 				var menuItems = dhtmlgoodies_tree.getElementsByTagName('LI');
 				for(var no=0;no<menuItems.length;no++){
 					var subItems = menuItems[no].getElementsByTagName('UL');
 					if(subItems.length>0 && subItems[0].style.display!='block'){
 						showHideNode(false,menuItems[no].id.replace(/[^0-9]/g,''));
-					}			
+					}
 				}
 				return false;
 			});
-			
-			$('#collapse-all').click(function(){
+
+			$('#collapse-all').on('click', function(){
 				var menuItems = dhtmlgoodies_tree.getElementsByTagName('LI');
 				for(var no=0;no<menuItems.length;no++){
 					var subItems = menuItems[no].getElementsByTagName('UL');
 					if(subItems.length>0 && subItems[0].style.display=='block'){
 						showHideNode(false,menuItems[no].id.replace(/[^0-9]/g,''));
-					}			
+					}
 				}
 				return false;
 			});
-			
-			$('#uncheck-all').click(function(){
+
+			$('#uncheck-all').on('click', function(){
 				var catId = <?php echo $this->getRootCategoryId() ?>;
 				setCheckbox(10000);
 				$('#container'+catId+' .radio').each(function(i, obj) {
@@ -308,12 +308,12 @@
 				$('#radio'+catId).prop( "checked", false );
 				return false;
 			});
-	
+
 			function showHideNode(e,inputId)
 			{
 				if(inputId){
 					if(!document.getElementById('dhtmlgoodies_treeNode'+inputId))return;
-					thisNode = document.getElementById('dhtmlgoodies_treeNode'+inputId).getElementsByTagName('IMG')[0]; 
+					thisNode = document.getElementById('dhtmlgoodies_treeNode'+inputId).getElementsByTagName('IMG')[0];
 				}else {
 					thisNode = this;
 				}
@@ -325,53 +325,53 @@
 					parentNode.getElementsByTagName('UL')[0].style.display='block';
 					if(!initExpandedNodes)initExpandedNodes = ',';
 					if(initExpandedNodes.indexOf(',' + inputId + ',')<0) initExpandedNodes = initExpandedNodes + inputId + ',';
-					
+
 				}else{
 					thisNode.src = thisNode.src.replace('minus','plus');
 					parentNode.getElementsByTagName('UL')[0].style.display='none';
 					initExpandedNodes = initExpandedNodes.replace(',' + inputId,'');
-				}	
+				}
 			}
 
 			function okToNavigate()
 			{
 				if(editCounter<10)return true;
-				return false;		
+				return false;
 			}
-			
+
 			var editCounter = -1;
 			var editEl = false;
-			
+
 			function initEditLabel(){	}
-			
+
 			function startEditLabel(){}
-			
+
 			function showUpdate()
 			{
 				document.getElementById('ajaxMessage').innerHTML = ajax.response;
 			}
-			
+
 			function hideEdit()
-			{				
-				var editObj = editEl.previousSibling;	
+			{
+				var editObj = editEl.previousSibling;
 				if(editObj.value.length>0){
-					editEl.innerHTML = editObj.value;	
+					editEl.innerHTML = editObj.value;
 					ajax.requestFile = fileName + '?updateNode='+editObj.id.replace(/[^0-9]/g,'') + '&newValue='+editObj.value;	// Specifying which file to get
 					ajax.onCompletion = showUpdate;	// Specify function that will be executed after file has been found
 					ajax.runAJAX();		// Execute AJAX function
-								
+
 				}
 				editEl.style.display='inline';
 				editObj.style.display='none';
-				editEl = false;			
+				editEl = false;
 				editCounter=-1;
 			}
-			
+
 			function mouseUpEvent()
 			{
-				editCounter=-1;		
+				editCounter=-1;
 			}
-			
+
 			function initTree()
 			{
 				dhtmlgoodies_tree = document.getElementById('dhtmlgoodies_tree');
@@ -383,18 +383,18 @@
 					img.onclick = showHideNode;
 					if(subItems.length==0)img.style.visibility='hidden';
 					var aTag = menuItems[no].getElementsByTagName('A')[0];
-					
+
 					if(aTag.id)numericId = aTag.id.replace(/[^0-9]/g,'');else numericId = (no+1);
-					
+
 					aTag.id = 'dhtmlgoodies_treeNodeLink' + numericId;
-					
+
 					var input = document.createElement('INPUT');
 					input.style.width = '200px';
 					input.style.display='none';
 					menuItems[no].insertBefore(input,aTag);
 					input.id = 'dhtmlgoodies_treeNodeInput' + numericId;
 					input.onblur = hideEdit;
-								
+
 					menuItems[no].insertBefore(img,input);
 					menuItems[no].id = 'dhtmlgoodies_treeNode' + numericId;
 					aTag.onclick = okToNavigate;
@@ -406,34 +406,34 @@
 						folderImg.src = imageFolder + folderImage;
 					}
 					menuItems[no].insertBefore(folderImg,input);
-				}	
+				}
 				<?php if ($this->getRequest()->getParam('id')): ?>
 					<?php $megamenu = $this->getModel('MGS\Mmegamenu\Model\Mmegamenu')->load($this->getRequest()->getParam('id')) ?>
 					<?php if($megamenu->getCategoryId()!=0): ?>
-						<?php 
+						<?php
 							$categoryId = $megamenu->getCategoryId();
 							$ids = $this->getIds();
 						?>
-				
+
 						initExpandedNodes = '<?php echo $ids ?>';
 						if(initExpandedNodes){
 							var nodes = initExpandedNodes.split(',');
 							for(var no=0;no<nodes.length;no++){
-								if(nodes[no])showHideNode(false,nodes[no]);	
-							}			
+								if(nodes[no])showHideNode(false,nodes[no]);
+							}
 						}
 					<?php endif ?>
 				<?php endif ?>
-				
+
 				document.documentElement.onmouseup = mouseUpEvent;
 			}
-			
-		
+
+
 			$(document).ready(function () {
 				setTimeout(initTree, 500);
 			});
-			
-			
+
+
 			<?php if ($this->getRequest()->getParam('id')): ?>
 				<?php if($megamenu->getCategoryId()!=0): ?>
 					<?php $categoryId = $megamenu->getCategoryId(); ?>
@@ -446,7 +446,7 @@
 
 		})(jQuery);
 	});
-	
+
 	function uncheckSelect(categoryId){
 		require([
 			'jquery',
@@ -455,7 +455,7 @@
 				$('#container'+categoryId+' .checkbox').each(function(i, obj) {
 					$(this).prop( "checked", false);
 				});
-				
+
 				<?php if ($this->getRequest()->getParam('id')): ?>
 					<?php $subCatIds = $megamenu->getSubCategoryIds();?>
 					<?php if(($subCatIds!='') && (is_array(explode(',', $subCatIds)))): ?>
@@ -464,7 +464,7 @@
 						<?php endforeach; ?>
 					<?php endif ?>
 				<?php endif ?>
-				
+
 			})(jQuery);
 		});
 	}

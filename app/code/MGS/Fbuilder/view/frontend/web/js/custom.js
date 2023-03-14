@@ -142,7 +142,7 @@ require([
 				}
 			}
 		});
-		
+
 		$(document).ready(function(){
 			$("[data-appear-animation]").each(function() {
 				$(this).addClass("appear-animation");
@@ -164,22 +164,22 @@ require([
 					$(this).addClass("appear-animation-visible");
 				}
 			});
-			
+
 			/* Progress Bar */
 			$('.mgs-progressbar .progress').css("width",
 				function() {
 					return $(this).attr("aria-valuenow") + "%";
 				}
 			)
-			
+
 			/* Progress Circle */
 			$('.mgs-progress-circle').each(function(){
 				var progressPercent = $(this).attr('progress-to');
 				$(this).attr('data-progress', progressPercent);
 			});
 		});
-		
-		
+
+
 	})(jQuery);
 });
 
@@ -198,7 +198,7 @@ require([
 	'Magento_Ui/js/modal/modal'
 ], function( $, modal ) {
 	$(document).ready(function(){
-		$('button.mgs-modal-popup-button').click(
+		$('button.mgs-modal-popup-button').on( 'click',
 			function(){
 				id = $(this).attr('data-button-id');
 				var popupContent = $('#mgs_modal_container_'+id).html();
@@ -213,9 +213,9 @@ require([
 					};
 					var newsletterPopup = modal(options, $('#modal_popup_'+id));
 					$('#modal_popup_'+id).trigger('openModal');
-					
+
 					$('.modal-'+id+' .pop-sletter-title').insertBefore('.modal-'+id+' .modal-header button');
-					$('.modal-'+id+' .action-close').click(function(){
+					$('.modal-'+id+' .action-close').on('click', function(){
 						$('.modal-'+id+' .modal-header .pop-sletter-title').remove();
 						setTimeout(function(){ $('.modals-wrapper .modal-'+id).remove(); $('#mgs_modal_container_'+id).html(popupContent) }, 500);
 					});

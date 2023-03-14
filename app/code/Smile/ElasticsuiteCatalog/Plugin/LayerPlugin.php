@@ -84,16 +84,16 @@ class LayerPlugin
         if (!$searchQuery->getQueryText() && $layer->getCurrentCategory()) {
             $categoryId = $layer->getCurrentCategory()->getId();
             $sortFilter = ['category.category_id' => $categoryId];
-            //$collection->addSortFilterParameters('position', 'category.position', 'category', $sortFilter);
+            $collection->addSortFilterParameters('position', 'category.position', 'category', $sortFilter);
         } elseif ($searchQuery->getId()) {
             $sortFilter = ['search_query.query_id' => $searchQuery->getId()];
-            //$collection->addSortFilterParameters('relevance', 'search_query.position', 'search_query', $sortFilter);
+            $collection->addSortFilterParameters('relevance', 'search_query.position', 'search_query', $sortFilter);
         }
 
         foreach ($this->catalogConfig->getAttributesUsedForSortBy() as $attributeCode => $attribute) {
             if ($attribute->usesSource()) {
                 $sortField = $this->mappingHelper->getOptionTextFieldName($attributeCode);
-                //$collection->addSortFilterParameters($attributeCode, $sortField);
+                $collection->addSortFilterParameters($attributeCode, $sortField);
             }
         }
 

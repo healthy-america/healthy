@@ -8,23 +8,23 @@
                 setTemplate();
                 changeNumberRow();
                 displayDot();
-                
+
                 if($('#navigation').length){
                     displayNav();
                 }
-                
+
                 if($('.color-input').length){
                     $('.color-input').attr('data-hex', true).mColorPicker();
                 }
-                
+
                 if($('.input-icon-choose').length){
                     $('.input-icon-choose').each(function() {
                         inputId = $(this).attr('id');
                         $('<span class="iconPicker" onclick="openIconList(\''+ inputId +'\')"><span class="fa fa-gear"></span></span>').insertAfter(this);
                     });
-                    
+
                 }
-                
+
                 if($('#perrow').length){
                     $('#perrow').change(function(){
                         displayNav();
@@ -33,7 +33,7 @@
             });
         })(jQuery);
     });
-    
+
     function openIconList(elId){
         require([
             'jquery',
@@ -41,8 +41,8 @@
             (function($) {
                 $('html').addClass('open-list');
                 $('#font-list').show();
-                
-                $('#font-list .fa-hover').click(function(){
+
+                $('#font-list .fa-hover').on('click', function(){
                     fontClass = $(this).find('i').attr('class');
                     $('#'+elId).val(fontClass);
                     closeIconList();
@@ -52,9 +52,9 @@
 
             })(jQuery);
         });
-        
+
     }
-    
+
     function closeIconList(){
         require([
             'jquery',
@@ -65,7 +65,7 @@
             })(jQuery);
         });
     }
-    
+
     function useSlider(){
         require([
             'jquery',
@@ -81,12 +81,12 @@
             })(jQuery);
         });
     }
-    
+
     var currentAnimate = '';
     <?php if (isset($params['id'])): ?>
         currentAnimate = '<?php echo $settings['animation'] ?>';
     <?php endif ?>
-    
+
     function changeAnimationClass(animate){
         require([
             'jquery',
@@ -100,7 +100,7 @@
             })(jQuery);
         });
     }
-    
+
     function setTemplate(){
         require([
             'jquery',
@@ -114,7 +114,7 @@
                         $('.grid-perrow').show();
                         $('#list_number_col').hide();
                         $('#item_per_col').hide();
-                        
+
                     }else{
                         $('.grid-perrow').hide();
                         $('#list_number_col').show();
@@ -127,7 +127,7 @@
             })(jQuery);
         });
     }
-    
+
     function changeNumberRow(){
         require([
             'jquery',
@@ -143,7 +143,7 @@
             })(jQuery);
         });
     }
-    
+
     function displayNav(){
         require([
             'jquery',
@@ -156,16 +156,16 @@
                     items = $('#perrow').val();
                 }
                 navigation_position = $('#navigation_position').val();
-                
+
                 if($('#navigation').prop("checked") == true){
                     $('.nav-fields').show();
-                    
+
                     if((items>1) && (navigation_position=='top-left' || navigation_position=='top-right')){
                         $('.nav-top-position').show();
                     }else{
                         $('.nav-top-position').hide();
                     }
-                    
+
                     if(((items==1) && (navigation_position!='middle-outside')) || ((items>1) && (navigation_position=='middle-inside'))){
                         $('.auto-hide-nav').show();
                     }else{
@@ -176,12 +176,12 @@
                     $('.nav-top-position').hide();
                     $('.auto-hide-nav').hide();
                 }
-                
+
             })(jQuery);
         });
-        
+
     }
-    
+
     function displayDot(){
         require([
             'jquery',
@@ -194,6 +194,6 @@
                 }
             })(jQuery);
         });
-        
+
     }
 </script>

@@ -5,7 +5,7 @@
             <label>Mage Solution</label>
         </tab>
         <section id="themesettings" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
-            <label>MGS Theme Settings V2.1.9</label>
+            <label>MGS Theme Settings V2.1.12</label>
             <tab>mgs</tab>
             <resource>MGS_ThemeSettings::themesettings</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -302,7 +302,7 @@
 
 				<field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Default Page Layout</label>
-					<source_model>MGS\ThemeSettings\Model\Config\Source\PageLayout</source_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\ProductPageLayout</source_model>
 				</field>
 
 				<!--field id="default_template" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">

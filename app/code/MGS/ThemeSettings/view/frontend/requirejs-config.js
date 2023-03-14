@@ -1,7 +1,7 @@
 var config = {
 	"map": {
 		"*": {
-			"mlazyload": "MGS_ThemeSettings/js/jquery.lazyload",
+			"mLazysizes": "MGS_ThemeSettings/js/lazysizes.min",
             "mgsvisible": "MGS_ThemeSettings/js/element_visible",
             "mgsbgvideo": "MGS_ThemeSettings/js/jquery.mb.YTPlayer.src",
 			"mrotateImage": "MGS_ThemeSettings/js/j360",
@@ -12,9 +12,8 @@ var config = {
             "stickyContent": "MGS_ThemeSettings/js/jquery.sticky-kit.min"
 		}
 	},
-
 	"paths": {
-		"mlazyload": "MGS_ThemeSettings/js/jquery.lazyload",
+        "mLazysizes": "MGS_ThemeSettings/js/lazysizes.min",
         "mgsvisible": "MGS_ThemeSettings/js/element_visible",
         "mgsbgvideo": "MGS_ThemeSettings/js/jquery.mb.YTPlayer.src",
 		"mrotateImage": "MGS_ThemeSettings/js/j360",
@@ -25,7 +24,6 @@ var config = {
         "stickyContent": "MGS_ThemeSettings/js/jquery.sticky-kit.min",
 	},
     "shim": {
-		"MGS_ThemeSettings/js/jquery.lazyload": ["jquery"],
         "MGS_ThemeSettings/js/element_visible": ["jquery"],
         "MGS_ThemeSettings/js/jquery.mb.YTPlayer.src": ["jquery"],
 		"MGS_ThemeSettings/js/j360": ["jquery"],

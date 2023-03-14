@@ -28,3 +28,7 @@
 !/op-exclude.txt
 !/patches
 !/patches/**
+!/lib
+!/lib/internal/
+!/lib/internal/Mageplaza/
+!/lib/internal/Mageplaza/**

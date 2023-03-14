@@ -308,7 +308,7 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
     }
 
     public function getSubCategoryAccepp($categoryId, $item) {
-        $subCatExist = explode(',', ($item->getSubCategoryIds() ?? ''));
+        $subCatExist = explode(',', $item->getSubCategoryIds() ?? '');
 
         $category = $this->getModel('Magento\Catalog\Model\Category')->load($categoryId);
 
@@ -501,82 +501,87 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
 
         $children = $this->getSubCategoryAccepp($category->getId(), $item);
         $childrenCount = count($children);
+        $includeInMenu = $category->getData('include_in_menu');
 
         $htmlLi = '<li';
 
-        $htmlLi .= ' class="level'.$level.'';
-        if ($childrenCount > 0 && $item->getColumns() == 1) {
-            $htmlLi .= ' category-submenu';
-        }
+        if ($includeInMenu != 0) {
 
-        $htmlLi .= '">';
-
-        $html[] = $htmlLi;
-        $html[] = '<a href="' . $this->getCategoryUrl($category) . '">';
-        if ($item->getColumns() > 1 && $level == 1) {
-            $html[] = '<span class="mega-menu-sub-title">';
-        }
-
-        $html[] = $category->getName();
-
-        if($category->getMgsMegamenuItemLabel()){
-            $backgroundLabel = "";
-            if($category->getMgsMegamenuItemBackground()){
-                $backgroundLabel = $category->getMgsMegamenuItemBackground();
+            $htmlLi .= ' class="level'.$level.'';
+            if ($childrenCount > 0 && $item->getColumns() == 1) {
+                $htmlLi .= ' category-submenu';
             }
-            if($backgroundLabel != ""){
-                $html[] = '<span class="label-menu" style="background-color: '.$backgroundLabel.'; border-color: '.$backgroundLabel.';">';
-            }else {
-                $html[] = '<span class="label-menu">';
+
+            $htmlLi .= '">';
+
+            $html[] = $htmlLi;
+            $html[] = '<a href="' . $this->getCategoryUrl($category) . '">';
+            if ($item->getColumns() > 1 && $level == 1) {
+                $html[] = '<span class="mega-menu-sub-title">';
             }
-            $html[] = $category->getMgsMegamenuItemLabel();
-            $html[] = '</span>';
-        }
 
-        if ($item->getColumns() > 1 && $level == 1) {
-            $html[] = '</span>';
-        }
+            $html[] = $category->getName();
 
-        if ($childrenCount > 0 && $item->getColumns() == 1) {
-            $html[] = '<span class="icon-next"><i class="fa fa-angle-right">&nbsp;</i></span>';
-        }
+            if($category->getMgsMegamenuItemLabel()){
+                $backgroundLabel = "";
+                if($category->getMgsMegamenuItemBackground()){
+                    $backgroundLabel = $category->getMgsMegamenuItemBackground();
+                }
+                if($backgroundLabel != ""){
+                    $html[] = '<span class="label-menu" style="background-color: '.$backgroundLabel.'; border-color: '.$backgroundLabel.';">';
+                }else {
+                    $html[] = '<span class="label-menu">';
+                }
+                $html[] = $category->getMgsMegamenuItemLabel();
+                $html[] = '</span>';
+            }
 
-        $html[] = '</a>';
+            if ($item->getColumns() > 1 && $level == 1) {
+                $html[] = '</span>';
+            }
 
-        if ($level < $maxLevel) {
+            if ($childrenCount > 0 && $item->getColumns() == 1) {
+                $html[] = '<span class="icon-next"><i class="fa fa-angle-right">&nbsp;</i></span>';
+            }
+
+            $html[] = '</a>';
+
+            if ($level < $maxLevel) {
 
 
-            $maxSub = 50;
+                $maxSub = 50;
 
-            $htmlChildren = '';
-            if ($childrenCount > 0) {
-                $i = 0;
-                foreach ($children as $child) {
-                    $i++;
-                    if ($i <= $maxSub) {
-                        $_child = $this->getModel('Magento\Catalog\Model\Category')->load($child);
-                        $htmlChildren .= $this->drawList($_child, $item, ($level + 1));
+                $htmlChildren = '';
+                if ($childrenCount > 0) {
+                    $i = 0;
+                    foreach ($children as $child) {
+                        $i++;
+                        if ($i <= $maxSub) {
+                            $_child = $this->getModel('Magento\Catalog\Model\Category')->load($child);
+                            $htmlChildren .= $this->drawList($_child, $item, ($level + 1));
+                        }
                     }
                 }
-            }
-            if (!empty($htmlChildren)) {
-                $html[] = '<span class="toggle-menu"><a onclick="toggleEl(this,\'mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="fa fa-chevron-right"></span></a></span>';
-//                $html[] = '</div>';
-                $html[] = '<ul id="mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '"';
-                if ($item->getColumns() > 1) {
-                    $html[] = ' class="sub-menu"';
-                } else {
-                    $html[] = ' class="dropdown-submenu"';
+                if (!empty($htmlChildren)) {
+                    $html[] = '<span class="toggle-menu"><a onclick="toggleEl(this,\'mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="fa fa-chevron-right"></span></a></span>';
+                    //$html[] = '</div>';
+                    $html[] = '<ul id="mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '"';
+                    if ($item->getColumns() > 1) {
+                        $html[] = ' class="sub-menu"';
+                    } else {
+                        $html[] = ' class="dropdown-submenu"';
+                    }
+                    $html[] = '>';
+                    $html[] = '<li class="hidden-des"><a onclick="toggleEl(this,\'mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="nav-back"><i class="fa fa-chevron-left"></i> Back</span></a></li>';
+                    $html[] = $htmlChildren;
+                    $html[] = '</ul>';
                 }
-                $html[] = '>';
-                $html[] = '<li class="hidden-des"><a onclick="toggleEl(this,\'mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="nav-back"><i class="fa fa-chevron-left"></i> Back</span></a></li>';
-                $html[] = $htmlChildren;
-                $html[] = '</ul>';
             }
+            $html[] = '</li>';
+            $html = implode("\n", $html);
+            return $html;
         }
-        $html[] = '</li>';
-        $html = implode("\n", $html);
-        return $html;
+        return null;
     }
 
     public function getStaticMenu($item) {

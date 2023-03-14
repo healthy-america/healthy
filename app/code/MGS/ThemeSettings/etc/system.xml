@@ -1663,7 +1663,7 @@
 
 				<field id="layout" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
 					<label>Default Page Layout</label>
-					<source_model>MGS\ThemeSettings\Model\Config\Source\PageLayout</source_model>
+					<source_model>MGS\ThemeSettings\Model\Config\Source\ProductPageLayout</source_model>
 				</field>
 
 				<field id="default_template" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">

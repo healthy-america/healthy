@@ -56,7 +56,7 @@
         // Add the "Add a note" button
         if (this.editable) {
             this.button = $('<button class="image-annotate-add scalable add" id="image-annotate-add" onclick="javascript: return false;"><span><span>'+ $('#add_text').val() +'</span></span></button>');
-            this.button.click(function() {
+            this.button.on('click', function() {
                 $.fn.annotateImage.add(image);
 				//new Ajax.Autocompleter('image-annotate-text', 'sku_autocomplete_choices', $('#load_product_url').val(), {indicator: 'sku_loader'});
 				$("#image-annotate-text").autocomplete({
@@ -87,7 +87,7 @@
         notes: new Array()
     };
 
-    $.fn.annotateImage.clear = function(image) {  
+    $.fn.annotateImage.clear = function(image) {
         for (var i = 0; i < image.notes.length; i++) {
             image.notes[image.notes[i]].destroy();
         }
@@ -107,18 +107,18 @@
         }
     };
 
-    $.fn.annotateImage.getTicks = function() {      
+    $.fn.annotateImage.getTicks = function() {
         var now = new Date();
         return now.getTime();
     };
 
-    $.fn.annotateImage.add = function(image) {    
+    $.fn.annotateImage.add = function(image) {
         if (image.mode == 'view') {
             image.mode = 'edit';
 
             // Create/prepare the editable note elements
             var editable = new $.fn.annotateEdit(image);
-           
+
             $.fn.annotateImage.createSaveButton(editable, image);
             $.fn.annotateImage.createDeleteButton(editable, image);
             $("#image-annotate-edit-ok").css('float', 'right');
@@ -130,14 +130,14 @@
     $.fn.annotateImage.createSaveButton = function(editable, image, note) {
         var ok = $('<button class="image-annotate-edit-ok scalable save" id="image-annotate-edit-ok" onclick="javascript: return false;"><span>'+$('#ok_text').val()+'</span></button>');
 
-        ok.click(function() {
+        ok.on('click', function() {
 			$('#image-annotate-edit-ok').addClass('saving');
             var form = $('#image-annotate-edit-form form');
-            var text = $('#image-annotate-text').val();                   
-            var label = $('#image-annotate-label').val();                   
-            var position = $('#image-annotate-position').val();                   
-            var custom_text = $('#image-annotate-custom_text').val();                   
-            var custom_label = $('#image-annotate-custom_label').val();                   
+            var text = $('#image-annotate-text').val();
+            var label = $('#image-annotate-label').val();
+            var position = $('#image-annotate-position').val();
+            var custom_text = $('#image-annotate-custom_text').val();
+            var custom_label = $('#image-annotate-custom_label').val();
 
             $.fn.annotateImage.appendPosition(form, editable)
             image.mode = 'view';
@@ -163,14 +163,14 @@
                  test_area.width = editable.area.width();
                  test_area.left = editable.area.position().left;
                  test_area.top = editable.area.position().top;
-                
+
             if (($.trim(text)=='') && ($.trim(custom_text)=='')) {
                 alert('Please, enter Product SKU or custom text');
                 return false;
             }
-            
+
             //var response = checkSKU();
-			
+
 			$.ajax({
 				type:"POST",
 				url: $('#check_product_url').val(),
@@ -178,26 +178,26 @@
 				success: function(data, textStatus, xhr) {
 					if (200 == xhr.status) {
 						response = data;
-						
+
 						response = jQuery.parseJSON(response);
 						if (response.status != 1) {
 							if($.trim(custom_text)==''){
 								alert('The product with SKU="'+text+'" ' + response.status);
 								return false;
-							} 
+							}
 						}
-						
+
 						label = response.label;
-						
+
 						// Add to canvas
 						if (note) {
-							note.resetPosition(editable, text, label, position, custom_text, custom_label);             
+							note.resetPosition(editable, text, label, position, custom_text, custom_label);
 						} else {
 							editable.note.editable = true;
 							note = new $.fn.annotateView(image, editable.note);
 							note.resetPosition(editable, text, label, position, custom_text, custom_label);
 							image.notes.push(editable.note);
-						}  
+						}
 
 						$('#'+image.input_field_id).val(JSON.stringify(image.notes));
 						editable.destroy();
@@ -207,24 +207,24 @@
 					$('#image-annotate-edit-ok').removeClass('saving');
 				}
 			});
-			
-			
+
+
         });
         editable.form.append(ok);
     };
 
     $.fn.annotateImage.createCancelButton = function(editable, image) {
         var cancel = $('<button class="image-annotate-edit-close scalable back" onclick="javascript: return false;"><span><span>'+$('#cancel_text').val()+'</span></span></button>');
-        cancel.click(function() {
+        cancel.on('click', function() {
             editable.destroy();
             image.mode = 'view';
         });
         editable.form.append(cancel);
     };
-	
+
 	$.fn.annotateImage.createDeleteButton = function(editable, image) {
         var cancel = $('<button class="image-annotate-edit-delete scalable delete" onclick="javascript: return false;"><span><span>'+$('#delete_text').val()+'</span></span></button>');
-        cancel.click(function() {
+        cancel.on('click', function() {
             editable.destroy();
             image.mode = 'view';
         });
@@ -279,7 +279,7 @@
         this.area.css('width', this.note.width + 'px');
         this.area.css('left', this.note.left + 'px');
         this.area.css('top', this.note.top + 'px');
-        
+
 
         // Show the edition canvas and hide the view canvas
         image.canvas.children('.image-annotate-view').hide();
@@ -289,9 +289,9 @@
 		var formHtml = '<div id="image-annotate-edit-form"><form id="annotate-edit-form"><table class="form-list" cellspacing="0"><tbody><tr><td class="label"><label for="image-annotate-text">Product Sku: </label></td><td class="value">';
 
 		formHtml += '<input id="image-annotate-text" value="'+this.note.text+'" name="text" type="text" class=" input-text"/><div id="sku_loader" style="display:none"></div><div id="sku_autocomplete_choices" class="sku-autocomplete" style="display: none;"></div>';
-		
+
 		formHtml += '</td></tr><tr><td class="label"><label for="image-annotate-label">Pin Label: </label></td><td class="value"><input id="image-annotate-label" value="'+this.note.label+'" name="label" type="text" class=" input-text"/></td></tr><tr><td class="label"><label for="image-annotate-position">Popup Position: </label></td><td class="value">';
-		
+
 		formHtml += '<select id="image-annotate-position" name="position" class="select">';
 			formHtml += '<option value="top"';
 			if(this.note.position == 'top'){
@@ -303,27 +303,27 @@
 				formHtml += ' selected="selected"';
 			}
 			formHtml += '>Right</option>';
-			
+
 			formHtml += '<option value="center"';
 			if(this.note.position == 'center'){
 				formHtml += ' selected="selected"';
 			}
 			formHtml += '>Center</option>';
-			
+
 			formHtml += '<option value="bottom"';
 			if(this.note.position == 'bottom'){
 				formHtml += ' selected="selected"';
 			}
 			formHtml += '>Bottom</option>';
-			
+
 			formHtml += '<option value="left"';
 			if(this.note.position == 'left'){
 				formHtml += ' selected="selected"';
 			}
 			formHtml += '>Left</option>';
-			
+
 		formHtml += '</select>';
-		
+
 		formHtml += '</td></tr><tr><td class="label"><label for="image-annotate-custom_label">Custom Label: </label></td><td class="value"><input id="image-annotate-custom_label" value="'+this.note.custom_label+'" name="custom_label" type="text" class="input-text"/></td></tr><tr><td class="label" colspan="2"><label for="image-annotate-custom_text">Custom Text: </label></td></tr><tr><td class="value" colspan="2"><textarea id="image-annotate-custom_text" name="custom_text" type="text">'+this.note.custom_text+'</textarea></td></tr></form></tbody></table></div>';
         var form = $(formHtml);
         this.form = form;
@@ -365,8 +365,8 @@
         this.area.css('width', '');
         this.area.css('left', '');
         this.area.css('top', '');
-        this.form.remove(); 
-        ShowHideHotspotsMsg();    
+        this.form.remove();
+        ShowHideHotspotsMsg();
     }
 
     $.fn.annotateView = function(image, note) {
@@ -400,10 +400,10 @@
         // Edit a note feature
         if (this.editable) {
             var form = this;
-            this.area.click(function() {
+            this.area.on('click', function() {
                 form.edit();
 				//new Ajax.Autocompleter('image-annotate-text', 'sku_autocomplete_choices', $('#load_product_url').val(), {indicator: 'sku_loader'});
-				
+
 				    $("#image-annotate-text").autocomplete({
 						source: $('#load_product_url').val(),
 						select: function(){
@@ -432,13 +432,13 @@
         }
     };
 
-    $.fn.annotateView.prototype.hide = function() {    
+    $.fn.annotateView.prototype.hide = function() {
         this.form.fadeOut(250);
         this.area.removeClass('image-annotate-area-hover');
         this.area.removeClass('image-annotate-area-editable-hover');
     };
 
-    $.fn.annotateView.prototype.destroy = function() {   
+    $.fn.annotateView.prototype.destroy = function() {
         this.area.remove();
         this.form.remove();
     }
@@ -455,7 +455,7 @@
 
             // Add the delete button
             var del = $('<button class="image-annotate-edit-delete scalable delete" onclick="javascript: return false;"><span><span>'+$('#delete_text').val()+'</span></span></button>');
-            del.click(function() {
+            del.on('click', function() {
                 var form = $('#image-annotate-edit-form form');
 
                 $.fn.annotateImage.appendPosition(form, editable)
@@ -469,21 +469,21 @@
                 }
 
                 for (var i = 0; i < annotation.image.notes.length; i++) {
-                    if (annotation.image.notes[i]==editable.note) 
+                    if (annotation.image.notes[i]==editable.note)
                     {
                         annotation.image.notes.splice(i,1);
                     }
-                } 
-                
+                }
+
                 $('#'+annotation.image.input_field_id).val(JSON.stringify(annotation.image.notes));
 
                 annotation.image.mode = 'view';
                 editable.destroy();
-                annotation.destroy(); 
-              
+                annotation.destroy();
+
             });
             editable.form.append(del);
-            
+
             $.fn.annotateImage.createCancelButton(editable, this.image);
         }
     };
@@ -537,7 +537,7 @@
         a = X1 + L1 < X2;
         b = X1 > X2 + L2;
         c = Y1 + H1 < Y2;
-        d = Y1 > Y2 + H2;                            
+        d = Y1 > Y2 + H2;
         if ((a || b || c || d)) {
             return false;
         }
@@ -546,7 +546,7 @@
             return true;
         }
     };
-    
+
     ShowHideHotspotsMsg = function() {
            view_is_visible = $(".image-annotate-canvas").find(".image-annotate-view").is(":visible");
            edit_is_visible = $(".image-annotate-canvas").find(".image-annotate-edit").is(":visible");
@@ -558,7 +558,7 @@
                  $(".hotspots-msg").show();
            }
     }
-                        
+
     CheckPosition = function(note, notes) {
         i=0;
         res = true;
@@ -569,7 +569,7 @@
                 }
             }
             i++;
-        });  
+        });
         return res;
     };
 

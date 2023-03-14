@@ -19,11 +19,11 @@
         <css src="Smile_ElasticsuiteCatalog::css/priceslider.css"/>
     </head>
     <body>
-        <referenceBlock name="catalog.leftnav">
+        <!-- <referenceBlock name="catalog.leftnav">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">Magento_LayeredNavigation::layer/view.phtml</argument>
             </action>
-        </referenceBlock>
+        </referenceBlock> -->
         <move element="catalog.navigation.state" destination="content.top" after="-"/>
     </body>
 </page>

@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<?php 
+<?php
     $temp;
     foreach($block->getStoreSwitcher() as $key => $value) {
         $temp[]= $key;
@@ -103,7 +103,7 @@ if ($block->isStoreGroupSelected($group)): ?>current<?php endif; ?>">
                                 <?php endif; ?>
                             </li>
                         <?php endif; ?>
-                            
+
                         <li class="store-switcher-store-view <?php if (!($block->isStoreSwitchEnabled() &&
                         !$block->isStoreSelected($store)) ): ?>disabled<?php endif; ?> <?php
 if ($block->isStoreSelected($store)):?>current<?php endif; ?>">
@@ -221,7 +221,7 @@ script;
                 }
             });
 
-            jQuery('#store-change-button').click();
+            jQuery('#store-change-button').trigger('click');
 script;
     }
     $scriptString .= <<<script

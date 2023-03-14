@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace MGS\Testimonial\Model;
 
@@ -41,7 +41,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider {
         if(isset($this->loadedData)) {
             return $this->loadedData;
         }
-        $items = $this->collection->getItems(); 
+        $items = $this->collection->getItems();
         foreach($items as $item ) {
             $item->setStores($this->store->getParam('store'));
             $item = $this->convertValues($item);
@@ -55,7 +55,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider {
                 $data = $this->convertData($item);
                 $this->loadedData[$item['testimonial_id']] = $data;
             }
-            else 
+            else
                 $this->loadedData[$item['testimonial_id']] = $item;
         }
         return $this->loadedData;
@@ -65,7 +65,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider {
         $fileName = $banner->getAvatar();
         $this->getFileInfo()->getPath($fileName);
         $image = [];
-        if ($this->getFileInfo()->isExist($fileName)) {
+        if (!empty($fileName) && $this->getFileInfo()->isExist($fileName)) {
             $stat = $this->getFileInfo()->getStat($fileName);
             $mime = $this->getFileInfo()->getMimeType($fileName);
             $image[0]['name'] = $fileName;
@@ -117,7 +117,7 @@ class DataProvider extends \Magento\Ui\DataProvider\ModifierPoolDataProvider {
                 $meta['general']['children'][$value]['arguments']['data']['config']['disabled'] = 1;
             }
         }
-        return $meta; 
+        return $meta;
     }
     function getStoreView($testimonial_id) {
         $connection = $this->resource->getConnection();

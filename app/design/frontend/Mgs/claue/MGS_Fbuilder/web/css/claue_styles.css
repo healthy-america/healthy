@@ -509,6 +509,14 @@
         max-width: 100%
     }
 
+    .col-des-custom-5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+
+
     .hidden-des {
         display: none !important;
     }
@@ -612,6 +620,13 @@
         flex: 0 0 calc(100% / 8);
         max-width: calc(100% / 8);
         width: 100%;
+    }
+
+    .col-des-custom-5 {
+        -webkit-box-flex: 0;
+        -ms-flex: 0 0 20%;
+        flex: 0 0 20%;
+        max-width: 20%;
     }
 
     body .hidden-tb {

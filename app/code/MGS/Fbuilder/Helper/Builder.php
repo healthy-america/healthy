@@ -195,11 +195,11 @@ class Builder extends \Magento\Framework\App\Helper\AbstractHelper
     public function canEditPage()
     {
         $customer = $this->getCustomer();
-        $availablePageIds = explode(',', $customer->getFbuilderAvailablePages());
+        $availablePageIds = explode(',', $customer->getFbuilderAvailablePages() ?? '');
 
         if ($this->isHomepage()) {
             $pageIdentifier = $this->getStoreConfig('web/default/cms_home_page', $this->_storeManager->getStore()->getId());
-            $arrIdentifier = explode('|', $pageIdentifier);
+            $arrIdentifier = explode('|', $pageIdentifier ?? '');
 
             $page = $this->_pageFactory->create()->setStoreId($this->_storeManager->getStore()->getId())->load($arrIdentifier[0]);
 
@@ -660,7 +660,7 @@ class Builder extends \Magento\Framework\App\Helper\AbstractHelper
         $content = preg_replace('/(labels=".+?)+(")/i', '', $content);
         
         //return $content;
-        $arrContent = explode(' ', $content);
+        $arrContent = explode(' ', $content ?? '');
         $arrContent = array_filter($arrContent);
         
         $class = $arrContent[1];
@@ -806,7 +806,7 @@ class Builder extends \Magento\Framework\App\Helper\AbstractHelper
         $template = '';
 
         foreach ($arrContent as $argument) {
-            $argumentData = explode('=', $argument);
+            $argumentData = explode('=', $argument ?? '');
             if ($argumentData[0]!='template' && isset($argumentData[0]) && isset($argumentData[1])) {
                 $argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="'.$argumentData[0].'" xsi:type="string"&gt;'.str_replace('"', '', $argumentData[1]).'&lt;/argument&gt;<br/>';
             } else {
@@ -817,7 +817,7 @@ class Builder extends \Magento\Framework\App\Helper\AbstractHelper
         
         $html = '&lt;block '.$class;
         
-        $lastDataArr = explode('=', $lastData);
+        $lastDataArr = explode('=', $lastData ?? '');
         if (isset($lastDataArr[0]) && isset($lastDataArr[1])) {
             if ($lastDataArr[0]=='template') {
                 $template = str_replace('}}', '', $lastDataArr[1]);

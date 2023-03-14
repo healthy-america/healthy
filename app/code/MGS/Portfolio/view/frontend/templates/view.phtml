@@ -39,7 +39,7 @@
 								}
 							});
 							$(document).ready(function(){
-								$("#portfolio_galley_carousel .gallery_thumb").click(function(){
+								$("#portfolio_galley_carousel .gallery_thumb").on('click', function(){
 									var imgUrl = $(this).data('imgchange');
 									var images = $('#base_img').attr('src');
 									if(imgUrl != images){

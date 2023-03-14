@@ -161,9 +161,6 @@ class Data extends \MGS\Fbuilder\Helper\Builder
     
     public function getTreeCategory($category, $parent, $ids, $checkedCat)
     {
-		if(!isset($ids)){
-			$ids = [];
-		}
         $rootCategoryId = $this->getRootCategory()->getId();
         $children = $category->getChildrenCategories();
         $childrenCount = count($children);

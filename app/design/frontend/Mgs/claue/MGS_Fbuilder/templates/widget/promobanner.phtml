@@ -12,7 +12,7 @@
                 <?php $baseImage = $bannerImageUrl ?>
             <?php endif ?>
             <a href="<?php echo $this->getBannerUrl() ?>">
-                <img  src="<?php echo $baseImage; ?>" data-src="<?php echo $bannerImageUrl; ?>" class="banner-image img-responsive<?php if($lazyLoad): ?> lazy<?php endif ?>" width="200" height="200" alt="..."/>
+                <img  src="<?php echo $baseImage; ?>" data-src="<?php echo $bannerImageUrl; ?>" class="banner-image img-responsive<?php if($lazyLoad): ?> arrow-lazy<?php endif ?>" width="200" height="200" alt="..."/>
             </a>
 
             <?php if (($this->getFbuilderTextContent() != '') || ($this->getFbuilderButtonText() != '')): ?>

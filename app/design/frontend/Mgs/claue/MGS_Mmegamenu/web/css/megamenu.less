@@ -785,10 +785,13 @@ header.page-header {
 
               ul {
                 padding: 0;
-                &.sub-menu {
-                  display: none;
-                }
               }
+
+              li{
+                a~ul.sub-menu {
+                    display: none;
+                }
+                }
             }
           }
         }
@@ -1007,12 +1010,18 @@ header.page-header {
         .tab-content {
           .tab-pane {
             nav.navigation {
-              ul.sub-menu-content,
-              ul {
-                .sub-menu {
-                  display: none;
+            //   ul.sub-menu-content,
+            //   ul {
+            //     .sub-menu {
+            //       display: none;
+            //     }
+            //   }
+              li {
+                a~ul.sub-menu-content,
+                a~ul.sub-menu {
+                        display: none;
+                    }
                 }
-              }
               ul {
                 .dropdown-submenu {
                   width: 100% !important;

@@ -13,15 +13,15 @@ define([
     'jquery/ui',
     'jquery/jquery.parsequery',
     'zoom-images',
-    'mgsslick', 
+    'mgsslick',
     'mgsowlcarousel',
     'magnificPopup'
 ], function ($, _, mageTemplate) {
     'use strict';
-    
+
     return function (widget) {
         $.widget('mage.configurable', widget, {
-            
+
 
             /**
              * Initialize tax configuration, initial settings, and options values.
@@ -50,14 +50,14 @@ define([
                 options.parentImage = $('[data-role=base-image-container] img').attr('src');
 
                 this.inputSimpleProduct = this.element.find(options.selectSimpleProduct);
-                
-                var currentImages = [];   
-                
+
+                var currentImages = [];
+
                 $(".product.media .item-image").each(function( index ) {
                     var item = [];
                     var url_video = "";
                     var type = 'image';
-                    
+
                     if($(this).find('.popup-video').length){
                         url_video = $(this).find('.popup-video').attr('href');
                     }else if($(this).find('.lb.video-link').length){
@@ -66,7 +66,7 @@ define([
                     if(url_video){
                         type = 'external-video';
                     }
-                    
+
                     item['zoom'] = $(this).attr('data-zoom');
                     item['full'] = $(this).find('.img-fluid').attr('src');
                     item['thumb'] = $(this).find('.img-fluid').attr('src');
@@ -74,7 +74,7 @@ define([
                     item['videoUrl'] = url_video;
                     currentImages.push(item);
                 });
-                
+
                 options.mediaGalleryInitial = currentImages;
             },
             /**
@@ -110,34 +110,34 @@ define([
 				}else if(glr_layout == 6){
 					this.updateBaseImageOwl(imagesToUpdate);
 				}
-				
+
 				if(zoomimg == 1 && glr_layout != 6){
 					this.zoomImage();
 				}
-				
+
 				if(lbox_image == 1){
 					this.lightBoxGallery();
 				}
             },
-            
+
             updateBaseImageList: function(imagesToUpdate) {
 				var img_change = "";
-				
+
 				img_change = '<div class="gallery-list">'+this.generateHtmlImage(imagesToUpdate)+'</div>';
-				
+
 				$(".product.media").html(img_change);
 			},
-			
+
 			updateBaseImageOwl: function(imagesToUpdate) {
 				var img_change = "";
 				var view_type = $('#view_type').val();
-				
+
 				img_change = '<div id="owl-carousel-gallery" class="owl-carousel gallery-horizontal">'+this.generateHtmlImage(imagesToUpdate)+'</div>';
-				
+
 				$(".product.media").html(img_change);
-				
+
 				var $_rtl = $('#rtl_theme').val();
-				
+
 				$('#owl-carousel-gallery').owlCarousel({
 					items: 1,
 					autoplay: false,
@@ -148,15 +148,15 @@ define([
 					rtl: $_rtl,
 				});
 			},
-			
+
 			updateFullOwl: function(imagesToUpdate) {
 				var img_change = "";
 				var view_type = $('#view_type').val();
-				
+
 				img_change = '<div id="owl-carousel-gallery" class="owl-carousel gallery-5">'+this.generateHtmlImage(imagesToUpdate)+'</div>';
-				
+
 				$(".product.media").html(img_change);
-				
+
 				if($('#zoom_image').val() == 1){
 					$('#owl-carousel-gallery').on('initialized.owl.carousel', function(event) {
 						$(".imgzoom").each(function( index ) {
@@ -164,9 +164,9 @@ define([
 						});
 					});
 				}
-				
+
 				var $_rtl = $('#rtl_theme').val();
-				
+
 				$('#owl-carousel-gallery').owlCarousel({
 					items: $('#item-xl').val(),
 					autoplay: false,
@@ -195,22 +195,22 @@ define([
 					}
 				});
 			},
-			
+
 			updateBaseImageHorizontal: function(imagesToUpdate) {
 				var img_change = "";
 				img_change = '<div class="horizontal-gallery">';
-				
+
 				img_change = img_change + '<div id="owl-carousel-gallery" class="owl-carousel gallery-horizontal">'+this.generateHtmlImage(imagesToUpdate)+'</div>';
-				
+
 				if(imagesToUpdate.length > 1){
 					img_change = img_change + '<div class="horizontal-thumbnail-wrapper"><div id="horizontal-thumbnail" class="owl-carousel horizontal-thumbnail">'+this.generateHtmlThumb(imagesToUpdate)+'</div></div>';
 				}
-				
+
 				img_change = img_change + '</div>';
-				
+
 				$(".product.media").html(img_change);
 				var $_rtl = $('#rtl_theme').val();
-				
+
 				$('#owl-carousel-gallery').owlCarousel({
 					items: 1,
 					autoplay: false,
@@ -219,7 +219,7 @@ define([
 					dots: false,
 					navText: ["<span></span>","<span></span>"],
 				});
-				
+
 				$('#owl-carousel-gallery').on('changed.owl.carousel', function(event) {
 					var index = event.item.index;
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
@@ -237,33 +237,33 @@ define([
 					navText: ["<span></span>","<span></span>"],
 					responsive:{
 						0:{ items: 2 },
-						576:{ items: 3 }, 
+						576:{ items: 3 },
 						992:{ items: 4 },
 						1200:{ items: 4 }
 					},
 				});
 
-				
-				$('#horizontal-thumbnail .item-thumb').click(function(){
+
+				$('#horizontal-thumbnail .item-thumb').on('click', function(){
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
 					$(this).addClass('active');
 				});
-				
+
 			},
-			
+
 			updateSingleSlide: function(imagesToUpdate) {
 				var img_change = '<div class="container"><div class="product-thumbnail gallery-2">';
-				
+
 				img_change = img_change + '<div id="owl-carousel-gallery" class="owl-carousel gallery-horizontal">'+this.generateHtmlImage(imagesToUpdate)+'</div>';
-				
+
 				if(imagesToUpdate.length > 1){
 					img_change = img_change + '<div id="horizontal-thumbnail" class="owl-carousel horizontal-thumbnail">'+this.generateHtmlThumb(imagesToUpdate)+'</div>';
 				}
-				
+
 				img_change = img_change + '</div></div>';
-				
+
 				$(".product.media").html(img_change);
 				var $_rtl = $('#rtl_theme').val();
 				$('#owl-carousel-gallery').owlCarousel({
@@ -275,7 +275,7 @@ define([
 					navText: ["<span></span>","<span></span>"],
 					rtl: $_rtl
 				});
-				
+
 				$('#owl-carousel-gallery').on('changed.owl.carousel', function(event) {
 					var index = event.item.index;
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
@@ -298,40 +298,40 @@ define([
 						1200:{ items: 4 }
 					},
 				});
-				
-				$('#horizontal-thumbnail .item-thumb').click(function(){
+
+				$('#horizontal-thumbnail .item-thumb').on('click', function(){
 					$('#horizontal-thumbnail .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
 					$(this).addClass('active');
 				});
-				
+
 			},
-			
+
 			updateBaseImageVertical: function(imagesToUpdate) {
 				var img_change = "";
-				if(imagesToUpdate.length > 1){	
+				if(imagesToUpdate.length > 1){
 					img_change = '<div class="vertical-gallery">';
 				}else {
 					img_change = '<div class="vertical-gallery no-thumb">';
 				}
-				
-				if(imagesToUpdate.length > 1){	
+
+				if(imagesToUpdate.length > 1){
 					img_change = img_change + '<div id="vertical-thumbnail-wrapper"><div id="vertical-thumbnails" class="vertical-thumbnail">'+this.generateHtmlThumb(imagesToUpdate)+'</div></div>';
 				}
-				
+
 				img_change = img_change + '<div id="owl-carousel-gallery" class="owl-carousel gallery-vertical">'+this.generateHtmlImage(imagesToUpdate)+'</div>';
-					
+
 				img_change = img_change + '</div>';
-				
+
 				$(".product.media").html(img_change);
-				
+
 				$('#owl-carousel-gallery').on('initialized.owl.carousel', function(event) {
 					setTimeout(function(){
 						var hs = $('#owl-carousel-gallery').height();
 						$('.product.media').height(hs);
 					}, 200);
-					
+
 				});
 				var $_rtl = $('#rtl_theme').val();
 				$('#owl-carousel-gallery').owlCarousel({
@@ -343,7 +343,7 @@ define([
 					navText: ["<span></span>","<span></span>"],
 					rtl: $_rtl
 				});
-				
+
 				$('#vertical-thumbnails img').load(function(){
 					setTimeout(function(){
 						$('#vertical-thumbnails').not('.slick-initialized').slick({
@@ -389,7 +389,7 @@ define([
 						});
 					}, 200);
 				});
-				
+
 				$('#owl-carousel-gallery').on('changed.owl.carousel', function(event) {
 					var index = event.item.index;
 					$('#vertical-thumbnails .item-thumb').removeClass('active');
@@ -408,20 +408,20 @@ define([
 						$('#vertical-thumbnails').slick('slickGoTo', index);
 					}
 				});
-				
+
 				$('#owl-carousel-gallery').on('resized.owl.carousel', function(event) {
 					var hs = $('#owl-carousel-gallery').height();
 					$('.product.media').height(hs);
 				});
-				
-				$('#vertical-thumbnails .item-thumb').click(function(){
+
+				$('#vertical-thumbnails .item-thumb').on('click', function(){
 					$('#vertical-thumbnails .item-thumb').removeClass('active');
 					var position = $(this).attr('data-owl');
 					$('#owl-carousel-gallery').trigger('to.owl.carousel', position);
 					$(this).addClass('active');
 				});
 			},
-			
+
 			updateOneImage: function(imagesToUpdate) {
 				var img_change = "",
 					lbox_image = $('#lbox_image').val();
@@ -429,18 +429,18 @@ define([
 				if((imagesToUpdate[0].media_type == 'external-video' || imagesToUpdate[0].media_type == 'video' || imagesToUpdate[0].type == 'video') && imagesToUpdate[0].videoUrl != ""){
 					$isVideo = true;
 				}
-				
+
 				var $class = 'product item-image imgzoom';
 				if($isVideo){
 					$class = $class + ' item-image-video';
 				}
-				
+
 				img_change = img_change + '<div class="'+$class+'" data-zoom="'+imagesToUpdate[0].zoom+'">';
-				
+
 				if($isVideo){
 					img_change = img_change + '<div class="label-video">'+$.mage.__('Video')+'</div>';
 				}
-			
+
 				if(lbox_image == 1){
 					var href = imagesToUpdate[0].zoom;
 					var cla = 'lb';
@@ -455,18 +455,18 @@ define([
 						img_change = img_change + '<a target="_blank" class="popup-video" href="'+imagesToUpdate[0].videoUrl+'"><span class="ti-video-camera"></span></a>';
 					}
 				}
-				
+
 				img_change = img_change + '</div>';
-				
+
 				$(".product.media").html(img_change);
 			},
-			
+
 			zoomImage: function(){
 				$(".imgzoom").each(function( index ) {
 					zoomElement(this);
 				});
 			},
-			
+
 			lightBoxGallery: function(){
 				$('.product.media').magnificPopup({
 					delegate: '.imgzoom .lb',
@@ -503,7 +503,7 @@ define([
 					}
 				});
 			},
-			
+
 			generateHtmlImage: function(imagesToUpdate){
 				var html = "",
 					lbox_image = $('#lbox_image').val();
@@ -512,7 +512,7 @@ define([
 					if((imagesToUpdate[index].media_type == 'external-video' || imagesToUpdate[index].media_type == 'video' || imagesToUpdate[index].type == 'video') && imagesToUpdate[index].videoUrl != ""){
 						$isVideo = true;
 					}
-					
+
 					var $class = 'product item-image imgzoom';
 					if($isVideo){
 						$class = $class + ' item-image-video';
@@ -521,7 +521,7 @@ define([
 					if($isVideo){
 						html = html + '<div class="label-video">'+$.mage.__('Video')+'</div>';
 					}
-					
+
 					if(lbox_image == 1){
 						var href = imagesToUpdate[index].zoom;
 						var cla = 'lb';
@@ -536,36 +536,36 @@ define([
 							html = html + '<a target="_blank" class="popup-video" href="'+imagesToUpdate[index].videoUrl+'"><span class="ti-video-camera"></span></a>';
 						}
 					}
-					
+
 					html = html + '</div>';
 				});
 				return html;
 			},
-			
+
 			generateHtmlThumb: function(imagesToUpdate){
 				var html = "",
 					lbox_image = $('#lbox_image').val();
-					
+
 				$.each(imagesToUpdate, function(index) {
 					var $isVideo = false;
 					if((imagesToUpdate[index].media_type == 'external-video' || imagesToUpdate[index].media_type == 'video' || imagesToUpdate[index].type == 'video') && imagesToUpdate[index].videoUrl != ""){
 						$isVideo = true;
 					}
-					
+
 					var classth = 'item-thumb';
 					if(index == 0){ classth = 'item-thumb active'; }
-					
+
 					html = html + '<div class="'+classth+'" data-owl="'+index+'"><img class="img-fluid" src="'+imagesToUpdate[index].thumb+'" alt=""/>';
 						if($isVideo){
 							html = html + '<div class="popup-video-thumb"><span class="ti-video-camera"></span></div>';
 						}
 					html = html + '</div>';
 				});
-				
+
 				return html;
 			},
         });
-            
+
         return $.mage.configurable;
     }
 });

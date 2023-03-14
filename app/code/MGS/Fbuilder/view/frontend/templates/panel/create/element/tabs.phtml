@@ -5,7 +5,7 @@
 <?php $child = null ?>
 <?php $settings = null ?>
 <div class="edit-static-form">
-    
+
     <div class="line">
         <div class="col-des-12 builder-title">
             <h2><?php echo __('Product Tabs') ?></h2>
@@ -30,9 +30,9 @@
             ?>
             <input type="hidden" name="child_id" value="<?php echo $params['id'] ?>">
         <?php endif ?>
-        
+
         <div class="mgs-tab data items product" data-mage-init='{"tabs":{"openedState":"active"}}'>
-            
+
             <?php
                 echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
                     ->setExist($exist)
@@ -41,13 +41,13 @@
                     ->setBuilderHelper($helper)
                     ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/general_tab.phtml')->toHtml() ;
             ?>
-            
+
             <div class="data item title" aria-labeledby="tab-label-tab-title" data-role="collapsible" id="tab-label-tab">
                 <a class="data switch" tabindex="-1" data-toggle="switch" href="#tab" id="tab-label-tab-title">
                     <?php echo __('Tab Config') ?>
                 </a>
             </div>
-            
+
             <div class="data item content" id="tab" data-role="content" style="display:none">
                 <div class="form-group line">
                     <label class="col-des-3 control-label" for="new_products"><?php echo __('New Products') ?></label>
@@ -63,7 +63,7 @@
                     <div class="col-des-2"><input type="text" placeholder="<?php echo __('Position') ?>" name="setting[tabs][mgs_new_products_tabs][position]" class="input-text validate-number" id="new_products_position"<?php if ($exist && (isset($tabs['mgs_new_products_tabs']['label']) && ($tabs['mgs_new_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_new_products_tabs']['position'] ?>"<?php endif ?>></div>
                     <div class="col-des-1"></div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label class="col-des-3 control-label" for="sale_products"><?php echo __('Sale Products') ?></label>
                     <div class="col-des-3">
@@ -78,7 +78,7 @@
                     <div class="col-des-2"><input type="text" placeholder="<?php echo __('Position') ?>" name="setting[tabs][mgs_sale_products_tabs][position]" class="input-text validate-number" id="sale_products_position"<?php if ($exist && (isset($tabs['mgs_sale_products_tabs']['label']) && ($tabs['mgs_sale_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_sale_products_tabs']['position'] ?>"<?php endif ?>></div>
                     <div class="col-des-1"></div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label class="col-des-3 control-label" for="rate_products"><?php echo __('Top Rate Products') ?></label>
                     <div class="col-des-3">
@@ -93,7 +93,7 @@
                     <div class="col-des-2"><input type="text" placeholder="<?php echo __('Position') ?>" name="setting[tabs][mgs_rate_products_tabs][position]" class="input-text validate-number" id="rate_products_position"<?php if ($exist && (isset($tabs['mgs_rate_products_tabs']['label']) && ($tabs['mgs_rate_products_tabs']['label']!=''))): ?> value="<?php echo $tabs['mgs_rate_products_tabs']['position'] ?>"<?php endif ?>></div>
                     <div class="col-des-1"></div>
                 </div>
-                
+
                 <div id="new-tab-container">
                     <?php if ($exist): ?>
                         <?php
@@ -129,13 +129,13 @@
                         <?php endif ?>
                     <?php endif ?>
                 </div>
-                
+
                 <div class="form-group line">
                     <label class="col-des-3 control-label"><button onclick="newAttributeTab()" type="button" class="action"><em class="fa fa-plus-circle"></em> <?php echo __('Add new tab') ?></button></label>
                 </div>
-                
+
                 <hr/>
-                
+
                 <div class="category-tab-config">
                     <div id="tab-sample">
                         <div class="builder-tab data items">
@@ -151,7 +151,7 @@
                                         <option value="style6"<?php if ($exist && ($settings['tab_style']=='style6')): ?> selected="selected"<?php endif ?>><?php echo __('Style 6') ?></option>
                                         <option value="style7"<?php if ($exist && ($settings['tab_style']=='style7')): ?> selected="selected"<?php endif ?>><?php echo __('Style 7') ?></option>
                                     </select>
-                                    
+
                                     <div id="tab_style_image" style="margin-top:5px; height:80px; overflow:hidden" class="mgs-product-tab">
                                         <div class="product data items mgs-tab" id="tab-style-container">
                                             <div class="data item title item1 active"><a class="data switch">Title 1</a></div>
@@ -162,12 +162,12 @@
                                             <div class="data item content"></div>
                                         </div>
                                     </div>
-                                    
+
                                     <style type="text/css" id="head-custom-css"></style>
                                 </div>
                             </div>
 
-                            
+
                             <div class="form-group line">
                         <div class="col-des-3">
                         </div>
@@ -182,7 +182,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-des-3">
                                     <label for="tab_italic" class="control-label"><?php echo __('Font Italic') ?></label>
                                     <div class="admin__actions-switch" data-role="switcher">
@@ -192,7 +192,7 @@
                                         </label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-des-3">
                                     <label for="tab_uppercase" class="control-label"><?php echo __('Uppercase') ?></label>
                                     <div class="admin__actions-switch" data-role="switcher">
@@ -202,45 +202,45 @@
                                         </label>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-des-3">
                                     <label for="tab_align" class="control-label"><?php echo __('Align') ?></label><br/>
                                     <div>
                                         <select id="tab_align" class="input-text" name="setting[tab_align]" onchange="changeTabAlign()">
                                             <option value="left"<?php if ($exist && ($settings['tab_align']=='left')): ?> selected="selected"<?php endif ?>><?php echo __('Left') ?></option>
-                                            
+
                                             <option value="center"<?php if ($exist && ($settings['tab_align']=='center')): ?> selected="selected"<?php endif ?>><?php echo __('Center') ?></option>
-                                            
+
                                             <option value="right"<?php if ($exist && ($settings['tab_align']=='right')): ?> selected="selected"<?php endif ?>><?php echo __('Right') ?></option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                            
+
                             <div class="form-group line">
                                 <label for="font_size" class="col-des-3 control-label"><?php echo __('Font Size') ?></label>
                                 <div class="col-des-9">
                                     <input type="text" id="font_size" class="input-text validate-number" name="setting[font_size]"<?php if ($exist): ?> value="<?php echo $settings['font_size'] ?>"<?php endif ?> placeholder="px" onchange="changeTabColor()"/>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group line">
                                 <label for="tab_primary_color" class="col-des-3 control-label"><?php echo __('Primary Color') ?></label>
                                 <div class="col-des-9">
                                     <input type="text" id="tab_primary_color" class="input-text color-input" name="setting[tab_primary_color]"<?php if ($exist): ?> value="<?php echo $settings['tab_primary_color'] ?>"<?php endif ?> onchange="changeTabColor()"/>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group line">
                                 <label for="tab_secondary_color" class="col-des-3 control-label"><?php echo __('Secondary Color') ?></label>
                                 <div class="col-des-9">
                                     <input type="text" id="tab_secondary_color" class="input-text color-input" name="setting[tab_secondary_color]"<?php if ($exist): ?> value="<?php echo $settings['tab_secondary_color'] ?>"<?php endif ?> onchange="changeTabColor()"/>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group line">
                                 <label for="tab_third_color" class="col-des-3 control-label"><?php echo __('Third Color') ?></label>
                                 <div class="col-des-9">
@@ -251,13 +251,13 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="data item title" aria-labeledby="tab-label-additional-title" data-role="collapsible" id="tab-label-additional">
                 <a class="data switch" tabindex="-1" data-toggle="switch" href="#additional" id="tab-label-additional-title">
                     <?php echo __('Product Config') ?>
                 </a>
             </div>
-            
+
             <div class="data item content" id="additional" data-role="content" style="display:none">
                 <div class="form-group line">
                     <label for="number_of_posts" class="col-des-4 control-label"><?php echo __('Number of product to display') ?></label>
@@ -265,7 +265,7 @@
                         <input type="text" id="limit" class="input-text required-entry validate-number" name="setting[limit]"<?php if ($exist): ?> value="<?php echo $settings['limit'] ?>"<?php endif ?> />
                     </div>
                 </div>
-                
+
                 <div class="form-group line grid-perrow">
                     <label for="perrow" class="col-des-4 control-label"><?php echo __('Items per row (default)') ?></label>
                     <div class="col-des-8">
@@ -281,7 +281,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group line grid-perrow">
                     <label for="perrow_tablet" class="col-des-4 control-label"><?php echo __('Items per row (tablet)') ?></label>
                     <div class="col-des-8">
@@ -297,7 +297,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group line grid-perrow">
                     <label for="perrow_mobile" class="col-des-4 control-label"><?php echo __('Items per row (mobile)') ?></label>
                     <div class="col-des-8">
@@ -313,7 +313,7 @@
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label for="hide_name" class="col-des-4 control-label"><?php echo __('Hide Product Name') ?></label>
                     <div class="col-des-8">
@@ -325,7 +325,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label for="hide_review" class="col-des-4 control-label"><?php echo __('Hide Review') ?></label>
                     <div class="col-des-8">
@@ -337,7 +337,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label for="hide_price" class="col-des-4 control-label"><?php echo __('Hide Price') ?></label>
                     <div class="col-des-8">
@@ -349,7 +349,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label for="hide_addcart" class="col-des-4 control-label"><?php echo __('Hide Add to Cart') ?></label>
                     <div class="col-des-8">
@@ -361,7 +361,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label for="hide_addwishlist" class="col-des-4 control-label"><?php echo __('Hide Add to Wishlist') ?></label>
                     <div class="col-des-8">
@@ -373,7 +373,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group line">
                     <label for="hide_addcompare" class="col-des-4 control-label"><?php echo __('Hide Add to Compare') ?></label>
                     <div class="col-des-8">
@@ -385,7 +385,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-group line" id="use-slider">
                     <label for="use_slider" class="col-des-4 control-label"><?php echo __('Use slider') ?></label>
                     <div class="col-des-8">
@@ -397,9 +397,9 @@
                         </div>
                     </div>
                 </div>
-                
-                
-                
+
+
+
                 <?php
                     echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
                         ->setExist($exist)
@@ -408,7 +408,7 @@
                         ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/slider_setting.phtml')->toHtml() ;
                 ?>
             </div>
-            
+
             <?php
                 echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
                     ->setExist($exist)
@@ -417,7 +417,7 @@
                     ->setDisableCategoryTab(1)
                     ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/category_tab.phtml')->toHtml() ;
             ?>
-            
+
             <?php if ($exist): ?>
                 <?php
                     echo $this->getLayout()->createBlock('Magento\Framework\View\Element\Template')
@@ -426,11 +426,11 @@
                         ->setBuilderHelper($helper)
                         ->setTemplate('MGS_Fbuilder::panel/create/element/widgets/code_tab.phtml')->toHtml() ;
                 ?>
-                
+
             <?php endif ?>
         </div>
-        
-        
+
+
         <div class="line">
             <div class="form-group">
                 <div class="col-des-12 builder-action">
@@ -458,8 +458,8 @@
                         $(this).parents('div.form-group').find('input.input-text').attr('disabled', 'disabled');
                     }
                 });
-                
-                $('.product-tabs-check').click(function() {
+
+                $('.product-tabs-check').on('click', function() {
                     if($(this).prop("checked") == true){
                         $(this).parents('div.form-group').find('input.input-text').removeAttr('disabled');
                     }else{
@@ -469,7 +469,7 @@
             });
         })(jQuery);
     });
-    
+
     function newAttributeTab(){
         require([
             'jquery',
@@ -478,24 +478,24 @@
                 randomNumber = Math.floor((Math.random() * 10000) + 1);
                 html = '<div class="form-group line" id="form-group-{{random_number}}"><label for="rate_products" class="col-des-3 control-label"></label><div class="col-des-3">';
                 html = html + '<select class="input-text required-entry" name="setting[tabs][{{random_number}}][value]"><option value="">Choose an attribute</option>';
-                
+
                 <?php if (count($attributes)>0): ?>
                     <?php foreach ($attributes as $attributeCode => $attributeLabel): ?>
                         html = html + '<option value="<?php echo $attributeCode ?>"><?php echo $attributeLabel ?></option>';
                     <?php endforeach ?>
                 <?php endif ?>
-                                                        
+
                 html = html + '</select>';
-                                        
+
                 html = html + '</div><div class="col-des-3"><input type="text" class="input-text required-entry" name="setting[tabs][{{random_number}}][label]" placeholder="Tab Title"/></div><div class="col-des-2"><input type="text" class="input-text validate-number" name="setting[tabs][{{random_number}}][position]" placeholder="Position"/></div><div class="col-des-1"><a href="#" onclick="removeFormGroup(\'#form-group-{{random_number}}\'); return false"><span class="fa fa-close"></span></a></div></div>';
-                
+
                 html = html.replace(/{{random_number}}/g, randomNumber);
-                                    
+
                 $('#new-tab-container').append(html);
             })(jQuery);
         });
     }
-    
+
     function removeFormGroup(number){
             require([
             'jquery',

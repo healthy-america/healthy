@@ -71,13 +71,12 @@ $baseImage = $this->getViewFileUrl('MGS_ThemeSettings::images/blank.png');
                     <div class="<?php if ($slideMultiRow || !$this->hasData('number_row')): ?> col<?php endif ?>">
                         <div class="instagram-item">
                             <?php if ($this->getLink()): ?>
-                            <a href="<?php echo $image->permalink ?>" target="_blank">
+                            <a href="<?php echo $image->permalink ?>" target="_blank" rel="noopener">
                                 <?php endif ?>
-                                <img class="img-responsive <?php if ($lazyLoad): ?>lazy<?php endif ?>" src="<?php echo $baseImage; ?>" data-src="<?= $imageUrl; ?>" alt=""/>
+                                <img class="img-responsive <?php if ($lazyLoad): ?>arrow-lazy<?php endif ?>" src="<?php echo $baseImage; ?>" data-src="<?= $imageUrl; ?>" alt=""/>
                                 <?php if ($this->getLink()): ?>
                             </a>
                         <?php endif ?>
-
                         </div>
                     </div>
 

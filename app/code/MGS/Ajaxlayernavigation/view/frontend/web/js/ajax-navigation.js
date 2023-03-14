@@ -4,17 +4,17 @@
  */
 define([
     'jquery',
-     'mage/apply/main', 
+     'mage/apply/main',
     'MGS_Ajaxlayernavigation/js/ion.rangeSlider.min',
-    "mlazyload"
+    "mLazysizes"
 ], function ($,mage,ionRangeSlider) {
     'use strict';
     $.widget('mage.ajaxnavigation', {
         options: {
-             
-        }, 
+
+        },
         _create: function () {
-            this.url = $(location).attr('href'); 
+            this.url = $(location).attr('href');
             this.useAjax = this.options.useAjax;
             this.usePrice_slide = this.options.use_range_price;
             this.minPrice = $("#price-range-slider").data("from");
@@ -25,12 +25,12 @@ define([
             this.pricePostfix = this.options.pricePostfix;
             this.initNavigation();
         },
-        initNavigation: function() { 
+        initNavigation: function() {
             if(this.usePrice_slide){
-               this.addPriceSlider(); 
-            } 
+               this.addPriceSlider();
+            }
             var self = this;
-            setTimeout(function(){ 
+            setTimeout(function(){
                 self.addToolbarObservers();
             },300);
             this.addFilterObservers();
@@ -143,7 +143,7 @@ define([
             $("#mode-list").off();
             $("#mode-list").on("click", function(e) {
                 e.preventDefault();
-                e.stopPropagation(); 
+                e.stopPropagation();
                 self.applyToolbarElement('product_list_mode', 'list');
                 return false;
             });
@@ -151,7 +151,7 @@ define([
             $("#mode-grid").off();
             $("#mode-grid").on("click", function(e) {
                 e.preventDefault();
-                e.stopPropagation(); 
+                e.stopPropagation();
                 self.applyToolbarElement('product_list_mode', 'grid');
                 return false;
             });
@@ -159,7 +159,7 @@ define([
             $("#sorter").off();
             $("#sorter").on("change", function(e) {
                 e.preventDefault();
-                e.stopPropagation(); 
+                e.stopPropagation();
                 self.applyToolbarElement('product_list_order', $(this).val());
                 return false;
             });
@@ -167,7 +167,7 @@ define([
             $(".sorter-action").off();
             $(".sorter-action").on("click", function(e) {
                 e.preventDefault();
-                e.stopPropagation(); 
+                e.stopPropagation();
                 self.applyToolbarElement('product_list_dir', $(this).attr("data-value"));
                 return false;
             });
@@ -250,14 +250,6 @@ define([
                         //$('.filter-options').hide();
                     }
                 }
-                
-                $("img.lazy").unveil(25, function(){
-                    var self = $(this);
-                    setTimeout(function(){
-                        self.removeClass('lazy');
-                        self.parents('.parent_lazy').addClass('lazy_loaded');
-                    }, 0);
-                });
             }).fail(function(jqXHR, textStatus, errorThrown) {
                 console.log(errorThrown);
             });
@@ -280,7 +272,7 @@ define([
         toggleFilter: function(el) {
             el.toggleClass('inactive');
             el.toggleClass('active');
-            el.next().slideToggle(); 
+            el.next().slideToggle();
         },
 
         isMobile: function() {

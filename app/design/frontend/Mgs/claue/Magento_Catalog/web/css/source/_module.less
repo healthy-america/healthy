@@ -909,30 +909,30 @@
             }
 
         }
-        aside.modal-popup.modal-static-block.modal-slide._show {
-            .delivery-content,
-            .guilde-content{
-                .modal-body-content {
-                    display: block;
-                }
-            }
-        }
     }
-    aside.modal-popup.modal-static-block.modal-slide._show {
+    aside.modal-popup.modal-static-block.modal-slide {
+        .modal-inner-wrap {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 720px;
+            opacity: 0;
+        }
         header.modal-header {
             display: none;
         }
         .modal-content {
             padding: 20px;
         }
-        .modal-inner-wrap {
-            width: 100%;
-            max-width: 720px;
-            display: inline-block;
-            left: 50%;
-            top: 50%;
-            .lib-transform(translate(-50%, -50%));
-            margin: 0;
+        &._show {
+            .modal-inner-wrap {
+                top: 50%;
+                opacity: 1;
+                .lib-transform(translateY(-50%));
+            }
+
+            .modal-body-content {
+                display: block;
+            }
         }
     }
     .product-add-form {
@@ -1116,6 +1116,13 @@
         }
     }
 
+    .product-info-main .box-tocart .product-social-links, .product-options-bottom .box-tocart .product-social-links {
+        width: auto;
+        display: flex;
+    }
+    .product-info-main .box-tocart .product-social-links .product-addto-links, .product-options-bottom .box-tocart .product-social-links .product-addto-links {
+        margin: 0;
+    }
 
 }
 
@@ -1146,6 +1153,8 @@
                     .field.qty,
                     .actions {
                         flex-shrink: 0;
+                        margin-bottom: 10px;
+                        padding-right: 10px;
                     }
                 }
                 &.update {
@@ -1243,50 +1252,56 @@
             }
         }
     }
-    aside.modal-popup.modal-static-block.modal-slide._show {
-        left: 0;
-        header.modal-header {
-            display: block;
-            position: absolute;
-            top: -16px;
-            right: -15px;
-            padding: 10px;
-            width: 30px;
-            height: 30px;
+    aside.modal-popup.modal-static-block.modal-slide{
 
-            button {
-                background-color: #000;
-                width: 30px;
-                height: 30px;
-                padding: 0;
-                border-radius: 50%;
-                &.action-close {
-                    &::before,
-                    &:hover {
-                        color: #fff;
-                    }
-                }
-            }
-        }
         .modal-inner-wrap {
+            position: absolute;
             width: 90%;
             max-width: 100%;
             display: inline-block;
             overflow: initial;
             height: auto;
             background-color: #fff;
-            position: absolute;
+            transform: translate(0, -100%);
 
             .modal-content {
                 padding: 10px;
+
                 .modal-body-content {
                     overflow: auto;
                     max-height: 80vh;
                 }
             }
-
         }
 
+        &._show {
+            left: 0;
+
+            header.modal-header {
+                display: block;
+                position: absolute;
+                top: -16px;
+                right: -15px;
+                padding: 10px;
+                width: 30px;
+                height: 30px;
+
+                button {
+                    background-color: #000;
+                    width: 30px;
+                    height: 30px;
+                    padding: 0;
+                    border-radius: 50%;
+
+                    &.action-close {
+                        &::before,
+                        &:hover {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
@@ -1346,7 +1361,6 @@
 
         }
     }
-
 
 }
 

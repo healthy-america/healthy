@@ -3,7 +3,7 @@
 <?php $themeSettingConfig = $this->helper('MGS\ThemeSettings\Helper\Config'); ?>
 <?php $cartAnimation = $themeSettingConfig->getStoreConfig('ajaxcart/additional/animation_type'); ?>
 
-<?php if($cartAnimation == 'flycart'): ?>
+<?php if ($cartAnimation == 'flycart'): ?>
 <div class="cart-footer-actions" data-bind="scope: 'ajaxcart_content'" data-block="footer_minicart">
     <div class="cart-qty" id="footer-cart-trigger" data-bind="click: toggleFooterSidebar.bind(this)">
         <span class="icon-cart-footer"></span>
@@ -48,19 +48,17 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        require(
-        [
-            'jquery'
-        ],function($){
-            $(document).ready(function(){
-                $(document).on("click","#footer-cart-trigger",function(e){
-                    if($(window).width() < 768){
-                        $('.minicart-wrapper .action.showcart').click();
-                    }
-                });
+
+    <script>
+        if ( window.innerWidth < 768 ) {
+            document.addEventListener("click", function(e) {
+                if (e.target.closest("#footer-cart-trigger") ) {
+                    e.preventDefault();
+                    const cartTrigger = document.querySelector('.minicart-wrapper .action.showcart');
+                    cartTrigger && cartTrigger.click();
+                }
             });
-        });
+        }
     </script>
 </div>
-<?php endif ?>
+<?php endif; ?>

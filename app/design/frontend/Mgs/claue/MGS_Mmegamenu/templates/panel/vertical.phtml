@@ -21,7 +21,7 @@
 			'jquery'
 		], function ($) {
 			$(document).ready(function(){
-				$(".vertical-menu li.level1.category-submenu .toggle-menu>a>span").click(function(){
+				$(".vertical-menu li.level1.category-submenu .toggle-menu>a>span").on('click', function(){
                 	$(".vertical-menu li.level1.category-submenu>.dropdown-submenu").slideToggle();
             	});
 				if($(window).width() > 1199){

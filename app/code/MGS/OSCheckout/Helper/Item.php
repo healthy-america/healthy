@@ -87,31 +87,23 @@ class Item extends Data
      * @param Context $context
      * @param ObjectManagerInterface $objectManager
      * @param StoreManagerInterface $storeManager
-     * @param EncryptorInterface $encryptor
-     * @param Json $json
      * @param LayoutFactory $layoutFactory
      * @param BuilderFactory $builderFactory
      * @param Registry $registry
      * @param Image $catalogHelper
      * @param ConfigInterface $viewConfig
      * @param Repository $repository
-     * @param Subscriber $subscriber
-     * @param Session $checkoutSession
      */
     public function __construct(
         Context $context,
         ObjectManagerInterface $objectManager,
         StoreManagerInterface $storeManager,
-        EncryptorInterface $encryptor,
-        Json $json,
         LayoutFactory $layoutFactory,
         BuilderFactory $builderFactory,
         Registry $registry,
         Image $catalogHelper,
         ConfigInterface $viewConfig,
-        Repository $repository,
-        Subscriber $subscriber,
-        Session $checkoutSession
+        Repository $repository
     ) {
         $this->layoutFactory = $layoutFactory;
         $this->builderFactory = $builderFactory;

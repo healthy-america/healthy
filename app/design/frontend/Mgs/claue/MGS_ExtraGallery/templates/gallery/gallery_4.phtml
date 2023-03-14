@@ -8,63 +8,66 @@ $arImage = $_product->getData('mgs_arimage');
 $arTemplate = $this->getLayout()->createBlock("MGS\ClaueTheme\Block\AbstractProduct")->setProduct($_product)->setFullWidth(true)->setTemplate("MGS_ClaueTheme::arImage.phtml")->toHtml();
 
 ?>
-<div class="vertical-gallery<?php if(count($galleryImages) <= 1): ?> no-thumb<?php endif ?>">
-	<?php if(count($galleryImages) > 1): ?>
-    <div id="vertical-thumbnail-wrapper">
-        <div id="vertical-thumbnail" class="vertical-thumbnail">
-            <?php $i = 0; foreach($galleryImages as $image): ?>
-                <?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
-                <div class="item-thumb<?php if($i == 0): ?> active<?php endif ?>" data-owl="<?php echo $i ?>">
-                    <img class="img-fluid" src="<?php echo $image->getSmallImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
-                    <?php if($image->getMediaType() == 'external-video'): ?>
-                        <div class="popup-video-thumb"><span class="ti-video-camera"></span></div>
-                    <?php elseif($image->getArImage()): ?>
-                        <a class="ar-thumbnail"><span><i class="pe-7s-box2"></i></span></a>
-                    <?php endif ?>
-                </div>
-                <?php $i++; ?>
-            <?php endforeach ?>
+<div class="vertical-gallery<?= count($galleryImages) <= 1 ? ' no-thumb' : '' ?>">
+    <?php if (count($galleryImages) > 1): ?>
+        <div id="vertical-thumbnail-wrapper">
+            <div id="vertical-thumbnail" class="vertical-thumbnail">
+                <?php $i = 0; foreach ($galleryImages as $image): ?>
+                    <?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+                    <div class="item-thumb<?= $i == 0 ? 'active' : '' ?>" data-owl="<?= $i ?>">
+                        <img class="img-fluid" src="<?= $block->escapeUrl($image->getSmallImageUrl()); ?>" alt="<?= $lbImage ?>"/>
+
+                        <?php if ($image->getMediaType() == 'external-video'): ?>
+                            <div class="popup-video-thumb"><span class="ti-video-camera"></span></div>
+                        <?php elseif ($image->getArImage()): ?>
+                            <a class="ar-thumbnail"><span><i class="pe-7s-box2"></i></span></a>
+                        <?php endif ?>
+                    </div>
+                    <?php $i++; ?>
+                <?php endforeach ?>
+            </div>
         </div>
-    </div>
-	<?php endif ?>
+    <?php endif; ?>
+
     <div id="owl-carousel-gallery" class="owl-carousel gallery-vertical">
-        <?php $i =0; foreach($galleryImages as $image): $i++;?>
-			<?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
-			<?php $isVideo = $image->getMediaType() == 'external-video' ? true : false; ?>
-			<?php $href = $isVideo ? $image->getVideoUrl() : $image->getImageZoom(); ?>
+        <?php $i =0; foreach ($galleryImages as $image): $i++; ?>
+            <?php $lbImage = $image->getLabel() ? $image->getLabel() : $image->getLabelDefault(); ?>
+            <?php $isVideo = $image->getMediaType() == 'external-video' ? true : false; ?>
+            <?php $href = $isVideo ? $image->getVideoUrl() : $image->getImageZoom(); ?>
 
-			<div class="product item-image imgzoom<?php if($isVideo): ?> item-image-video<?php endif ?> <?php if($image->getArImage() && $arImage): ?> disable-owl-swipe<?php endif ?>" data-zoom="<?php echo $image->getImageZoom(); ?>">
+            <div class="product item-image imgzoom<?= $isVideo ? ' item-image-video' : '' ?><?= ($image->getArImage() && $arImage) ? ' disable-owl-swipe' : '' ?>" data-zoom="<?= $block->escapeUrl($image->getImageZoom()); ?>">
+                <?php if ($isVideo): ?>
+                    <div class="label-video"><?= __('Video') ?></div>
+                <?php endif; ?>
 
-				<?php if($isVideo): ?><div class="label-video"><?php echo __('Video') ?></div><?php endif ?>
-
-                <?php if($image->getArImage()): ?>
-                    <?php if($arImage): ?>
-                        <?php echo $arTemplate ?>
+                <?php if ($image->getArImage()): ?>
+                    <?php if ($arImage): ?>
+                        <?= $arTemplate ?>
                     <?php else: ?>
-                        <img class="img-responsive" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+                        <img class="img-responsive" src="<?= $block->escapeUrl($image->getLargeImageUrl()); ?>" alt="<?= $lbImage ?>"/>
                     <?php endif; ?>
                 <?php else: ?>
-                    <?php if($lbox_image): ?>
-                        <a class="lb<?php if($isVideo): ?> video-link<?php endif ?>" href="<?php echo $href; ?>">
-                            <img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
+                    <?php if ($lbox_image): ?>
+                        <a class="lb<?= $isVideo ? ' video-link' : '' ?>" href="<?= $block->escapeUrl($href); ?>">
+                            <img class="img-fluid" src="<?= $block->escapeUrl($image->getLargeImageUrl()); ?>" alt="<?= $lbImage ?>"/>
                         </a>
                     <?php else: ?>
-                        <img class="img-fluid" src="<?php echo $image->getLargeImageUrl(); ?>" alt="<?php echo $lbImage ?>"/>
-                        <?php if($isVideo): ?>
-                            <a target="_blank" class="popup-video" href="<?php echo $image->getVideoUrl(); ?>">
+                        <img class="img-fluid" src="<?= $block->escapeUrl($image->getLargeImageUrl()); ?>" alt="<?= $lbImage ?>"/>
+                        <?php if ($isVideo): ?>
+                            <a target="_blank" rel="noopener" class="popup-video" href="<?= $image->getVideoUrl(); ?>">
                                 <span class="ti-video-camera"></span>
                             </a>
-                        <?php endif ?>
-                    <?php endif ?>
-                <?php endif ?>
-			</div>
-		<?php endforeach ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
     </div>
 </div>
-<script type="text/javascript">
-    require([ 'jquery', 'mgsslick', 'mgsowlcarousel' ], function ($) {
 
-        var owlGallery = $('#owl-carousel-gallery').owlCarousel({
+<script>
+    require([ 'jquery', 'mgsslick', 'mgsowlcarousel' ], function($) {
+        const owlGallery = $('#owl-carousel-gallery').owlCarousel({
             items: 1,
             autoplay: false,
             lazyLoad: false,
@@ -74,15 +77,16 @@ $arTemplate = $this->getLayout()->createBlock("MGS\ClaueTheme\Block\AbstractProd
             rtl: false,
             onInitialized: function(){
                 var carowselHeight = $('#owl-carousel-gallery .owl-stage-outer').height();
-                $('#owl-carousel-gallery .owl-item').height(carowselHeight);
+                $('#owl-carousel-gallery .owl-item model-viewer').height(carowselHeight);
             },
-            <?php if($arImage): ?>
-            touchDrag: false,
-            mouseDrag: false,
-            <?php endif ?>
+            <?php if ($arImage): ?>
+                touchDrag: false,
+                mouseDrag: false,
+            <?php endif; ?>
             rtl: <?= $rtl ?>
         });
-        var owlTimer = setInterval(function() {
+
+        const owlTimer = setInterval(function() {
             if(owlGallery.height() > 1) clearInterval(owlTimer);
             owlGallery.trigger('refresh.owl.carousel', [100]);
         }, 300);
@@ -134,7 +138,7 @@ $arTemplate = $this->getLayout()->createBlock("MGS\ClaueTheme\Block\AbstractProd
             $('#vertical-thumbnail .item-thumb').removeClass('active');
             $('#vertical-thumbnail .item-thumb[data-owl='+index+']').addClass('active');
             var wdw = $(window).width();
-            var ci = <?php echo count($galleryImages); ?>;
+            var ci = <?= count($galleryImages); ?>;
             if(wdw >= 1199 && ci > 3) {
                 $('#vertical-thumbnail').slick('slickGoTo', index);
             }else if(wdw < 1199 && wdw >= 768 && ci > 2){
@@ -148,49 +152,51 @@ $arTemplate = $this->getLayout()->createBlock("MGS\ClaueTheme\Block\AbstractProd
             }
         });
 
-        $('#vertical-thumbnail .item-thumb').click(function(){
+        $('#vertical-thumbnail .item-thumb').on('click', function() {
             $('#vertical-thumbnail .item-thumb').removeClass('active');
-            var position = $(this).attr('data-owl');
+            const position = $(this).attr('data-owl');
             $('#owl-carousel-gallery').trigger('to.owl.carousel', position);
             $(this).addClass('active');
         });
     });
-    <?php if($zoom_image): ?>
-        require([ 'jquery', 'zoom-images' ],function($) {
+
+    <?php if ($zoom_image): ?>
+        require([ 'jquery', 'zoom-images' ], function($) {
             $(".imgzoom").each(function( index ) {
                 zoomElement(this);
             });
         });
-    <?php endif ?>
-	<?php if($lbox_image): ?>
-	require([ 'jquery', 'magnificPopup' ], function ($) {
-		$('.product.media').magnificPopup({
-			delegate: '.imgzoom .lb',
-			type: 'image',
-			tLoading: 'Loading image #%curr%...',
-			mainClass: 'mfp-img-gallery',
-			fixedContentPos: true,
-			gallery: {
-				enabled: true,
-				navigateByImgClick: true,
-				preload: [0,1]
-			},
-			iframe: {
-				markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></div>'
-			},
-			image: {
-				tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
-			},
-			callbacks: {
-				elementParse: function(item) {
-					if(item.el.context.className == 'lb video-link') {
-						item.type = 'iframe';
-					} else {
-						item.type = 'image';
-					}
-				}
-			}
-		});
-	});
-	<?php endif ?>
+    <?php endif; ?>
+
+    <?php if ($lbox_image): ?>
+        require([ 'jquery', 'magnificPopup' ], function($) {
+            $('.product.media').magnificPopup({
+                delegate: '.imgzoom .lb',
+                type: 'image',
+                tLoading: 'Loading image #%curr%...',
+                mainClass: 'mfp-img-gallery',
+                fixedContentPos: true,
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1]
+                },
+                iframe: {
+                    markup: '<div class="mfp-iframe-scaler"><div class="mfp-close"></div><iframe class="mfp-iframe" frameborder="0" allowfullscreen></iframe><div class="mfp-bottom-bar"><div class="mfp-title"></div><div class="mfp-counter"></div></div></div>'
+                },
+                image: {
+                    tError: '<a href="%url%">The image #%curr%</a> could not be loaded.',
+                },
+                callbacks: {
+                    elementParse: function (item) {
+                        if (item.el[0].className == 'lb video-link') {
+                            item.type = 'iframe';
+                        } else {
+                            item.type = 'image';
+                        }
+                    }
+                }
+            });
+        });
+    <?php endif; ?>
 </script>

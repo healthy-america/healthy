@@ -17,7 +17,7 @@ class RemoveBlocks implements ObserverInterface
     ) {
         $this->_scopeConfig = $scopeConfig;
     }
-	
+
     /**
      * @param \Magento\Framework\Event\Observer $observer
      * @return void
@@ -26,7 +26,7 @@ class RemoveBlocks implements ObserverInterface
     {
         /** @var \Magento\Framework\View\Layout $layout */
         $layout = $observer->getLayout();
-		
+
 		/* Category Page */
 		// Category Image Position
 		$imageBlock = $layout->getBlock('category.image');
@@ -64,7 +64,7 @@ class RemoveBlocks implements ObserverInterface
 				}
 				break;
 		}
-		
+
 		// Category Description Position
 		$descriptionBlock = $layout->getBlock('category.description');
 		$descriptionTopContentBlock = $layout->getBlock('category.description.top.content');
@@ -101,7 +101,7 @@ class RemoveBlocks implements ObserverInterface
 				}
 				break;
 		}
-		
+
 		// CMS Block Position
 		$cmsBlock = $layout->getBlock('category.cms');
 		$cmsTopContentBlock = $layout->getBlock('category.cms.top.content');
@@ -138,7 +138,7 @@ class RemoveBlocks implements ObserverInterface
 				}
 				break;
 		}
-		
+
 		/* Product Details */
         $skuBlock = $layout->getBlock('product.info.sku');
         $stockSimpleBlock = $layout->getBlock('product.info.simple');
@@ -157,7 +157,7 @@ class RemoveBlocks implements ObserverInterface
         if ($skuBlock && !$this->_scopeConfig->getValue('themesettings/product_details/sku', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
 			$layout->unsetElement('product.info.sku');
         }
-		
+
 		if ($stockSimpleBlock && !$this->_scopeConfig->getValue('themesettings/product_details/stock_status', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
 			$layout->unsetElement('product.info.simple');
         }
@@ -174,10 +174,10 @@ class RemoveBlocks implements ObserverInterface
 			$layout->unsetElement('product.info.review');
         }
 		if ($wishlistBlock && !$this->_scopeConfig->getValue('themesettings/product_details/wishlist', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
-			$layout->unsetElement('view.addto.wishlist');
+			$layout->unsetElement('view.addto.wishlist.additional');
         }
 		if ($compareBlock && !$this->_scopeConfig->getValue('themesettings/product_details/compare', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
-			$layout->unsetElement('view.addto.compare');
+			$layout->unsetElement('view.addto.compare.additional');
         }
 		if ($mailtoBlock && !$this->_scopeConfig->getValue('themesettings/product_details/email_to_friend', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
 			$layout->unsetElement('product.info.mailto');
@@ -198,7 +198,7 @@ class RemoveBlocks implements ObserverInterface
 				$layout->unsetElement('catalog.product.related.sidebar');
 			}
 		}
-		
+
 		if($this->_scopeConfig->getValue('themesettings/product_details/upsell_products', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)){
 			$upsellPosition = $this->_scopeConfig->getValue('themesettings/product_details/upsell_position', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 			if($upsellPosition=='main_content'){
@@ -210,9 +210,9 @@ class RemoveBlocks implements ObserverInterface
 			if ($upsellBlock && $upsellSidebarBlock) {
 				$layout->unsetElement('product.info.upsell');
 				$layout->unsetElement('product.info.upsell.sidebar');
-			}	
+			}
 		}
-		
+
 		/* Shopping Cart Page */
 		$couponBlock = $layout->getBlock('checkout.cart.coupon');
 		$crossselBlock = $layout->getBlock('checkout.cart.crosssell');
@@ -222,7 +222,7 @@ class RemoveBlocks implements ObserverInterface
 		if ($crossselBlock && !$this->_scopeConfig->getValue('themesettings/shopping_cart/show_crosssell', \Magento\Store\Model\ScopeInterface::SCOPE_STORE)) {
 			$layout->unsetElement('checkout.cart.crosssell');
         }
-		
+
 		/* Customer Links */
 		// Group 1
 		$dashboardLink = $layout->getBlock('customer-account-navigation-account-link');
@@ -249,8 +249,8 @@ class RemoveBlocks implements ObserverInterface
 		if($line1 && $dashboardConfig && $orderConfig && $downloadConfig && $wishlistConfig){
 			$layout->unsetElement('customer-account-navigation-delimiter-1');
 		}
-		
-		
+
+
 		// Group 2
 		$addressLink = $layout->getBlock('customer-account-navigation-address-link');
 		$addressConfig = $this->_scopeConfig->getValue('themesettings/customer/address_book', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
@@ -276,7 +276,7 @@ class RemoveBlocks implements ObserverInterface
 		if($line2 && $addressConfig && $infoConfig && $paymentConfig && $billingConfig){
 			$layout->unsetElement('customer-account-navigation-delimiter-2');
 		}
-		
+
 		// Group 3
 		$gdprLink = $layout->getBlock('customer-account-navigation-gdpr-link');
 		$line3 = $layout->getBlock('customer-account-navigation-delimiter-gdpr');
@@ -287,14 +287,14 @@ class RemoveBlocks implements ObserverInterface
 				$layout->unsetElement('customer-account-navigation-delimiter-gdpr');
 			}
         }
-		
-		
+
+
 		$newsletterLink = $layout->getBlock('customer-account-navigation-newsletter-subscriptions-link');
 		$newsletterConfig = $this->_scopeConfig->getValue('themesettings/customer/newsletter', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 		if ($newsletterLink && $newsletterConfig) {
 			$layout->unsetElement('customer-account-navigation-newsletter-subscriptions-link');
         }
-		
+
 		// Group 4
 		$reviewLink = $layout->getBlock('customer-account-navigation-product-reviews-link');
 		$reviewConfig = $this->_scopeConfig->getValue('themesettings/customer/reviews', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);

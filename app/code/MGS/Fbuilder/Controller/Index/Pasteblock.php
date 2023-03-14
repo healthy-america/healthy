@@ -3,7 +3,7 @@
  * Copyright © 2015 Magento. All rights reserved.
  * See COPYING.txt for license details.
  */
- 
+
 namespace MGS\Fbuilder\Controller\Index;
 
 use Magento\Framework\Controller\ResultFactory;
@@ -22,7 +22,7 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
 
     protected $builderHelper;
     protected $_filesystem;
-    
+
     protected $_productloader;
 
 
@@ -45,17 +45,17 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
         $this->_filesystem = $filesystem;
         $this->_productloader = $_productloader;
         $this->_categoryloader = $_categoryloader;
-        
+
         $this->scopeOverriddenValue = $scopeOverriddenValue;
         $this->_storeManager = $storeManager;
         parent::__construct($context);
     }
-    
+
     public function getModel($model)
     {
         return $this->_objectManager->create($model);
     }
-    
+
     public function execute()
     {
         if (($this->customerSession->getUseFrontendBuilder() == 1)
@@ -65,16 +65,16 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
         ) {
             $copyBlock = $this->getModel('MGS\Fbuilder\Model\Child')->load($blockId);
             $copyData = $copyBlock->getData();
-            
+
             unset($copyData['child_id'], $copyData['store_id']);
-            
+
             $copyData['block_name'] = $blockName;
-            
+
             if ($copyData['type']=='modal_popup') {
                 $settings = json_decode($copyData['setting'], true);
                 $generateBlockId = $settings['generate_block_id'];
                 $newGenerateBlockId = rand() . time();
-                
+
                 $copyData['setting'] = str_replace($generateBlockId, $newGenerateBlockId, $copyData['setting']);
                 $copyData['block_content'] = str_replace($generateBlockId, $newGenerateBlockId, $copyData['block_content']);
                 $copyData['custom_style'] = str_replace($generateBlockId, $newGenerateBlockId, $copyData['custom_style']);
@@ -105,7 +105,7 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
                         'description',
                         $this->_storeManager->getStore()->getId()
                     );
-                    
+
                 }
                 if ($isOverriden) {
                     $copyData['store_id'] = $this->_storeManager->getStore()->getId();
@@ -115,11 +115,11 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
             }
             $newBlock = $this->getModel('MGS\Fbuilder\Model\Child')->setData($copyData)->save();
             $customStyle = $newBlock->getCustomStyle();
-            $customStyle = str_replace('.block'.$blockId, '.block'.$newBlock->getId(), $customStyle);
+            $customStyle = $customStyle ? str_replace(array('.block'.$blockId), array('.block'.$newBlock->getId()), $customStyle): "";
             $newBlock->setCustomStyle($customStyle)->save();
-            
+
             $this->generateBlockCss();
-            
+
             $this->cacheManager->clean(['full_page']);
             $this->messageManager->addSuccess(__('You duplicated the block.'));
         }
@@ -127,7 +127,7 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
         $resultRedirect->setUrl($this->_redirect->getRefererUrl());
         return $resultRedirect;
     }
-    
+
     public function generateBlockCss()
     {
         $model = $this->getModel('MGS\Fbuilder\Model\Child');
@@ -142,7 +142,7 @@ class Pasteblock extends \Magento\Framework\App\Action\Action
             try {
                 $this->builderHelper->generateFile($customStyle, 'blocks.min.css', $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('mgs/fbuilder/css/'));
             } catch (\Exception $e) {
-                
+
             }
         }
     }

@@ -40,13 +40,13 @@
 				<?php endif ?>
 				<?php if($content!='' || ($showMoreView!='not-show' && $moreViewText!='')): ?>
 					<div class="notice-cookie-content">
-						<?php echo $content ?> 
+						<?php echo $content ?>
 						<?php if($showMoreView!='not-show' && $moreViewText!=''): ?>
 							<a href="<?php echo $helper->getUrlBuilder($identifier) ?>"<?php if($showMoreView=='popup'): ?> onclick="showGdprPopup(); return false"<?php endif ?>><?php echo $moreViewText ?></a>
 						<?php endif ?>
 					</div>
 				<?php endif ?>
-                
+
             </div>
             <div class="actions">
                 <button id="btn-cookie-allow" class="action allow primary <?php echo $helper->getStoreConfig('gdpr/cookie_restriction/button_class') ?>">
@@ -74,7 +74,7 @@
 				<?php echo $helper->getPageContent($identifier) ?>
 			</div>
 		</div>
-		
+
 		<script type="text/javascript">
 			var popupContent = document.getElementById('mgs-gdpr-popup-container').innerHTML;
 			function showGdprPopup(){
@@ -95,8 +95,8 @@
 						};
 						var gdprPopup = modal(options, $('#mgs-gdpr-popup'));
 						$('#mgs-gdpr-popup').trigger('openModal');
-						
-						$('.modal-mgs-gdpr .action-close').click(function(){
+
+						$('.modal-mgs-gdpr .action-close').on('click', function(){
 							setTimeout(function(){ $('.modals-wrapper .modal-mgs-gdpr').remove(); $('#mgs-gdpr-popup-container').html(popupContent) }, 500);
 						});
 					}

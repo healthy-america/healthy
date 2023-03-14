@@ -20,10 +20,11 @@ define([
             utils.limit(this, 'load', this.searchDelay); // execute 'load' after delay
             // this is the id of the form
             $(this.inputSelector)
-                .unbind('input') // unbind all magento events
+                .off('input')
                 .on('input', $.proxy(this.load, this)) // bind searchsuiteautocomplete load event
                 .on('input', $.proxy(this.searchButtonStatus, this)) // bind show/hide search button event
                 .on('focus', $.proxy(this.showPopup, this)); // bind show popup event
+
             $(document).on('click', $.proxy(this.hidePopup, this)); // bind hide popup event
 
             $(document).ready($.proxy(this.load, this)); // load autocomplete data on catalogsearch page after submit search button
