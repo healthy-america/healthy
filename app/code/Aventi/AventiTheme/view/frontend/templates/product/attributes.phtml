@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product view template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php
+$_product = $block->getProduct();
+if (!$_product instanceof \Magento\Catalog\Model\Product) {
+    return;
+}
+?>
+
+<?php if (null !== $_product->getCustomAttribute('invima_registration')) : ?>
+    <div>
+        <b><?= $block->escapeHtml(__('INVIMA Registration')) ?></b>:<span><?= /* @noEscape */ $_product->getCustomAttribute('invima_registration')->getValue(); ?></span>
+    </div>
+<?php endif; ?>
+
+<?php if (null !== $_product->getCustomAttribute('presentation')) : ?>
+    <div>
+        <b><?= $block->escapeHtml(__('Presentation')) ?></b>:<span><?= /* @noEscape */ $_product->getCustomAttribute('presentation')->getValue(); ?></span>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="product.info.main">
+            <referenceBlock name="product.info.review" remove="true"/>
+            <referenceBlock name="product.info.sku" remove="true"/>
+            <referenceBlock name="product.brand.name" remove="true"/>
+            <block class="Magento\Catalog\Block\Product\View" name="custom.product.attributes" template="Aventi_AventiTheme::product/attributes.phtml" before="alert.urls" />
+        </referenceContainer>
+
+        <referenceContainer name="sidebar.main">
+            <referenceBlock name="product.brand.img.sidebar" remove="true"/>
+        </referenceContainer>
+
+    </body>
+</page>
