@@ -1,163 +1,160 @@
 <?php
-$builderHelper = $this->helper('MGS\Fbuilder\Helper\Data');
+$builderHelper = $this->helper('MGS\Fbuilder\Helper\Builder');
 $html = $this->getHtmlSlider();
 $fullheight = $this->getFullheight();
 $offset = $this->getOffset();
 $margin = 0;
-if ($this->getItems() > 1 && $this->getSlideMargin() != '') {
-	$margin = $this->getSlideMargin();
+if ($this->getItems()>1 && $this->getSlideMargin()!='') {
+    $margin = $this->getSlideMargin();
 }
 $navHtml = '["<span class=\'slider-nav nav-prev\'></span>","<span class=\'slider-nav nav-next\'></span>"]';
 $settingMode = 'multiple';
 
 $items = $this->getItems();
-if ($items == 1) {
-	$settingMode = 'single';
+if ($items==1) {
+    $settingMode = 'single';
 }
+
+$isCategory = $this->getIsCategory();
+$color = $this->getBackgroundColor();
+\Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Psr\Log\LoggerInterface::class)->debug($color);
 
 $navPosition = $this->getNavigationPosition();
 
-$navType = $builderHelper->getStoreConfig('fbuilder/' . $settingMode . '_slider/navigation');
-if ($navType == 'image') {
-	$nextIcon = $builderHelper->getStoreConfig('fbuilder/' . $settingMode . '_slider/next_image');
-	$prevIcon = $builderHelper->getStoreConfig('fbuilder/' . $settingMode . '_slider/prev_image');
-	$navHtml = '["<span><img src=\'' . $builderHelper->getMediaUrl() . 'mgs/fbuilder/slider/' . $prevIcon . '\'/></span>", "<span><img src=\'' . $builderHelper->getMediaUrl() . 'mgs/fbuilder/slider/' . $nextIcon . '\'/></span>"]';
+$navType = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/navigation');
+if ($navType=='image') {
+    $nextIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/next_image');
+    $prevIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/prev_image');
+    $navHtml = '["<span><img src=\''.$builderHelper->getMediaUrl().'mgs/fbuilder/slider/'.$prevIcon.'\'/></span>", "<span><img src=\''.$builderHelper->getMediaUrl().'mgs/fbuilder/slider/'.$nextIcon.'\'/></span>"]';
 } else {
-	$nextIcon = $builderHelper->getStoreConfig('fbuilder/' . $settingMode . '_slider/next_font_class');
-	$prevIcon = $builderHelper->getStoreConfig('fbuilder/' . $settingMode . '_slider/prev_font_class');
-	$navHtml = '["<span><em class=\'' . $prevIcon . '\'></em></span>", "<span><em class=\'' . $nextIcon . '\'></em></span>"]';
+    $nextIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/next_font_class');
+    $prevIcon = $builderHelper->getStoreConfig('fbuilder/'.$settingMode.'_slider/prev_font_class');
+    $navHtml = '["<span><em class=\''.$prevIcon.'\'></em></span>", "<span><em class=\''.$nextIcon.'\'></em></span>"]';
 }
 ?>
 
-<?php if ($html != "") : ?>
-	<?php $tpControls = $this->getTemplateControls() ?>
-	<?php $customclass = $this->getCustomclass() ?>
-	<?php $blockId = rand() . time(); ?>
-	<?php //$animated = $this->getAnimateSlider(); 
-	$dots = $this->getControlDots();
-	// Crear un objeto DOMDocument
-	// $dom = new DOMDocument();
+<?php if ($html != ""): ?>
+    <?php $customclass = $this->getCustomclass() ?>
+    <?php $blockId = rand() . time(); ?>
+    <?php //$animated = $this->getAnimateSlider(); ?>
 
-	// // Cargar el HTML en el objeto DOMDocument
-	// $dom->loadHTML('<?xml encoding="UTF-8">' .$html);
+    <div id="page-header-sliders" class="page-header-sliders <?php if ($fullheight): ?> fullscreen-slider<?php endif ?>">
+        <?php if ($isCategory !== "true") : ?>
+            <div id="mgs-slider-<?php echo $blockId ?>" class="slider_mgs_carousel owl-carousel mgs-carousel-<?php echo $settingMode ?> mgs-owl-carousel nav-type-<?php echo $navType ?> nav-position-<?php echo $navPosition ?><?php if ($this->getHideNav() && ((($items==1) && ($navPosition!='middle-outside')) || (($items>1) && ($navPosition=='middle-inside')))): ?> autohide-nav<?php endif ?> dot-position-<?php echo $this->getPaginationPosition()?>">
+                <?php echo html_entity_decode($html) ?>
+            </div>
+        <?php else : ?>
+            <div id="mgs-slider-<?php echo $blockId ?>" class="dots-data-active slider_mgs_carousel owl-carousel mgs-carousel-<?php echo $settingMode ?> mgs-owl-carousel nav-type-<?php echo $navType ?> nav-position-<?php echo $navPosition ?><?php if ($this->getHideNav() && ((($items==1) && ($navPosition!='middle-outside')) || (($items>1) && ($navPosition=='middle-inside')))): ?> autohide-nav<?php endif ?> dot-position-<?php echo $this->getPaginationPosition()?>">
+                <?php echo html_entity_decode($html) ?>
+            </div>
+        <?php endif ?>
+    </div>
 
-	// // Obtener todos los elementos div
+    <script type="text/javascript">
+        require([
+            'jquery',
+            'mgsowlcarousel'
+        ], function(jQuery){
+            (function($) {
 
-	// $divs = $dom->getElementsByTagName('div');
-
-	// // Imprimir el número de elementos div
-
-	// echo $divs->length;
-
-	// // Recorrer todos los elementos div
-	// foreach ($divs as $div) {
-	// 	$div->setAttribute('siu', 'funciona');
-	// }
-
-	// // Convertir el DOMDocument modificado de vuelta a una cadena
-	// $html = $dom->saveHTML();
-
-	// echo $html;
-	?>
-
-
-
-	<div id="page-header-sliders" class="page-header-sliders template-<?php echo $tpControls ?><?php if ($fullheight) : ?> fullscreen-slider<?php endif ?>">
-		<!-- Validación si es el slider de categorias (por ahora si tiene los dots activos) -->
-		<?php if ($dots !== "true") : ?>
-			<div id="mgs-slider-<?php echo $blockId ?>" class="slider_mgs_carousel owl-carousel mgs-carousel-<?php echo $settingMode ?>  mgs-owl-carousel nav-type-<?php echo $navType ?> nav-position-<?php echo $navPosition ?><?php if ($this->getHideNav() && ((($items == 1) && ($navPosition != 'middle-outside')) || (($items > 1) && ($navPosition == 'middle-inside')))) : ?> autohide-nav<?php endif ?> dot-position-<?php echo $this->getPaginationPosition() ?>">
-				<?php echo html_entity_decode($html) ?>
-			</div>
-		<?php else : ?>
-			<div id="mgs-slider-<?php echo $blockId ?>" class="dots-data-active slider_mgs_carousel owl-carousel mgs-carousel-<?php echo $settingMode ?>  mgs-owl-carousel nav-type-<?php echo $navType ?> nav-position-<?php echo $navPosition ?><?php if ($this->getHideNav() && ((($items == 1) && ($navPosition != 'middle-outside')) || (($items > 1) && ($navPosition == 'middle-inside')))) : ?> autohide-nav<?php endif ?> dot-position-<?php echo $this->getPaginationPosition() ?>">
-				<?php echo html_entity_decode($html) ?>
-			</div>
-		<?php endif ?>
-	</div>
+                $(document).ready(function() {
+                    if(<?php echo $this->getIsCategory() ?>){
+                        $('#mgs-slider-<?php echo $blockId ?>').find('div.slide-text').each(function(){
+                            $(this).css("background", "<?php echo $color?>" )
+                        })
+                    }
+                	let owlContainer = [...document.querySelectorAll('#mgs-slider-<?php echo $blockId ?>.dots-data-active > div')];
+                	if(owlContainer.length > 0){
+                		owlContainer.forEach((item) => {
+                			// Get .category-name from each item
+                            // console.log(item)
+                            let categoryName = item.getAttribute('data-tab-title');
+                            // console.log(categoryName)
+                            // Set data-dot attribute
+                            item.setAttribute('data-dot', `<button>${categoryName}</button>`);
+                        })
+                    }
+                });
 
 
-	<script type="text/javascript">
-		require([
-			'jquery',
-			'mgsowlcarousel'
-		], function(jQuery) {
+                <?php if ($fullheight && ($this->getItems()==1)): ?>
+                var windowHeight = $(window).height();
+                var offsetSlider = $('#page-header-sliders').offset();
+                var sliderHeight = windowHeight - offsetSlider.top;
+                var offsetBottom = 0;
 
-			(function($) {
+                $(".fullscreen-slider").height(sliderHeight);
 
-				$(document).ready(function() {
-					let owlContainer = [...document.querySelectorAll('.dots-data-active > div')];
-					if(owlContainer.length > 0){
-						owlContainer.forEach((item) => {
-							// Get .category-name from each item
-							let categoryName = item.querySelector('.category-name').innerHTML;
-							// Set data-dot attribute
-							item.setAttribute('data-dot', `<button>${categoryName}</button>`);
-						})
-					}
+                $(window).resize(function() {
+                    $(".fullscreen-slider").height($(window).height() - offsetSlider.top);
+                });
+                <?php endif ?>
 
-				});
-
-				<?php if ($fullheight && ($this->getItems() == 1)) : ?>
-					var windowHeight = $(window).height();
-					var offsetSlider = $('#page-header-sliders').offset();
-					var sliderHeight = windowHeight - offsetSlider.top;
-					var offsetBottom = 0;
-
-					$(".fullscreen-slider").height(sliderHeight);
-
-					$(window).resize(function() {
-						$(".fullscreen-slider").height($(window).height() - offsetSlider.top);
-					});
-				<?php endif ?>
-
-				$(document).ready(function() {
-					$("#mgs-slider-<?php echo $blockId ?>").owlCarousel({
-						items: <?php echo $items; ?>,
-						loop: <?php echo $this->getLoop(); ?>,
-						nav: <?php echo $this->getControlNav(); ?>,
-						dots: <?php echo $this->getControlDots(); ?>,
-						dotsData: true,
-						autoplayTimeout: <?php echo $this->getAutoSpeed(); ?>,
-						rtl: <?php echo $this->getRtl(); ?>,
-						autoplay: <?php echo $this->getAutoPlay(); ?>,
-						autoplayHoverPause: <?php echo $this->getStopAuto() ? 'true' : 'false'; ?>,
-						navText: <?php echo $navHtml ?>,
-						margin: <?php echo $margin ?>,
-						autoHeight: true,
-						<?php if (($items > 1) && ($navPosition == 'top-left' || $navPosition == 'top-right')) : ?>
-							onInitialized: function() {
-								$("#mgs-slider-<?php echo $blockId ?> .owl-nav").attr('style', 'top:<?php echo $this->getNavTop() ?>px');
-								$("#page-header-sliders").addClass('loaded');
-							},
-						<?php else : ?>
-							onInitialized: function() {
-								$("#page-header-sliders").addClass('loaded');
-							},
-						<?php endif ?>
-
-						responsive: {
-							0: {
-								items: <?php echo $this->getItemsMobile(); ?>,
-								nav: false
-							},
-							767: {
-								items: <?php echo $this->getItemsTablet(); ?>,
-								nav: false
-							},
-							992: {
-								items: <?php echo $items; ?>,
-								nav: <?php echo $this->getControlNav(); ?>
-							}
-						}
-					});
-				});
-
-
-
-
-			})(jQuery);
-		});
-	</script>
-<?php else : ?>
-	<div role="alert" class="alert alert-warning"><?php echo __('There are no sliders matching the selection.') ?></div>
+                $(document).ready(function(){
+                    $("#mgs-slider-<?php echo $blockId ?>").owlCarousel({
+                        items: <?php echo $items; ?>,
+                        loop: <?php echo $this->getLoop(); ?>,
+                        nav: <?php echo $this->getControlNav(); ?>,
+                        dots: <?php echo $this->getControlDots() == "true" || $this->getIsCategory() == "true" ? "true" : "false"; ?>,
+                        <?php if($this->getIsCategory() == "true"): ?>
+                        dotsData: true,
+                        <?php endif; ?>
+                        autoplayTimeout: <?php echo $this->getAutoSpeed(); ?>,
+                        rtl: <?php echo $this->getRtl(); ?>,
+                        lazyLoad:true,
+                        autoplay: <?php echo $this->getAutoPlay(); ?>,
+                        autoplayHoverPause: <?php echo $this->getStopAuto() ? 'true' : 'false'; ?>,
+                        <?php if ($this->getControlNav()=='true'): ?>
+                        navText: <?php echo $navHtml ?>,
+                        <?php endif ?>
+                        margin: <?php echo $margin ?>,
+                        autoHeight:true,
+                        <?php if (($items > 1) && ($navPosition=='top-left' || $navPosition=='top-right')): ?>
+                        onInitialized: function(){
+                            $("#mgs-slider-<?php echo $blockId ?> .owl-nav").attr('style', 'top:<?php echo $this->getNavTop() ?>px');
+                            $("#page-header-sliders").addClass('loaded');
+                        },
+                        <?php else: ?>
+                        onInitialized: function(){
+                            $("#page-header-sliders").addClass('loaded');
+                        },
+                        <?php endif ?>
+                        responsive:{
+                            0:{
+                                items: <?php echo $this->getItemsMobile(); ?>,
+                                nav: false
+                            },
+                            767:{
+                                items: <?php echo $this->getItemsTablet(); ?>,
+                                nav: false
+                            },
+                            992:{
+                                items: <?php echo $items; ?>,
+                                nav: <?php echo $this->getControlNav(); ?>
+                            }
+                        }
+                    });
+                    //console.log("/*/*/*/*/*/*/*/*//*")
+                    //console.log(<?php //echo $this->getIsCategory() ?>//)
+                    //if(<?php //echo $this->getIsCategory() ?>//){
+                    //    console.log("Entra aca")
+                    //    let owlDots = $('#mgs-slider-<?php //echo $blockId ?>// > div.owl-dots > div.owl-dot')
+                    //    if(owlDots.length > 0){
+                    //        owlDots.each(function (i,v){
+                    //            let cagetoryName = $(this).find('.category-name').text()
+                    //            console.log($(this).find('.category-name'))
+                    //            console.log(cagetoryName)
+                    //            if(cagetoryName.length > 0){
+                    //                $(this).attr('data-dot', `<button>${categoryName}</button>`)
+                    //            }
+                    //        })
+                    //    }
+                    //}
+                });
+            })(jQuery);
+        });
+    </script>
+<?php else: ?>
+    <div role="alert" class="alert alert-warning"><?php echo __('There are no sliders matching the selection.') ?></div>
 <?php endif ?>
