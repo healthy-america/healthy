@@ -82,7 +82,7 @@ class Save extends \MGS\Fbuilder\Controller\Element\Save
                     $this->removePanelImages('slider', $data);
 
                     if (isset($data['setting']['html_slider']) && $data['setting']['html_slider'] != "") {
-                        $dataInit = ['autoplay', 'stop_auto', 'navigation', 'pagination', 'loop', 'fullheight', 'rtl', 'hide_nav', 'is_category', 'background_color'];
+                        $dataInit = ['autoplay', 'stop_auto', 'navigation', 'pagination', 'loop', 'fullheight', 'rtl', 'hide_nav', 'is_category'];
 
                         $data = $this->reInitData($data, $dataInit);
 
@@ -95,7 +95,7 @@ class Save extends \MGS\Fbuilder\Controller\Element\Save
 
                         $dot = $data['setting']['pagination'];
 
-                        $content = '{{block class="MGS\Fbuilder\Block\Widget\OwlCarousel" autoplay="'.$data['setting']['autoplay'].'" stop_auto="'.$data['setting']['stop_auto'].'" navigation="'.$data['setting']['navigation'].'" is_category="'.$data['setting']['is_category'].'" background_color="'.$data['setting']['background_color'].'" hide_nav="'.$data['setting']['hide_nav'].'" nav_top="'.$data['setting']['nav_top'].'" navigation_position="'.$data['setting']['navigation_position'].'" pagination_position="'.$data['setting']['pagination_position'].'" fullheight="'.$data['setting']['fullheight'].'" pagination="'.$dot.'" loop="'.$data['setting']['loop'].'" rtl="'.$data['setting']['rtl'].'" speed="'.$speed.'" items="'.$data['setting']['items'].'" items_tablet="'.$data['setting']['items_tablet'].'" items_mobile="'.$data['setting']['items_mobile'].'" slide_margin="'.$data['setting']['slide_margin'].'" html_slider="'.$sliderHtml.'" template="widget/owl_slider.phtml"}}';
+                        $content = '{{block class="MGS\Fbuilder\Block\Widget\OwlCarousel" autoplay="'.$data['setting']['autoplay'].'" stop_auto="'.$data['setting']['stop_auto'].'" navigation="'.$data['setting']['navigation'].'" is_category="'.$data['setting']['is_category'].'" hide_nav="'.$data['setting']['hide_nav'].'" nav_top="'.$data['setting']['nav_top'].'" navigation_position="'.$data['setting']['navigation_position'].'" pagination_position="'.$data['setting']['pagination_position'].'" fullheight="'.$data['setting']['fullheight'].'" pagination="'.$dot.'" loop="'.$data['setting']['loop'].'" rtl="'.$data['setting']['rtl'].'" speed="'.$speed.'" items="'.$data['setting']['items'].'" items_tablet="'.$data['setting']['items_tablet'].'" items_mobile="'.$data['setting']['items_mobile'].'" slide_margin="'.$data['setting']['slide_margin'].'" html_slider="'.$sliderHtml.'" template="widget/owl_slider.phtml"}}';
 
                         $data['block_content'] = $content;
                         $result['message'] = 'success';

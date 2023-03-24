@@ -233,6 +233,11 @@
                         </div>
 
                         <div class="form-group line">
+                            <label for="background_color" class="col-des-1 control-label text-align-left"><?php echo __('Background color'); ?></label>
+                            <div class="col-des-11"><input type="text" class="form-control" id="background_color" value=""/></div>
+                        </div>
+
+                        <div class="form-group line">
                             <div class="col-des-10">
 
                                 <label for="slide_link"><?php echo __('Text (Html)'); ?>:</label>
@@ -440,7 +445,7 @@
                 </div>
 
                 <div class="form-group line">
-                    <label for="navigation" class="col-des-4 control-label">Tipo categoria</label>
+                    <label for="navigation" class="col-des-4 control-label"><?php echo __('Tab') ?></label>
                     <div class="col-des-8">
                         <div class="admin__actions-switch" data-role="switcher">
                             <input type="checkbox"<?php echo isset($settings['is_category']) ? ($exist && $settings['is_category'] ? "checked='checked'" : "") : "" ?> value="1" name="setting[is_category]" id="is_category" class="admin__actions-switch-checkbox">
@@ -448,13 +453,6 @@
                                 <span data-text-off="<?php echo __('No') ?>" data-text-on="<?php echo __('Yes') ?>" class="admin__actions-switch-text"></span>
                             </label>
                         </div>
-                    </div>
-                </div>
-
-                <div class="form-group line">
-                    <label for="background_color" class="col-des-4 control-label">Color de fondo</label>
-                    <div class="col-des-8">
-                        <input type="text" id="background_color" class="input-text" name="setting[background_color]"<?php if ($exist && isset($settings['background_color'])): ?> value="<?php echo $settings['background_color'] ?>"<?php else: ?> value=""<?php endif ?>/>
                     </div>
                 </div>
 
@@ -540,6 +538,7 @@
             $('#slide_img_url').val('');
             $('#slide_link').val('');
             $('#category_title').val('');
+            $('#background_color').val('');
             $('#slide_html').val('');
             $('#text_align').val('text-align-left');
             $('#slide_status').val('1');
@@ -572,11 +571,12 @@
                 var $html = $("#slide_html").val();
                 var $link = $("#slide_link").val();
                 var $categoryTitle = $('#category_title').val('');
+                var $categoryColor = $('#background_color').val('');
                 var $textAlign = $("#text_align").val();
                 var $textAnimation = $("#slide_html_animation").val();
                 var $position = $("#slide_html_position li.active").attr('data-position');
 
-                var $newElement = '<div data-text-position="'+$position+'" data-text-animate="'+$textAnimation+'" data-text-align="'+$textAlign+'" data-tab-title="'+$categoryTitle+'" class="item '+$textAnimation+ ' '+$textAlign+'">' +
+                var $newElement = '<div data-text-position="'+$position+'" data-text-animate="'+$textAnimation+'" data-text-align="'+$textAlign+'" data-tab-title="'+$categoryTitle+'" data-color="'+$categoryColor+'" class="item '+$textAnimation+ ' '+$textAlign+'">' +
                     '<a style="background-image:url('+$imgSlide+')" class="item-image" href="'+$link+'">' +
                     '<img class="img-responsive" src="'+$imgSlide+'" alt="" />' +
                     '</a>' +
@@ -667,11 +667,13 @@
                             var $aniSl = $editSlide.attr('data-text-animate');
                             var $alignSl = $editSlide.attr('data-text-align');
                             var $categoryTitleSL = $editSlide.attr('data-tab-title');
+                            var $categoryColorSL = $editSlide.attr('data-color');
 
                             $('#slide_images').find('img[src$="'+$imgSl+'"]').parent().addClass('active');
                             $('#slide_img_url').val($imgSl);
                             $('#slide_link').val($linkSl);
                             $('#category_title').val($categoryTitleSL);
+                            $('#background_color').val($categoryColorSL);
                             $('#slide_html').val($textSl);
                             $('#slide_status').val('2');
                             $('#slide_html_position li.active').removeClass('active');
@@ -686,6 +688,7 @@
                                 var $html = $("#slide_html").val();
                                 var $link = $("#slide_link").val();
                                 var $categoryTitle = $('#category_title').val();
+                                var $categoryColor = $('#background_color').val();
                                 var $textAnimation = $("#slide_html_animation").val();
                                 var $textAlign = $("#text_align").val();
                                 var $position = $("#slide_html_position li.active").attr('data-position');
@@ -701,7 +704,8 @@
                                     'data-text-position' : $position,
                                     'data-text-animate' : $textAnimation,
                                     'data-text-align' : $textAlign,
-                                    'data-tab-title' : $categoryTitle
+                                    'data-tab-title' : $categoryTitle,
+                                    'data-color' : $categoryColor
                                 });
                                 $editSlide.find('.item-image').removeAttr('style');
                                 $editSlide.find('.item-image').attr('style', 'background-image:url('+$imgSlide+')');
@@ -813,11 +817,13 @@
                 var $aniSl = $editSlide.attr('data-text-animate');
                 var $alignSl = $editSlide.attr('data-text-align');
                 var $categoryTitleSL = $editSlide.attr('data-tab-title');
+                var $categoryColorSL = $editSlide.attr('data-color');
 
                 $('#slide_images').find('img[src$="'+$imgSl+'"]').parent().addClass('active');
                 $('#slide_img_url').val($imgSl);
                 $('#slide_link').val($linkSl);
                 $('#category_title').val($categoryTitleSL);
+                $('#background_color').val($categoryColorSL);
                 $('#slide_html').val($textSl);
                 $('#slide_status').val('2');
                 $('#slide_html_position li.active').removeClass('active');
@@ -832,6 +838,7 @@
                     var $html = $("#slide_html").val();
                     var $link = $("#slide_link").val();
                     var $categoryTitle = $('#category_title').val();
+                    var $categoryColor = $('#background_color').val();
                     var $textAnimation = $("#slide_html_animation").val();
                     var $textAlign = $("#text_align").val();
                     var $position = $("#slide_html_position li.active").attr('data-position');
@@ -847,7 +854,8 @@
                         'data-text-position' : $position,
                         'data-text-animate' : $textAnimation,
                         'data-text-align' : $textAlign,
-                        'data-tab-title' : $categoryTitle
+                        'data-tab-title' : $categoryTitle,
+                        'data-color' : $categoryColor
                     });
                     $editSlide.find('.item-image').removeAttr('style');
                     $editSlide.find('.item-image').attr('style', 'background-image:url('+$imgSlide+')');

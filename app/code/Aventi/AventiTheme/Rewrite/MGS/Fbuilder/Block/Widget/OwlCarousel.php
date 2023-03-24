@@ -29,14 +29,4 @@ class OwlCarousel extends \MGS\Fbuilder\Block\Widget\OwlCarousel
 
         return 'false';
     }
-
-    public function getBackgroundColor()
-    {
-
-        if (!is_null($this->getData('background_color'))) {
-            return $this->getData('background_color');
-        }
-
-        return '#ffffff';
-    }
 }

@@ -16,9 +16,6 @@ if ($items==1) {
 }
 
 $isCategory = $this->getIsCategory();
-$color = $this->getBackgroundColor();
-\Magento\Framework\App\ObjectManager::getInstance()
-    ->get(\Psr\Log\LoggerInterface::class)->debug($color);
 
 $navPosition = $this->getNavigationPosition();
 
@@ -61,17 +58,14 @@ if ($navType=='image') {
                 $(document).ready(function() {
                     if(<?php echo $this->getIsCategory() ?>){
                         $('#mgs-slider-<?php echo $blockId ?>').find('div.slide-text').each(function(){
-                            $(this).css("background", "<?php echo $color?>" )
+                            let color =  $(this).parent('div').attr("data-color")
+                            $(this).css("background", color )
                         })
                     }
                 	let owlContainer = [...document.querySelectorAll('#mgs-slider-<?php echo $blockId ?>.dots-data-active > div')];
                 	if(owlContainer.length > 0){
                 		owlContainer.forEach((item) => {
-                			// Get .category-name from each item
-                            // console.log(item)
                             let categoryName = item.getAttribute('data-tab-title');
-                            // console.log(categoryName)
-                            // Set data-dot attribute
                             item.setAttribute('data-dot', `<button>${categoryName}</button>`);
                         })
                     }
@@ -135,22 +129,6 @@ if ($navType=='image') {
                             }
                         }
                     });
-                    //console.log("/*/*/*/*/*/*/*/*//*")
-                    //console.log(<?php //echo $this->getIsCategory() ?>//)
-                    //if(<?php //echo $this->getIsCategory() ?>//){
-                    //    console.log("Entra aca")
-                    //    let owlDots = $('#mgs-slider-<?php //echo $blockId ?>// > div.owl-dots > div.owl-dot')
-                    //    if(owlDots.length > 0){
-                    //        owlDots.each(function (i,v){
-                    //            let cagetoryName = $(this).find('.category-name').text()
-                    //            console.log($(this).find('.category-name'))
-                    //            console.log(cagetoryName)
-                    //            if(cagetoryName.length > 0){
-                    //                $(this).attr('data-dot', `<button>${categoryName}</button>`)
-                    //            }
-                    //        })
-                    //    }
-                    //}
                 });
             })(jQuery);
         });
