@@ -180,7 +180,30 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                     <?php endif; ?>
                                 </ul>
                             <?php endif ?>
-                            <?php if ($_product->isSaleable() && !$_hideAddCart): ?>
+                        </div>
+                        <div class="product details product-item-details">
+                            <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                            ?>
+                            <h5 class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
+                                    <?= /* @noEscape */
+                                    $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                </a>
+                            </h5>
+
+                            <?php if(!$_hideReview): ?>
+                                <?= $block->getReviewsSummaryHtml($_product, $templateType,true) ?>
+                            <?php endif; ?>
+
+                            <?= /* @noEscape */
+                            $block->getProductPrice($_product) ?>
+                            <?php if ($_product->isAvailable()): ?>
+                                <?= $block->getProductDetailsHtml($_product) ?>
+                            <?php endif; ?>
+                        </div>
+                        <?php if ($_product->isSaleable() && !$_hideAddCart): ?>
                                 <div class="action-mobile">
                                     <?php $postParams = $block->getAddToCartPostParams($_product); ?>
                                     <form data-role="tocart-form"
@@ -208,29 +231,6 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                     </form>
                                 </div>
                             <?php endif; ?>
-                        </div>
-                        <div class="product details product-item-details">
-                            <?php
-                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
-                            ?>
-                            <h5 class="product name product-item-name">
-                                <a class="product-item-link"
-                                   href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
-                                    <?= /* @noEscape */
-                                    $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
-                                </a>
-                            </h5>
-
-                            <?php if(!$_hideReview): ?>
-                                <?= $block->getReviewsSummaryHtml($_product, $templateType,true) ?>
-                            <?php endif; ?>
-
-                            <?= /* @noEscape */
-                            $block->getProductPrice($_product) ?>
-                            <?php if ($_product->isAvailable()): ?>
-                                <?= $block->getProductDetailsHtml($_product) ?>
-                            <?php endif; ?>
-                        </div>
                     </li>
                 <?php endforeach; ?>
             <?php else: ?>

@@ -1,0 +1,156 @@
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//** @author    Daniel Estupiñán
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+// Product categories setup columns to add space between products
+
+#html-body {
+    // Default columns
+
+    @media (min-width: 1200px) {
+        .product-item.col-tb-3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 25%;
+            flex: 0 0 25%;
+            max-width: ~"calc(25% - 20px)";
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+        }
+    }
+
+    // Three columns
+
+    @media (min-width: 600px) and (max-width: 1199.98px) {
+        .product-item.col-tb-3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 33%;
+            flex: 0 0 33%;
+            max-width: ~"calc(33% - 20px)";
+            margin-left: 10px !important;
+            margin-right: 10px !important;
+        }
+    }
+
+    // Two columns
+
+    @media (min-width: 450px) and (max-width: 599.9px) {
+        .product-item.col-tb-3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: ~"calc(50% - 30px)";
+            margin-left: 15px !important;
+            margin-right: 15px !important;
+        }
+    }
+
+    // One column
+
+    @media (max-width: 449.9px) {
+        .product-item.col-tb-3 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: ~"calc(100% - 40px)";
+            margin-left: 20px !important;
+            margin-right: 20px !important;
+        }
+    }
+}
+
+& when (@media-common =true) {
+    #html-body.catalog-category-view {
+        .breadcrumbs {
+            background: #fff;
+
+            a {
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                color: #7b7b7b !important;
+
+                &:hover {
+                    color: @color-primary !important;
+                }
+            }
+        }
+
+        .change-product-per-row {
+            display: none;
+        }
+
+        .sidebar.sidebar-main {
+            padding-right: 30px;
+
+            .block.filter.mgs-filter {
+                background-color: @grey-light;
+                padding: 30px 15px;
+                margin: 0;
+                h2 {
+                    font-family: "Montserrat";
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 18px;
+                    margin-bottom: 15px;
+                }
+                .filter-options-title {
+                    background: #ffffff;
+                    border-radius: 4px;
+                    padding: 10px 20px;
+                    margin: 0;
+
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    color: #424242;
+                    font-size: 14px;
+                    line-height: 18px;
+
+                    &::before {
+                        display: none;
+                    }
+
+                    &::after {
+                        right: 10px;
+                        top: 11px;
+                        content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=90deg");
+                    }
+                }
+
+                .filter-options-item {
+                    margin-bottom: 10px;
+
+                    &.active {
+                        .filter-options-title {
+                            border-radius: 2px 2px 0px 0px;
+                        }
+
+                        .filter-options-content {
+                            border-radius: 4px;
+                            padding: 10px 20px;
+                            background: #ffffff;
+                        }
+
+                        .filter-options-title::after {
+                            content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=270deg");
+                        }
+                    }
+                }
+
+                .filter-options-item:last-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
