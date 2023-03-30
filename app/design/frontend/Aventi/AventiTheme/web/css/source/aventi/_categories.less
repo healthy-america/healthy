@@ -90,10 +90,42 @@
             display: none;
         }
 
+        .category-product-actions {
+            border-bottom: 1px solid #b6bac0;
+            padding-bottom: 20px;
+
+            .form-item-select {
+                border: 1px solid @color-primary;
+                border-radius: 2px;
+                select {
+                    font-family: "Montserrat";
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 20px;
+                    color: @color-primary;
+                }
+            }
+
+            .action.sorter-action{
+                border: 1px solid @color-primary;
+                border-radius: 2px;
+                font-family: "Montserrat";
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 20px;
+                color: @color-primary;
+            }
+
+            .modes{
+                display: none;
+            }
+            
+        }
+
         .sidebar.sidebar-main {
             padding-right: 30px;
 
-            .block.filter.mgs-filter {
+            .block-content.filter-content {
                 background-color: @grey-light;
                 padding: 30px 15px;
                 margin: 0;
