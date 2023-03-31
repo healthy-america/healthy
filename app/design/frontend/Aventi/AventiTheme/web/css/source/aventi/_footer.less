@@ -13,6 +13,125 @@
 
 & when (@media-common =true) {
 
+
+    body#html-body {
+
+        //Estilos para el footer
+        footer.page-footer {
+            border-bottom: #004088 2px solid;
+
+            > div > div.footer2 {
+
+                //Footer Top
+                > div.top-footer {
+                    background: @background-footer;
+                }
+
+                //Footer Middle 
+                > div.middle-footer {
+                    background: @background-footer;
+
+                    > div.frame > div.line > div:first-child {
+                        display: grid;
+                        place-content: center;
+                    }
+
+                }
+
+                //Footer Bottom
+                > div.bottom-footer {
+                    display: none;
+                }
+
+            }
+
+        }
+
+        .box-container-contact-us {
+            display: grid;
+            place-content: center;
+            gap: 0.5em;
+
+            > p {
+                font-size: 16px;
+                text-align: center;
+            }
+
+            .container-redes-sociales-box {
+                display: flex;
+                gap: 2em;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .container-text-information-footer {
+            padding-left: 1em;
+
+            > p {
+                font-size: 12px;
+                font-weight: 400;
+                font-style: normal;
+                text-align: left;
+                color: @grey;
+            }
+
+            > p:first-child {
+                font-style: normal;
+                font-size: 18px;
+                color: @grey;
+                font-family: 'Roboto', sans-serif;
+            }
+
+        }
+
+        .container-text-information-footer#contact-social-network-container {
+
+            > p {
+                padding-left: 0.9em;
+            }
+
+            > p:last-child {
+                padding-left: unset;
+            }
+
+            > p:first-child {
+                padding-left: unset;
+            }
+
+        }
+
+        .box-social-network-contact-us {
+            display: flex;
+            gap: 2em;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        ._icon_footer_ubication_ {
+            content: url('https://api.iconify.design/mdi/map-marker.svg?color=%23004088&width=20&height=20');
+            margin-right: 0.5em;
+        }
+
+        ._icon_footer_phone_ {
+            content: url('https://api.iconify.design/ic/baseline-local-phone.svg?color=%23004088&width=20&height=20');
+            margin-right: 0.5em;
+        }
+
+        ._icon_footer_email_ {
+            content: url('https://api.iconify.design/carbon/email.svg?color=%23004088&width=20&height=20');
+            margin-right: 0.5em;
+        }
+
+
+    }
+
+    ._mobile_social_network_,
+    ._logo_footer_mobile_ {
+        display: none;
+    }
+
 }
 
 //
@@ -33,4 +152,122 @@
     (@extremum ="max")
     and
     (@break =@screen__m) {
+
+}
+
+
+@media screen and (max-width: 750px) {
+
+    ._logo_footer_desktop_ {
+        display: none;
+    }
+
+    ._mobile_social_network_,
+    ._logo_footer_mobile_ {
+        display: block;
+    }
+
+
+    body#html-body {
+
+        //Estilos para el footer
+        footer.page-footer {
+
+            > div > div.footer2 {
+
+                //Footer Middle 
+                > div.middle-footer {
+
+                    //general estilos para los divs
+                    > div.frame > div.line  {
+                    
+                        > div {
+                            display: flex;
+                        }
+
+                        > div:nth-child(3),
+                        > div:nth-child(5) {
+                            flex: 0 0 50%;
+                        }
+
+                        > div:nth-child(3) {
+                            order: 2;
+                        }
+
+                        > div:nth-child(5) {
+                            order: 3;
+                        }
+
+                        > div:nth-child(2) {
+                            order: 4;
+      
+                            > div {
+                               width: 100%;
+      
+                                  > div.container-text-information-footer {
+      
+                                      > p:first-child {
+                                          text-align: center;
+                                      }
+      
+                                  }
+                            }
+      
+                        }
+
+
+                    }
+
+                }
+
+
+            }
+
+        }
+
+
+        #contact-social-network-container {
+
+             > p.box-social-network-contact-us,
+             > p.box-social-network-contact-us {
+                display: none;
+             }
+
+        }
+
+        
+         
+    }
+
+}
+
+@media screen and (max-width: 360px) {
+
+
+    body#html-body {
+
+        //Estilos para el footer
+        footer.page-footer {
+
+            > div > div.footer2 {
+
+                //Footer Middle 
+                > div.middle-footer {
+
+                    //general estilos para los divs
+                    > div.frame > div.line  {
+
+                        > div:nth-child(3),
+                        > div:nth-child(5) {
+                            flex: 0 0 100%;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    
 }
