@@ -18,13 +18,13 @@ if (!$_product instanceof \Magento\Catalog\Model\Product) {
 ?>
 
 <?php if (null !== $_product->getCustomAttribute('invima_registration')) : ?>
-    <div>
-        <b><?= $block->escapeHtml(__('INVIMA Registration')) ?></b>:<span><?= /* @noEscape */ $_product->getCustomAttribute('invima_registration')->getValue(); ?></span>
+    <div class="custom-atribute">
+        <b class="title"><?= $block->escapeHtml(__('INVIMA Registration')) ?></b>:<span class="value"><?= /* @noEscape */ $_product->getCustomAttribute('invima_registration')->getValue(); ?></span>
     </div>
 <?php endif; ?>
 
 <?php if (null !== $_product->getCustomAttribute('presentation')) : ?>
-    <div>
-        <b><?= $block->escapeHtml(__('Presentation')) ?></b>:<span><?= /* @noEscape */ $_product->getCustomAttribute('presentation')->getValue(); ?></span>
+    <div class="custom-atribute">
+        <b class="title"><?= $block->escapeHtml(__('Presentation')) ?></b>:<span  class="value"><?= /* @noEscape */ $_product->getCustomAttribute('presentation')->getValue(); ?></span>
     </div>
 <?php endif; ?>
