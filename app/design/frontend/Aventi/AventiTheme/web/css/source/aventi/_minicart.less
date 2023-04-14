@@ -1,0 +1,219 @@
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//** @author  Cristian Duvan Machado Mosquera
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common =true) {
+    
+    .style_font_monserrat_mini_cart {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: @black_secunday;
+    }
+
+    body#html-body {
+
+        .minicart-items .product-item .product.actions .action:hover {
+            background-color: #fff;
+            border-color: #fff;
+        }
+         
+        .minicart-wrapper 
+        #minicart-content-wrapper {
+            position: relative;
+            height: -webkit-fill-available;
+            div.block-content {
+                margin-top: 2.5em;
+                font-family: 'Roboto', sans-serif;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                color: @black_secunday;
+
+                > div.minicart-items-wrapper {
+
+                      > ol.minicart-items > li {
+                      margin-bottom: 1.5em;
+                      
+                      > div.product {
+                            border-bottom: 1px solid @grey-m;
+
+                            > div.product-item-photo > div.product.actions > div.primary > a.action {
+                                background-color: #fff;
+                                // &::before {
+                                //     color: #fff;
+                                // }
+                            }
+
+                            > div.product-item-details > div.product-item-pricing {
+
+                                > div.price-container > span {
+                                    font-weight: 400;
+                                    font-size: 16px;
+                                }
+
+                                > div.details-qty.qty {
+                                    margin-top: 12px;
+                                    margin-bottom: 10px;
+
+                                    > input {
+                                        border: 1px solid @grey-m;
+                                        font-weight: 400;
+                                        color: @black_secunday;
+                                        border-radius: 2px;
+                                        width: 3.5em;
+                                    }
+
+                                }
+
+
+                            }
+
+                      }
+
+
+                    }
+
+                }
+
+            }
+        
+            h3.close-minicart {
+                background-color: @color-primary;
+                font-family: 'Montserrat', sans-serif;
+                color: #fff;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 16px;
+                text-align: center;
+                text-transform: capitalize;
+
+                > button {
+                    color: #fff;
+                    top: 42%;
+                    > i::before {
+                        font-size: 0.7em;
+                    }
+                }
+
+            }
+
+        }
+
+        ._conatiner_mini_cart_actions_ {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5em;
+
+            > div.subtotal {
+                display: flex;
+                gap: 1em;
+                align-items: baseline;
+                border-top: 1px solid @grey-m;
+                justify-content: center;
+
+                > span.label {
+                    margin-top: 0.7em;
+                    .style_font_monserrat_mini_cart();
+                }
+
+                > div.price-container > span.price-wrapper > span {
+                    .style_font_monserrat_mini_cart();
+                }
+
+           }
+     
+
+            > div.actions {
+               
+                    > div.secondary > a {
+                        display: flex;
+                        gap: 1em;
+                        align-items: center;
+                        background: @color-primary;
+                        font-family: 'Roboto' , sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        > span {
+                            color: #fff !important;
+
+                            &::before {
+                                position: relative;
+                                top: 0.4em;
+                                content: url('https://api.iconify.design/material-symbols/shopping-cart-rounded.svg?color=white&width=22&height=22');
+                                margin-right: 0.5em;
+                            }
+                        }
+                    }
+
+                    > div.primary > button {
+                        background: @grey-clear;
+                        font-family: 'Roboto' , sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        color: @color-primary;
+                    }
+
+            }
+        }
+
+        .page-header .header-area.header2.search-visible .middle-header .counter.qty {
+            z-index: 9999;
+        }
+        
+         
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+
+    body#html-body {
+
+        ._conatiner_mini_cart_actions_ {
+
+            > div.subtotal {
+
+                > span.label {
+                   font-size: 15px;
+                }
+
+                > div.price-container > span.price-wrapper > span {
+                    font-size: 15px;
+                }
+
+           }
+
+            > div.actions {
+                    
+                > div.secondary > a.action.btn-default > span {
+                    font-size: 11px !important;
+
+                    &::before {
+                        top: 0.6em;
+                    }
+                }
+            }
+        }
+
+    }
+    
+    
+}
