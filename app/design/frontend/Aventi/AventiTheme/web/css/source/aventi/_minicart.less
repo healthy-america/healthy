@@ -49,12 +49,25 @@
                       > div.product {
                             border-bottom: 1px solid @grey-m;
 
-                            > div.product-item-photo > div.product.actions > div.primary > a.action {
-                                background-color: #fff;
-                                // &::before {
-                                //     color: #fff;
-                                // }
+                            > div.product-item-photo {
+                            
+                                > div.product.actions > div.primary > a.action {
+                                    background-color: #fff;
+                                
+                                }
+
+                                > a.product-item-photo {
+
+                                    > span.product-image-container > span.product-image-wrapper > img {
+                                        height: 8em !important;
+                                        object-fit: cover;
+                                    }
+    
+                                }
+
                             }
+
+
 
                             > div.product-item-details > div.product-item-pricing {
 
