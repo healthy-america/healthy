@@ -18,28 +18,49 @@
             color: @color-primary;
         }
 
-        .block.block-customer-login{
+        .field.note,
+        p {
+            font-family: "Montserrat";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+
+            color: #191616;
+        }
+
+        .block.block-customer-login {
             width: 45%;
         }
 
-        .block.block-new-customer{
+        .block.block-new-customer {
             width: 45%;
+
+            .actions-toolbar .primary {
+                width: 100%;
+                a {
+                    width: 100%;
+                }
+            }
         }
 
-        .action.login.btn.btn-primary{
+        .action.login.btn.btn-primary {
             width: 100%;
         }
 
-
-        .page-title-wrapper{
+        .page-title-wrapper {
             display: none;
         }
 
-        .secondary{
+        .action.remind {
+            text-decoration-line: underline;
+        }
+
+        .secondary {
             margin-top: 25px;
 
-            .action.remind{
-                font-family: 'Montserrat';
+            .action.remind {
+                font-family: "Montserrat";
                 font-style: normal;
                 font-weight: 400;
                 font-size: 14px;
@@ -47,10 +68,63 @@
                 color: @grey;
                 margin-top: 20px;
 
-                &:hover{
+                &:hover {
                     color: @color-primary;
                 }
             }
+        }
+    }
+}
+
+// Mobile
+
+@media (max-width: 767px) {
+    body#html-body.customer-account-login {
+        .block.block-customer-login {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+        }
+        .hidden-mobile {
+            display: none;
+        }
+
+        .secondary {
+            width: 100%;
+            text-align: right;
+        }
+
+        h3 {
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            color: #191616;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .field.note,
+        p {
+            text-align: center;
+        }
+
+        .block.block-new-customer {
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        .action.remind {
+            text-align: right;
+        }
+
+        .block.block-new-customer p {
+            display: none;
         }
     }
 }
