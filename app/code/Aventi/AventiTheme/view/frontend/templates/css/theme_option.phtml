@@ -1,0 +1,137 @@
+/* Custom Data <?php echo date("Y-m-d H:i:s"); ?>: Do not change this file. */
+<?php
+$data = $block->getConfig($this->_coreRegistry->registry('css_store'));
+$_helper = $this->helper('Aventi\AventiTheme\Helper\Themeconfig');
+?>
+
+:root{
+
+	/* Theme Colors */
+	<?php if ($_helper->getThemeColors($data)) { ?>
+	--theme__color__primary: <?= $_helper->getThemeColors($data); ?>;
+	<?php } ?>
+
+	/* Basic Colors */
+	<?php if ($_helper->getBasicColors($data, 'text_color')) { ?>
+	--text__color: <?= $_helper->getBasicColors($data, 'text_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getBasicColors($data, 'heading_color')) { ?>
+	--heading__color__base: <?= $_helper->getBasicColors($data, 'heading_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getBasicColors($data, 'link_color')) { ?>
+	--link__color: <?= $_helper->getBasicColors($data, 'link_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getBasicColors($data, 'link_hover_color')) { ?>
+	--link__hover__color: <?= $_helper->getBasicColors($data, 'link_hover_color');?>;
+	<?php } ?>
+
+	/* Buttons Colors */
+	<?php if ($_helper->getButtonsColors($data, 'button_text_color')) { ?>
+	--button__color: <?= $_helper->getButtonsColors($data, 'button_text_color');?>;
+	--button-primary__color: <?= $_helper->getButtonsColors($data, 'button_text_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getButtonsColors($data, 'button_bg_color')) { ?>
+	--button-secondary-bg: <?= $_helper->getButtonsColors($data, 'button_bg_color');?>;
+	--button__background: <?= $_helper->getButtonsColors($data, 'button_bg_color');?>;
+	--button-primary__background: <?= $_helper->getButtonsColors($data, 'button_bg_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getButtonsColors($data, 'button_hover_bg_color')) { ?>
+	--button__hover__background: <?= $_helper->getButtonsColors($data, 'button_hover_bg_color');?>;
+	--button-primary__hover__background: <?= $_helper->getButtonsColors($data, 'button_hover_bg_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getButtonsColors($data, 'button_hover_text_color')) { ?>
+	--button__hover__color: <?= $_helper->getButtonsColors($data, 'button_hover_text_color');?>;
+	--button-primary__hover__color: <?= $_helper->getButtonsColors($data, 'button_hover_text_color');?>;
+	<?php } ?>
+
+	/* Custom Header */
+	<?php if ($_helper->getTopbarBackgroundColor($data)) {?>
+	--topbarbg: <?= $_helper->getTopbarBackgroundColor($data); ?>;
+	<?php } ?>
+	<?php if ($_helper->getTopbarTextColor($data)) {?>
+	--topbarcolor: <?= $_helper->getTopbarTextColor($data); ?>;
+	<?php } ?>
+	<?php if ($_helper->getHeaderTextColor($data)) {?>
+	--header-icons-color: <?= $_helper->getHeaderTextColor($data); ?>;
+	<?php } ?>
+	<?php if ($_helper->getHeaderBackgroundColor($data)) {?>
+	--header__background-color: <?= $_helper->getHeaderBackgroundColor($data); ?>;
+	<?php } ?>
+
+	/* Custom Footer */
+	<?php if ($_helper->getCustomFooterTitleColor($data)) { ?>
+	--footer-title-color: <?= $_helper->getCustomFooterTitleColor($data);?>;
+	<?php } ?>
+	<?php if ($_helper->getCustomFooterColor($data)) { ?>
+	--footer-links-color: <?= $_helper->getCustomFooterColor($data);?>;
+	<?php } ?>
+	<?php if ($_helper->getFooterBackgroundColor($data)) { ?>
+	--footer__background-color: <?= $_helper->getFooterBackgroundColor($data);?>;
+	<?php } ?>
+
+	/* Custom Menu */
+	<?php if ($_helper->getCustomMenuColorCode($data, 'menu_text_color')) { ?>
+	--navigation-level0-item__color: <?= $_helper->getCustomMenuColorCode($data, 'menu_text_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getCustomMenuColorCode($data, 'menu_background_color')) { ?>
+	--navigation__background: <?= $_helper->getCustomMenuColorCode($data, 'menu_background_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getCustomMenuColorCode($data, 'sub_menu_background_color')) { ?>
+	--submenu__background: <?= $_helper->getCustomMenuColorCode($data, 'sub_menu_background_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getCustomMenuColorCode($data, 'sub_menu_text_color')) { ?>
+	--submenu-item__color: <?= $_helper->getCustomMenuColorCode($data, 'sub_menu_text_color');?>;
+	<?php } ?>
+
+}
+@media (min-width: 1200px){
+	.cms-index-index .header-absolute{
+		<?php if ($_helper->getCustomMenuColorCode($data, 'menu_background_color')) { ?>
+		--navigation__background: <?= $_helper->getCustomMenuColorCode($data, 'menu_background_color');?>;
+		<?php } ?>
+	}
+	.cms-index-index .header-container:not(.header_scroll_up) .header_light{
+        <?php if ($_helper->getCustomMenuColorCode($data, 'menu_text_color')) { ?>
+        --navigation-level0-item__color: <?= $_helper->getCustomMenuColorCode($data, 'menu_text_color');?>;
+        <?php } ?>
+        --navigation-desktop-level0-item__hover__color: var(--navigation-level0-item__color);
+        <?php if ($_helper->getHeaderTextColor($data)) {?>
+        --header-icons-color: <?= $_helper->getHeaderTextColor($data); ?>;
+        <?php } ?>
+	}
+}
+
+<?php if ($_helper->getBasicColors($data, 'link_color')) { ?>
+	:root{
+	--footer-links-color: <?= $_helper->getBasicColors($data, 'link_color');?>;
+	}
+<?php } ?>
+<?php if ($_helper->getCustomFooterColor($data)) { ?>
+	footer{
+		--footer-links-color: <?= $_helper->getCustomFooterColor($data);?>;
+		--link__color: <?= $_helper->getCustomFooterColor($data);?>;
+	}
+<?php } ?>
+<?php if ($_helper->getButtonsColors($data, 'button_text_color')) { ?>
+	.minicart-wrapper .block-content .actions .secondary .action.viewcart:not(:hover){
+		--heading__color__base: <?= $_helper->getButtonsColors($data, 'button_text_color');?>;
+	}
+<?php } ?>
+<?php if ($_helper->getButtonsColors($data, 'button_bg_color')) { ?>
+	button, .cart.table-wrapper .actions-toolbar > .action, .action-gift{
+		border: 1px solid var(--button__background);
+	}
+<?php } ?>
+
+
+/* Page Wrapper */
+
+.page-wrapper,
+.breadcrumbs{
+	background-color: <?= $_helper->getPageWrapperBackgroundColor($data); ?>;
+}
+
+/* Main Content Container */
+#maincontent{
+    <?= $_helper->getMainContentContainerBackgroundColor($data); ?>
+}

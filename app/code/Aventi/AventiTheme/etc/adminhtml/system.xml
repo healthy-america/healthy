@@ -1,0 +1,120 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="themecolors" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Theme Colors</label>
+            <tab>aventi</tab>
+            <resource>Aventi_AventiTheme::themecolors</resource>
+            <group id="colors" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Colors</label>
+                <field id="theme_colors" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Theme Colors</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="color_heading" translate="label comment" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Basic Colors</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="text_color" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="heading_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Heading Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="link_color" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="link_hover_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Hover Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="button_heading" translate="label comment" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Buttons Colors</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="button_text_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="button_bg_color" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="button_hover_text_color" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Hover Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="button_hover_bg_color" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Hover Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="header" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Header</label>
+                <field id="header_heading" translate="label comment" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="header_topbar_text_color" translate="label comment" type="text" sortOrder="62" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Topbar Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="header_topbar_background_color" translate="label comment" type="text" sortOrder="65" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Topbar Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="header_text_color" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="header_background_color" translate="label comment" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="footer" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Footer</label>
+                <field id="footer_title_color" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Title Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="footer_text_color" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="footer_background_color" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="magemenu" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Menu</label>
+                <field id="menu_text_color" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="menu_background_color" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Menu Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="sub_menu_text_color" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sub Menu Text Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="sub_menu_background_color" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sub Menu Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
