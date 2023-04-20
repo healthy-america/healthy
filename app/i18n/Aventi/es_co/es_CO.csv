@@ -15330,7 +15330,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Details","Descripciòn del producto"
 "Articles","Artículos"
 "Register","Inicia Sesión"
-"Go to Cart","Ver carrito"
+"Go to Cart","Ver carrito de compras"
 "upload","Subir archivo"
 "Details","Descripción  del producto"
 "More information","Características del producto"
@@ -15363,4 +15363,5 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Product Name","Nombre ",Magento_VisualMerchandiser
 "Your email address", "Tú dirección Email"
 "Adding...","Añadiendo..."
+"Proceed to Checkout to Checkout","Proceder al checkout"
 
