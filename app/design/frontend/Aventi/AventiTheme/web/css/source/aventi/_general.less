@@ -12,6 +12,118 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
+    // Botones generales
+
+    body#html-body {
+        // Primary
+        button.btn-primary,
+        button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.action.btn-default{
+            background: @color-primary;
+            border-radius: 4px;
+            border: none;
+            font-family: "Roboto";
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+
+            span {
+                font-family: "Roboto";
+                font-weight: 600;
+                font-size: 14px;
+            color: #fff;
+            text-align: center;
+            }
+
+            &:hover {
+                background: #0e345f;
+            }
+        }
+
+        // Secondary
+
+        a.btn-secondary,
+        button.btn-secondary, .secondary a.action.btn-default {
+            background: #ffffff;
+            border: 1px solid @color-primary;
+            border-radius: 4px;
+
+            font-family: "Roboto";
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+
+            color: @color-primary;
+
+            span {
+                font-family: "Roboto";
+                font-weight: 600;
+                font-size: 14px;
+                text-align: center;
+
+                color: @color-primary;
+            }
+
+            &:hover {
+                background: #5592d70f;
+            }
+        }
+
+        // back button
+
+        .action.btn.back {
+            background: #dc041c;
+            border-radius: 4px;
+            border: none;
+            font-family: "Roboto";
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+
+            span {
+                font-family: "Roboto";
+                font-weight: 600;
+                font-size: 14px;
+                text-align: center;
+                color: #fff;
+            }
+
+            &:hover {
+                background: #ad081b;
+            }
+        }
+    }
+
+    // Inputs generales
+
+    .field {
+        .control {
+            input, textarea, select  {
+                border: 1px solid #b6bac0;
+                border-radius: 4px;
+                height: 30px;
+
+                &:hover,
+                &:focus,
+                &:active {
+                    background: #dcdcdc2b;
+                    border: 1px solid @color-primary;
+                }
+            }
+        }
+
+        .label {
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: @grey;
+            padding-bottom: 3px;
+            margin-bottom: 0px !important;
+        }
+    }
+
     // Slider card product
 
     .block.products.items.widget.mgs-products.product-items {
@@ -32,131 +144,123 @@
         }
     }
 
-    // Cards products
-    .product.product-item {
-        padding: 0 15px !important;
+    body#html-body {
+        // Cards products
+        .product.product-item {
+            padding: 0 15px !important;
 
-        // Button add to cart
-        .action-mobile button.action.btn-cart.primary {
-            transform: none;
-            position: relative;
-            margin: 0;
-            visibility: hidden;
-            opacity: 0;
-            transition: all 0.25s ease;
-            border: none;
-            padding: 8px;
-
-            left: -15px;
-            width: ~"calc(30px + 100%)";
-            border-radius: 0;
-            // Font
-
-            font-family: "Roboto";
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 19px;
-            text-align: center;
-            color: #ffffff;
-
-            background: @color-secondary;
-
-            .icon.pe-7s-shopbag {
-                display: none;
-            }
-
-            @media (max-width: 1200px) {
-                visibility: visible;
-                opacity: 1;
-                bottom: 0;
-                top: unset;
-                margin: 0;
-
-                span.text {
-                    display: block !important;
-                }
-            }
-        }
-    }
-
-    .product.product-item .product-item-info,
-    .product-item-info.product-item.item.product {
-        padding: 0px 15px;
-
-        @media (max-width: 1200px) {
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        &:hover {
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
-
+            // Button add to cart
             .action-mobile button.action.btn-cart.primary {
-                visibility: visible;
-                opacity: 1;
-                bottom: 0;
-                top: unset;
+                transform: none;
+                position: relative;
                 margin: 0;
-            }
-        }
-        .product-top {
-            overflow: visible;
-            &:hover {
-                .product-label.sale-label {
-                    display: block !important;
-                }
-                a::after {
-                    display: none !important;
-                }
-            }
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.25s ease;
+                border: none;
+                padding: 8px;
 
-            a {
-                background: #fff;
-            }
+                left: -15px;
+                width: ~"calc(30px + 100%)";
+                border-radius: 0;
+                // Font
 
-            .actions-link.actions-secondary {
-                display: none;
-            }
-        }
-
-        // Detail
-
-        .product.product-item-details {
-            padding-top: 0px;
-
-            .product.name {
-                margin-bottom: 10px;
-                min-height: 40px;
-                display: flex !important;
-                justify-content: center;
-                align-items: center;
-                .product-item-link {
-                    font-family: "Roboto";
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 16px;
-                    line-height: 19px;
-                    text-align: center;
-                    color: #000000;
-                }
-            }
-        }
-
-        // Price
-
-        .price-box.price-final_price {
-            display: flex;
-            flex-direction: row-reverse;
-            justify-content: center;
-            .price{
                 font-family: "Roboto";
                 font-weight: 600;
                 font-size: 16px;
                 line-height: 19px;
                 text-align: center;
-                color: #000000;
+                color: #ffffff;
+
+                background: @color-secondary;
+
+                .icon.pe-7s-shopbag {
+                    display: none;
+                }
+
+                @media (max-width: 1200px) {
+                    visibility: visible;
+                    opacity: 1;
+                    bottom: 0;
+                    top: unset;
+                    margin: 0;
+
+                    span.text {
+                        display: block !important;
+                    }
+                }
             }
-            .special-price {
-                * {
+        }
+
+        .product.product-item .product-item-info,
+        .product-item-info.product-item.item.product {
+            padding: 0px 15px;
+
+            @media (max-width: 1200px) {
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            &:hover {
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+
+                .action-mobile button.action.btn-cart.primary {
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    bottom: 0;
+                    top: unset;
+                    margin: 0;
+                }
+            }
+            .product-top {
+                overflow: visible;
+                &:hover {
+                    .product-label.sale-label {
+                        display: block !important;
+                    }
+                    a::after {
+                        display: none !important;
+                    }
+                }
+
+                a {
+                    background: #fff;
+                }
+
+                .actions-link.actions-secondary {
+                    display: none;
+                }
+            }
+
+            // Detail
+
+            .product.product-item-details {
+                padding-top: 0px;
+
+                .product.name {
+                    margin-bottom: 10px;
+                    min-height: 40px;
+                    display: flex !important;
+                    justify-content: center;
+                    align-items: center;
+                    .product-item-link {
+                        font-family: "Roboto";
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-align: center;
+                        color: #000000;
+                    }
+                }
+            }
+
+            // Price
+
+            .price-box.price-final_price {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: center;
+                .price {
                     font-family: "Roboto";
                     font-weight: 600;
                     font-size: 16px;
@@ -164,60 +268,69 @@
                     text-align: center;
                     color: #000000;
                 }
-            }
-            .old-price {
-                * {
-                    font-family: "Roboto";
-                    font-weight: 600;
-                    font-size: 12px;
-                    line-height: 11px;
-                    text-align: center;
-                    text-decoration-line: line-through;
+                .special-price {
+                    * {
+                        font-family: "Roboto";
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-align: center;
+                        color: #000000;
+                    }
+                }
+                .old-price {
+                    * {
+                        font-family: "Roboto";
+                        font-weight: 600;
+                        font-size: 12px;
+                        line-height: 11px;
+                        text-align: center;
+                        text-decoration-line: line-through;
 
-                    color: @color-secondary;
+                        color: @color-secondary;
+                    }
                 }
             }
 
-        }
+            // Labels
 
-        // Labels
+            .product-label.multiple-label {
+                margin: 0;
+            }
 
-        .product-label.multiple-label{
-            margin: 0;
-        }
+            .product-label.sale-label {
+                background: @color-secondary;
+                border-radius: 100%;
+                height: 45px;
+                width: 45px;
+                right: -6px;
+                top: 6px;
+                span {
+                    line-height: 44px;
+                    font-family: "Montserrat";
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+            }
 
-        .product-label.sale-label {
-            background: @color-secondary;
-            border-radius: 100%;
-            height: 45px;
-            width: 45px;
-            right: -6px;
-            top: 6px;
-            span {
-                line-height: 44px;
-                font-family: "Montserrat";
+            // New label
+
+            .product-label.new-label {
+                background: @grey;
+                border-radius: 4px;
+
+                font-family: "Roboto";
                 font-style: normal;
                 font-weight: 600;
-                font-size: 14px;
+                font-size: 10.5px;
+                line-height: 23px;
+                text-align: center;
+                display: block;
+                color: #ffffff;
+                left: 0;
+                top: 12px;
             }
-        }
-
-        // New label
-
-        .product-label.new-label {
-            background: @grey;
-            border-radius: 4px;
-
-            font-family: 'Roboto';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 10.5px;
-            line-height: 23px;
-            text-align: center;
-            display: block;
-            color: #ffffff;
-            left: 0;
-            top: 12px;
         }
     }
 
@@ -230,8 +343,19 @@
             color: @color-secondary !important;
         }
     }
+
+
 }
 
+body , html {
+
+    p::selection,
+    *::selection {
+        color: #fff;
+        background-color: @color-primary-dark;
+    }
+
+}
 //
 //  Desktop
 //  _____________________________________________

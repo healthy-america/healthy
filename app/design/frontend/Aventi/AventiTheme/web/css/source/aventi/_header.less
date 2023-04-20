@@ -217,8 +217,99 @@
     }
 
     // Hidden toolbar mobile
-    .section-toolbar-mobile{
+    .section-toolbar-mobile {
         display: none;
+    }
+
+    // Mega menu
+
+    .widget.megamenu-widget.vertical-menu-widget {
+        .vertical-menu {
+            .category-menu.level0 {
+                a.level0 {
+                    color: #424242 !important;
+                    span {
+                        color: #424242 !important;
+                    }
+                }
+                &.dropdown {
+                    position: relative;
+                    a.level0.dropdown-toggle {
+                        color: #424242 !important;
+
+                        svg {
+                            width: 20px;
+                            height: 20px;
+                            position: relative;
+                            left: -9px;
+                            top: 5px;
+                            margin-right: -3px;
+                        }
+
+                        .icon-next {
+                            display: none;
+                        }
+                    }
+
+                    .toggle {
+                        &::after {
+                            content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?rotate=90deg");
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                            padding: 18px 16px 9px;
+                            cursor: pointer;
+                        }
+                    }
+
+                    .dropdown-menu {
+                        position: static;
+                        transition: all 0.3s ease;
+                        opacity: 0;
+                        visibility: hidden;
+                        display: none !important;
+                        box-shadow: none;
+
+                        li a {
+                            font-family: "Montserrat";
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 18px;
+                            color: #424242 !important;
+                            border: none;
+                        }
+                    }
+
+                    &.active {
+                        a.level0.dropdown-toggle {
+                            background: @color-primary !important;
+
+                            span {
+                                color: #fff !important;
+                            }
+
+                            svg {
+                                color: #fff;
+                            }
+                        }
+
+                        .toggle {
+                            &::after {
+                                content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=white&rotate=270deg");
+                            }
+                        }
+
+                        .dropdown-menu {
+                            opacity: 1;
+                            display: block !important;
+                            visibility: visible;
+                            transform: none;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -227,20 +318,18 @@
 //  _____________________________________________
 
 @media (max-width: 1200px) {
-
-    .header-area.header2{
+    .header-area.header2 {
         .logo-wrapper {
-            .action{
-                svg path{
+            .action {
+                svg path {
                     fill: @color-secondary;
                 }
             }
         }
     }
-    
+
     .menu-wrapper {
         display: block !important;
-        
     }
 }
 //
