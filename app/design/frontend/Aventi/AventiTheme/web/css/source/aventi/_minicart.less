@@ -172,6 +172,16 @@
                                 margin-right: 0.5em;
                             }
                         }
+
+                        &:hover {
+                            background: @blue-hover-button;
+
+                            > span {
+                                font-weight: 900;
+                            }
+
+                        }
+
                     }
 
                     > div.primary > button {
@@ -182,6 +192,13 @@
                         font-size: 14px;
                         border-radius: 4px;
                         color: @color-primary;
+
+                        &:hover {
+                            background: @grey-clear;
+                            border: @color-primary 2px solid;
+                            font-weight: 900;
+                        }
+
                     }
 
             }
