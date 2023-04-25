@@ -1,0 +1,205 @@
+
+
+//  All devices
+& when (@media-common =true) {
+
+    body.account{
+        .page-wrapper{
+            
+            //header my account
+            #page-title-wrapper{
+                background-image: url('/media/aventi/myAccount.png');
+                padding: 90px 0px;
+
+                &::before{
+                    background: rgba(0,0,0,0.6);
+                }
+
+                .page-title{
+                    font-weight: 400;
+                    font-size: 42px;
+                }
+            }
+
+            //content
+            #maincontent{
+                .columns{
+
+                    //right content
+                    .column.main{
+                        padding: 20px 0px 0px 50px;
+
+                        .block{
+                            //titulos
+                            .block-title-account{
+                                h3, span{
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    color: @black_secunday;
+                                }
+                            }
+
+                            //subtitulos
+                            .box-title-subaccount{
+                                span{
+                                    font-weight: 600;
+                                    font-size: 14px;
+                                    color: @black_secunday;
+                                }
+                            }
+
+                            //parrafos
+                            .box-content{
+                                p, address{
+                                    font-weight: 400;
+                                    font-size: 14px;
+                                    color: @black_secunday;
+                                }
+                            }
+
+                            //acciones
+                            .box-actions{
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 10px;
+
+                                .edit{
+                                    min-width: 100px;
+                                }
+                            }
+
+                            .margin-top20{
+                                .btn-secondary.edit{
+                                    color: @background-footer;
+                                    background: @color-primary;
+                                    border: 1px solid  @color-primary;
+                        
+                                    span {
+                                        color: @background-footer;
+                                    }
+                        
+                                    &:hover {
+                                        background: @blue-hover;
+                                        border: 1px solid @blue-hover;
+                                    }
+                        
+                                    &:active {
+                                        background-color: @blue-selected;
+                                        border: 1px solid @blue-selected;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //left menu
+                    .sidebar.sidebar-main{
+                        .block.account-nav{
+                            background: @grey-light;
+                            padding: 20px;
+
+                            .account-nav-title{
+                                h3{
+                                    margin: 0px;
+                                    color: @color-primary;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 16px;
+
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                            }
+
+                            .account-nav-content{
+                                margin-left: 25px;
+
+                                .nav.items{
+                                    .nav.item{
+                                        a{
+                                            color: @black_secunday;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                        }
+
+                                        &.current{
+                                            strong, a{
+                                                color: @color-secondary;
+                                                font-style: normal;
+                                                font-weight: 600;
+                                                font-size: 14px;
+                                            }
+                                        }
+
+                                        //se ocultaron los tabs momentaneamente hasta ver si es posible deshabilitarlos desde el administrador
+                                        &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(8), &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //compare and wish list hide
+                    .sidebar-additional{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//  Desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+
+//  Mobile
+
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+
+    body#html-body.account{
+        div.page-wrapper{
+            
+            //header my account
+            #page-title-wrapper{
+                background: #004088;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80px;
+
+                &::before{
+                    display: none;
+                }
+
+                .page-title{
+                    font-weight: 600;
+                    font-size: 16px;
+                    margin: 0px;
+                }
+            }
+
+            //content
+            #maincontent{
+                div.columns{
+                    padding: 0px 30px;
+
+                    //right content
+                    div.column.main{
+                        padding: 0px;
+                    }
+                }
+            }
+        }
+    }
+}

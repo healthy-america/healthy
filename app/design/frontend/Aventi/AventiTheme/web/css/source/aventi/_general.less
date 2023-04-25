@@ -12,65 +12,93 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
-    // Botones generales
-
+    
     body#html-body {
-        // Primary
-        button.btn-primary,
-        button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.action.btn-default{
-            background: @color-primary;
+        h1, h2, h3, p, a, span{
+            font-family: 'Montserrat';
+        }
+
+        //color hover general a las etiquetas a
+        a{
+            &:hover{
+                color: @color-secondary;
+            }
+        }
+
+        // Botones generales
+        button, .btn, .action {
             border-radius: 4px;
-            border: none;
             font-family: "Roboto";
             font-weight: 600;
             font-size: 14px;
             text-align: center;
-            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            height: 40px;
+            margin: 0px;
 
             span {
                 font-family: "Roboto";
                 font-weight: 600;
                 font-size: 14px;
-            color: #fff;
-            text-align: center;
+            }
+        }
+
+        // Primary
+        button.btn-primary,
+        button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.btn-default{
+            color: @background-footer;
+            background: @color-primary;
+            border: 1px solid  @color-primary;
+            transition: all 0.1s ease-in-out;
+
+            span {
+                color: @background-footer;
             }
 
             &:hover {
-                background: #0e345f;
+                background: @blue-hover;
+                border: 1px solid @blue-hover;
+            }
+
+            &:active {
+                background-color: @blue-selected;
+                border: 1px solid @blue-selected;
             }
         }
 
         // Secondary
-
         a.btn-secondary,
-        button.btn-secondary, .secondary a.action.btn-default {
-            background: #ffffff;
-            border: 1px solid @color-primary;
-            border-radius: 4px;
-
-            font-family: "Roboto";
-            font-weight: 600;
-            font-size: 14px;
-            text-align: center;
-
+        button.btn-secondary, .secondary a.action.btn-default , a.action.edit.btn{
+            background: @background-footer;
+            border: 1px solid  @color-primary;
             color: @color-primary;
+            transition: all 0.1s ease-in-out;
 
             span {
-                font-family: "Roboto";
-                font-weight: 600;
-                font-size: 14px;
-                text-align: center;
-
                 color: @color-primary;
             }
 
             &:hover {
-                background: #5592d70f;
+                border: 2px solid @blue-hover;
+                color: @blue-hover;
+                span{
+                    color: @blue-hover;
+                }
+            }
+
+            &:active {
+                border: 1px solid @blue-selected;
+                color: @blue-selected;
+                span{
+                    color: @blue-selected;
+                }
             }
         }
 
         // back button
-
         .action.btn.back {
             background: #dc041c;
             border-radius: 4px;
@@ -343,8 +371,6 @@
             color: @color-secondary !important;
         }
     }
-
-
 }
 
 body , html {
