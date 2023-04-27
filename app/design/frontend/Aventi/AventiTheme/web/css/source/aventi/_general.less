@@ -14,7 +14,7 @@
 & when (@media-common =true) {
     
     body#html-body {
-        h1, h2, h3, p, a, span{
+        h1, h2, h3, p, a, span, label, address, th, td, option{
             font-family: 'Montserrat';
         }
 
@@ -48,7 +48,7 @@
 
         // Primary
         button.btn-primary,
-        button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.btn-default{
+        button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.btn-default, .action.delete{
             color: @background-footer;
             background: @color-primary;
             border: 1px solid  @color-primary;
@@ -97,30 +97,6 @@
                 }
             }
         }
-
-        // back button
-        .action.btn.back {
-            background: #dc041c;
-            border-radius: 4px;
-            border: none;
-            font-family: "Roboto";
-            font-weight: 600;
-            font-size: 14px;
-            text-align: center;
-            color: #fff;
-
-            span {
-                font-family: "Roboto";
-                font-weight: 600;
-                font-size: 14px;
-                text-align: center;
-                color: #fff;
-            }
-
-            &:hover {
-                background: #ad081b;
-            }
-        }
     }
 
     // Inputs generales
@@ -130,7 +106,7 @@
             input, textarea, select  {
                 border: 1px solid #b6bac0;
                 border-radius: 4px;
-                height: 30px;
+                height: 40px;
 
                 &:hover,
                 &:focus,

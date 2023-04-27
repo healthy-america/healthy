@@ -4786,7 +4786,7 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "All Store Views","Todas las vistas de la tienda",module,Magento_Customer
 "Change","Cambio",module,Magento_Customer
 "Manage Addresses","Administrar direcciones",module,Magento_Customer
-"Default Shipping Address","Dirección de envío",module,Magento_Customer
+"Default Shipping Address","Dirección principal de despacho",module,Magento_Customer
 "Account Information","Información de la cuenta",module,Magento_Customer
 "Contact Information","Información del contacto",module,Magento_Customer
 "Change Password","Cambiar la contraseña",module,Magento_Customer
@@ -4808,12 +4808,12 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "Use as my default billing address","Utilice como mi dirección de facturación por defecto",module,Magento_Customer
 "It's a default shipping address.","Es una dirección de envío predeterminada.",module,Magento_Customer
 "Use as my default shipping address","Utilice como mi dirección de envío predeterminada",module,Magento_Customer
-"Save Address","Guardar dirección",module,Magento_Customer
+"Save Address","Guardar",module,Magento_Customer
 "Go back","Retroceder",module,Magento_Customer
-"Additional Address Entries","Entradas adicionales de direcciones postales",module,Magento_Customer
+"Additional Address Entries","Otras direcciones",module,Magento_Customer
 "Additional addresses","Additional addresses",module,Magento_Customer
 "First Name","Nombre",module,Magento_Customer
-"Last Name","Apellidos",module,Magento_Customer
+"Last Name","Apellido",module,Magento_Customer
 "Street Address","Dirección",module,Magento_Customer
 "Country","País",module,Magento_Customer
 "State","State",module,Magento_Customer
@@ -5219,8 +5219,8 @@ Email template chosen based on theme fallback when ""Default"" option is selecte
 "Use as my default billing address","Utilice como mi dirección de facturación por defecto",module,Magento_CustomerCustomAttributes
 "This is your default shipping address.","Esta es tu dirección de envío predeterminada.",module,Magento_CustomerCustomAttributes
 "Use as my default shipping address","Utilice como mi dirección de envío predeterminada",module,Magento_CustomerCustomAttributes
-"Save Address","Guardar dirección",module,Magento_CustomerCustomAttributes
-"Go back","Regresar",module,Magento_CustomerCustomAttributes
+"Save Address","Guardar",module,Magento_CustomerCustomAttributes
+"Go back","Atras",module,Magento_CustomerCustomAttributes
 "Account Information","Información de la cuenta",module,Magento_CustomerCustomAttributes
 "Change Email","Cambiar correo electrónico",module,Magento_CustomerCustomAttributes
 "Change Password","Cambiar contraseña",module,Magento_CustomerCustomAttributes
@@ -14247,7 +14247,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "First Name","Nombre",module,Magento_User
 "Last Name","Apellidos",module,Magento_User
 "Email","Correo electrónico",module,Magento_User
-"Status","Status",module,Magento_User
+"Status","Estado",module,Magento_User
 "Active","Activo",module,Magento_User
 "Inactive","Inactivo",module,Magento_User
 "Role Resources","Recursos de la función",module,Magento_User
@@ -14263,7 +14263,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Force Sign-In","Forzar inicio de sesión",module,Magento_User
 "Edit User '%1'","Editar usuario '%1'",module,Magento_User
 "New User","Nuevo usuario",module,Magento_User
-"Account Information","Mi información de la cuenta",module,Magento_User
+"Account Information","Información de la cuenta",module,Magento_User
 "User Email","Correo electrónico del usuario",module,Magento_User
 "Password","Contraseña",module,Magento_User
 "New Password","Nueva Contraseña",module,Magento_User
@@ -15366,4 +15366,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Adding...","Añadiendo..."
 "Proceed to Checkout","Proceder al checkout"
 "Account Navigation","Navegación de mi cuenta"
-
+"Order number","Número de orden"
