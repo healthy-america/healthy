@@ -32,3 +32,8 @@
 !/lib/internal/
 !/lib/internal/Mageplaza/
 !/lib/internal/Mageplaza/**
+!/pub
+!/pub/media
+!/pub/media/aventi
+!/pub/media/aventi/images
+!/pub/media/aventi/images/**
