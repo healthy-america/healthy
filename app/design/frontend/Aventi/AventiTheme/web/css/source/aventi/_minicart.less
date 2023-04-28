@@ -31,104 +31,107 @@
          
         .minicart-wrapper 
         #minicart-content-wrapper {
-            position: relative;
-            height: -webkit-fill-available;
+                position: relative;
+                height: -webkit-fill-available;
 
-            // Botones generales
-            button, .btn, .action {
-                width: 100%;
-                margin: unset;
-                margin-bottom: 15px;
-            }
+                // Botones generales
+                button, .btn, .action {
+                    width: 100%;
+                    margin: unset;
+                    margin-bottom: 15px;
+                }
 
-            div.block-content {
-                margin-top: 2.5em;
-                font-family: 'Roboto', sans-serif;
-                font-style: normal;
-                font-weight: 600;
-                font-size: 14px;
-                color: @black_secunday;
+                div.block-content {
+                    margin-top: 2.5em;
+                    font-family: 'Roboto', sans-serif;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 14px;
+                    color: @black_secunday;
 
-                > div.minicart-items-wrapper {
+                    > div.minicart-items-wrapper {
 
-                      > ol.minicart-items > li {
-                      margin-bottom: 1.5em;
-                      
-                      > div.product {
-                            border-bottom: 1px solid @grey-m;
+                        > ol.minicart-items > li {
+                        margin-bottom: 1.5em;
+                        
+                        > div.product {
+                                border-bottom: 1px solid @grey-m;
 
-                            > div.product-item-photo {
-                            
-                                > div.product.actions > div.primary > a.action {
-                                    background-color: #fff;
+                                > div.product-item-photo {
                                 
-                                }
-
-                                > a.product-item-photo {
-
-                                    > span.product-image-container > span.product-image-wrapper > img {
-                                        height: 8em !important;
-                                        object-fit: cover;
-                                    }
-    
-                                }
-
-                            }
-
-
-
-                            > div.product-item-details > div.product-item-pricing {
-
-                                > div.price-container > span {
-                                    font-weight: 400;
-                                    font-size: 16px;
-                                }
-
-                                > div.details-qty.qty {
-                                    margin-top: 12px;
-                                    margin-bottom: 10px;
-
-                                    > input {
-                                        border: 1px solid @grey-m;
-                                        font-weight: 400;
-                                        color: @black_secunday;
-                                        border-radius: 2px;
-                                        width: 3.5em;
+                                    > div.product.actions > div.primary > a.action {
+                                        background-color: #fff;
+                                    
                                     }
 
-                                }
+                                    > a.product-item-photo {
 
-
-                            }
-
-                      }
-
-
-                    }
-
-                }
-
-            }
+                                        > span.product-image-container > span.product-image-wrapper > img {
+                                            height: 8em !important;
+                                            object-fit: cover;
+                                        }
         
-            h3.close-minicart {
-                background-color: @color-primary;
-                font-family: 'Montserrat', sans-serif;
-                color: #fff;
-                font-style: normal;
-                font-weight: 600;
-                font-size: 16px;
-                text-align: center;
-                text-transform: capitalize;
+                                    }
 
-                > button {
-                    color: #fff;
-                    top: 42%;
-                    > i::before {
-                        font-size: 0.7em;
+                                }
+
+
+
+                                > div.product-item-details > div.product-item-pricing {
+
+                                    > div.price-container > span {
+                                        font-weight: 400;
+                                        font-size: 16px;
+                                    }
+
+                                    > div.details-qty.qty {
+                                        margin-top: 12px;
+                                        margin-bottom: 10px;
+
+                                        > input {
+                                            border: 1px solid @grey-m;
+                                            font-weight: 400;
+                                            color: @black_secunday;
+                                            border-radius: 2px;
+                                            width: 3.5em;
+                                        }
+
+                                    }
+
+
+                                }
+
+                        }
+
+
+                        }
+
                     }
-                }
 
-            }
+                }
+            
+                h3.close-minicart {
+                    background-color: @color-primary;
+                    font-family: 'Montserrat', sans-serif;
+                    color: #fff;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 16px;
+                    text-align: center;
+                    text-transform: capitalize;
+
+                    > button {
+                        color: #fff;
+                        top: 50%;
+                        > i::before {
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            font-size: 2.7em;
+                        }
+                    }
+
+                }
 
         }
 
@@ -225,6 +228,10 @@
 
     body#html-body {
 
+        .block-minicart.ui-dialog-content.ui-widget-content {
+            width: 85%;
+        }
+
         ._conatiner_mini_cart_actions_ {
 
             > div.subtotal {
@@ -242,7 +249,6 @@
             > div.actions {
                     
                 > div.secondary > a.action.btn-default > span {
-                    font-size: 11px !important;
 
                     &::before {
                         top: 0.6em;
