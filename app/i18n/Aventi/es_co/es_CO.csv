@@ -15367,3 +15367,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Proceed to Checkout","Proceder al checkout"
 "Account Navigation","Navegación de mi cuenta"
 "Order number","Número de orden"
+"Filtered by","Filtrado por"
