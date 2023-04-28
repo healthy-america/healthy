@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.shipping" remove="true" />
+        
+        
+        <referenceContainer name="content">
+            <referenceBlock name="checkout.cart">
+                <referenceContainer name="checkout.cart.items">
+                    <referenceContainer name="checkout.cart.container" htmlTag="div" htmlClass="cart-container">
+                        <container name="checkout.cart.bottom" after="checkout.cart.form" htmlTag="div" htmlClass="cart-bottom">
+                            <container name="checkout.cart.bottom.content"  htmlTag="div" htmlClass="line">
+                                <container name="cart.bottom.left" htmlTag="div" htmlClass="col-des-6 col-tb-6 col-mb-12">
+                                    <container name="cart.bottom.border" htmlTag="div" htmlClass="checkout-extra"/>
+                                </container>
+                                <container name="cart.bottom.right" htmlTag="div" htmlClass="col-des-6 col-tb-6 col-mb-12 cart-totals-container"/>
+                            </container>
+                        </container>
+                    </referenceContainer>
+                </referenceContainer>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>
