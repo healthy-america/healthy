@@ -1,14 +1,52 @@
-
-
 //  All devices
 & when (@media-common =true) {
 
     body.account{
+
+        &.sales-order-history{
+            .page-wrapper{
+                #maincontent{
+                    .columns{
+                        .column.main{
+                            .actions-toolbar-form{
+                                border: none;
+                                padding: 0px;
+                                margin: 0px;
+    
+                                .secondary{
+                                    a.action.btn.btn-secondary.btn-sm.back{
+                                        color: @background-footer;
+                                        background: @color-primary;
+                                        border: 1px solid  @color-primary;
+                                        transition: all 0.1s ease-in-out;
+    
+                                        span {
+                                            color: @background-footer;
+                                        }
+    
+                                        &:hover {
+                                            background: @blue-hover;
+                                            border: 1px solid @blue-hover;
+                                        }
+    
+                                        &:active {
+                                            background-color: @blue-selected;
+                                            border: 1px solid @blue-selected;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         .page-wrapper{
             
             //header my account
             #page-title-wrapper{
-                background-image: url('/media/aventi/myAccount.png');
+                background-image: url('/media/aventi/images/myAccount.png');
                 padding: 90px 0px;
 
                 &::before{
@@ -27,16 +65,250 @@
 
                     //right content
                     .column.main{
-                        padding: 20px 0px 0px 50px;
+                        padding: 20px 50px 0px 50px;
 
+                        //pantalla de mis ordenes
+                        .orders-history{
+                            table{
+                                
+                                thead, tbody{
+                                    border: 1px solid @grey-clear;
+
+                                    th{
+                                        font-weight: 600;
+                                        font-size: 14px;
+                                        text-transform: capitalize;
+                                        color: @black_secunday;
+                                        padding: 15px 0px 15px 20px;
+                                        text-align: left;
+                                        line-height: 1;
+                                        border: none;
+                                    }
+
+                                    td, td>span, td>a>span{
+                                        font-weight: 400;
+                                        color: @black_secunday;
+                                        font-size: 14px;
+                                        padding: 15px 0px 15px 20px;
+                                        text-align: left;
+                                        line-height: 1;
+                                        border: none;
+                                        display: table-cell;
+
+                                        .price{
+                                            padding: 0px;
+                                        }
+                                         
+                                        &.col.actions{
+                                            gap: 15px;
+                                            display: flex;
+                                            border: none;
+                                            justify-content: end;
+                                            padding: 15px 20px 15px 0px;
+
+                                            a{
+                                                height: fit-content;
+
+                                                span{
+                                                    text-decoration-line: underline;
+                                                    font-family: 'Montserrat';
+                                                    padding: 0px;
+                                                }
+
+                                                &::after{
+                                                    display: none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                tbody{
+                                    border-top: none;
+                                }
+                            }
+                        }
+                        //ordenar pedidos
+                        .order-products-toolbar{
+                            .limiter{
+                                
+                                .limiter-options{
+                                    border: none;
+                                    background-image: url(../images/select-bg.svg);
+                                    background-repeat: no-repeat;
+                                    background-position: right;
+                                    padding: 0px 25px 0px 5px;
+                                }
+                            }
+                        }
+
+                        //pantalla informacion cuenta y agregar direccion
+                        .form-address-edit, .form-edit-account{
+                            //titulos del resto de paginas de mi cuenta
+                            .block-title-account, .block-title-info{
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 16px;
+                                color: @black_secunday;
+                                text-transform: capitalize;
+
+                                h3, span{
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    color: @black_secunday;
+                                    text-transform: capitalize;
+                                }
+                            }
+
+                            //inputs
+                            .control{
+                                label{
+                                    color: @grey;
+                                    font-weight: 400;
+                                    font-size: 14px;
+                                }
+                                input, select{
+                                    max-width: 100%;
+                                    display: block;
+                                }
+                            }
+
+                            //inputs
+                            .fieldset{
+                                margin: 0 0 30px 0;
+                                .field {
+                                    
+                                    &.choice {
+                                        line-height: 1;
+                                        display: flex;
+                                        align-items: center;
+                                        margin: 0 0 10px 0;
+    
+                                        .checkbox {
+                                            width: 20px;
+                                            height: 20px;
+                                            appearance: none;
+                                            border: 2px solid #7B7B7B;
+                                            border-radius: 2px;
+                                            margin: 0;
+                                            top: unset;
+    
+                                            &:checked {
+                                                content: url("https://api.iconify.design/uil/check.svg?color=%235bab1d&width=8&height=6");
+                                            }
+                                        }
+                                        > label {
+                                            padding: 2px 0 2px 30px;
+                                            > span {
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                                color: @black_secunday;
+                                            }
+                                        }
+                                        .field-tooltip.toggle{
+                                            display: none;
+                                        }
+                                    }
+
+                                    &.additional, &.primary{
+                                        display: none;
+                                    }
+
+                                    .line{
+                                        gap: 10px;
+
+                                        .field-name-firstname, .field-name-lastname{
+                                            flex: 0 0 100%;
+                                            max-width: 100%;
+                                        }
+                                    }
+
+                                    &.required{
+                                        label{
+                                            &::after{
+                                                color: #7B7B7B !important;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            //buttons
+                            .actions-toolbar-form{
+                                border-top: 2px solid #D2DBD5;
+                                margin-top: 50px;
+                                display: flex;
+                                gap: 15px;
+                                flex-wrap: wrap;
+                            }
+                        }
+
+                        //estilos de bloques de informacion generales
                         .block{
-                            //titulos
+                            //pagina de 
+                            &.block-addresses-default, &.block-addresses-list{
+                                margin: 0px;
+
+                                .box{
+                                    margin-bottom: 0px;  
+                                }
+                                
+                                .block-content{
+                                    gap: 80px;
+                                    margin-bottom: 0px;
+
+                                    &::before, &::after{
+                                        display: none;
+                                    }
+                                    
+                                    .block-title-account{
+                                        margin-bottom: 10px;
+    
+                                        h3{
+                                            text-transform: capitalize;
+                                        }
+                                    }
+                                    .box-content{
+    
+                                        >.items{
+                                            gap: 40px;
+    
+                                            &::before, &::after{
+                                                display: none;
+                                            }
+    
+                                            .item.actions{
+                                                display: flex;
+                                                gap: 10px;
+                                                flex-flow: row-reverse wrap-reverse;
+                                                justify-content: flex-end;
+        
+                                                .action.delete{
+                                                    color: @background-footer;
+                                                    span{
+                                                        color: @background-footer;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            &.block-addresses-list{
+                                .block-content{
+                                    margin-bottom: 0px;
+                                }
+                            }
+
+                            //titulos en mayuscula mi cuenta
                             .block-title-account{
                                 h3, span{
                                     font-style: normal;
                                     font-weight: 600;
                                     font-size: 16px;
                                     color: @black_secunday;
+                                    text-transform: uppercase;
                                 }
                             }
 
@@ -91,6 +363,22 @@
                                 }
                             }
                         }
+
+                         //buttons in directions page
+                         .actions-toolbar-form{
+                            border-top: 2px solid #D2DBD5;
+                            margin-top: 50px;
+                            .primary{
+                                display: flex;
+                                gap: 15px;
+                                flex-wrap: wrap;
+                                justify-content: end;
+                            }
+                        }
+
+                        >.block-addresses-list{
+                            display: none;
+                        }
                     }
 
                     //left menu
@@ -98,6 +386,7 @@
                         .block.account-nav{
                             background: @grey-light;
                             padding: 20px;
+                            min-height: 480px;
 
                             .account-nav-title{
                                 h3{
@@ -171,7 +460,7 @@
             
             //header my account
             #page-title-wrapper{
-                background: #004088;
+                background: @color-primary;
                 padding: 0px;
                 display: flex;
                 justify-content: center;
@@ -197,6 +486,27 @@
                     //right content
                     div.column.main{
                         padding: 0px;
+
+                        .actions-toolbar-form{
+                            margin: 0px;
+
+                            button{
+                                flex: 1;
+                            }
+                        }
+
+                        .block{
+                            &.block-addresses-default, &.block-addresses-list{
+                                .block-content{
+                                    margin-bottom: 70px;
+                                }
+                            }
+                            &.block-addresses-list{
+                                .block-content{
+                                    margin-bottom: 0px;
+                                }
+                            }
+                        }
                     }
                 }
             }
