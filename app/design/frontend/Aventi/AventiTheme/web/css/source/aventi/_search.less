@@ -1,0 +1,374 @@
+//  All devices
+& when (@media-common =true) {
+
+    body.catalogsearch-result-index{
+
+        .page-wrapper{
+    
+            //titulo de pagina con fondo
+            #page-title-wrapper{
+                background-image: url('/media/aventi/images/myAccount.png');
+                padding: 150px 0px 20px 0px;
+                text-align: left;
+    
+                &::before{
+                    background: rgba(0,0,0,0.6);
+                }
+    
+                .page-title{
+                    max-width: 1200px;
+                    margin: auto;
+
+                    span{
+                        font-weight: 600;
+                        font-size: 42px;
+                    }
+                }
+            }
+
+            .breadcrumbs{
+                background: none;
+                padding: 20px 15px;
+                max-width: 1200px;
+                margin-bottom: 25px;
+
+                .items{
+                    display: flex;
+                    align-items: center;
+                    padding: 0;
+
+                    &::after{
+                        content: '';
+                        max-width: 1200px;
+                        width: 98%;
+                        background: #B6BAC0;
+                        height: 1px;
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        bottom: 0px;
+                    }
+
+                    .item{
+                        display: flex;
+                        align-items: center;
+                        
+                        a, strong{
+                            max-width: unset;
+                            font-weight: 400;
+                            font-size: 14px;
+                            color: @grey-dark;
+                        }
+                    }
+                }
+            }
+
+            .columns{
+
+                .sidebar-additional{
+                    display: none;
+                }
+
+                .sidebar-main{
+                    .block-content.filter-content{
+                        background: @grey-light;
+                        min-height: 350px;
+                        padding: 25px 15px;
+
+                        h2{
+                            font-weight: 600;
+                            font-size: 14px;
+                            color: @black_secunday;
+                            margin-bottom: 10px;
+                        }
+
+                        .block-filter-content{
+                            background: @background-footer;
+                            padding: 0px 25px;
+                            border-radius: 4px;
+
+                            .filter-options-item{
+                                .filter-options-title{
+                                    font-weight: 400;
+                                    font-size: 14px;
+                                    color: #424242;
+                                    margin: 0px;
+                                    padding: 0px;
+                                    line-height: 3;
+
+                                    &::before{
+                                        display: none;
+                                    }
+                                    &::after{
+                                        bottom: 10px;
+                                        line-height: 1;
+                                        font-size: 22px;
+                                    }
+                                }
+                                .filter-options-content{
+                                    margin: 0px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .column.main{
+                    .search.results{
+                        .category-product-actions{
+                            display: none;
+                        }
+
+                        .products.list.items{
+                            margin: 0px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//  Desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+
+//  Mobile
+
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+
+    body#html-body.catalogsearch-result-index{
+        div.page-wrapper{
+    
+            //header my account
+            #page-title-wrapper{
+                background: @color-primary;
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 80px;
+
+                &::before{
+                    display: none;
+                }
+
+                .page-title{
+                    span{
+                        font-size: 16px;
+                    }
+                }
+            }
+
+            .breadcrumbs{
+                margin: 0px;
+
+                .items{
+                    justify-content: center;
+
+                    &::after{
+                        display: none;
+                    }
+                }
+            }
+
+            div.columns{
+                .sidebar-main{
+                    height: 0;
+                    .block-content.filter-content{
+                        top: 0;
+                        bottom: 0;
+                        width: 320px;
+                        left: 0;
+                        right: auto;
+                        position: fixed;
+                        z-index: 999;
+                        opacity: 0;
+                        visibility: hidden;
+                        transform: translateX(-100%);
+                        transition: all 0.3s;
+                    }
+                }
+
+                .column.main{
+                    .search.results{
+                        .category-product-actions{
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            flex-wrap: wrap;
+                            padding: 0px 15px;
+                            margin: 0px 0px 15px;
+
+                            //boton para abrir sidebar de filtros
+                            .filter-toggle{
+                                display: block;
+
+                                a{
+                                    span{
+                                        font-weight: 400;
+                                        font-size: 12px;
+                                        color: @black_secunday;
+                                        background: #E8E6E6;
+                                        box-shadow: 0px 0.5px 2px rgba(0,0,0, 0.10);
+                                        border-radius: 2px;
+                                        padding: 5px 8px;
+
+                                        &::before{
+                                            font-family: 'Pe-icon-7-stroke';
+                                            content: "\e680";
+                                            position: fixed;
+                                            color: @black_secunday;
+                                            display: block;
+                                            font-size: 45px;
+                                            left: -50px;
+                                            line-height: 50px;
+                                            top: 0;
+                                            z-index: 1000;
+                                            opacity: 0;
+                                            visibility: hidden;
+                                            transition: all 0.3s;
+                                        }
+                                    }
+                                }
+                            }
+
+                            //botones de ordenar
+                            .toolbar.toolbar-products{
+                                flex-direction: row-reverse;
+
+                                .modes{
+                                    display: block;
+
+                                    .modes-label{
+                                        display: none;
+                                    }
+
+                                    .modes-mode{
+                                        padding: 0px;
+                                        border: none;
+                                        align-items: center;
+                                        display: flex;
+
+                                        span{
+                                            display: none;
+                                        }
+
+                                        &.mode-grid{
+                                            &::after{
+                                                content: url(https://api.iconify.design/ph/squares-four.svg?color=%234a4f55&width=30&height=30);
+                                                line-height: 1;
+                                            }
+                                        }
+
+                                        &::after{
+                                            color: @grey;
+                                        }
+                                        
+                                        &.active{
+                                            display: none;
+                                        }
+                                    }
+                                }
+
+                                .form-item-select{
+                                    margin-right: 5px;
+                                    border: 1px solid @color-primary;
+                                    border-radius: 2px;
+                                    line-height: 1;
+
+                                    &::after{
+                                        right: 5px;
+                                        top: 3px;
+                                        font-size: 18px;
+                                        color: @color-primary;
+                                    }
+
+                                    select{
+                                        height: 22px;
+                                        color: @color-primary;
+                                        font-weight: 400;
+                                        font-size: 12px;
+                                        padding: 0px 20px 0px 5px;
+                                        max-width: unset;
+
+                                        option{
+
+                                            ::selection{
+                                                background: @color-primary;
+                                                color: @white;
+                                            }
+
+                                            &::selection{
+                                                background: green;
+                                                color: red;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .action.sorter-action{
+                                    display: none !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //sidebar de filtros abierta
+    .filter-open{
+        body#html-body.catalogsearch-result-index{
+            div.page-wrapper{
+                div.columns{
+                    .sidebar-main{
+
+                        .block-content.filter-content{
+                            transform: translateX(0);
+                            opacity: 1;
+                            visibility: visible;
+                        }
+                    }
+
+                    .column.main{
+                        .search.results{
+                            .category-product-actions{
+                                .filter-toggle{
+                                    a{
+                                        span{
+                                            &::before{
+                                                left: 268px;
+                                                opacity: 1;
+                                                visibility: visible;
+                                            }
+
+                                            &::after{
+                                                position: fixed;
+                                                left: 0;
+                                                right: 0;
+                                                top: 0;
+                                                bottom: 0;
+                                                background-color: @black;
+                                                opacity: 0.8;
+                                                display: block;
+                                                content: "";
+                                                z-index: 998;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
