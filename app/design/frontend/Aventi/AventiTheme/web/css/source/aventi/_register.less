@@ -1,5 +1,5 @@
 & when (@media-common =true) {
-    body.customer-account-create {
+    body.customer-account-create#html-body {
         .columns {
             margin-top: 70px;
         }
@@ -11,23 +11,109 @@
             display: flex;
             flex-wrap: wrap;
             gap: 50px;
+            .title {
+                font-family: "Montserrat";
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 24px;
+                color: @color-primary;
+            }
             .fieldset {
                 width: 45%;
                 margin: 0;
+                flex: 1;
+                .field.choice.newsletter {
+                    margin-top: 28px;
+                    span {
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 13px;
+                        position: relative;
+                        line-height: 14px;
+                        color: #000000;
+                        top: -1px;
+                    }
+                }
                 .line.customer-name-fields {
                     flex-direction: column;
+                    gap: 27px;
+                    .field-name-firstname {
+                        margin: 0;
+                    }
+
                     div {
                         width: 100%;
                         max-width: none;
                     }
+                }
+
+                input[name="assistance_allowed_checkbox"],
+                label[for="assistance_allowed_checkbox"],
+                .field-tooltip.toggle {
+                    display: none;
+                }
+
+                &.create.account {
+                    label[for="email_address"] {
+                        margin-top: 23px;
+                    }
+                }
+
+                .field.password.required {
+                    margin-top: 32px;
                 }
             }
 
             .actions-toolbar {
                 width: 100%;
                 .line {
-                    .back {
-                        display: none;
+                    .col-des-6.col-tb-6.col-mb-12 {
+                        padding-left: 23px;
+                        > button.btn-primary.submit {
+                            width: 100%;
+                        }
+                    }
+                    a.back {
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    body.customer-account-create#html-body {
+        .columns {
+            margin-top: 70px;
+        }
+
+        #page-title-wrapper {
+            display: none;
+        }
+        .form.form-create-account {
+            gap: 50px 0px;
+            .fieldset {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .actions-toolbar {
+                padding: 0;
+                margin: 0;
+                .line {
+                    .col-des-6.col-tb-6.col-mb-12 {
+                        padding-left: 15px;
+                        width: 100%;
+                        min-width: 100%;
+                        margin: 0;
+                        > button.btn-primary.submit {
+                            width: 100%;
+                        }
+                    }
+                    a.back {
+                        display: none !important;
                     }
                 }
             }
