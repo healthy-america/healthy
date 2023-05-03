@@ -1,0 +1,36 @@
+& when (@media-common =true) {
+    body.customer-account-create {
+        .columns {
+            margin-top: 70px;
+        }
+
+        #page-title-wrapper {
+            display: none;
+        }
+        .form.form-create-account {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            .fieldset {
+                width: 45%;
+                margin: 0;
+                .line.customer-name-fields {
+                    flex-direction: column;
+                    div {
+                        width: 100%;
+                        max-width: none;
+                    }
+                }
+            }
+
+            .actions-toolbar {
+                width: 100%;
+                .line {
+                    .back {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
