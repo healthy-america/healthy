@@ -16,9 +16,49 @@
 
     body#html-body {
 
+        small.copyright {
+            display: none;
+        }
+
         //Estilos para el footer
         footer.page-footer {
-            border-bottom: #004088 2px solid;
+
+            small.copyright {
+                display: block;
+            }
+
+            .box-container-aux-footer-bottom {
+                display: grid;
+                place-content: flex-end;
+                width: 100%;
+                height: auto;
+                overflow: hidden;
+            }
+
+
+            .box-style-footer-bottom {
+                display: flex;
+                height: 2em;
+
+                p > {
+                    font-family: 'Arial', sans-serif;
+                    font-weight: 400;
+                    font-size: 12px;
+                    font-style: normal;
+                    color: @black_secunday;
+                    padding: unset;
+                    margin: unset;
+                    display: grid;
+                    place-content: center;
+                    width: 10em;
+                }
+
+                > img {
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                }
+            }
 
             > div > div.footer2 {
 
@@ -36,11 +76,50 @@
                         place-content: center;
                     }
 
+                    > div.frame > div.line > div:nth-child(2) {
+                        flex: 0 0 25%;
+                        max-width: 25%;
+                    }
+
+
+                    > div.frame > div.line > div:nth-child(4) {
+                        flex: 0 0 0.5%;
+                        max-width: 0.5%;
+                    }
+
                 }
 
                 //Footer Bottom
                 > div.bottom-footer {
-                    display: none;
+                        //solo border top
+                        border-top: 4px solid @color-primary;
+                        border-bottom: unset;
+                        background: @white;
+
+                        .copyright address {
+                            line-height: normal;
+                            align-self: center;
+                        }
+
+                        > div.frame > div.line > div {
+                            display: grid;
+                            flex: 0 0 50%;
+                            max-width: 50%;
+                        }
+
+                        small.copyright {
+                            line-height: unset;
+                            color: @black_secunday;
+                            font-family: 'Arial', sans-serif;
+                            font-size: 12px;
+                            font-weight: 400;
+                            font-style: normal;
+                            padding-bottom: unset;
+
+                            > span {
+                                font-size: 12px;
+                            }
+                        }
                 }
 
             }
@@ -74,6 +153,8 @@
                 font-style: normal;
                 text-align: left;
                 color: @grey;
+                font-family: 'Inter', sans-serif;
+                display: flex;
             }
 
             > p:first-child {
@@ -88,7 +169,7 @@
         .container-text-information-footer#contact-social-network-container {
 
             > p {
-                padding-left: 0.9em;
+                padding-left: unset;
             }
 
             > p:last-child {
@@ -97,6 +178,10 @@
 
             > p:first-child {
                 padding-left: unset;
+            }
+
+            > p.box-social-network-contact-us {
+                justify-content: flex-start;
             }
 
         }
@@ -169,6 +254,10 @@
 
 
     body#html-body {
+        
+        .header-mobile-tabs--bottom {
+            display: none;
+        }
 
         //Estilos para el footer
         footer.page-footer {
@@ -183,6 +272,16 @@
                     
                         > div {
                             display: flex;
+                        }
+
+                        > div:nth-child(4) {
+                            flex: 0 0 100%;
+                            max-width: 100%;
+                        }
+
+                        > div:nth-child(2) {
+                            flex: 0 0 100%;
+                            max-width: 100%;
                         }
 
                         > div:nth-child(3),

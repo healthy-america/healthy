@@ -245,7 +245,12 @@
 
                         //estilos de bloques de informacion generales
                         .block{
-                            //pagina de 
+                            //pagina de pedidos
+                            &.block-dashboard-orders{
+                                display: none;
+                            }
+
+                            //pagina de direcciones
                             &.block-addresses-default, &.block-addresses-list{
                                 margin: 0px;
 
@@ -504,6 +509,16 @@
                             &.block-addresses-list{
                                 .block-content{
                                     margin-bottom: 0px;
+                                }
+                            }
+                        }
+
+                        .form{
+                            .fieldset{
+                                .line{
+                                    .field{
+                                        margin: 0;
+                                    }
                                 }
                             }
                         }
