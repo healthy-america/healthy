@@ -2439,7 +2439,7 @@ Time in seconds between the widget updates.,module,Magento_Catalog
 "Skip to the beginning of the images gallery","Saltar al comienzo de la galería de imágenes",module,Magento_Catalog
 "Details","Detalles",module,Magento_Catalog
 "Recently Compared","Comparados recientemente",module,Magento_Catalog
-"Add To Cart","COMPRAR",module,Magento_Catalog
+"Add To Cart","Agregar al carrito",module,Magento_Catalog
 "Add To Compare","Añadir para comparar",module,Magento_Catalog
 "Learn more","Aprenda más",module,Magento_Catalog
 "Recently Viewed","Vistos recientemente",module,Magento_Catalog
@@ -15323,11 +15323,11 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Mini Cart","Mini Carrito"
 "Search","Buscar"
 "My Account","Mi cuenta"
-"Add to Cart","COMPRAR"
+"Add to Cart","Agregar al carrito"
 "Category","Tipo de producto"
 "Price","Precio"
 "<%- count %> products","<%- count %> productos"
-"Add to Cart","COMPRAR"
+"Add to Cart","Agregar al carrito"
 "Details","Descripciòn del producto"
 "Articles","Artículos"
 "Register","Inicia Sesión"
