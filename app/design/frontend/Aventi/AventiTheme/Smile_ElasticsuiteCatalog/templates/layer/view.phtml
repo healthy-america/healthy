@@ -24,7 +24,7 @@
     <div class="block filter mgs-filter" id="layered-filter-block">
 
         <div class="block-content filter-content">
-            <h2>Filtrar por:</h2>
+            <h2><?php echo __('Filtered by') ?>:</h2>
 
 			<div class="block-filter-content">
 				<div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": <?php echo $_helper->getActiveItems(count($block->getFilters())) ?>, "multipleCollapsible": <?= /* @noEscape */ $block->isInline() ? "false" : "true"; ?>}}'>
