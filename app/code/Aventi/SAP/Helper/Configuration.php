@@ -8,7 +8,6 @@ declare(strict_types=1);
 namespace Aventi\SAP\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
-use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
 
 class Configuration extends AbstractHelper
@@ -20,8 +19,11 @@ class Configuration extends AbstractHelper
     const XML_PATH_WS_SAP_USERNAME = 'integration/settings/user';
     const XML_PATH_WS_SAP_PASSWORD = 'integration/settings/password';
     const XML_PATH_WS_URL_PRODUCT = 'integration/settings/ws_products_url';
+    const XML_PATH_WS_URL_PRODUCT_FAST = 'integration/settings/ws_products_fast_url';
+    const XML_PATH_WS_URL_BRAND = 'integration/settings/ws_brand_url';
     const XML_PATH_WS_URL_STOCK = 'integration/settings/ws_stock_url';
     const XML_PATH_WS_URL_PRICE = 'integration/settings/ws_price_url';
+    const XML_PATH_WS_URL_PRICE_FAST = 'integration/settings/ws_price_fast_url';
     const XML_PATH_WS_URL_CUSTOMERS = 'integration/settings/ws_customers_url';
     const XML_PATH_WS_URL_ORDERS = 'integration/settings/ws_orders_url';
     const XML_PATH_WS_URL_STOCK_FAST = 'integration/settings/ws_stock_fast_url';
@@ -31,6 +33,10 @@ class Configuration extends AbstractHelper
     const XML_PATH_SAP_WHSCODE = 'integration/document/whscode';
     const XML_PATH_SAP_SHIPPING = 'integration/document/shipping';
     const XML_PATH_SAP_CN = 'integration/document/cardcode';
+    const XML_PATH_SAP_SERIE = 'integration/document/serie';
+    const XML_PATH_SAP_LISTNUM = 'integration/document/listnum';
+    const XML_PATH_SAP_GROUPCODE = 'integration/document/groupcode';
+    const XML_PATH_SAP_GROUPNUM = 'integration/document/groupnum';
 
     public function getUrlWS($store = null)
     {
@@ -42,6 +48,11 @@ class Configuration extends AbstractHelper
         return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_PRODUCT, ScopeInterface::SCOPE_STORE, $store);
     }
 
+    public function getUrlProductsFast($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_PRODUCT_FAST, ScopeInterface::SCOPE_STORE, $store);
+    }
+
     public function getUrlStock($store = null)
     {
         return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_STOCK, ScopeInterface::SCOPE_STORE, $store);
@@ -50,6 +61,11 @@ class Configuration extends AbstractHelper
     public function getUrlPrice($store = null)
     {
         return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_PRICE, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    public function getUrlPriceFast($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_PRICE_FAST, ScopeInterface::SCOPE_STORE, $store);
     }
 
     public function getUrlOrder($store = null)
@@ -85,5 +101,30 @@ class Configuration extends AbstractHelper
     public function getPassword($store = null)
     {
         return $this->scopeConfig->getValue(self::XML_PATH_WS_SAP_PASSWORD, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    public function getSerie($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SAP_SERIE, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    public function getListNum($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SAP_LISTNUM, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    public function getGroupNum($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SAP_GROUPNUM, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    public function getGroupCode($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SAP_GROUPCODE, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    public function getUrlBrand($store = null)
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_BRAND, ScopeInterface::SCOPE_STORE, $store);
     }
 }

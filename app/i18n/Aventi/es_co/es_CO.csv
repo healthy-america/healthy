@@ -4454,7 +4454,7 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "You aren't subscribed to our newsletter.","No está suscrito a nuestro boletín de noticias.",module,Magento_Customer
 "You have not set a default shipping address.","No ha establecido una dirección de envío predeterminada.",module,Magento_Customer
 "You have not set a default billing address.","No ha establecido una dirección de facturación predeterminada.",module,Magento_Customer
-"Address Book","Direcciones",module,Magento_Customer
+"Address Book","Libreta de direcciones",module,Magento_Customer
 "Edit Address","Editar dirección",module,Magento_Customer
 "Add New Address","Agregar nueva dirección",module,Magento_Customer
 "Customer not logged in","Customer not logged in",module,Magento_Customer
@@ -4777,7 +4777,7 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "Account Created on (%1):","Cuenta creada en (%1):",module,Magento_Customer
 "Account Created in:","Cuenta creada en:",module,Magento_Customer
 "Customer Group:","Grupo de cliente:",module,Magento_Customer
-"Default Billing Address","Dirección principal de facturación",module,Magento_Customer
+"Default Billing Address","Dirección de facturación",module,Magento_Customer
 "Sales Statistics","Estadísticas de Ventas",module,Magento_Customer
 "Web Site","Sitio web",module,Magento_Customer
 "Store","Tienda",module,Magento_Customer
@@ -4785,12 +4785,12 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "Average Sale","Venta promedio",module,Magento_Customer
 "All Store Views","Todas las vistas de la tienda",module,Magento_Customer
 "Change","Cambio",module,Magento_Customer
-"Manage Addresses","Administrar direcciones",module,Magento_Customer
+"Manage Addresses","Gestionar direcciones",module,Magento_Customer
 "Default Shipping Address","Dirección de envío",module,Magento_Customer
 "Account Information","Información de la cuenta",module,Magento_Customer
 "Contact Information","Información del contacto",module,Magento_Customer
 "Change Password","Cambiar la contraseña",module,Magento_Customer
-"Newsletters","Newsletters",module,Magento_Customer
+"Newsletters","Boletines informativos",module,Magento_Customer
 "You are subscribed to ""General Subscription"".","Estás suscrito a ""Suscripción general"".",module,Magento_Customer
 "or","o",module,Magento_Customer
 "My Account","Mi Cuenta",module,Magento_Customer
@@ -5206,7 +5206,7 @@ Email template chosen based on theme fallback when ""Default"" option is selecte
 "Choose Website:","Elegir el sitio web:",module,Magento_CustomerCustomAttributes
 "Please confirm site switching. All data that hasn't been saved will be lost.","Por favor, confirmar cambio de sitio. Se perderán todos los datos que no ha sido guardados.",module,Magento_CustomerCustomAttributes
 "* Required Fields","* Campos obligatorios",module,Magento_CustomerCustomAttributes
-"Contact Information","Información de Contacto",module,Magento_CustomerCustomAttributes
+"Contact Information","Información Personal",module,Magento_CustomerCustomAttributes
 "Company","Empresa",module,Magento_CustomerCustomAttributes
 "Phone Number","Número de teléfono",module,Magento_CustomerCustomAttributes
 "Fax","Fax",module,Magento_CustomerCustomAttributes
@@ -5223,7 +5223,7 @@ Email template chosen based on theme fallback when ""Default"" option is selecte
 "Go back","Regresar",module,Magento_CustomerCustomAttributes
 "Account Information","Información de la cuenta",module,Magento_CustomerCustomAttributes
 "Change Email","Cambiar correo electrónico",module,Magento_CustomerCustomAttributes
-"Change Password","Cambiar contraseña",module,Magento_CustomerCustomAttributes
+"Change Password","Cambio contraseña",module,Magento_CustomerCustomAttributes
 "Change Email and Password","Cambiar Email y contraseña",module,Magento_CustomerCustomAttributes
 "Email","Correo electrónico",module,Magento_CustomerCustomAttributes
 "Current Password","Contraseña actual",module,Magento_CustomerCustomAttributes
@@ -7842,7 +7842,6 @@ it will make no affect on Price filter.",module,Magento_LayeredNavigation
 "Total for this address","Gesamtbetrag für diese Adresse",module,Magento_Multishipping
 "Shipping Methods","Métodos de envío",module,Magento_Multishipping
 "Edit Address","Editar dirección",module,Magento_Multishipping
-"Edit Address","Editar",module,Magento_Customer
 "Edit Billing Address","Modificar dirección de facturación",module,Magento_Multishipping
 "Edit Shipping Address","Modificar dirección de envío",module,Magento_Multishipping
 "Create Billing Address","Crear la dirección de facturación",module,Magento_Multishipping
@@ -15156,7 +15155,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Proceed through checkout faster","Procede a través del checkout más rápido",theme,frontend/Magento/luma
 "Order Status","Estado de pedido",theme,frontend/Magento/luma
 "Check the status of orders","Compruebe el estado de los pedidos",theme,frontend/Magento/luma
-"Manage Addresses","Administrar direcciones",theme,frontend/Magento/luma
+"Manage Addresses","Gestionar direcciones",theme,frontend/Magento/luma
 "Store alternative addresses","Almacena direcciones alternativas",theme,frontend/Magento/luma
 "For shipping to multiple family members and friends","Para envío a varios miembros de la familia y amigos",theme,frontend/Magento/luma
 "Order History","Historial de pedidos",theme,frontend/Magento/luma
@@ -15322,7 +15321,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Your order # is: <span>%1</span>.","Tu número de orden es: <span>%1</span>"
 "Mini Cart","Mini Carrito"
 "Search","Buscar"
-"My Account","Mi cuenta"
+"My Account","Mi información"
 "Add to Cart","COMPRAR"
 "Category","Tipo de producto"
 "Price","Precio"
@@ -15364,6 +15363,6 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Product Name","Nombre ",Magento_VisualMerchandiser
 "Your email address", "Tú dirección Email"
 "Adding...","Añadiendo..."
-"Proceed to Checkout","Proceder al checkout"
-"Account Navigation","Navegación de mi cuenta"
+"Proceed to Checkout to Checkout","Proceder al checkout",
+"Identification Customer","Numero Identificacion"
 
