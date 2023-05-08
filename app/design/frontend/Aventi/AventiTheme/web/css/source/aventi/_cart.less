@@ -57,6 +57,7 @@
             margin-top: 17px;
             .action.btn-update.btn {
                 position: inherit;
+                margin-left: auto;
                 float: none;
 
                 background: @grey-clear;
@@ -80,6 +81,9 @@
         }
 
         #shopping-cart-table {
+            .fa.fa-heart{
+                display: none;
+            }
             thead {
                 display: none;
             }
@@ -182,14 +186,20 @@
         .cart-bottom {
             .line {
                 width: 100%;
+                margin: 0;
 
                 .table-wrapper {
                     padding-top: 10px;
                     display: block;
                 }
 
+                .col-des-6.col-tb-6.col-mb-12{
+                    padding: 0;
+                }
+
                 .cart-totals-container {
                     border: 1px solid @grey-m;
+                    margin-top: 33px;
                     max-width: 350px;
                     margin-left: auto;
                     padding: 0;
@@ -279,6 +289,7 @@
 
             .checkout-extra {
                 border: none;
+                margin: 0;
                 padding: 0px;
 
                 .title {
@@ -288,6 +299,7 @@
                     width: 100%;
                     margin: 0;
                     padding-bottom: 13px;
+                    padding-left: 0;
 
                     strong {
                         font-family: "Montserrat";
@@ -305,6 +317,7 @@
                 .content {
                     padding: 0 20px;
                     border: none;
+                    padding-left: 0;
 
                     input {
                         height: 32px;
@@ -328,6 +341,7 @@
             width: 100%;
 
             .line {
+                margin: 0;
                 flex-direction: column;
                 display: flex;
                 margin: 0;
