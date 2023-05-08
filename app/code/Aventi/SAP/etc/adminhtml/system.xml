@@ -38,10 +38,28 @@
                         Url to sincronice products from SAP to Magento.
                     ]]></comment>
                 </field>
+                <field id="ws_products_fast_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>WS URL Products (Fast Method)</label>
+                    <comment><![CDATA[
+                        Url to sincronice products from SAP to Magento. (Fast Method)
+                    ]]></comment>
+                </field>
+                <field id="ws_brand_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>WS URL Brand</label>
+                    <comment><![CDATA[
+                        Url to sincronice products from SAP to Magento.
+                    ]]></comment>
+                </field>
                 <field id="ws_price_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
                     <label>WS URL Price</label>
                     <comment><![CDATA[
                         Url to sincronice prices from SAP to Magento.
+                    ]]></comment>
+                </field>
+                <field id="ws_price_fast_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="text">
+                    <label>WS URL Price (Fast Method)</label>
+                    <comment><![CDATA[
+                        Url to sincronice prices from SAP to Magento. (Fast Method)
                     ]]></comment>
                 </field>
                 <field id="ws_stock_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="text">
@@ -62,12 +80,12 @@
                         Url to sincronice orders from Magento to SAP.
                     ]]></comment>
                 </field>
-                <field id="ws_customers_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120" translate="label" type="text">
-                    <label>WS URL Customers</label>
-                    <comment><![CDATA[
-                        Url to sincronice customers from SAP to Magento.
-                    ]]></comment>
-                </field>
+<!--                <field id="ws_customers_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="120" translate="label" type="text">-->
+<!--                    <label>WS URL Customers</label>-->
+<!--                    <comment><![CDATA[-->
+<!--                        Url to sincronice customers from SAP to Magento.-->
+<!--                    ]]></comment>-->
+<!--                </field>-->
                 <field id="send_notification" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="130" translate="label" type="select">
                     <label>send notification</label>
                     <comment>Report about change in the price</comment>
@@ -84,13 +102,25 @@
                     <label>WhsCode</label>
                     <comment>Warehouse code to items</comment>
                 </field>
-                <field id="cardcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
-                    <label>CardCode</label>
-                    <comment>CardCode to create orders</comment>
-                </field>
+<!--                <field id="cardcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">-->
+<!--                    <label>CardCode</label>-->
+<!--                    <comment>CardCode to create orders</comment>-->
+<!--                </field>-->
                 <field id="slpcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
                     <label>SlpCode</label>
                     <comment>SlpCode to create orders</comment>
+                </field>
+                <field id="listnum" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>ListNum</label>
+                    <comment>ListNum to create orders</comment>
+                </field>
+                <field id="groupcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>GroupCode</label>
+                    <comment>GroupCode to create orders</comment>
+                </field>
+                <field id="groupnum" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>GroupNum</label>
+                    <comment>GroupNum to create orders</comment>
                 </field>
                 <field id="shipping" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
                     <label>Shipping Code</label>

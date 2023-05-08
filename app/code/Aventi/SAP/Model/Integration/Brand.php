@@ -109,7 +109,7 @@ class Brand extends \Aventi\SAP\Model\Integration
 
             $progressBar = $this->startProgressBar($total);
 
-            foreach ($brands as $brand){
+            foreach ($brands as $brand) {
                 $objBrand = (object) [
                     'name' => $this->prepareBrandName($brand['FirmName']),
                     'firm_code' => $brand['FirmCode']
@@ -133,41 +133,33 @@ class Brand extends \Aventi\SAP\Model\Integration
     {
         $start = 0;
         $rows = 1000;
-        $flag = true;
 
-        while ($flag) {
-            $jsonData = $this->data->getResource(self::TYPE_URI, 0, 0, false);
-            $jsonPath = $this->getJsonPath($jsonData, self::TYPE_URI);
-            if ($jsonPath) {
-                $reader = $this->getJsonReader($jsonPath);
-                $reader->enter(null, Reader::TYPE_OBJECT);
-                $total = $reader->read("total");
-                $brands = $reader->read("data");
+        $jsonData = $this->data->getResource(self::TYPE_URI, 0, 0, false);
+        $jsonPath = $this->getJsonPath($jsonData, self::TYPE_URI);
+        if ($jsonPath) {
+            $reader = $this->getJsonReader($jsonPath);
+            $reader->enter(null, Reader::TYPE_OBJECT);
+            $total = (int)$reader->read("total");
+            $brands = $reader->read("data");
 
-                $progressBar = $this->startProgressBar($total);
+            $progressBar = $this->startProgressBar($total);
 
-                foreach ($brands as $brand){
-                    $objBrand = (object) [
-                        'name' => $this->prepareBrandName($brand['FirmName']),
-                        'firm_code' => $brand['FirmCode']
-                    ];
+            foreach ($brands as $brand) {
+                $objBrand = (object) [
+                    'name' => $this->prepareBrandName($brand['NOMBRE']),
+                    'firm_code' => $brand['U_LINEA']
+                ];
 
-                    $this->managerBrand($objBrand);
+                $this->managerBrand($objBrand);
 
-                    $this->advanceProgressBar($progressBar);
-
-                }
-                $start += $rows;
-                $this->finishProgressBar($progressBar, $start, $rows);
-                $progressBar = null;
-                $this->closeFile($jsonPath);
-                if ($total <= 0) {
-                    $flag = false;
-                }
-            } else {
-                $flag = false;
+                $this->advanceProgressBar($progressBar);
             }
+            $start += $rows;
+            $this->finishProgressBar($progressBar, $start, $rows);
+            $progressBar = null;
+            $this->closeFile($jsonPath);
         }
+
         $this->printTable($this->resTable);
     }
 
@@ -222,7 +214,8 @@ class Brand extends \Aventi\SAP\Model\Integration
             $optionId = $this->saveOption('mgs_brand', $model->getName(), (int)$model->getOptionId());
             $model->setOptionId($optionId);
             $model->save();
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
     }
 
     /**
@@ -276,7 +269,7 @@ class Brand extends \Aventi\SAP\Model\Integration
     {
         $attribute = $this->_productAttributeRepositoryInterface->get($attributeCode);
         $options = $attribute->getOptions();
-        $values = array();
+        $values = [];
         foreach ($options as $option) {
             if ($option->getValue() != '') {
                 $values[] = (int)$option->getValue();

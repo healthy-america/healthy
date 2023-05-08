@@ -16,7 +16,6 @@ use Magento\InventoryApi\Api\Data\SourceItemInterface;
 
 class Stock extends \Aventi\SAP\Model\Integration
 {
-
     const TYPE_URI = 'stock';
     const DEFAULT_SOURCE = 'default';
 
@@ -66,6 +65,16 @@ class Stock extends \Aventi\SAP\Model\Integration
      */
     private \Magento\InventoryApi\Api\SourceItemRepositoryInterface $_sourceItemRepositoryInterface;
 
+    /**
+     * @var \Magento\InventoryApi\Api\Data\SourceInterfaceFactory
+     */
+    private \Magento\InventoryApi\Api\Data\SourceInterfaceFactory $sourceFactory;
+
+    /**
+     * @var \Magento\InventoryApi\Api\SourceRepositoryInterface
+     */
+    private \Magento\InventoryApi\Api\SourceRepositoryInterface $sourceRepository;
+
     public function __construct(
         \Aventi\SAP\Helper\Attribute $attributeDate,
         \Aventi\SAP\Logger\Logger $logger,
@@ -78,7 +87,9 @@ class Stock extends \Aventi\SAP\Model\Integration
         \Magento\Framework\Api\FilterBuilder $filterBuilder,
         \Magento\Framework\Api\Search\FilterGroupBuilder $filterGroupBuilder,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
-        \Magento\InventoryApi\Api\SourceItemRepositoryInterface $sourceItemRepositoryInterface
+        \Magento\InventoryApi\Api\SourceItemRepositoryInterface $sourceItemRepositoryInterface,
+        \Magento\InventoryApi\Api\Data\SourceInterfaceFactory $sourceFactory,
+        \Magento\InventoryApi\Api\SourceRepositoryInterface $sourceRepository
     ) {
         parent::__construct($attributeDate, $logger, $driver, $filesystem);
         $this->sourceItemsSaveInterface = $sourceItemsSaveInterface;
@@ -89,6 +100,8 @@ class Stock extends \Aventi\SAP\Model\Integration
         $this->_filterGroupBuilder = $filterGroupBuilder;
         $this->_searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->_sourceItemRepositoryInterface = $sourceItemRepositoryInterface;
+        $this->sourceFactory = $sourceFactory;
+        $this->sourceRepository = $sourceRepository;
     }
 
     public function test(array $data = null): void
@@ -135,7 +148,7 @@ class Stock extends \Aventi\SAP\Model\Integration
             if ($jsonPath) {
                 $reader = $this->getJsonReader($jsonPath);
                 $reader->enter(null, Reader::TYPE_OBJECT);
-                $total = $reader->read("total");
+                $total = (int)$reader->read("total");
                 $products = $reader->read("data");
                 $progressBar = $this->startProgressBar($total);
                 foreach ($products as $product) {
@@ -143,6 +156,7 @@ class Stock extends \Aventi\SAP\Model\Integration
                         'sku' => $product['ItemCode'],
                         'qty' => ($product['Stock'] <= 0) ? 0 : $product['Stock'],
                         'source' => $product['WhsCode'],
+                        'sourceName' => $product['WhsName'],
                         'isInStock' => ($product['Stock'] <= 0) ? 0 : 1
                     ];
                     $this->managerStock($stockObject);
@@ -172,6 +186,7 @@ class Stock extends \Aventi\SAP\Model\Integration
     private function managerStock(object $stockObject)
     {
         try {
+            $this->checkSource($stockObject->source, $stockObject->sourceName);
             if (!$sourceItem = $this->getSourceBySku($stockObject->sku, $stockObject->source)) {
                 $sourceItem = $this->sourceItemFactory->create();
             }
@@ -227,5 +242,35 @@ class Stock extends \Aventi\SAP\Model\Integration
             $source = $item;
         }
         return $source;
+    }
+
+    public function checkSource($sourceCode, $sourceName)
+    {
+        try {
+            $source = $this->sourceRepository->get($sourceCode);
+            $source->setName($sourceName);
+            $this->sourceRepository->save($source);
+        } catch (NoSuchEntityException $e) {
+            $this->createSource($sourceCode, $sourceName);
+        } catch (CouldNotSaveException | InputException | ValidationException $e) {
+            $this->logger->error("An error has occurred creating stock: " . $e->getMessage());
+        }
+    }
+
+    public function createSource($sourceCode, $sourceName)
+    {
+        try {
+            $source = $this->sourceFactory->create();
+            $source->setSourceCode((string)$sourceCode);
+            $source->setName($sourceName);
+            $source->setCountryId("CO");
+            $source->setRegionId(747);
+            $source->setPostcode('760001');
+            $source->setEnabled(true);
+            $this->sourceRepository->save($source);
+        } catch (CouldNotSaveException | InputException | ValidationException $e) {
+            $this->logger->error("Este error");
+            $this->logger->error($e);
+        }
     }
 }

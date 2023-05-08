@@ -28,16 +28,14 @@ class Save implements InterfaceSave
 
     public function saveFields($params)
     {
-        $this->logger->debug('save fields');
-        $this->logger->debug($params->itemInterface->getSku());
         foreach ($params->checkData as $key => $data) {
-            $this->logger->debug($key);
+            if (empty($data)) {
+                continue;
+            }
             $params->itemInterface->setData($key, $data);
             try {
-                $this->logger->debug('dave params');
                 $params->itemInterface->getResource()->saveAttribute($params->itemInterface, $key);
-                $this->logger->debug('---');
-            } catch (\Exception $e) {
+            } catch (\Exception$e) {
                 $this->logger->debug($e->getMessage());
             }
         }

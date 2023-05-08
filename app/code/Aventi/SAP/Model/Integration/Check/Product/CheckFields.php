@@ -18,7 +18,7 @@ class CheckFields extends AbstractCheck
             'tax_class_id' => $data->tax_class_id,
             'status' =>  $data->status,
             'mgs_brand' => $data->mgs_brand,
-            //'long_description' => $data->long_description,
+            'description' => $data->description,
             'short_description' => $data->short_description,
         ];
 
@@ -32,7 +32,7 @@ class CheckFields extends AbstractCheck
             'tax_class_id' => $item->getData('tax_class_id') ?? '',
             'status' => (int)$item->getData('status') ?? '',
             'mgs_brand' => $item->getData('mgs_brand') ?? '',
-            //'long_description' => $item->getDescription() ?? '',
+            'description' => $item->getDescription() ?? '',
             'short_description' => $item->getShortDescription() ?? ''
         ];
 
