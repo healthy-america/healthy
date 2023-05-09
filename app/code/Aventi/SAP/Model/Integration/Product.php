@@ -7,6 +7,8 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Model\Integration;
 
+use Bcn\Component\Json\Reader;
+
 class Product extends \Aventi\SAP\Model\Integration
 {
     const TYPE_URI = 'product';
@@ -64,6 +66,11 @@ class Product extends \Aventi\SAP\Model\Integration
     private \Magento\Catalog\Model\ProductFactory $productFactory;
 
     /**
+     * @var \Magento\Framework\App\ResourceConnection
+     */
+    private \Magento\Framework\App\ResourceConnection $_resourceConnection;
+
+    /**
      * @param \Aventi\SAP\Helper\Attribute $attributeDate
      * @param \Aventi\SAP\Logger\Logger $logger
      * @param \Magento\Framework\Filesystem\DriverInterface $driver
@@ -91,7 +98,8 @@ class Product extends \Aventi\SAP\Model\Integration
         \Aventi\SAP\Model\Integration\Check\Product\CheckFields $checkFields,
         \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct,
         \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement,
-        \Magento\Catalog\Model\ProductFactory $productFactory
+        \Magento\Catalog\Model\ProductFactory $productFactory,
+        \Magento\Framework\App\ResourceConnection $resourceConnection
     ) {
         parent::__construct($attributeDate, $logger, $driver, $filesystem);
 
@@ -104,42 +112,7 @@ class Product extends \Aventi\SAP\Model\Integration
         $this->saveProduct = $saveProduct;
         $this->categoryLinkManagement = $categoryLinkManagement;
         $this->productFactory = $productFactory;
-    }
-
-    public function test(array $data = null): void
-    {
-        $start = 0;
-        $rows = 1000;
-
-        $products = \Aventi\SAP\Model\Integration\Generator\Product::getProducts();
-        $total = count($products);
-
-        $progressBar = $this->startProgressBar($total);
-
-        foreach ($products as $product) {
-            $itemObject = (object) [
-                'sku' => $product['Sku'],
-                'name' => strtoupper($product['Name']),
-                'tax_class_id' => $this->getTax($product['Tax']),
-                'status' => $this->getStatus($product['frozenFor']),
-                'mgs_brand' => $this->getBrandId($product['FirmCode']),
-                'short_description' => $product['Description'],
-                'long_description' => $product['LongDescription'],
-                'category_ids' => $this->attributeDate->getCategoryIds($product),
-                'custom_attributes' => [
-                ]
-            ];
-
-            $this->managerProduct($itemObject);
-
-            $this->advanceProgressBar($progressBar);
-            // Debug only
-            $total--;
-        }
-        $this->finishProgressBar($progressBar, $start, $rows);
-        $progressBar = null;
-
-        $this->printTable($this->resTable);
+        $this->_resourceConnection = $resourceConnection;
     }
 
     /**
@@ -160,21 +133,23 @@ class Product extends \Aventi\SAP\Model\Integration
             $jsonPath = $this->getJsonPath($jsonData, self::TYPE_URI);
             if ($jsonPath) {
                 $reader = $this->getJsonReader($jsonPath);
-                $reader->enter(null, \Bcn\Component\Json\Reader::TYPE_OBJECT);
-                $total = $reader->read('total');
+                $reader->enter(null, Reader::TYPE_OBJECT);
+                $total = (int)$reader->read('total');
                 $products = $reader->read('data');
                 $progressBar = $this->startProgressBar($total);
                 foreach ($products as $product) {
                     $itemObject = (object) [
-                        'sku' => $product['Sku'],
-                        'name' => strtoupper($product['Name']),
-                        'tax_class_id' => $this->getTax($product['Tax']),
+                        'sku' => $product['ItemCode'],
+                        'name' => strtoupper(!empty($product['ItemName']) ? $product['ItemName'] : $product['ItemCode']),
+                        'tax_class_id' => $this->getTax($product['TaxCodeAR']),
                         'status' => $this->getStatus($product['frozenFor']),
-                        'mgs_brand' => $this->getBrandId($product['FirmCode']),
-                        'short_description' => $product['Description'],
-                        //'long_description' => $product['LongDescription'],
-                        'category_ids' => $this->attributeDate->getCategoryIds($product),
+                        'mgs_brand' => $this->getBrandIdByFirmCode($product['U_LINEA']),
+                        'short_description' => "",//$product['Description'],
+                        'description' => $product['FrgnName'],
+//                        'category_ids' => $this->attributeDate->getCategoryIds($product),
                         'custom_attributes' => [
+                            'presentation' => $product['SalUnitMsr'],
+                            'invima_registration' => $product['U_invima']
                         ]
                     ];
                     $this->managerProduct($itemObject);
@@ -206,24 +181,24 @@ class Product extends \Aventi\SAP\Model\Integration
         try {
             $item = $this->productRepository->get($itemObject->sku);
             $resultCheck = $this->checkFields->checkData($itemObject, $item);
-            $checkCategories = $this->checkFields->checkCategories($itemObject, $item);
+//            $checkCategories = $this->checkFields->checkCategories($itemObject, $item);
 
-            if (!$resultCheck && !$checkCategories) {
+//            if (!$resultCheck && !$checkCategories) {
+            if (!$resultCheck) {
                 $this->resTable['check']++;
             } else {
                 if ($resultCheck) {
-                    $this->logger->debug(json_encode($this->getDataCheck($item, $resultCheck)));
                     $this->saveProduct->saveFields($this->getDataCheck($item, $resultCheck));
                     $this->eventManager->dispatch('sap_product_save_after', [
                         'product' => $item
                     ]);
                 }
-                if ($checkCategories) {
-                    $this->categoryLinkManagement->assignProductToCategories(
-                        $itemObject->sku,
-                        $itemObject->category_ids
-                    );
-                }
+//                if ($checkCategories) {
+//                    $this->categoryLinkManagement->assignProductToCategories(
+//                        $itemObject->sku,
+//                        $itemObject->category_ids
+//                    );
+//                }
                 $this->resTable['updated']++;
             }
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
@@ -268,7 +243,7 @@ class Product extends \Aventi\SAP\Model\Integration
                 'product' => $newProduct
             ]);
 
-            $this->categoryLinkManagement->assignProductToCategories($itemObject->sku, $itemObject->category_ids);
+//            $this->categoryLinkManagement->assignProductToCategories($itemObject->sku, $itemObject->category_ids);
             $this->resTable['new']++;
         } catch (
             \Magento\Framework\Exception\CouldNotSaveException |
@@ -283,19 +258,18 @@ class Product extends \Aventi\SAP\Model\Integration
      * @return int
      * @throws \Magento\Framework\Exception\InputException
      */
-    private function getTax($tax): int
+    private function getTax($tax)
     {
+        $taxClassId = null;
         $searchCriteria = $this->searchCriteriaBuilder
             ->addFilter('code', $tax, 'eq')
             ->create();
 
         $rateItems = $this->taxRuleRepository->getList($searchCriteria)->getItems();
 
-        $taxClassId = 2;
         foreach ($rateItems as $rateItem) {
             $taxClassId = $rateItem->getProductTaxClassIds()[0];
         }
-
         return $taxClassId;
     }
 
@@ -313,22 +287,6 @@ class Product extends \Aventi\SAP\Model\Integration
         }
 
         return $status;
-    }
-
-    /**
-     * @param string $brand
-     * @return mixed
-     */
-    private function getBrandId(string $brand)
-    {
-        $mgsBrand = [
-            'optionId' => $this->getOptionId($brand, 'mgs_brand'),
-            'optionLabel' => $brand
-        ];
-        $this->eventManager->dispatch('sap_attribute_save_after', [
-            'brand' => $mgsBrand
-        ]);
-        return $mgsBrand['optionId'];
     }
 
     /**
@@ -364,7 +322,19 @@ class Product extends \Aventi\SAP\Model\Integration
     {
         $randomString = substr(str_shuffle("abcdefghijklmnopqrstuvwxyz"), 0, 5);
         $rand = rand(100, 999);
-        return $url . '-' . 'as' . $rand  . $randomString;
+        return $url . '-' . 'as' . $rand . $randomString;
     }
 
+    /**
+     * @param $firmCode
+     * @return int
+     */
+    private function getBrandIdByFirmCode($firmCode)
+    {
+        $connection = $this->_resourceConnection->getConnection();
+        $tableName = $this->_resourceConnection->getTableName('mgs_brand');
+        $selectQry = $connection->select()->from($tableName)->where('firm_code = ?', $firmCode);
+        $brand = $connection->fetchRow($selectQry);
+        return $brand ? (int)$brand['option_id'] : -1;
+    }
 }

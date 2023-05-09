@@ -80,6 +80,7 @@ class Data extends AbstractHelper
         try {
             if ($mainUri) {
                 $url = $this->formatUrl($mainUri, $typeUri, $start, $rows, $fast);
+                $this->logger->debug($url);
                 $headers = [
                     "Content-Type" => "application/json"
                 ];
@@ -110,13 +111,14 @@ class Data extends AbstractHelper
         try {
             if ($mainUri) {
                 $url = $this->formatUrl($mainUri, $typeUri);
-                if ($this->getToken() === null) {
-                    $this->generateToken();
-                }
+//                if ($this->getToken() === null) {
+//                    $this->generateToken();
+//                }
                 $headers = [
-                    "Authorization" => "Bearer {$this->getToken()}"
+                    "Content-Type" => "application/json"
+//                    "Authorization" => "Bearer {$this->getToken()}"
                 ];
-                $this->curl->setHeaders($headers);
+//                $this->curl->setHeaders($headers);
                 $this->curl->post($url, $params);
                 return [
                     "status" => $this->curl->getStatus(),
@@ -146,34 +148,35 @@ class Data extends AbstractHelper
     {
         switch ($type) {
             case 'price':
-                $customDate = '1900-01-01';
-                $uri = $this->configHelper->getUrlPrice();
                 if ($fast) {
-                    $customDate = date('Y-m-d', strtotime($this->_dateTime->date('Y-m-d')));
+                    $uri = $this->configHelper->getUrlPriceFast();
+                }else{
+                    $uri = $this->configHelper->getUrlPrice();
                 }
-                $uri .= $start . "/" . $rows . "/" . $customDate;
+                $uri .= $start . "/" . $rows;
                 break;
             case 'product':
-                $uri = $this->configHelper->getUrlProducts();
                 if ($fast) {
-                    $uri.= "0/" . $start . "/" . $rows;
+                    $uri = $this->configHelper->getUrlProductsFast();
                 } else {
-                    $uri.= "1/" . $start . "/" . $rows;
+                    $uri = $this->configHelper->getUrlProducts();
                 }
+                $uri.= $start . "/" . $rows;
                 break;
             case 'stock':
                 if ($fast) {
                     $uri = $this->configHelper->getUrlStockFast();
                 } else {
                     $uri = $this->configHelper->getUrlStock();
-                    $uri.= "1/" . $start . "/" . $rows;
                 }
+                $uri.= $start . "/" . $rows;
                 break;
             case 'order':
                 $uri = $this->configHelper->getUrlOrder();
                 break;
             case 'brand':
                 $uri = $this->configHelper->getUrlBrand();
+                break;
             case 'category':
                 $uri = $this->configHelper->getUrlCategory();
                 break;

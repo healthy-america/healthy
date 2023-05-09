@@ -2439,7 +2439,7 @@ Time in seconds between the widget updates.,module,Magento_Catalog
 "Skip to the beginning of the images gallery","Saltar al comienzo de la galería de imágenes",module,Magento_Catalog
 "Details","Detalles",module,Magento_Catalog
 "Recently Compared","Comparados recientemente",module,Magento_Catalog
-"Add To Cart","COMPRAR",module,Magento_Catalog
+"Add To Cart","Agregar al carrito",module,Magento_Catalog
 "Add To Compare","Añadir para comparar",module,Magento_Catalog
 "Learn more","Aprenda más",module,Magento_Catalog
 "Recently Viewed","Vistos recientemente",module,Magento_Catalog
@@ -15323,11 +15323,11 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Mini Cart","Mini Carrito"
 "Search","Buscar"
 "My Account","Mi cuenta"
-"Add to Cart","COMPRAR"
+"Add to Cart","Agregar al carrito"
 "Category","Tipo de producto"
 "Price","Precio"
 "<%- count %> products","<%- count %> productos"
-"Add to Cart","COMPRAR"
+"Add to Cart","Agregar al carrito"
 "Details","Descripciòn del producto"
 "Articles","Artículos"
 "Register","Inicia Sesión"
@@ -15360,10 +15360,11 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Send us a note and we will contact you as soon as possible.","Envíenos una nota y nos pondremos en contacto con usted lo antes posible."
 "This site is protected by reCAPTCHA and Google Privacy Policy and Terms of Service apply.","Este sitio está protegido por reCAPTCHA y se aplican la Política de privacidad de Google  y los Términos del servicio."
 "The requested qty exceeds the maximum qty allowed in shopping cart","La cantidad solicitada excede la cantidad máxima permitida en el carrito de compras"
-"Sort by","Mostrar por "
+"Sort by","Ordenar por"
 "Product Name","Nombre ",Magento_VisualMerchandiser
 "Your email address", "Tú dirección Email"
 "Adding...","Añadiendo..."
 "Proceed to Checkout","Proceder al checkout"
 "Account Navigation","Navegación de mi cuenta"
 "Order number","Número de orden"
+"Filtered by","Filtrado por"

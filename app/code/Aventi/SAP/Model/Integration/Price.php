@@ -111,13 +111,13 @@ class Price extends \Aventi\SAP\Model\Integration
             if ($jsonPath) {
                 $reader = $this->getJsonReader($jsonPath);
                 $reader->enter(null, Reader::TYPE_OBJECT);
-                $total = $reader->read('total');
+                $total = (int)$reader->read('total');
                 $products = $reader->read('data');
                 $progressBar = $this->startProgressBar($total);
                 foreach ($products as $product) {
                     $priceObject = (object) [
-                        'sku' => $product['Sku'],
-                        'price' => $product['Price']
+                        'sku' => $product['ItemCode'],
+                        'price' => !empty($product['Price']) ? $product['Price'] : 0
                     ];
                     $this->managerPrice($priceObject);
                     $this->advanceProgressBar($progressBar);

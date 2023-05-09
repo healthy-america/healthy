@@ -1,195 +1,418 @@
+//  All devices
 & when (@media-common =true) {
-    #html-body.catalog-product-view {
-        .column.main {
-            border-top: 4px solid #d9d9d9;
 
-            .block-heading {
-                text-align: left;
-                .title {
+    body#html-body.catalog-product-view{
+         
+        //titulo de pagina con fondo
+        #page-title-wrapper{
+            background-image: url('/media/aventi/images/myAccount.png');
+            padding: 150px 0px 20px 0px;
+            text-align: left;
 
-                    &::before{
-                        display: none;
-                    }
+            &::before{
+                background: rgba(0,0,0,0.6);
+            }
 
-                    &::after{
-                        display: none;
-                    }
+            .page-title{
+                max-width: 1200px;
+                margin: auto;
+                padding: 0px 15px;
 
-                    span {
-                        font-family: "Montserrat";
-                        font-weight: 600;
-                        font-size: 24px;
-                        line-height: 28px;
-                        color: #dc041c;
-                    }
+                span{
+                    font-weight: 600;
+                    font-size: 42px;
                 }
-
             }
         }
 
-        .product-info-main {
-            .product-social-links {
-                display: none;
-            }
+        //color a las breadcrumbs
+        .breadcrumbs{
+            max-width: 1200px;
+            background: none;
+            padding: 20px 15px;
+            margin-bottom: 25px;
 
-            .field.qty {
-                display: none;
-            }
-
-            .stock.available {
-                display: none;
-            }
-
-            .box-tocart {
-                .actions {
-                    width: 100%;
-                    button.tocart {
-                        width: 100%;
-                    }
-                }
-            }
-
-            .product-detail-deals {
-                display: none;
-            }
-
-            .custom-atribute {
-                .title,
-                .value {
-                    font-family: "Montserrat";
-                    font-weight: 600;
-                    font-size: 16px;
-                    line-height: 24px;
-                    color: @color-primary;
-
-                    .value {
-                        font-weight: 400;
-                    }
-                }
-            }
-
-            .product-info-price {
-                div.price-box.price-final_price {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-                }
-                .price {
-                    font-family: "Montserrat";
-                    font-weight: 600;
-                    font-size: 24px;
-                    line-height: 28px;
-                    color: @color-primary;
-                }
-                .special-price {
-                    .price {
-                        font-family: "Montserrat";
-                        font-weight: 600;
-                        font-size: 24px;
-                        line-height: 28px;
-                        color: @color-primary;
-                    }
-                }
-                .old-price {
-                    .price {
-                        font-size: 14px;
-                        color: #606060;
-                    }
-                }
-            }
-
-            .product-name {
-                font-family: "Montserrat";
-                font-weight: 700;
-                font-size: 32px;
-                line-height: 36px;
-                color: @color-primary;
-            }
-
-            .product.attribute.overview {
-                font-family: "Montserrat";
-                font-weight: 400;
-                font-size: 14px;
-                line-height: 18px;
-                text-align: justify;
-
-                color: #4a4f55;
-            }
-        }
-
-        .product.data.items {
-            display: block;
-            float: none;
-            width: 100%;
-            .data.item.title {
-                width: 100%;
+            .items{
+                display: flex;
+                align-items: center;
                 padding: 0;
 
-                &:not(.active) {
-                    margin-bottom: 10px;
-                }
-
-                a.data.switch {
-                    border-radius: 0;
-                    background: #f5f5f5 !important;
-                    border: none;
-                    color: #000000;
-                    padding: 0 20px !important;
-
-                    text-align: left;
-                    height: auto;
-
-                    &::after {
-                        content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=90deg");
-                        position: absolute;
-                        right: 11px;
-                        top: 3px;
-                        background: transparent;
-                    }
-
-                    &:hover,
-                    &:focus {
-                        background: @color-primary !important;
-                        color: #fff;
-
-                        &::after {
-                            content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23ffffff&rotate=90deg");
-                            background: transparent;
-                        }
+                .item{
+                    display: flex;
+                    align-items: center;
+                    max-width: unset;
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: @grey-dark;
+                    
+                    a, strong{
+                        max-width: unset;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: @grey-dark;
                     }
                 }
+            }
+        }
 
-                &.active {
-                    a.data.switch {
-                        &::after {
-                            content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=270deg");
-                            background: transparent;
+        #maincontent{
+            .column.main{
+                padding-top: 20px;
+                border-bottom: 4px solid #D9D9D9;
+    
+                //informacion de la derecha 
+                .product-info-main {
+    
+                    //se ocultan algunos elementos
+                    .product-social-links, .field.qty, .stock.available, .product-detail-deals {
+                        display: none;
+                    }
+    
+                    //nombre del producto
+                    .product-name {
+                        font-weight: 700;
+                        font-size: 32px;
+                        color: @color-primary;
+                    }
+    
+                    //precio y descripcion
+                    .product-info-price {
+                        .price-box.price-final_price {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+    
+                            .special-price {
+                                .price {
+                                    font-weight: 600;
+                                    font-size: 24px;
+                                    color: @color-primary;
+                                }
+                            }
+                            .old-price {
+                                .price {
+                                    font-size: 14px;
+                                    color: #606060;
+                                }
+                            }
                         }
-
-                        &:hover,
-                        &:focus {
-                            &::after {
-                                content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23ffffff&rotate=270deg");
-                                background: transparent;
+    
+                        .product.attribute.overview {
+                            p{
+                                font-weight: 400;
+                                font-size: 14px;  
+                                text-align: justify;
+                                color: @grey;
+                            }
+                        }
+                    }
+        
+                    //añadir al carrito
+                    .box-tocart {
+                        .actions {
+                            width: 100%;
+    
+                            button.action.primary.tocart{
+                                width: 100%;
+    
+                                span{
+                                    text-transform: capitalize;
+                                    display: flex;
+                                    flex-direction: row-reverse;
+                                    justify-content: center;
+                                    align-items: center;
+                                    gap: 10px;
+                                }
+                            }
+                        }
+                    }
+        
+                    //descripcion 2
+                    .custom-atribute {
+                        *{
+                            color: @color-primary;
+                            font-size: 16px;
+                            font-weight: 600;
+                            
+                        }
+                        .value {
+                            font-weight: 400;
+                            margin-left: 5px;
+                        }
+                    }
+    
+                    //tabs
+                    .product-tab-wrapper{
+                        .product.data.items {
+                            display: block;
+                            float: none;
+                            width: 100%;
+    
+                            .data.item.title {
+                                width: 100%;
+                                padding: 0;
+                
+                                &:not(.active) {
+                                    margin-bottom: 10px;
+                                }
+                
+                                a.data.switch {
+                                    padding: 0px 20px !important;
+                                    background: #F5F5F5 !important;
+                                    border-radius: unset;
+                                    border: none;
+                                    color: @black;
+                                    text-align: left;
+                                    height: auto;
+                
+                                    &::after {
+                                        content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=90deg");
+                                        position: absolute;
+                                        right: 11px;
+                                        top: 4px;
+                                    }
+                                }
+                
+                                &.active {
+                                    a.data.switch {
+                                        &::after {
+                                            content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=270deg");
+                                        }
+                                    }
+                                }
+                            }
+                
+                            .data.content {
+                                float: none;
+                                margin: 0;
+                                padding: 10px 20px;
+                                margin-bottom: 10px;
+                                background: #f5f5f5 !important;
+                
+                                .description {
+                                    font-weight: 400;
+                                    font-size: 14px;
+                                    color: @grey-dark;
+                                }
+    
+                                //tab de reviews
+                                .block.review-add{
+                                    margin-bottom: 15px;
+    
+                                    .block-title{
+                                        display: none;
+                                    }
+    
+                                    .block-content{
+                                        fieldset{
+                                            margin: 0px;
+                                            
+                                            //subtitle
+                                            legend{
+                                                font-weight: 400;
+                                                font-size: 14px;
+    
+                                                span{
+                                                    color: @grey-dark;
+                                                }
+                                                strong{
+                                                    color: @color-primary;
+                                                    font-weight: 500;
+                                                }
+                                            }
+    
+                                            //inputs
+                                            .line{
+                                                margin-top: 15px;
+                                                
+                                                .label{
+                                                    &::after{
+                                                        display: none;
+                                                    }
+    
+                                                    span{
+                                                        color: @grey-dark;
+                                                        font-weight: 400;
+                                                        font-size: 14px;
+                                                    }
+                                                }
+                                            }
+                                        }
+    
+                                        //boton enviar
+                                        .actions-toolbar{
+                                            margin: 0px;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
+        }
 
-            .data.content {
-                float: none;
-                margin: 0;
-                padding: 10px 20px;
-                margin-bottom: 10px;
-                background: #f5f5f5 !important;
+        .page-main-details{
+            #additional, #reviews{
+                display: none;
+            }
 
-                .description {
-                    font-family: "Montserrat";
-                    font-weight: 400;
-                    font-size: 14px;
-                    line-height: 18px;
-                    color: #616161;
+            .block-releated{
+                padding: 0px;
+
+                .block-heading{
+                    text-align: left;
+
+                    .title{
+                        &::after, &::before{
+                            display: none;
+                        }
+                        #block-related-heading{
+                            font-weight: 600;
+                            font-size: 24px;
+                            color: @color-secondary;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+
+//  Desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+
+//  Mobile
+
+
+.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
+
+    body#html-body.catalog-product-view{
+
+        .page-wrapper{
+            div#page-title-wrapper, .breadcrumbs{
+                display: none;
+            }
+
+            #maincontent{
+                .column.main{
+                    padding-top: 20px;
+                    border: none;
+        
+                    //informacion de la derecha 
+                    .product-info-main {
+                        position: relative;
+                        
+                        //nombre del producto
+                        .product-name {
+                            font-weight: 600;
+                            font-size: 16px;
+                            margin-bottom: 0px;
+                        }
+
+                        //precio y descripcion
+                        .product-info-price{
+                            .price-box.price-final_price{
+                                margin-top: 0px;
+                            }
+
+                            .product.attribute{
+                                margin-top: 60px;
+                            }
+                        }
+
+                        //descripcion 2
+                        .custom-atribute{
+                            position: absolute;
+
+                            &.one{
+                                top: 95px;
+                            }
+                            &.two{
+                                top: 120px;
+                            }
+                        }
+
+                        //añadir al carrito
+                        .box-tocart {
+                            .field.qty{
+                                display: flex;
+                                width: 40%;
+
+                                .control{
+                                    width: 100%;
+                                    background: #D9DFE7;
+                                    border-radius: 4px;
+                                    border: none;
+
+                                    input{
+                                        width: 100%;
+                                        font-weight: 300;
+                                    }
+
+                                    span{
+                                        padding-top: 7px;
+                                        font-weight: 100;
+                                    }
+                                }
+                            }
+
+                            .actions{
+                                white-space: nowrap;
+                                flex: 1;
+                                width: 60%;
+                                padding: 0px;
+                            }
+                        }
+            
+                        //tabs
+                        .product-tab-wrapper{
+                            margin-top: 30px;
+                            margin-bottom: 0px;
+
+                            .product.data.items {
+                                .data.item.title {
+                                    a.data.switch {
+                    
+                                        &::after {
+                                            background: transparent;
+                                        }
+                                    }
+                    
+                                    &.active {
+                                        a.data.switch {
+                                            &::after {
+                                                background: transparent;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            .page-main-details{
+                .block-releated{
+                    margin: 0;
+                    
+                    .block-heading{
+                        margin: 0;
+
+                        .title{
+                            #block-related-heading{
+                                font-size: 14px;
+                                color: @color-primary;
+                            }
+                        }
+    
+                    }
                 }
             }
         }

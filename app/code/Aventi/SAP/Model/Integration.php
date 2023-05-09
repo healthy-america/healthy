@@ -10,7 +10,6 @@ namespace Aventi\SAP\Model;
 use Aventi\SAP\Helper\Attribute;
 use Aventi\SAP\Logger\Logger;
 use Bcn\Component\Json\Reader;
-use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Exception\LocalizedException;
@@ -182,24 +181,14 @@ abstract class Integration
         }
     }
 
-    /**
-     * Print Table with synchro results.
-     * @param $title
-     * @param $headers
-     * @param $response
-     */
-    public function printCustomTable($title, $headers, $response)
+    public function printOrderTable($response)
     {
         $out = $this->getOutput();
         if ($out) {
             $out->writeln("\n");
             $table = new Table($out);
-            $table->setHeaderTitle($title);
-            $table->setHeaders($headers);
-            foreach ($response as $clave => $valor){
-                $table->addRow(['Data '.ucfirst($clave), $valor]);
-            }
-            $table->setColumnWidths([20,20]);
+            $table->setHeaders($response['headers']);
+            $table->setRows([$response['rows']]);
             $table->render();
         }
     }
@@ -271,13 +260,5 @@ abstract class Integration
      * @param array|null $data
      * @return void
      */
-    public abstract function process(array $data = null): void;
-
-    /**
-     * Main procedure
-     *
-     * @param array|null $data
-     * @return void
-     */
-    public abstract function test(array $data = null): void;
+    abstract public function process(array $data = null): void;
 }

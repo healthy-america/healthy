@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9584d26fad94c9d4767dcb90f5624440",
+    "content-hash": "f3d3bd51c649203f255994c389157c35",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -288,6 +288,60 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.8"
             },
             "time": "2022-12-07T17:46:57+00:00"
+        },
+        {
+            "name": "bcncommerce/json-stream",
+            "version": "0.4.2",
+            "target-dir": "Bcn/Component/Json",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/skolodyazhnyy/json-stream.git",
+                "reference": "f7f83c6cbd28a0e23663c4fa158d8973395505c3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/skolodyazhnyy/json-stream/zipball/f7f83c6cbd28a0e23663c4fa158d8973395505c3",
+                "reference": "f7f83c6cbd28a0e23663c4fa158d8973395505c3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "bcncommerce/stream-wrapper": "dev-master",
+                "phpunit/phpunit": "^9.5",
+                "symfony/yaml": "^5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Bcn\\Component\\Json\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sergey Kolodyazhnyy",
+                    "email": "sergey.kolodyazhnyy@gmail.com"
+                }
+            ],
+            "description": "A bundle of tools to work with JSON in PHP",
+            "keywords": [
+                "json",
+                "parser",
+                "reader",
+                "streaming",
+                "writer"
+            ],
+            "support": {
+                "issues": "https://github.com/skolodyazhnyy/json-stream/issues",
+                "source": "https://github.com/skolodyazhnyy/json-stream/tree/0.4.2"
+            },
+            "time": "2021-01-12T11:38:25+00:00"
         },
         {
             "name": "beberlei/assert",
@@ -26970,5 +27024,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

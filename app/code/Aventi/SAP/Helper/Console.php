@@ -45,23 +45,23 @@ class Console
                 break;
             case 'product':
                 $class = \Aventi\SAP\Model\Integration\Product::class;
-                $data = ['fast' => false];
+                $data = ['fast' => !empty($option2)];
                 break;
             case 'price':
                 $class = \Aventi\SAP\Model\Integration\Price::class;
-                $data = ['fast' => false];
+                $data = ['fast' => !empty($option2)];
                 break;
             case 'stock':
                 $class = \Aventi\SAP\Model\Integration\Stock::class;
-                $data = ['fast' => false];
+                $data = ['fast' => !empty($option2)];
                 break;
             case 'brand':
                 $class = \Aventi\SAP\Model\Integration\Brand::class;
-                $data = ['fast' => false];
+                $data = ['fast' => !empty($option2)];
                 break;
             case 'category':
                 $class = \Aventi\SAP\Model\Integration\Category::class;
-                $data = ['fast' => false];
+                $data = ['fast' => !empty($option2)];
                 break;
             default:
                 throw new InputException(__("Option not defined."));
@@ -70,7 +70,7 @@ class Console
         $object = $this->objectManager->create($class);
 
         $object->setOutput($output);
-        //$object->process($data);
-        $object->test($data);
+        $object->process($data);
+//        $object->test($data);
     }
 }
