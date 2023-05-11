@@ -675,17 +675,30 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
     </div>
 
     <script>
-        function toggleTopSearch() {
-            var windowWidth = window.innerWidth;
-            var searchMobile = document.getElementById('search-mobile');
-
-            // Verificar si el tamaño de la pantalla es inferior a 1200px
-            if (windowWidth < 1200) {
-                if (searchMobile) {
-                    // Eliminar completamente el elemento del HTML
-                    searchMobile.remove();
-                }
-            }
-        }
 
     </script>
+
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function($) {
+        let searchMobile = document.getElementById('search-mobile');
+        const searchMobileInner = searchMobile.innerHTML;
+        $(document).ready(function() {
+            console.log(searchMobile);
+            if ($(window).width() > 767) {
+                searchMobile.innerHTML = '';
+            } else {
+                searchMobile.innerHTML = searchMobileInner;
+            }
+        });
+        $(window).resize(function() {
+            console.log(searchMobile.innerHTML);
+            if ($(this).width() > 767) {
+                searchMobile.innerHTML = '';
+            } else {
+                searchMobile.innerHTML = searchMobileInner;
+            }
+        });
+    });
+</script>
