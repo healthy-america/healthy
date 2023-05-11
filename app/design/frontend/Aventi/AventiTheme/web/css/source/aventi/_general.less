@@ -49,18 +49,18 @@
         // Primary
         button.btn-primary,
         button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.btn-default, .action.delete{
-            color: @background-footer;
-            background: @color-primary;
+            color:@primary-button-color-text;
+            background: @primary-button-background;
             border: 1px solid  @color-primary;
             transition: all 0.1s ease-in-out;
 
             span {
-                color: @background-footer;
+                color: @primary-button-color-text;
             }
 
             &:hover {
-                background: @blue-hover;
-                border: 1px solid @blue-hover;
+                background: @primary-button-background-hover;
+                border: 1px solid @primary-button-background;
             }
 
             &:active {
@@ -174,9 +174,9 @@
                 font-size: 16px;
                 line-height: 19px;
                 text-align: center;
-                color: #ffffff;
+                color: @primary-button-color-text;
 
-                background: @color-secondary;
+                background: @primary-button-background;
 
                 .icon.pe-7s-shopbag {
                     display: none;
@@ -354,7 +354,7 @@ body , html {
     p::selection,
     *::selection {
         color: #fff;
-        background-color: @color-primary-dark;
+        background-color: @color-primary;
     }
 
 }
