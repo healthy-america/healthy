@@ -114,12 +114,19 @@
                 }
 
                 .counter.qty {
-                    width: 30px;
-                    height: 30px;
+                    width: 12px;
+                    height: 15px;
                     position: absolute;
-                    left: 0;
+                    left: 17px;
                     top: 0px;
-                    opacity: 0;
+                    opacity: 1;
+                    line-height: 15px;
+                    min-width: 12px;
+                    background: var(--link__color);
+                    background: @color-secondary;
+                    span{
+                        font-size: 10px;
+                    }
                 }
             }
 
@@ -195,6 +202,17 @@
 
                     .fa {
                         margin-right: 15px;
+
+                        &::before{
+                            background: url('https://api.iconify.design/material-symbols/menu.svg?color=white') no-repeat center center / contain;
+                            content: "";
+                            width: 26px;
+                            height: 26px;
+                            display: block;
+                            position: relative;
+                            bottom: -6px;
+                        
+                        }
                     }
                 }
             }
