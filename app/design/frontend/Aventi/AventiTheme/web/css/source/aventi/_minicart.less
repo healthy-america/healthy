@@ -59,9 +59,26 @@
 
                                 > div.product-item-photo {
                                 
-                                    > div.product.actions > div.primary > a.action {
-                                        background-color: #fff;
+                                    > div.product.actions {
                                     
+                                        > div.secondary > a.action , 
+                                        > div.primary > a.action {
+                                            background-color: #fff;
+                                            border: 1px solid #fff;
+
+                                            &:hover {
+                                                color: @grey !important; //tienen un !important que no deja darle estilos
+                                                //hacer un zoom al hover
+
+                                                &::after ,
+                                                &::before {
+                                                    transform: scale(1.1);
+                                                }
+
+                                            }
+
+                                        }
+
                                     }
 
                                     > a.product-item-photo {
