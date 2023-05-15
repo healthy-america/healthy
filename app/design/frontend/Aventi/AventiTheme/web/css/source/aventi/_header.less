@@ -21,11 +21,15 @@
                 font-size: 12px;
                 line-height: 14px;
 
-                color: @color-primary;
+                color: @topbarcolor !important;
 
                 @media (max-width: 767px) {
                     display: none;
                 }
+            }
+
+            .top-header{
+                background: @topbarbg;
             }
 
             .middle-header {
@@ -110,12 +114,19 @@
                 }
 
                 .counter.qty {
-                    width: 30px;
-                    height: 30px;
+                    width: 12px;
+                    height: 15px;
                     position: absolute;
-                    left: 0;
+                    left: 17px;
                     top: 0px;
-                    opacity: 0;
+                    opacity: 1;
+                    line-height: 15px;
+                    min-width: 12px;
+                    background: var(--link__color);
+                    background: @color-secondary;
+                    span{
+                        font-size: 10px;
+                    }
                 }
             }
 
@@ -173,13 +184,12 @@
                     }
                 }
 
-                background-color: #222222;
+                background-color:  @header_background_color;
                 .vertical-title {
                     font-size: 14px;
-                    text-transform: uppercase;
                     font-weight: 500;
                     color: #fff;
-                    background-color: @color-primary-dark;
+                    background-color: @aventi_navigation__background;
                     height: 50px;
                     line-height: 50px;
                     padding: 0 28px;
@@ -192,6 +202,17 @@
 
                     .fa {
                         margin-right: 15px;
+
+                        &::before{
+                            background: url('https://api.iconify.design/material-symbols/menu.svg?color=white') no-repeat center center / contain;
+                            content: "";
+                            width: 26px;
+                            height: 26px;
+                            display: block;
+                            position: relative;
+                            bottom: -6px;
+                        
+                        }
                     }
                 }
             }
