@@ -1,0 +1,42 @@
+<?php
+/**
+ * Aventi Solutions
+ * Julian D Amaya <jamaya@aventi.co>
+ * 2022
+ *
+ */
+
+use Magento\Catalog\Model\Product;
+
+/* @var $block Aventi\ImageUploader\Block\Adminhtml\Catalog\Product\ProcessMedia */
+
+/**
+ * @var Product $product
+ */
+$products = $block->processAllProducts();
+//var_dump($products);
+?>
+
+<div class="page-main-actions">
+    <div class="page-actions">
+        <div class="page-actions-inner" data-title="<?php echo __('Process Catalog') ?>">
+            <div class="page-actions-buttons">
+                <button id="back" title="<?php echo __('Back') ?>" type="button" class="action- scalable back" data-ui-id="back-button" onclick="javascript:window.history.back();">
+                    <span><?php echo __('Back') ?></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <strong><?= __("Total products processed") ?>:</strong> <?= count($products) ?>
+    </div>
+</div><div class="row">
+    <div class="col-md-12">
+        <strong><?= __("Now your catalog is processed") ?></strong>
+    </div>
+</div>
+
+
