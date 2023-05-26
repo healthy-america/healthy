@@ -1,0 +1,23 @@
+{
+    "name": "aventi/module-imageuploader",
+    "description": "Module that handles the massive management of product images.",
+    "version": "0.0.1",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Julian David Amaya",
+            "email": "jamaya@aventi.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aventi\\ImageUploader\\": ""
+        }
+    }
+}

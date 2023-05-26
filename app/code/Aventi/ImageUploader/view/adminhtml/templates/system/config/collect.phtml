@@ -1,0 +1,86 @@
+<?php
+/**
+ * Copyright © 2016 MageWorx. All rights reserved.
+ * See LICENSE.txt for license details.
+ */
+?>
+<?php /* @var $block \MageWorx\AlsoBought\Block\System\Config\Collect */ ?>
+
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function(jQuery){
+
+        var collectSpan = jQuery('#collect_span');
+
+        jQuery('#collect_button').click(function () {
+            var params = {};
+            new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+                parameters:     params,
+                loaderArea:     false,
+                asynchronous:   true,
+                onCreate: function() {
+                    collectSpan.find('.collected').hide();
+                    collectSpan.find('.processing').show();
+                    jQuery('#collect_message_span').text('<?php echo __('Processing') ?>');
+                    jQuery('#result-table').hide();
+                },
+                onSuccess: function(response) {
+                    collectSpan.find('.processing').hide();
+
+                    var resultText = '';
+                    if (response.status > 200) {
+                        resultText = response.statusText;
+                    } else {
+                        resultText = '<?php echo __('Success') ?>';
+                        collectSpan.find('.collected').show();
+                    }
+                    jQuery('#collect_message_span').text(resultText);
+
+                    var json = response.responseJSON;
+                    if (json.result != null) {
+
+                        var html = `<tr><td>${json.result.total}</td><td>${json.result.completed}</td><td>${json.result.noFound}</td><td>${json.result.NoProcessing}</td></tr>`;
+                        console.log(html);
+                        jQuery('#result-table').find('tbody').html(html);
+                        jQuery('#result-table').show();
+                    }
+                }
+            });
+        });
+
+    });
+</script>
+
+<div class="page-main-actions">
+    <div class="page-actions">
+        <div class="page-actions-inner" data-title="<?php echo __('Process Images') ?>">
+            <div class="page-actions-buttons">
+                <button id="back" title="<?php echo __('Back') ?>" type="button" class="action- scalable back" data-ui-id="back-button" onclick="javascript:window.history.back();">
+                    <span><?php echo __('Back') ?></span>
+                </button>
+                <?php echo $block->getButtonHtml() ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<span class="collect-indicator" id="collect_span">
+    <img class="processing" hidden="hidden" alt="Collecting" style="margin:0 5px" src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="collected" hidden="hidden" alt="Collected" style="margin:-3px 5px" src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <span id="collect_message_span"></span>
+</span>
+<table class="table" style="border:1px solid #000;margin:auto;text-align:center;" id="result-table"  hidden="hidden">
+    <thead>
+        <tr>
+            <th style="padding-inline: 20px;"><?php echo __('Total') ?></th>
+            <th style="padding-inline: 20px;"><?php echo __('Completed') ?></th>
+            <th style="padding-inline: 20px;"><?php echo __('No Found') ?></th>
+            <th style="padding-inline: 20px;"><?php echo __('No Proccessing') ?></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

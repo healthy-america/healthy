@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Aventi_Images"
+             title="Images"
+             translate="title"
+             module="Aventi_ImageUploader"
+             sortOrder="0"
+             parent="Aventi"
+             action="imageuploader/images"
+             resource="Aventi_ImageUploader::upload" />
+    </menu>
+</config>

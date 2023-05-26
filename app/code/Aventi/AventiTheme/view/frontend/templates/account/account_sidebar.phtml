@@ -1,0 +1,124 @@
+<button id="sidebar-opener btn-primary"><?php echo __('Mi account'); ?></button>
+
+<script>
+    require(['jquery'], function ($) {
+        var sidebar = '.sidebar',
+            button = '#sidebar-opener',
+            touchStartX = null,
+            touchStartY = null;
+
+        $(window).on('resize', function() {
+            addButton();
+            addPopupClass();
+        });
+
+        $(document).ready(function () {
+            addButton();
+            addPopupClass();
+        });
+
+        $(document).on('click', '#sidebar-opener', function (event) {
+            event.preventDefault();
+            openSidebar();
+        });
+
+        $(document).mouseup(function (e) {
+            var container = $(sidebar);
+            if (!container.is(e.target) && container.has(e.target).length === 0) {
+                closeSidebar();
+            }
+        });
+
+        $(document).on('touchstart', function(event) {
+            touchStartX = event.originalEvent.touches[0].pageX;
+            touchStartY = event.originalEvent.touches[0].pageY;
+        });
+
+        $(document).on('touchmove', function(event) {
+            if (touchStartX != null && touchStartY != null) {
+                var touchCurrentX = event.originalEvent.touches[0].pageX,
+                    touchCurrentY = event.originalEvent.touches[0].pageY,
+                    diffX = touchStartX - touchCurrentX,
+                    diffY = touchStartY - touchCurrentY;
+
+                if (Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX > 0) {
+                        closeSidebar();
+                    }
+                }
+
+                touchStartX = null;
+                touchStartY = null;
+            }
+        });
+
+        function addPopupClass() {
+            var width = $(window).width();
+            if (width <= 1200 && !$(sidebar).hasClass('popup') ) {
+                $(sidebar).addClass('popup');
+            } else if (width > 1200 && $(sidebar).hasClass('popup')) {
+                $(sidebar).removeClass('popup');
+            }
+        }
+
+        function addButton() {
+            var width = $(window).width();
+            if (width > 1200) {
+                $(button).hide();
+            } else {
+                $(button).show();
+            }
+        }
+
+        function openSidebar() {
+            $(sidebar).toggleClass('open');
+        }
+
+        function closeSidebar() {
+            $(sidebar).removeClass('open');
+        }
+    });
+</script>
+
+<style>
+    #sidebar-opener {
+        display: none;
+        box-sizing: border-box;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 12px;
+        gap: 4px;
+        width: 109px;
+        height: 40px;
+        left: 47px;
+        top: 234px;
+        border: 1px solid;
+    }
+
+    .sidebar.popup.sidebar-main {
+        position: fixed;
+        top: 0;
+        bottom: 30%;
+        left: -10000px;
+        width: 300px;
+        z-index: 9999;
+        background-color: #fff;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar.popup.sidebar-additional {
+        position: fixed;
+        top: 70%;
+        bottom: 0;
+        left: -10000px;
+        width: 300px;
+        z-index: 9999;
+        background-color: #fff;
+        transition: left 0.3s ease-in-out;
+    }
+
+    .sidebar.popup.open {
+        left: 0;
+    }
+</style>

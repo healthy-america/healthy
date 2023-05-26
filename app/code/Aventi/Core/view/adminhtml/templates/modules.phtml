@@ -1,0 +1,74 @@
+<?php
+/**
+ * Aventi Solutions
+ * Julian D Amaya <jamaya@aventi.co>
+ * 2022
+ *
+ */
+
+/** @var \Aventi\Core\Block\Adminhtml\Extensions $block */
+$modules = $block->getModules();
+$anchor =  '#product.info.details.release_notes' ;
+?>
+<div class="avcore-main-block">
+    <h2 class="avcore-title">
+        <?= $block->escapeHtml(__('Installed Aventi Modules')) ?>
+    </h2>
+    <div class="avcore-modules-container">
+        <div class="avcore-btns-block">
+            <a href="https://wa.me/573113774845"
+               class="avcore-btn modules"
+               target="_blank"
+               title="<?= $block->escapeHtml(__('Get Status and Updates From Aventi')) ?>">
+                <?= $block->escapeHtml(__('Get Status and Updates From')) ?>
+                <span class="_strong"><?= $block->escapeHtml(__('Aventi')) ?></span>
+            </a>
+            <a href="http://aventidev.com/wiki/doku.php?id=magento_2"
+               class="avcore-btn how_update"
+               target="_blank"
+               title="<?= $block->escapeHtml(__('Documentation')) ?>">
+                <?= $block->escapeHtml(__('Documentation')) ?>
+            </a>
+        </div>
+        <div class="avcore-modules-block">
+            <?php foreach ($modules as $module): ?>
+                <?php
+                    $moduleName = preg_replace("/[^A-Za-z0-9.!?\s]/","",array_keys($module['autoload']['psr-4'])[0]);
+                    $moduleName = str_replace("Aventi","",$moduleName);
+                    $moduleName = preg_replace('/(?<=\w)(\p{Lu})/u', ' $1', $moduleName);
+                    ?>
+            <div class="avcore-module-card">
+                <div class="avcore-title-container">
+                    <p class="avcore-title">
+                        <strong><?= __($moduleName) ?></strong>
+                    </p>
+                </div>
+                <div class="avcore-description-container">
+                    <p class="avcore-description">
+                        <?= $block->escapeHtml(__($module['description'])) ?>
+                    </p>
+                </div>
+                <div class="avcore-version-block">
+                    <div class="avcore-version-container">
+                        <p class="avcore-version">
+                            <strong>Version:</strong>
+                            <?= $block->escapeHtml($module['version']) ?>
+                        </p>
+                    </div>
+                    <div class="avcore-doc-container">
+                        <p class="avcore-doc">
+                            <strong>Documentation:</strong>
+                            <a href="http://www.aventidev.com/manuals/<?= $block->escapeHtml(str_replace("aventi/","",$module['name'])) ?>-<?= $block->escapeHtml($module['version']) ?>.pdf"
+                               class="avcore-btn -blue"
+                               target="_blank"
+                               title="<?= $block->escapeHtml(__('Click Here')) ?>">
+                                <?= $block->escapeHtml(__('Click Here')) ?>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>

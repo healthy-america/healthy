@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="imagen" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+			<label>Imagen</label>
+			<tab>aventi</tab>
+			<resource>Aventi_Imagen::config_aventi_imagen</resource>
+            <group id="options" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" translate="label">
+				<label>options</label>
+				<field id="path" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+					<label>path</label>
+					<comment/>
+				</field>
+				<field id="collect_button" translate="label" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+					<frontend_model>Aventi\Imagen\Block\System\Config\Collect</frontend_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

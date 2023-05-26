@@ -1,0 +1,22 @@
+{
+    "name": "aventi/module-imagen",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "caguilar@aventi.co",
+            "name": "Carlos Hernan Aguilar"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aventi\\Imagen\\": ""
+        }
+    }
+}
