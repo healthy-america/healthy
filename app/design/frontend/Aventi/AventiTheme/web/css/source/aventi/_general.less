@@ -12,21 +12,36 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
-    
     body#html-body {
-        h1, h2, h3, p, b, a, span, label, address, th, td, option, strong, .filter-options-title, li{
-            font-family: 'Montserrat';
+        h1,
+        h2,
+        h3,
+        p,
+        b,
+        a,
+        span,
+        label,
+        address,
+        th,
+        td,
+        option,
+        strong,
+        .filter-options-title,
+        li {
+            font-family: "Montserrat";
         }
 
         //color hover general a las etiquetas a
-        a{
-            &:hover{
+        a {
+            &:hover {
                 color: @color-secondary;
             }
         }
 
         // Botones generales
-        button, .btn, .action {
+        button,
+        .btn,
+        .action {
             border-radius: 4px;
             font-family: "Roboto";
             font-weight: 600;
@@ -48,10 +63,14 @@
 
         // Primary
         button.btn-primary,
-        button.primary, .primary .action:not(.btn-secondary), .authentication-wrapper .action, a.btn-default, .action.delete{
-            color:@primary-button-color-text;
+        button.primary,
+        .primary .action:not(.btn-secondary),
+        .authentication-wrapper .action,
+        a.btn-default,
+        .action.delete {
+            color: @primary-button-color-text;
             background: @primary-button-background;
-            border: 1px solid  @color-primary;
+            border: 1px solid @color-primary;
             transition: all 0.1s ease-in-out;
 
             span {
@@ -71,9 +90,11 @@
 
         // Secondary
         a.btn-secondary,
-        button.btn-secondary, .secondary a.action.btn-default , a.action.edit.btn{
+        button.btn-secondary,
+        .secondary a.action.btn-default,
+        a.action.edit.btn {
             background: @background-footer;
-            border: 1px solid  @color-primary;
+            border: 1px solid @color-primary;
             color: @color-primary;
             transition: all 0.1s ease-in-out;
 
@@ -84,7 +105,7 @@
             &:hover {
                 border: 2px solid @blue-hover;
                 color: @blue-hover;
-                span{
+                span {
                     color: @blue-hover;
                 }
             }
@@ -92,7 +113,7 @@
             &:active {
                 border: 1px solid @blue-selected;
                 color: @blue-selected;
-                span{
+                span {
                     color: @blue-selected;
                 }
             }
@@ -103,7 +124,9 @@
 
     .field {
         .control {
-            input, textarea, select  {
+            input,
+            textarea,
+            select {
                 border: 1px solid #b6bac0;
                 border-radius: 4px;
                 height: 40px;
@@ -349,14 +372,13 @@
     }
 }
 
-body , html {
-
+body,
+html {
     p::selection,
     *::selection {
         color: #fff;
         background-color: @color-primary;
     }
-
 }
 //
 //  Desktop
@@ -399,6 +421,83 @@ body , html {
             left: -5px;
             position: relative;
             max-width: 200px !important;
+        }
+    }
+}
+
+// checkout success page
+.checkout-onepage-success {
+    .breadcrumbs {
+        background: #fff;
+        .item {
+            li,
+            a,
+            span {
+                font-family: "Montserrat";
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 20px;
+                color: @grey-dark;
+            }
+        }
+    }
+    .checkout-success {
+        border: 1px solid @grey-clear;
+        border-radius: 0;
+
+        p {
+            font-family: "Montserrat";
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: #333333;
+            margin-bottom: 2px;
+        }
+
+        .order {
+            margin-bottom: 26px;
+        }
+
+        .title {
+            font-style: normal;
+            font-weight: 600;
+            color: #004088;
+        }
+
+        a {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: #333333;
+        }
+    }
+
+    #registration {
+        > div {
+            text-align: center;
+            p {
+                margin: 0;
+                font-family: "Montserrat";
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18px;
+                color: #1f2021;
+            }
+
+            .action.primary {
+                background: @grey-clear;
+                border-radius: 4px;
+                margin-top: 10px;
+                span {
+                    font-family: "Roboto";
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 16px;
+
+                    color: @color-primary;
+                }
+            }
         }
     }
 }
