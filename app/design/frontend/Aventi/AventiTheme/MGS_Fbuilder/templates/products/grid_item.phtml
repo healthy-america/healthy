@@ -407,7 +407,7 @@ use Magento\Framework\App\Action\Action;
             <!-- Product Image-->
             <a href="<?php echo $_product->getProductUrl() ?>" class="product photo product-item-photo <?php if ((basename($_product->getData('thumbnail')) != 'no_selection') && (basename($_product->getData('thumbnail')) != basename($_product->getData('small_image')))) : ?> has-hover-image<?php endif ?>" style="padding-bottom: <?php echo $padding ?>;" tabindex="-1">
 
-                <img src="<?php echo $baseImage ?>" alt="<?php echo $_productNameStripped ?>" class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad) : ?>lazy<?php endif ?>" loading="lazy" data-src="<?php echo $productImage ?>" />
+                <img src="<?php echo $productImage ?>" alt="<?php echo $_productNameStripped ?>" class="img-responsive product-image-photo img-thumbnail <?php if ($lazyLoad) : ?>lazy<?php endif ?>" loading="lazy" data-src="<?php echo $productImage ?>" />
 
                 <?php if (basename($_product->getData('thumbnail')) != 'no_selection') : ?>
                     <?php if (basename($_product->getData('thumbnail')) != basename($_product->getData('small_image'))) : ?>
