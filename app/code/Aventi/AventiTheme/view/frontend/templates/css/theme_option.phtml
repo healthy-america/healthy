@@ -43,6 +43,10 @@ $_helper = $this->helper('Aventi\AventiTheme\Helper\Themeconfig');
 	--button__hover__color: <?= $_helper->getButtonsColors($data, 'button_hover_text_color');?>;
 	--button-primary__hover__color: <?= $_helper->getButtonsColors($data, 'button_hover_text_color');?>;
 	<?php } ?>
+    <?php if ($_helper->getButtonsColors($data, 'product_button_bg_color')) {?>
+    --product-button__background__color: <?= $_helper->getButtonsColors($data, 'product_button_bg_color');?>;
+    --product-button-primary__background__color: <?= $_helper->getButtonsColors($data, 'product_button_bg_color');?>;
+    <?php } ?>
 
 	/* Custom Header */
 	<?php if ($_helper->getTopbarBackgroundColor($data)) {?>

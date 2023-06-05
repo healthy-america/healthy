@@ -57,6 +57,10 @@
                     <label>Button Hover Background Color</label>
                     <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
                 </field>
+                <field id="product_button_bg_color" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Button Background Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
             </group>
             <group id="header" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Header</label>
