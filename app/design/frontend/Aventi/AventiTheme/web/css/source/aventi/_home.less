@@ -106,6 +106,25 @@
             }
         }
     }
+
+    // Brands slider
+
+    body#html-body .brand-slider {
+        background: @grey-light;
+        .owl-item a {
+            background-size: contain !important;
+        }
+
+        .owl-nav {
+            .owl-next, .owl-prev {
+                background: rgba(31, 32, 33, 0.6) !important;
+                border-radius: 0;
+                border: 0;
+                color: #fff;
+                top: 47%;
+            }
+        }
+    }
 }
 
 //
@@ -125,7 +144,7 @@
                 .item-image {
                     width: 100%;
 
-                    img{
+                    img {
                         width: 150%;
                         object-fit: cover;
                         max-width: none;
