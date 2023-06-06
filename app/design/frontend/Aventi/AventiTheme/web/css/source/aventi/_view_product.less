@@ -1,0 +1,107 @@
+
+
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//** @author    Daniel Estupiñán
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common =true) {
+
+
+    body#html-body.catalog-product-view {
+       
+        div#product-slider-related {
+
+            ._container_review {
+                display: grid;
+                place-content: center;
+                width: -webkit-fill-available;
+                margin-bottom: 10px;
+                min-height: 20px;
+
+                div.product-reviews-summary {
+                    div.rating-summary {
+                        transform: scale(1.5);
+
+                        div.rating-result::before {
+                            font-weight: 510;
+                            color: @black;
+                        }
+
+                        div.rating-result > span:before {
+                            font-weight: 550;
+                            color: #FFDD26;
+                        }
+                    }
+                }
+
+
+            }
+
+            div.owl-stage {
+
+                > div.owl-item {
+
+                    > div.product.product-item {
+
+                        > div.product-item-info {
+
+                            &:hover {
+
+                                div.product.product-item-details {
+
+                                    div.actions form button {
+                                        opacity: 1;
+                                    }
+                                }
+
+                            }
+
+                            div.product.product-item-details {
+
+                                div.actions {
+                                    margin-top: 1em;
+                                    form button {
+                                        opacity: 0;
+                                        background: @color-secondary;
+                                        border: 1px solid @color-secondary;
+                                        width: -webkit-fill-available;
+                                        margin: 0px -15px;
+                                        border-radius: 0;
+                                        
+                                        span {
+                                            color: @primary-button-color-text !important;
+                                            font-family: "Roboto";
+                                            font-weight: 600;
+                                            font-size: 16px;
+                                            line-height: 19px;
+                                            text-align: center;
+                                        }
+                                    }
+
+                                }
+                            }
+
+
+                        }
+
+                    }
+                   
+                }
+
+            }
+          
+        }
+
+    }
+
+
+}
