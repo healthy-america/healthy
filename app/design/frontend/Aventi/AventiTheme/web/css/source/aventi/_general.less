@@ -30,6 +30,28 @@
         li {
             font-family: "Montserrat";
         }
+        //categories-section, por si los demas slider van a tener flechas
+        .categories-section {
+            .slider_mgs_carousel.owl-carousel {
+
+                .owl-nav {
+            
+                    &:hover ,
+                    &.disabled{
+                        display: none !important;
+                    }
+            
+                    > div {
+                        display: none;
+            
+                        &:hover{
+                            display: none;
+                        }
+                    }
+                }
+
+            }
+        }
 
         //color hover general a las etiquetas a
         a {

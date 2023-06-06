@@ -50,8 +50,9 @@ class Cart
         $discountAmount = 0;
         $quote = $this->getQuote();
         foreach ($quote->getAllVisibleItems() as $item) {
-            $discountAmount = $item->getProduct()->getPrice() - $item->getPrice();
-            $discountAmount *= $item->getQty();
+            $discount = $item->getProduct()->getPrice() - $item->getPrice();
+            $discount *= $item->getQty();
+            $discountAmount += $discount;
         }
         return ($discountAmount < 0 ? 0 : $discountAmount);
     }

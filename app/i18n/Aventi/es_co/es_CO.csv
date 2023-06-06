@@ -15368,3 +15368,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Account Navigation","Navegación de mi cuenta"
 "Order number","Número de orden"
 "Filtered by","Filtrado por"
+"My account", "Mi cuenta"

@@ -1,0 +1,29 @@
+{
+    "name": "bancolombia/wompi",
+    "description": "Available for Magento 2.4",
+    "type": "magento2-module",
+    "version": "1.7.0",
+    "license": [
+      "OSL-3.0",
+      "AFL-3.0"
+    ],
+    "require": {
+      "php": "~7.3.0 || ~7.4.0",
+      "magento/framework": "102.0.* || 103.0.*",
+      "magento/module-checkout": "100.3.*",
+      "magento/module-payment": "100.3.*"},
+    "authors": [
+      {
+        "name": "bancolombia",
+        "email": "stvalenc@bancolombia.com.co",
+        "homepage": "https://www.wompi.com/",
+        "role": "Developer"
+      }
+    ],
+    "autoload": {
+      "files": [ "registration.php" ],
+      "psr-4": {
+        "Bancolombia\\Wompi\\": ""
+      }
+    }
+  } 
