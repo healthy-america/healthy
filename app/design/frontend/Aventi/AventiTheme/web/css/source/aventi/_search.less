@@ -130,6 +130,25 @@
             }
         }
     }
+
+    // Elastic search 
+
+    body#html-body.instantsearch-result-index {
+        .sidebar.sidebar-additional{
+            display: none;
+        }
+
+        .column.main{
+            width: 100%;
+        }
+
+        .item.product.product-item{
+            .product-top{
+                background: #fff;
+            }
+        }
+        
+    }
 }
 
 
@@ -372,5 +391,14 @@
                 }
             }
         }
+    }
+}
+@media (max-width: 490px) {
+    body#html-body.instantsearch-result-index {
+
+        .item.product.product-item {
+            width: 100%;
+        }
+
     }
 }
