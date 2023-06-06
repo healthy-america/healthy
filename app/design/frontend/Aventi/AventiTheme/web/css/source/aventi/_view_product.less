@@ -5,7 +5,6 @@
 //** https://www.aventi.co/
 //**
 //**
-//** @author    Daniel Estupiñán
 //**
 //  *********************************************
 
@@ -51,7 +50,7 @@
                 > div.owl-item {
 
                     > div.product.product-item {
-
+                       
                         > div.product-item-info {
 
                             &:hover {
@@ -104,4 +103,48 @@
     }
 
 
+}
+
+@media screen and (max-width: 768px) {
+
+    body#html-body.catalog-product-view {
+       
+        div#product-slider-related {
+
+            div.owl-stage {
+
+                > div.owl-item {
+
+                    > div.product.product-item {
+                        padding: 0 5px !important;
+
+                        div.product-item-info {
+
+                            div.product.product-item-details {
+
+                                
+                                .price-box.price-final_price {
+                                    flex-wrap: wrap-reverse;
+                                    height: 49px;
+                                }
+
+                                div.actions button {
+                                    padding: 0;
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+
+
+            }
+
+        }
+
+    }
+
+    
 }
