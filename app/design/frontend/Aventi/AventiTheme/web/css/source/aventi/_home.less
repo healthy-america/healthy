@@ -96,13 +96,30 @@
                         font-size: 16px;
                         /* line-height: 19px; */
                         text-align: center;
-                        color: #004088;
+                        color: @color-primary;
                         border: none;
                     }
 
-                    // TODO: el background tiene que ser personalizable desde el fbuilder
-                    //background: #515b19;
                 }
+            }
+        }
+    }
+
+    // Brands slider
+
+    body#html-body .brand-slider {
+        background: @grey-light;
+        .owl-item a {
+            background-size: contain !important;
+        }
+
+        .owl-nav {
+            .owl-next, .owl-prev {
+                background: rgba(31, 32, 33, 0.6) !important;
+                border-radius: 0;
+                border: 0;
+                color: #fff;
+                top: 47%;
             }
         }
     }
@@ -125,7 +142,7 @@
                 .item-image {
                     width: 100%;
 
-                    img{
+                    img {
                         width: 150%;
                         object-fit: cover;
                         max-width: none;

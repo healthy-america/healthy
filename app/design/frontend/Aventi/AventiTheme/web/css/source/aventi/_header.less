@@ -28,7 +28,7 @@
                 }
             }
 
-            .top-header{
+            .top-header {
                 background: @topbarbg;
             }
 
@@ -84,6 +84,10 @@
                         right: unset;
                         box-shadow: none;
 
+                        .close-myaccount {
+                            display: none;
+                        }
+
                         .header.links {
                             > li {
                                 border: none;
@@ -124,14 +128,182 @@
                     min-width: 12px;
                     background: var(--link__color);
                     background: @color-secondary;
-                    span{
+                    span {
                         font-size: 10px;
+                    }
+                }
+            }
+
+            #search_autocomplete {
+                display: none !important;
+            }
+
+            @media (max-width: 767px) {
+                .block.block-search {
+                    .form.minisearch {
+                        .control {
+                            max-width: 90%;
+                            position: relative;
+                            margin: auto;
+
+                            &::after {
+                                content: url(https://api.iconify.design/iconamoon/search-light.svg?color=white);
+                                display: block;
+                                position: absolute;
+                                right: 0;
+                                font-size: 22px;
+                            }
+                        }
+                        input#search {
+                            background: rgba(255, 255, 255, 0.1);
+                            border: 1px solid #ffffff;
+                            border-radius: 4px;
+                            max-width: 90%;
+                            margin: auto;
+
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px;
+                            color: #ffffff;
+                        }
+                    }
+                    .pe-7s-close::before {
+                        content: url("https://api.iconify.design/material-symbols/close.svg?color=white&width=24&height=24");
+                    }
+                }
+            }
+
+            .mgs-instant-search-dropdown {
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+
+                .mgs-instant-autocomplete-wrapper {
+                    padding: 0;
+                    border: 1px solid @color-primary;
+                    border-radius: 6px;
+                    overflow: hidden;
+                }
+
+                .title {
+                    background: @color-primary;
+                    border: 1px solid @color-primary;
+                    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+                    border-radius: 6px 6px 0 0;
+                    padding: 0 20px;
+
+                    > span {
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: #ffffff;
+                    }
+
+                    a {
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        /* line-height: 18px; */
+                        color: #ffffff !important;
+                        text-decoration-line: underline;
+                    }
+                }
+                .products.list.items.product-items {
+                    max-height: ~"calc(100vh - 262px)";
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    padding: 0;
+
+                    .product.details.product-item-details {
+                        padding: 0;
+                    }
+
+                    &::-webkit-scrollbar {
+                        -webkit-appearance: none;
+                    }
+
+                    &::-webkit-scrollbar:vertical {
+                        width: 10px;
+                    }
+
+                    &::-webkit-scrollbar-button:increment,
+                    &::-webkit-scrollbar-button {
+                        display: none;
+                    }
+
+                    &::-webkit-scrollbar:horizontal {
+                        height: 10px;
+                    }
+
+                    &::-webkit-scrollbar-thumb {
+                        background-color: #797979;
+                        border-radius: 20px;
+                        border: 2px solid #f1f2f3;
+                    }
+
+                    &::-webkit-scrollbar-track {
+                        border-radius: 10px;
+                    }
+
+                    .item.product.product-item {
+                        padding-top: 19px;
+                    }
+
+                    .product.name.product-item-shortdescription {
+                        display: none;
+                    }
+
+                    .product-item-link {
+                        font-family: "Montserrat";
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        color: @black_secunday !important;
+                    }
+
+                    .product.photo.product-item-photo {
+                        padding: 0;
+                    }
+
+                    .special-price * {
+                        font-family: "Roboto";
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 12px;
+                        line-height: 14px;
+                        color: @color-secondary !important;
+                    }
+
+                    .price-box.price-final_price {
+                        .price {
+                            font-family: "Roboto";
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: @black_secunday;
+                        }
+                    }
+
+                    .old-price {
+                        text-decoration: line-through;
+                        color: @black_secunday;
+                    }
+
+                    .price-box.price-final_price .old-price * {
+                        font-weight: 400 !important;
+                        color: @black_secunday !important;
                     }
                 }
             }
 
             .bottom-content {
                 .search-form {
+                    .search-close {
+                        display: none !important;
+                    }
                     .block.block-search {
                         position: static;
                         background: none;
@@ -184,7 +356,7 @@
                     }
                 }
 
-                background-color:  @header_background_color;
+                background-color: @header_background_color;
                 .vertical-title {
                     font-size: 14px;
                     font-weight: 500;
@@ -203,15 +375,15 @@
                     .fa {
                         margin-right: 15px;
 
-                        &::before{
-                            background: url('https://api.iconify.design/material-symbols/menu.svg?color=white') no-repeat center center / contain;
+                        &::before {
+                            background: url("https://api.iconify.design/material-symbols/menu.svg?color=white")
+                                no-repeat center center / contain;
                             content: "";
                             width: 26px;
                             height: 26px;
                             display: block;
                             position: relative;
                             bottom: -6px;
-                        
                         }
                     }
                 }

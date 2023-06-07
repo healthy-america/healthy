@@ -130,6 +130,85 @@
             }
         }
     }
+
+    // Elastic search 
+
+    body#html-body.instantsearch-result-index {
+        .sidebar.sidebar-additional{
+            display: none;
+        }
+
+        #page-title-wrapper{
+            // background-image: url('/media/aventi/images/myAccount.png');
+            padding: 150px 0px 20px 0px;
+            text-align: left;
+
+            &::before{
+                background: rgba(0,0,0,0.6);
+            }
+
+            .page-title{
+                max-width: 1200px;
+                margin: auto;
+                padding: 0px 15px;
+
+                span{
+                    font-weight: 600;
+                    font-size: 42px;
+                }
+            }
+        }
+
+        .breadcrumbs{
+            background: none;
+            padding: 20px 15px;
+            max-width: 1200px;
+            margin-bottom: 25px;
+
+            .items{
+                display: flex;
+                align-items: center;
+                padding: 0;
+
+                &::after{
+                    content: '';
+                    max-width: 1200px;
+                    width: 98%;
+                    background: #B6BAC0;
+                    height: 1px;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    bottom: 0px;
+                }
+
+                .item{
+                    display: flex;
+                    align-items: center;
+                    
+                    a, strong{
+                        max-width: unset;
+                        font-weight: 400;
+                        font-size: 14px;
+                        color: @grey-dark;
+                    }
+                }
+            }
+        }
+
+
+        .column.main{
+            width: 100%;
+        }
+
+        .item.product.product-item{
+            .product-top{
+                background: #fff;
+            }
+        }
+        
+    }
 }
 
 
@@ -372,5 +451,14 @@
                 }
             }
         }
+    }
+}
+@media (max-width: 490px) {
+    body#html-body.instantsearch-result-index {
+
+        .item.product.product-item {
+            width: 100%;
+        }
+
     }
 }

@@ -1,34 +1,32 @@
 //  All devices
 & when (@media-common =true) {
-
-    body.account{
-
-        &.sales-order-history{
-            .page-wrapper{
-                #maincontent{
-                    .columns{
-                        .column.main{
-                            .actions-toolbar-form{
+    body.account#html-body {
+        &.sales-order-history {
+            .page-wrapper {
+                #maincontent {
+                    .columns {
+                        .column.main {
+                            .actions-toolbar-form {
                                 border: none;
                                 padding: 0px;
                                 margin: 0px;
-    
-                                .secondary{
-                                    a.action.btn.btn-secondary.btn-sm.back{
+
+                                .secondary {
+                                    a.action.btn.btn-secondary.btn-sm.back {
                                         color: @background-footer;
                                         background: @color-primary;
-                                        border: 1px solid  @color-primary;
+                                        border: 1px solid @color-primary;
                                         transition: all 0.1s ease-in-out;
-    
+
                                         span {
                                             color: @background-footer;
                                         }
-    
+
                                         &:hover {
                                             background: @blue-hover;
                                             border: 1px solid @blue-hover;
                                         }
-    
+
                                         &:active {
                                             background-color: @blue-selected;
                                             border: 1px solid @blue-selected;
@@ -42,39 +40,85 @@
             }
         }
 
-        .page-wrapper{
-            
+        // Popup
+
+        #sidebar-opener.open {
+            &::after {
+                content: "";
+                width: 2000px;
+                height: 2000px;
+                background: #00000085;
+                position: fixed;
+                top: 0;
+                z-index: 5;
+            }
+        }
+
+        #sidebar-opener{
+            background: @grey-clear;
+            flex-direction: row-reverse;
+            margin-bottom: 30px;
+            color: @color-primary;
+            border: none;
+        }
+
+        .sidebar.sidebar-main.popup {
+            .block.account-nav {
+                height: 100%;
+                background: #fff !important;
+                padding: 0 !important;
+
+                .title.account-nav-title{
+                    display: flex;
+                    justify-content: space-between;
+                    padding-right: 20px;
+                    border-bottom: 2px solid @color-primary;
+                    padding-top: 32px;
+                    padding-left: 32px;
+                    padding-bottom: 21px;
+
+                    .closeAccount{
+                        cursor: pointer;
+
+                        svg{
+                            color: @color-primary;
+                        }
+                    }
+                }
+            }
+        }
+
+        .page-wrapper {
             //header my account
-            #page-title-wrapper{
-                background-image: url('/media/aventi/images/myAccount.png');
+            #page-title-wrapper {
+                background-image: url("/media/aventi/images/myAccount.png");
                 padding: 90px 0px;
 
-                &::before{
-                    background: rgba(0,0,0,0.6);
+                &::before {
+                    background: rgba(0, 0, 0, 0.6);
                 }
 
-                .page-title{
+                .page-title {
                     font-weight: 400;
                     font-size: 42px;
                 }
             }
 
             //content
-            #maincontent{
-                .columns{
-
+            #maincontent {
+                .columns {
                     //right content
-                    .column.main{
+                    .column.main {
                         padding: 20px 50px 0px 50px;
 
                         //pantalla de mis ordenes
-                        .orders-history{
-                            table{
-                                
-                                thead, tbody{
+                        .orders-history {
+                            table {
+                                thead,
+                                tbody {
                                     border: 1px solid @grey-clear;
 
-                                    th{
+                                    th {
                                         font-weight: 600;
                                         font-size: 14px;
                                         text-transform: capitalize;
@@ -85,7 +129,9 @@
                                         border: none;
                                     }
 
-                                    td, td>span, td>a>span{
+                                    td,
+                                    td > span,
+                                    td > a > span {
                                         font-weight: 400;
                                         color: @black_secunday;
                                         font-size: 14px;
@@ -95,43 +141,42 @@
                                         border: none;
                                         display: table-cell;
 
-                                        .price{
+                                        .price {
                                             padding: 0px;
                                         }
-                                         
-                                        &.col.actions{
+
+                                        &.col.actions {
                                             gap: 15px;
                                             display: flex;
                                             border: none;
                                             justify-content: end;
                                             padding: 15px 20px 15px 0px;
 
-                                            a{
+                                            a {
                                                 height: fit-content;
 
-                                                span{
+                                                span {
                                                     text-decoration-line: underline;
-                                                    font-family: 'Montserrat';
+                                                    font-family: "Montserrat";
                                                     padding: 0px;
                                                 }
 
-                                                &::after{
+                                                &::after {
                                                     display: none;
                                                 }
                                             }
                                         }
                                     }
                                 }
-                                tbody{
+                                tbody {
                                     border-top: none;
                                 }
                             }
                         }
                         //ordenar pedidos
-                        .order-products-toolbar{
-                            .limiter{
-                                
-                                .limiter-options{
+                        .order-products-toolbar {
+                            .limiter {
+                                .limiter-options {
                                     border: none;
                                     background-image: url(../images/select-bg.svg);
                                     background-repeat: no-repeat;
@@ -142,16 +187,19 @@
                         }
 
                         //pantalla informacion cuenta y agregar direccion
-                        .form-address-edit, .form-edit-account{
+                        .form-address-edit,
+                        .form-edit-account {
                             //titulos del resto de paginas de mi cuenta
-                            .block-title-account, .block-title-info{
+                            .block-title-account,
+                            .block-title-info {
                                 font-style: normal;
                                 font-weight: 600;
                                 font-size: 16px;
                                 color: @black_secunday;
                                 text-transform: capitalize;
 
-                                h3, span{
+                                h3,
+                                span {
                                     font-style: normal;
                                     font-weight: 600;
                                     font-size: 16px;
@@ -161,38 +209,38 @@
                             }
 
                             //inputs
-                            .control{
-                                label{
+                            .control {
+                                label {
                                     color: @grey;
                                     font-weight: 400;
                                     font-size: 14px;
                                 }
-                                input, select{
+                                input,
+                                select {
                                     max-width: 100%;
                                     display: block;
                                 }
                             }
 
                             //inputs
-                            .fieldset{
+                            .fieldset {
                                 margin: 0 0 30px 0;
                                 .field {
-                                    
                                     &.choice {
                                         line-height: 1;
                                         display: flex;
                                         align-items: center;
                                         margin: 0 0 10px 0;
-    
+
                                         .checkbox {
                                             width: 20px;
                                             height: 20px;
                                             appearance: none;
-                                            border: 2px solid #7B7B7B;
+                                            border: 2px solid #7b7b7b;
                                             border-radius: 2px;
                                             margin: 0;
                                             top: unset;
-    
+
                                             &:checked {
                                                 content: url("https://api.iconify.design/uil/check.svg?color=%235bab1d&width=8&height=6");
                                             }
@@ -205,28 +253,30 @@
                                                 color: @black_secunday;
                                             }
                                         }
-                                        .field-tooltip.toggle{
+                                        .field-tooltip.toggle {
                                             display: none;
                                         }
                                     }
 
-                                    &.additional, &.primary{
+                                    &.additional,
+                                    &.primary {
                                         display: none;
                                     }
 
-                                    .line{
+                                    .line {
                                         gap: 10px;
 
-                                        .field-name-firstname, .field-name-lastname{
+                                        .field-name-firstname,
+                                        .field-name-lastname {
                                             flex: 0 0 100%;
                                             max-width: 100%;
                                         }
                                     }
 
-                                    &.required{
-                                        label{
-                                            &::after{
-                                                color: #7B7B7B !important;
+                                    &.required {
+                                        label {
+                                            &::after {
+                                                color: #7b7b7b !important;
                                             }
                                         }
                                     }
@@ -234,8 +284,8 @@
                             }
 
                             //buttons
-                            .actions-toolbar-form{
-                                border-top: 2px solid #D2DBD5;
+                            .actions-toolbar-form {
+                                border-top: 2px solid #d2dbd5;
                                 margin-top: 50px;
                                 display: flex;
                                 gap: 15px;
@@ -244,53 +294,56 @@
                         }
 
                         //estilos de bloques de informacion generales
-                        .block{
+                        .block {
                             //pagina de pedidos
-                            &.block-dashboard-orders{
+                            &.block-dashboard-orders {
                                 display: none;
                             }
 
                             //pagina de direcciones
-                            &.block-addresses-default, &.block-addresses-list{
+                            &.block-addresses-default,
+                            &.block-addresses-list {
                                 margin: 0px;
 
-                                .box{
-                                    margin-bottom: 0px;  
+                                .box {
+                                    margin-bottom: 0px;
                                 }
-                                
-                                .block-content{
+
+                                .block-content {
                                     gap: 80px;
                                     margin-bottom: 0px;
 
-                                    &::before, &::after{
+                                    &::before,
+                                    &::after {
                                         display: none;
                                     }
-                                    
-                                    .block-title-account{
+
+                                    .block-title-account {
                                         margin-bottom: 10px;
-    
-                                        h3{
+
+                                        h3 {
                                             text-transform: capitalize;
                                         }
                                     }
-                                    .box-content{
-    
-                                        >.items{
+                                    .box-content {
+                                        > .items {
                                             gap: 40px;
-    
-                                            &::before, &::after{
+
+                                            &::before,
+                                            &::after {
                                                 display: none;
                                             }
-    
-                                            .item.actions{
+
+                                            .item.actions {
                                                 display: flex;
                                                 gap: 10px;
-                                                flex-flow: row-reverse wrap-reverse;
+                                                flex-flow: row-reverse
+                                                    wrap-reverse;
                                                 justify-content: flex-end;
-        
-                                                .action.delete{
+
+                                                .action.delete {
                                                     color: @background-footer;
-                                                    span{
+                                                    span {
                                                         color: @background-footer;
                                                     }
                                                 }
@@ -300,15 +353,16 @@
                                 }
                             }
 
-                            &.block-addresses-list{
-                                .block-content{
+                            &.block-addresses-list {
+                                .block-content {
                                     margin-bottom: 0px;
                                 }
                             }
 
                             //titulos en mayuscula mi cuenta
-                            .block-title-account{
-                                h3, span{
+                            .block-title-account {
+                                h3,
+                                span {
                                     font-style: normal;
                                     font-weight: 600;
                                     font-size: 16px;
@@ -318,8 +372,8 @@
                             }
 
                             //subtitulos
-                            .box-title-subaccount{
-                                span{
+                            .box-title-subaccount {
+                                span {
                                     font-weight: 600;
                                     font-size: 14px;
                                     color: @black_secunday;
@@ -327,8 +381,9 @@
                             }
 
                             //parrafos
-                            .box-content{
-                                p, address{
+                            .box-content {
+                                p,
+                                address {
                                     font-weight: 400;
                                     font-size: 14px;
                                     color: @black_secunday;
@@ -336,31 +391,31 @@
                             }
 
                             //acciones
-                            .box-actions{
+                            .box-actions {
                                 display: flex;
                                 flex-wrap: wrap;
                                 gap: 10px;
 
-                                .edit{
+                                .edit {
                                     min-width: 100px;
                                 }
                             }
 
-                            .margin-top20{
-                                .btn-secondary.edit{
+                            .margin-top20 {
+                                .btn-secondary.edit {
                                     color: @background-footer;
                                     background: @color-primary;
-                                    border: 1px solid  @color-primary;
-                        
+                                    border: 1px solid @color-primary;
+
                                     span {
                                         color: @background-footer;
                                     }
-                        
+
                                     &:hover {
                                         background: @blue-hover;
                                         border: 1px solid @blue-hover;
                                     }
-                        
+
                                     &:active {
                                         background-color: @blue-selected;
                                         border: 1px solid @blue-selected;
@@ -369,11 +424,11 @@
                             }
                         }
 
-                         //buttons in directions page
-                         .actions-toolbar-form{
-                            border-top: 2px solid #D2DBD5;
+                        //buttons in directions page
+                        .actions-toolbar-form {
+                            border-top: 2px solid #d2dbd5;
                             margin-top: 50px;
-                            .primary{
+                            .primary {
                                 display: flex;
                                 gap: 15px;
                                 flex-wrap: wrap;
@@ -381,46 +436,47 @@
                             }
                         }
 
-                        >.block-addresses-list{
+                        > .block-addresses-list {
                             display: none;
                         }
                     }
 
                     //left menu
-                    .sidebar.sidebar-main{
-                        .block.account-nav{
+                    .sidebar.sidebar-main {
+                        .block.account-nav {
                             background: @grey-light;
                             padding: 20px;
                             min-height: 480px;
 
-                            .account-nav-title{
-                                h3{
+                            .account-nav-title {
+                                h3 {
                                     margin: 0px;
                                     color: @color-primary;
                                     font-style: normal;
                                     font-weight: 600;
                                     font-size: 16px;
 
-                                    &::after{
+                                    &::after {
                                         display: none;
                                     }
                                 }
                             }
 
-                            .account-nav-content{
+                            .account-nav-content {
                                 margin-left: 25px;
 
-                                .nav.items{
-                                    .nav.item{
-                                        a{
+                                .nav.items {
+                                    .nav.item {
+                                        a {
                                             color: @black_secunday;
                                             font-style: normal;
                                             font-weight: 400;
                                             font-size: 14px;
                                         }
 
-                                        &.current{
-                                            strong, a{
+                                        &.current {
+                                            strong,
+                                            a {
                                                 color: @color-secondary;
                                                 font-style: normal;
                                                 font-weight: 600;
@@ -429,7 +485,14 @@
                                         }
 
                                         //se ocultaron los tabs momentaneamente hasta ver si es posible deshabilitarlos desde el administrador
-                                        &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(8), &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
+                                        &:nth-child(3),
+                                        &:nth-child(4),
+                                        &:nth-child(5),
+                                        &:nth-child(8),
+                                        &:nth-child(9),
+                                        &:nth-child(10),
+                                        &:nth-child(11),
+                                        &:nth-child(12) {
                                             display: none;
                                         }
                                     }
@@ -439,7 +502,7 @@
                     }
 
                     //compare and wish list hide
-                    .sidebar-additional{
+                    .sidebar-additional {
                         display: none;
                     }
                 }
@@ -448,23 +511,25 @@
     }
 }
 
-
 //  Desktop
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+.media-width(@extremum, @break)
+    when
+    (@extremum = "min")
+    and
+    (@break = @screen__m) {
 }
-
 
 //  Mobile
 
-
-.media-width(@extremum, @break) when (@extremum ='max') and (@break =@screen__m) {
-
-    body#html-body.account{
-        div.page-wrapper{
-            
+.media-width(@extremum, @break)
+    when
+    (@extremum ="max")
+    and
+    (@break =@screen__m) {
+    body#html-body.account {
+        div.page-wrapper {
             //header my account
-            #page-title-wrapper{
+            #page-title-wrapper {
                 background: @color-primary;
                 padding: 0px;
                 display: flex;
@@ -472,11 +537,11 @@
                 align-items: center;
                 height: 80px;
 
-                &::before{
+                &::before {
                     display: none;
                 }
 
-                .page-title{
+                .page-title {
                     font-weight: 600;
                     font-size: 16px;
                     margin: 0px;
@@ -484,39 +549,40 @@
             }
 
             //content
-            #maincontent{
-                div.columns{
+            #maincontent {
+                div.columns {
                     padding: 0px 30px;
 
                     //right content
-                    div.column.main{
+                    div.column.main {
                         padding: 0px;
 
-                        .actions-toolbar-form{
+                        .actions-toolbar-form {
                             margin: 0px;
 
-                            button{
+                            button {
                                 flex: 1;
                             }
                         }
 
-                        .block{
-                            &.block-addresses-default, &.block-addresses-list{
-                                .block-content{
+                        .block {
+                            &.block-addresses-default,
+                            &.block-addresses-list {
+                                .block-content {
                                     margin-bottom: 70px;
                                 }
                             }
-                            &.block-addresses-list{
-                                .block-content{
+                            &.block-addresses-list {
+                                .block-content {
                                     margin-bottom: 0px;
                                 }
                             }
                         }
 
-                        .form{
-                            .fieldset{
-                                .line{
-                                    .field{
+                        .form {
+                            .fieldset {
+                                .line {
+                                    .field {
                                         margin: 0;
                                     }
                                 }
