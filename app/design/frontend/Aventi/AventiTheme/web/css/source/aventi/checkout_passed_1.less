@@ -1,0 +1,483 @@
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//** @author  Cristian Duvan Machado Mosquera
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common =true) {
+
+    body#html-body.checkout-index-index {
+
+        div#checkout {
+            display: flex;
+            flex-wrap: wrap;
+
+            div.authentication-wrapper {
+                width: 60%;
+                order: 20;
+                margin-top: 5em;
+
+                button.action.action-auth-toggle {
+                    display: none;
+                }
+
+                aside.modal-custom.authentication-dropdown  {
+                    max-width: unset;
+                    width: 95%;
+                    position: unset;
+                    transform: scale(1, 1);
+                    transition: transform linear .1s, visibility 0s linear 0s;
+                    visibility: visible;
+                    z-index: 3;
+                    border: 1px solid @disabled-backgroun-checkout;
+                    border-radius: 4px;
+
+                    header.modal-header {
+                        display: none;
+                    }
+
+                    div.modal-inner-wrap {
+
+                        div.modal-content {
+
+                            div.block-title strong {
+                                font-family: 'Montserrat', sans-serif;
+                                font-style: normal;
+                                font-weight: 600;
+                                font-size: 18px;
+                                text-align: center;
+                            }
+
+                            div.block-content form {
+
+                                div.fieldset {
+
+
+                                    div.field {
+                                    
+                                        label {
+
+                                            &::after {
+                                                display: none;
+                                            }
+
+                                            span {
+                                                font-family: 'Montserrat', sans-serif;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                            }
+
+                                        }
+
+                                        div.control {
+                                            display: flex;
+                                            gap: 10px;
+                                            position: relative;
+
+                                            span._container_email_ {
+                                                position: absolute;
+                                                left: 1em;
+                                                top: 0.65em;
+                                                &::after {
+                                                    content: url('https://api.iconify.design/carbon/email.svg?color=%237b7b7b&width=23&height=23');
+                                                }
+
+                                            }
+
+                                            span._container_password_ {
+                                                position: absolute;
+                                                left: 1em;
+                                                top: 0.65em;
+                                                &::after {
+                                                    content: url('https://api.iconify.design/mdi/password-outline.svg?color=%237b7b7b&width=23&height=23');
+                                                }
+
+                                            }
+
+                                            input {
+                                                padding-left: 4em;
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+
+                                div.actions-toolbar {
+                                    display: flex;
+                                    place-content: flex-end;
+                                    flex-direction: column-reverse;
+
+                                    div.primary {
+
+                                        button {
+                                          width: 15em;
+                                        }
+
+                                    }
+
+                                    div.secondary {
+                                        display: flex;
+                                        justify-content: flex-end;
+                                        margin-right: 0;
+                                        border: none;
+                                        padding-top: unset;
+                                        margin-top: unset;
+
+                                        a {
+                                            background: transparent;
+                                            border: none;
+                                            span {
+                                                font-family: 'Montserrat';
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                                color: @grey-dark;
+                                            }
+
+                                        }
+                                    }
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+           
+                
+            aside.modal-custom.opc-sidebar.opc-summary-wrapper {
+                    order: 30;
+                    width: 40%;
+                    position: relative;
+
+                    header.modal-header {
+                        display: none;
+                    }
+
+                    div.opc-block-summary {
+                        background: #D9DFE7;
+                        margin-top: 1.7em;
+                        width: 90%;
+                        max-width: 886px;
+                        position: absolute;
+
+                        span.title {
+                            font-family: 'Montserrat', sans-serif;
+                            font-style: normal;
+                            font-weight: 800;
+                            font-size: 18px;
+                            line-height: 24px;
+                            text-align: left;
+                            margin-top: 0.7em;
+                        }
+
+                        div.block.items-in-cart {
+
+                            div.content.minicart-items 
+                            div.minicart-items-wrapper {
+
+                                ol.minicart-items {
+
+                                    li div.product {
+
+                                        div.product-item-details 
+                                        div.product-item-inner {
+
+                                            div.product-item-name-block {
+                                                strong.product-item-name {
+                                                    font-family: 'Montserrat', sans-serif;
+                                                    font-style: normal;
+                                                    font-weight: 600;
+                                                    font-size: 13px;
+                                                    -webkit-line-clamp: 1;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    white-space: nowrap; 
+                                                }
+                                            }
+
+                                            div.details-qty {
+                                                display: flex;
+                                                overflow: hidden;
+                                                gap: 5px;
+                                                align-items: center;
+
+                                                > span.label {
+                                                    margin: unset;
+                                                }
+                                            }
+
+                                            div.subtotal {
+                                                span.cart-price {
+                                                    span.price { 
+                                                        font-family: 'Montserrat', sans-serif;
+                                                        font-style: normal;
+                                                        font-weight: 600;
+                                                        font-size: 12px;
+                                                        color: @black_secunday;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+
+                                        &:last-child {
+                                            margin-bottom: 0.7em;
+                                            padding-bottom: 0.7em;
+                                            border-bottom: 1px solid #B6BAC0;
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+
+                        }
+
+
+                    }
+
+                    div.opc-block-shipping-information {
+                        display: none;
+                    }
+
+            }
+
+            ul.opc-progress-bar {
+                order: 10;
+                width: -webkit-fill-available;
+
+                li._active {
+
+                    &::before {
+                        background: @primary-button-background;
+                    }
+
+                    span {
+
+                        &:before {
+                            background: @primary-button-background;
+                        }
+
+                        &:after {
+                            transform: translateY(1px);
+                            content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
+                        }
+
+                    }
+                }
+
+                li {
+
+                    &::before {
+                        background: @disabled-backgroun-checkout;
+                    }
+
+                    span {
+
+                        font-size: 0;
+                        &::before {
+                            background: @disabled-backgroun-checkout;
+                        }
+
+                        &::after {
+                            transform: translateY(1px);
+                            content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
+                        }
+                    }
+
+                }
+
+            }
+
+            div.opc-wrapper {
+                order: 40;
+                width: 60%;
+
+                ol#checkoutSteps  {
+                
+                    li#shipping {
+
+                        div.step-title {
+                            font-family: 'Montserrat', sans-serif;
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 18px;
+                            text-align: left;
+                        }
+
+                        .field .control._with-tooltip {
+                        
+                            input {
+                                width: -webkit-fill-available;
+                                margin-right: unset;
+                            }
+
+                            div.field-tooltip.toggle {
+                                span.field-tooltip-action {
+                                    right: -30px;
+                                }
+                            }
+
+                        }
+
+                        div#checkout-step-shipping {
+                        
+                            form.form.form-login,
+                            form#co-shipping-form {
+
+                                        
+                                        div.field {
+
+                                            label.label {
+                                            
+                                                span {
+                                                    font-family: 'Montserrat', sans-serif;
+                                                    font-style: normal;
+                                                    font-weight: 400;
+                                                    font-size: 14px;
+                                                    line-height: 18px;
+                                                    color: #7B7B7B;
+                                                }
+
+                                                &::after {
+                                                    color: #7B7B7B;
+                                                }
+
+                                            }
+
+                                            
+
+                                        }
+
+
+                                        fieldset.field {
+                                            legend.label {
+                                                span {
+                                                    font-family: 'Montserrat', sans-serif;
+                                                    font-style: normal;
+                                                    font-weight: 400;
+                                                    font-size: 14px;
+                                                    line-height: 18px;
+                                                    color: #7B7B7B;
+                                                }
+
+                                                &::after {
+                                                    color: #7B7B7B;
+                                                }
+                                            }
+                                        }
+
+                            }
+
+                        }  
+
+
+                    }
+
+                    li.checkout-shipping-method {
+
+                        div.checkout-shipping-method {
+                            div.step-title {
+                                font-family: 'Montserrat', sans-serif;
+                                font-style: normal;
+                                font-weight: 700;
+                                font-size: 18px;
+                                text-align: left;
+                                border-bottom: unset;
+                                margin-bottom: unset;
+                            }
+
+                            div#checkout-step-shipping_method {
+                                div#checkout-shipping-method-load {
+                                    table.table-checkout-shipping-method {
+
+                                        thead {
+                                            display: none;
+                                            th {
+                                                border: none;
+                                            }
+                                        }
+
+                                        tbody td {
+                                            border: none;
+                                            border-left: 1px solid #B6BAC0;
+
+                                            span {
+                                                font-family: 'Montserrat', sans-serif;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                                line-height: 18px;
+                                                color: @black;
+                                            }
+
+                                            &:first-child {
+
+                                                border-left: none;
+
+                                                input[type="radio"] {
+                                                    appearance: none;
+                                                    -webkit-appearance: none;
+                                                    background-color: @white;
+                                                    width: 22px;
+                                                    height: 22px;
+                                                    border-radius: 2px;
+                                                    border: 2px solid #7B7B7B !important;
+                                            
+                                                    &:checked {
+                                                        border: 2px solid #7B7B7B !important;
+                                                        border-radius: 2px;
+                                                        &::before {
+                                                            content: url('https://api.iconify.design/uit/check.svg?color=%235bab1d&width=20&height=20');
+                                                            position: absolute;
+                                                            height: 10px;
+                                                            width: 10px;
+                                                            top: -1px;
+                                                            left: 0px;
+                                                            background: transparent;
+                                                            opacity: .8;
+                                                        }
+                                                        &::after {
+                                                           display: none;
+                                                        }
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
+      }
+
+       
+    }
+
+}

@@ -15369,3 +15369,5 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Order number","Número de orden"
 "Filtered by","Filtrado por"
 "My account", "Mi cuenta"
+"Email Address__","E-mail"
+"Password__","Contraseña"

@@ -3,4 +3,7 @@
     <type name="Magento\Checkout\CustomerData\Cart">
         <plugin name="Aventi_Checkout_Plugin_Magento_Checkout_CustomerData_Cart" type="Aventi\Checkout\Plugin\Magento\Checkout\CustomerData\Cart" sortOrder="10" disabled="false"/>
     </type>
+    <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
+		<plugin name="Aventi_Checkout_Plugin_Magento_Checkout_Block_Checkout_LayoutProcessor" type="Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout\LayoutProcessor" sortOrder="10" disabled="false"/>
+	</type>
 </config>
