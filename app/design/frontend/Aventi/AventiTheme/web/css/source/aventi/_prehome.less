@@ -1,0 +1,89 @@
+
+& when (@media-common =true) {
+
+    body#html-body.cms-index-index {
+
+        div#prehome {
+            > div.row:first-child {
+                h4 {
+                    margin-top: -0.5em;
+                }
+            }
+
+            > div.row:nth-child(2) {
+
+                > div {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: -webkit-fill-available;
+                }
+            }
+
+            > div.row:nth-child(3) {
+                > p {
+                    max-width: 60%;
+                    text-align: center;
+                }
+            }
+            
+        }
+
+    }
+    
+}
+
+
+@media screen and (max-width: 767px) {
+
+    body#html-body.cms-index-index {
+
+        div#prehome {
+            align-content: unset !important;
+            overflow: auto;
+
+            > div.row:first-child {
+                margin-top: 2em;
+                margin-bottom: 3em;
+                height: 30%;
+                h4 {
+                    margin-top: unset;
+                    font-size: 14px;
+                }
+            }
+
+            > div.row:nth-child(2) {
+                margin-bottom: 2em;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 12px;
+                margin-bottom: 2em;
+
+                > div {
+                    all: unset;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    max-width: 85%;
+
+                    &:nth-child(2) {
+                        border-right-style: unset !important;
+                        border-left-style: unset !important;
+                        > img {
+                            border-top: 2px solid @white;
+                            border-bottom: 2px solid @white;
+                        }
+                    }
+                }
+            }
+
+            > div.row:nth-child(3) {
+                display: none !important;
+            }
+            
+        }
+
+    }
+    
+}
