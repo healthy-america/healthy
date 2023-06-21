@@ -21,7 +21,7 @@ class LayoutProcessor
         $shippingForm['firstname']['placeholder'] = __('Nombre y Apellido');
         $shippingForm['lastname']['placeholder'] = __('Apellido');    
         $shippingForm['company']['placeholder'] = __('Identificación');    
-        $shippingForm['street']['children'][0]['placeholder'] = __('street[0]');    
+        $shippingForm['street']['children'][0]['placeholder'] = __('Dirección');    
         $shippingForm['city']['placeholder'] = __('Ciudad');
         $shippingForm['postcode']['placeholder'] = __('Código postal');
         $shippingForm['telephone']['placeholder'] = __('Telefono');
