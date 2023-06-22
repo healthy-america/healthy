@@ -6571,6 +6571,7 @@ Email template chosen based on theme fallback when ""Default"" option is selecte
 "[STORE VIEW]","[VISTA DE TIENDA]",module,Magento_GiftRegistry
 "None","Ninguno",module,Magento_GiftRegistry
 "New Address","Nueva dirección",module,Magento_GiftRegistry
+"New Address","Nueva dirección"
 "Edit Gift Registry","Editar Registro de regalo",module,Magento_GiftRegistry
 "Create Gift Registry","Crear registro de regalo",module,Magento_GiftRegistry
 "State/Province","Estado/provincia",module,Magento_GiftRegistry

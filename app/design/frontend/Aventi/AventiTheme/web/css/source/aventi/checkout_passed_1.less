@@ -81,6 +81,7 @@
                                             display: flex;
                                             gap: 10px;
                                             position: relative;
+                                            flex-wrap: wrap;
 
                                             span._container_email_ {
                                                 position: absolute;
@@ -106,6 +107,10 @@
                                                 padding-left: 4em;
                                             }
 
+                                        }
+
+                                        &.captcha {
+                                            margin-top: 2em;
                                         }
 
                                     }
@@ -387,6 +392,39 @@
 
                             }
 
+                            div.field.addresses {
+                                margin-bottom: 2em;
+
+                                div.shipping-address-items {
+
+                                    div.shipping-address-item {
+                                        border: 1px solid @color-primary;
+                                        &.selected-item {
+                                            border: 1px solid @color-primary;
+                                            color: @black;
+
+                                            a {
+                                                color: @black;
+                                            }
+
+                                            &::after {
+                                                background: @color-primary;
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                            div.new-address-popup {
+                                button.action.action-show-popup {
+                                    color: var(--button__color);
+                                    background: var(--button-primary__background);
+                                    border: 1px solid var(--theme__color__primary);
+                                }
+                            }
+
                         }  
 
 
@@ -475,9 +513,285 @@
 
             }
 
-      }
+        }
+
+        .modals-wrapper {
+
+            aside {
+        
+                header.modal-header {
+
+                   h1 {
+                        font-family: 'Montserrat', sans-serif;
+                        font-style: normal;
+                        font-weight: 800;
+                        font-size: 18px;
+                        line-height: 24px;
+                        text-align: left;
+                   }
+                }
+
+                div.modal-inner-wrap {
+
+                    form.form.form-shipping-address {
+                                
+                                div.field {
+
+                                    label.label {
+                                    
+                                        span {
+                                            font-family: 'Montserrat', sans-serif;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: @label-color-checkout;
+                                        }
+
+                                        &::after {
+                                            color: @label-color-checkout;
+                                        }
+
+                                    }
+                                }
+
+
+                                fieldset.field {
+                                    legend.label {
+                                        span {
+                                            font-family: 'Montserrat', sans-serif;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: @grey-dark;
+                                        }
+
+                                        &::after {
+                                            color: @grey-dark;
+                                        }
+                                    }
+                                }
+
+                                div.field.choice {
+                                    display: flex;
+                                    justify-content: flex-start;
+                                    align-items: center;
+                                    height: 2.5em;
+                                    gap: 8px;
+                                    margin-bottom: 2em;
+
+                                    input[type="checkbox"] {
+                                        appearance: none;
+                                        -webkit-appearance: none;
+                                        background-color: transparent;
+                                        border-radius: 4px;
+                                        border: 1px solid @grey-dark;
+                                        width: 20px;
+                                        height: 20px;
+                                        position: relative;
+                                
+                                        &:checked {
+                                            background-color:  @blue-selected;
+                                            border: 1px solid  @grey-dark;
+                                            &::before {
+                                                position: absolute;
+                                                height: 16px;
+                                                width: 16px;
+                                                top: 1px;
+                                                left: 1px;
+                                                background: @blue-selected;
+                                                border-radius: 4px;
+                                                opacity: .8;
+                                            }
+                                        }
+                                    }
+
+                                    label {
+                                        height: -webkit-fill-available;
+                                        display: grid;
+                                        margin-top: 0.5em;
+                                        place-content: center;
+                                        padding: unset;
+                                    }
+
+                                }
+
+                    }
+
+                }
+
+            }
+        }
 
        
     }
 
 }
+
+
+@media screen and (max-width: 1000px) {
+
+
+    body#html-body.checkout-index-index {
+
+        div#checkout {
+            // .authentication-wrapper {
+            //     display: none;
+            // }
+            ul.opc-progress-bar {
+                display: block;
+            }
+
+            .opc-estimated-wrapper {
+                display: none;
+            }
+
+            div.authentication-wrapper {
+                width: -webkit-fill-available;
+                order: 20;
+                margin-top: 2em;
+
+                button.action.action-auth-toggle {
+                    display: none;
+                }
+
+                aside.modal-custom.authentication-dropdown  {
+                    display: contents;
+
+                    div.modal-inner-wrap {
+                        position: unset;
+                        overflow: unset;
+                        transition: unset;
+                        transform: unset;
+                        box-shadow: unset;
+                        background: #F1F5FA;
+                        div.modal-content {
+
+                            div.block-content 
+                            form div.actions-toolbar 
+                            div.primary button {
+                                width: -webkit-fill-available;
+                            }
+
+                        }
+                    }
+
+                }
+            }
+
+            div.opc-wrapper {
+                width: -webkit-fill-available;
+
+                ol.opc {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    position: relative;
+
+                    li#opc-shipping_method {
+                        margin-bottom: 3.5em;
+                        position: unset;
+                        div.checkout-shipping-method {
+                            position: unset;
+
+                            div#shipping-method-buttons-container {
+                                position: absolute;
+                                margin-top: 2.5em;
+                                bottom: -3em;
+                                width: -webkit-fill-available;
+                                div.primary {
+                                    button.button.primary {
+                                        width: -webkit-fill-available;
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    li#shipping {
+                        div#checkout-step-shipping {
+
+                            div.field.addresses {
+
+                                div.shipping-address-items {
+                                    grid-template-columns: 100%;
+                                }
+
+                            }
+                        }
+                    }
+
+                
+                }
+
+            }
+
+        }
+
+        .modals-wrapper {
+
+            aside {
+        
+                header.modal-header {
+
+                   h1 {
+                        font-family: 'Montserrat', sans-serif;
+                        font-style: normal;
+                        font-weight: 800;
+                        font-size: 18px;
+                        line-height: 24px;
+                        text-align: left;
+                   }
+
+                   button.action-close {
+                        padding: unset;
+                   }
+
+                }
+
+                div.modal-inner-wrap {
+
+                    form.form.form-shipping-address {
+                                
+                                fieldset.field {
+                                    border: unset;
+                                    width: -webkit-fill-available;
+                                    padding: unset;
+                                }
+
+                                div.field:nth-child(10) {
+
+                                    input {
+                                        width: -webkit-fill-available;
+                                        margin-right: unset;
+                                    }
+
+                                    div.control._with-tooltip {
+                                        div.field-tooltip.toggle {
+                                            display: none;
+                                        }
+                                    }
+
+                                }
+
+
+                    }
+
+                    footer.modal-footer {
+                        margin: unset;
+                        margin: 1em;
+                        display: flex;
+                        gap: 10px;
+                    }    
+
+                }
+
+
+            }
+        }
+    }
+}
+
+
