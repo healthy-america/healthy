@@ -167,8 +167,7 @@
 
             // }
 
-           
-                
+                           
             aside.modal-custom.opc-sidebar.opc-summary-wrapper {
                     order: 30;
                     width: 40%;
@@ -466,7 +465,9 @@
                                                width: 15em;
 
                                                &:hover {
-                                                   background: @primary-button-background-hover;
+                                                   background: @primary-button-background-hover !important;
+                                                   border: 1px solid @primary-button-background-hover !important;
+                                                   //me vi obligado por que en resoluciones 800px hay un !important en el hover
                                                }
 
                                             }
@@ -671,13 +672,233 @@
 
                     }
 
-                    // li.checkout-payment-method {
-                    //     div#checkout-step-payment {
-                    //         form {
+                    li.checkout-payment-method {
+                        margin-top: 5em;
 
-                    //         }
-                    //     }
-                    // }
+                        div#checkout-step-payment {
+                            form {
+                                fieldset {
+                                    hr { display: none; }
+                                    #checkout-payment-method-load {
+                                        .items.payment-methods {
+                                            .payment-group {
+                                                .payment-method {
+                                                    padding: 0.8em;
+                                                    border-radius: 4px;
+                                                    border: 1px solid var(--gris-claro, #E8E6E6);
+
+                                                    div.payment-method-title.field.choice {
+                                                        display: flex;
+                                                        gap: 2em;
+                                                        border-top: unset;
+                                                        input[type="radio"] {
+                                                            width: 15px;
+                                                            height: 15px;
+                                                            appearance: none;
+                                                            -webkit-appearance: none;
+                                                            background-color: @white;
+                                                    
+                                                            &:checked {
+                                                                border: 1px solid @black !important;
+                                                                display: grid;
+                                                                place-items: center;
+                                                                &::before {
+                                                                    content: '';
+                                                                    height: 9px;
+                                                                    width: 9px;
+                                                                    background: @black;
+                                                                    opacity: .8;
+                                                                    border-radius: 100%;
+                                                                }
+                                                                &::after {
+                                                                   display: none;
+                                                                }
+                                                            }
+                                                        }
+
+                                                        label {
+                                                            padding-left: 23px;
+                                                            span {
+                                                                color: #000;
+                                                                font-size: 12px;
+                                                                font-family: 'Montserrat' , sans-serif;
+                                                                line-height: 20px;
+                                                            }
+                                                        }
+
+                                                    }
+
+                                                    div.payment-method-content {
+                                                        div.payment-method-billing-address {
+                                                            
+
+                                                            .billing-address-same-as-shipping-block.field {
+                                                                input[type="checkbox"] {
+                                                                    appearance: none;
+                                                                    -webkit-appearance: none;
+                                                                    background-color: @white;
+                                                                    width: 15px;
+                                                                    height: 15px;
+                                                                    border-radius: 2px;
+                                                                    border: 1px solid @grey-dark !important;
+                                                            
+                                                                    &:checked {
+                                                                        border: 1px solid @black !important;
+                                                                        border-radius: 2px;
+                                                                        display: grid;
+                                                                        place-items: center;
+                                                                        &::before {
+                                                                            content: '';
+                                                                            height: 9px;
+                                                                            width: 9px;
+                                                                            border-radius: 2px;
+                                                                            background: @black;
+                                                                            opacity: .8;
+                                                                        }
+                                                                        &::after {
+                                                                           display: none;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            .billing-address-details span,
+                                                            .billing-address-details a,
+                                                            .billing-address-details {
+                                                                font-family: 'Montserrat', sans-serif;
+                                                                font-style: normal;
+                                                                font-weight: 500;
+                                                                font-size: 15px;
+                                                                text-align: left;
+                                                                color: @grey-dark;
+
+                                                                &:hover {
+                                                                    color: @grey-dark;
+                                                                }
+
+                                                            }
+
+                                                            fieldset.fieldset {
+                                                                div[data-bind="fadeVisible: isAddressFormVisible"] {
+                                                                    
+                                                                    form {
+                                                                        
+                                                                        div.field {
+
+                                                                            label.label {
+                                                                                    
+                                                                                span {
+                                                                                            font-family: 'Montserrat', sans-serif;
+                                                                                            font-style: normal;
+                                                                                            font-weight: 400;
+                                                                                            font-size: 14px;
+                                                                                            line-height: 18px;
+                                                                                            color: @grey-dark;
+                                                                                }
+
+                                                                                &::after {
+                                                                                    color: @grey-dark;
+                                                                                }
+
+                                                                            }
+
+                                                                            div.control {
+
+                                                                                select {
+                                                                                    background: @white;
+                                                                                }
+
+                                                                                &._with-tooltip {
+                        
+                                                                                    input {
+                                                                                        width: -webkit-fill-available;
+                                                                                        margin-right: unset;
+                                                                                    }
+                                                                                }
+
+                                                                            }
+
+                                                                        }
+
+
+                                                                        fieldset.field {
+                                                                            legend.label {
+                                                                                span {
+                                                                                    font-family: 'Montserrat', sans-serif;
+                                                                                    font-style: normal;
+                                                                                    font-weight: 400;
+                                                                                    font-size: 14px;
+                                                                                    line-height: 18px;
+                                                                                    color: @grey-dark;
+                                                                                }
+
+                                                                                &::after {
+                                                                                    color: @grey-dark;
+                                                                                }
+                                                                            }
+
+                                                                            &.field.street.admin__control-fields {
+                                                                                padding: unset;
+                                                                                border: none;
+                                                                            } 
+
+                                                                        }
+
+                                                                    }
+
+                                                                }
+
+                                                            }
+
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    div.payment-option._collapsible.discount-code {
+                                        div.payment-option-title.field {
+                                            border-bottom: 1px solid @grey-dark;
+                                            span.action.action-toggle {
+                                                span {
+                                                    color: @color-text-checkout;
+                                                    font-size: 14px;
+                                                    font-family: 'Montserrat', sans-serif;
+                                                    font-weight: 700;
+                                                    line-height: 20px;
+                                                }
+                                            }
+                                        }
+
+                                        div.payment-option-content {
+                                            
+                                            form.form.form-discount {
+                                                display: flex;
+                                                justify-content: space-between;
+                                                align-items: center;
+
+                                                div.payment-option-inner {
+                                                    width: 70%;
+                                                }
+
+                                                div.actions-toolbar {
+                                                    display: flex;
+                                                    justify-content: flex-end;
+                                                    width: 30%;
+                                                }
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
 
 
                 }
@@ -849,6 +1070,14 @@
             }
         }
 
+        ._title_payment_ {
+            color: var(--negro, #050202);
+            font-size: 18px;
+            font-family: 'Montserrat' , sans-serif;
+            font-weight: 600;
+            line-height: 24px;
+        }
+
        
     }
 
@@ -874,43 +1103,10 @@
                 display: none;
             }
 
-            // div.authentication-wrapper {
-            //     width: -webkit-fill-available;
-            //     order: 20;
-            //     margin-top: 2em;
-
-            //     button.action.action-auth-toggle {
-            //         display: none;
-            //     }
-
-            //     aside.modal-custom.authentication-dropdown  {
-            //         display: contents;
-
-            //         div.modal-inner-wrap {
-            //             position: unset;
-            //             overflow: unset;
-            //             transition: unset;
-            //             transform: unset;
-            //             box-shadow: unset;
-            //             background: #F1F5FA;
-            //             div.modal-content {
-
-            //                 div.block-content 
-            //                 form div.actions-toolbar 
-            //                 div.primary button {
-            //                     width: -webkit-fill-available;
-            //                 }
-
-            //             }
-            //         }
-
-            //     }
-            // }
-
             div.opc-wrapper {
                 width: -webkit-fill-available;
 
-                ol.opc {
+                ol.opc#checkoutSteps {
                     display: flex;
                     flex-direction: column-reverse;
                     position: relative;
@@ -938,6 +1134,7 @@
                     }
 
                     li#shipping {
+                        padding-top: unset;
                         div#checkout-step-shipping {
 
                             div.field.addresses {
@@ -946,6 +1143,51 @@
                                     grid-template-columns: 100%;
                                 }
 
+                            }
+
+                            form[data-role="email-with-possible-login"] {
+                                padding: 2em 0.5em 2em 0.5em;
+                            }
+                        }
+                    }
+
+
+                    li.checkout-payment-method {
+
+                        div#checkout-step-payment {
+                            form {
+                                fieldset {
+                                 
+                                    #checkout-payment-method-load {
+                                        .items.payment-methods {
+                                            .payment-group {
+                                                .payment-method {
+
+                                                    div.payment-method-content {
+                                                        div.payment-method-billing-address {
+
+                                                            fieldset.fieldset {
+
+                                                                div.actions-toolbar {
+                                                                    
+                                                                    div.primary {
+                                                                        display: grid;
+
+                                                                        button {
+                                                                            width: -webkit-fill-available;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+
+                                                        }
+                                                    }
+
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

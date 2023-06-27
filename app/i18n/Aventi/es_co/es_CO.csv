@@ -11982,7 +11982,7 @@ target=""_blank"">DevDocs' Release Information</a>.,module,Magento_ReleaseNotifi
 "The coupon code isn't valid. Verify the code and try again.","The coupon code isn't valid. Verify the code and try again.",module,Magento_SalesRule
 "%1 coupon(s) have been generated.","Se han generado %1 cupones.",module,Magento_SalesRule
 "Apply Discount Code","Aplicar cupón",module,Magento_SalesRule
-"Enter discount code","Código del cupón",module,Magento_SalesRule
+"Enter discount code","Ingrese el código del descuento",module,Magento_SalesRule
 "Apply Discount","Aplicar",module,Magento_SalesRule
 "Cancel coupon","Cancelar el cupón",module,Magento_SalesRule
 "Your coupon was successfully removed.","Su cupón fue removido con éxito.",module,Magento_SalesRule
