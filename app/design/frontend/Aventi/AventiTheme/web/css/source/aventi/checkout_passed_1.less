@@ -19,149 +19,153 @@
             display: flex;
             flex-wrap: wrap;
 
-            div.authentication-wrapper {
-                width: 60%;
-                order: 20;
-                margin-top: 5em;
-
-                button.action.action-auth-toggle {
-                    display: none;
-                }
-
-                aside.modal-custom.authentication-dropdown  {
-                    max-width: unset;
-                    width: 95%;
-                    position: unset;
-                    transform: scale(1, 1);
-                    transition: transform linear .1s, visibility 0s linear 0s;
-                    visibility: visible;
-                    z-index: 3;
-                    border: 1px solid @disabled-backgroun-checkout;
-                    border-radius: 4px;
-
-                    header.modal-header {
-                        display: none;
-                    }
-
-                    div.modal-inner-wrap {
-
-                        div.modal-content {
-
-                            div.block-title strong {
-                                font-family: 'Montserrat', sans-serif;
-                                font-style: normal;
-                                font-weight: 600;
-                                font-size: 18px;
-                                text-align: center;
-                            }
-
-                            div.block-content form {
-
-                                div.fieldset {
-
-
-                                    div.field {
-                                    
-                                        label {
-
-                                            &::after {
-                                                display: none;
-                                            }
-
-                                            span {
-                                                font-family: 'Montserrat', sans-serif;
-                                                font-style: normal;
-                                                font-weight: 400;
-                                                font-size: 14px;
-                                            }
-
-                                        }
-
-                                        div.control {
-                                            display: flex;
-                                            gap: 10px;
-                                            position: relative;
-                                            flex-wrap: wrap;
-
-                                            span._container_email_ {
-                                                position: absolute;
-                                                left: 1em;
-                                                top: 0.65em;
-                                                &::after {
-                                                    content: url('https://api.iconify.design/carbon/email.svg?color=%237b7b7b&width=23&height=23');
-                                                }
-
-                                            }
-
-                                            span._container_password_ {
-                                                position: absolute;
-                                                left: 1em;
-                                                top: 0.65em;
-                                                &::after {
-                                                    content: url('https://api.iconify.design/mdi/password-outline.svg?color=%237b7b7b&width=23&height=23');
-                                                }
-
-                                            }
-
-                                            input {
-                                                padding-left: 4em;
-                                            }
-
-                                        }
-
-                                        &.captcha {
-                                            margin-top: 2em;
-                                        }
-
-                                    }
-
-                                }
-
-                                div.actions-toolbar {
-                                    display: flex;
-                                    place-content: flex-end;
-                                    flex-direction: column-reverse;
-
-                                    div.primary {
-
-                                        button {
-                                          width: 15em;
-                                        }
-
-                                    }
-
-                                    div.secondary {
-                                        display: flex;
-                                        justify-content: flex-end;
-                                        margin-right: 0;
-                                        border: none;
-                                        padding-top: unset;
-                                        margin-top: unset;
-
-                                        a {
-                                            background: transparent;
-                                            border: none;
-                                            span {
-                                                font-family: 'Montserrat';
-                                                font-style: normal;
-                                                font-weight: 400;
-                                                font-size: 14px;
-                                                color: @grey-dark;
-                                            }
-
-                                        }
-                                    }
-                                }
-
-                            }
-
-                        }
-
-                    }
-
-                }
-
+            .authentication-wrapper {
+                 display: none;
             }
+
+            // div.authentication-wrapper {
+            //     width: 60%;
+            //     order: 20;
+            //     margin-top: 5em;
+
+            //     button.action.action-auth-toggle {
+            //         display: none;
+            //     }
+
+            //     aside.modal-custom.authentication-dropdown  {
+            //         max-width: unset;
+            //         width: 95%;
+            //         position: unset;
+            //         transform: scale(1, 1);
+            //         transition: transform linear .1s, visibility 0s linear 0s;
+            //         visibility: visible;
+            //         z-index: 3;
+            //         border: 1px solid @disabled-backgroun-checkout;
+            //         border-radius: 4px;
+
+            //         header.modal-header {
+            //             display: none;
+            //         }
+
+            //         div.modal-inner-wrap {
+
+            //             div.modal-content {
+
+            //                 div.block-title strong {
+            //                     font-family: 'Montserrat', sans-serif;
+            //                     font-style: normal;
+            //                     font-weight: 600;
+            //                     font-size: 18px;
+            //                     text-align: center;
+            //                 }
+
+            //                 div.block-content form {
+
+            //                     div.fieldset {
+
+
+            //                         div.field {
+                                    
+            //                             label {
+
+            //                                 &::after {
+            //                                     display: none;
+            //                                 }
+
+            //                                 span {
+            //                                     font-family: 'Montserrat', sans-serif;
+            //                                     font-style: normal;
+            //                                     font-weight: 400;
+            //                                     font-size: 14px;
+            //                                 }
+
+            //                             }
+
+            //                             div.control {
+            //                                 display: flex;
+            //                                 gap: 10px;
+            //                                 position: relative;
+            //                                 flex-wrap: wrap;
+
+            //                                 span._container_email_ {
+            //                                     position: absolute;
+            //                                     left: 1em;
+            //                                     top: 0.65em;
+            //                                     &::after {
+            //                                         content: url('https://api.iconify.design/carbon/email.svg?color=%237b7b7b&width=23&height=23');
+            //                                     }
+
+            //                                 }
+
+            //                                 span._container_password_ {
+            //                                     position: absolute;
+            //                                     left: 1em;
+            //                                     top: 0.65em;
+            //                                     &::after {
+            //                                         content: url('https://api.iconify.design/mdi/password-outline.svg?color=%237b7b7b&width=23&height=23');
+            //                                     }
+
+            //                                 }
+
+            //                                 input {
+            //                                     padding-left: 4em;
+            //                                 }
+
+            //                             }
+
+            //                             &.captcha {
+            //                                 margin-top: 2em;
+            //                             }
+
+            //                         }
+
+            //                     }
+
+            //                     div.actions-toolbar {
+            //                         display: flex;
+            //                         place-content: flex-end;
+            //                         flex-direction: column-reverse;
+
+            //                         div.primary {
+
+            //                             button {
+            //                               width: 15em;
+            //                             }
+
+            //                         }
+
+            //                         div.secondary {
+            //                             display: flex;
+            //                             justify-content: flex-end;
+            //                             margin-right: 0;
+            //                             border: none;
+            //                             padding-top: unset;
+            //                             margin-top: unset;
+
+            //                             a {
+            //                                 background: transparent;
+            //                                 border: none;
+            //                                 span {
+            //                                     font-family: 'Montserrat';
+            //                                     font-style: normal;
+            //                                     font-weight: 400;
+            //                                     font-size: 14px;
+            //                                     color: @grey-dark;
+            //                                 }
+
+            //                             }
+            //                         }
+            //                     }
+
+            //                 }
+
+            //             }
+
+            //         }
+
+            //     }
+
+            // }
 
            
                 
@@ -253,7 +257,42 @@
 
                             }
 
+                            div.title strong span {
+                                font-family: 'Roboto', sans-serif;
+                                font-size: 16px;
+                                font-weight: 400;
+                                color: @black_secunday;
+                            }
 
+                        }
+
+                        table.data.table.table-totals {
+                            tbody {
+                                tr {
+
+                                    th strong,
+                                    th {
+                                        font-family: "Montserrat" , sans-serif;
+                                        font-weight: 400;
+                                        font-size: 12px;
+                                        color: @color-text-checkout;
+                                    }
+
+                                    th strong {
+                                        font-weight: 700;
+                                    }
+
+                                    td {
+                                        span {
+                                            font-family: "Montserrat" , sans-serif;
+                                            font-weight: 700;
+                                            font-size: 12px;
+                                            color: @color-text-checkout;
+                                        }
+                                    }
+
+                                }
+                            }
                         }
 
 
@@ -266,6 +305,9 @@
             }
 
             ul.opc-progress-bar {
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 order: 10;
                 width: -webkit-fill-available;
 
@@ -290,7 +332,7 @@
                 }
 
                 li {
-
+                    max-width: 25%;
                     &::before {
                         background: @disabled-backgroun-checkout;
                     }
@@ -313,14 +355,17 @@
             }
 
             div.opc-wrapper {
-                order: 40;
+                order: 20;
                 width: 60%;
 
                 ol#checkoutSteps  {
                 
                     li#shipping {
+                        position: relative;
+                        padding-top: 5em;
 
                         div.step-title {
+                            display: none;
                             font-family: 'Montserrat', sans-serif;
                             font-style: normal;
                             font-weight: 700;
@@ -344,7 +389,124 @@
                         }
 
                         div#checkout-step-shipping {
-                        
+                            position: unset;
+                            form[data-role="email-with-possible-login"] {
+                                border: 1px solid @disabled-backgroun-checkout;
+                                background: @white;
+                                padding: 2em 2em 0em 2em;
+                                margin-top: unset;
+                                width: -webkit-fill-available;
+
+                                div._strong_container_email {
+                                    width: -webkit-fill-available;
+                                    display: grid;
+                                    place-content: center;
+                                    strong {
+                                        color: #050202;
+                                        font-size: 18px;
+                                        font-family: 'Montserrat', sans-serif;
+                                        font-weight: 600;
+                                        line-height: 24px;
+                                        text-align: center;
+                                    }
+                                }
+
+                                div.field-tooltip.toggle {
+                                    display: none;
+                                }
+
+                                fieldset#customer-email-fieldset {
+
+                                    div.field {
+
+                                        div.control {
+                                            display: flex;
+                                            gap: 10px;
+                                            position: relative;
+                                            flex-wrap: wrap;
+
+                                            input {
+                                                padding-left: 4em;
+                                            }
+
+                                            span {
+                                                position: absolute;
+                                                left: 1em;
+                                                top: 0.65em;
+
+                                                &.email__ {
+                                                    &::after {
+                                                        content: url('https://api.iconify.design/carbon/email.svg?color=%237b7b7b&width=23&height=23');
+                                                    }
+                                                }   
+
+                                                &.password__ {
+                                                    &::after {
+                                                        content: url('https://api.iconify.design/mdi/password-outline.svg?color=%237b7b7b&width=23&height=23');
+                                                    }
+                                                }
+
+
+                                            }
+                                
+
+                                        }
+
+                                    }
+
+                                    div.actions-toolbar {
+                                        display: flex;
+                                        flex-direction: column-reverse;
+                                        align-items: flex-end;
+                                        margin-top: 1em;
+
+                                        div.primary {
+
+                                            button {
+                                               width: 15em;
+
+                                               &:hover {
+                                                   background: @primary-button-background-hover;
+                                               }
+
+                                            }
+                                
+                                        }
+                                
+                                        div.secondary {
+                                            display: flex;
+                                            justify-content: flex-end;
+                                            margin-right: 0;
+                                            border: none;
+                                            padding-top: unset;
+                                            margin-top: unset;
+                                
+                                            a {
+                                                background: transparent;
+                                                border: none;
+                                                    span {
+                                                            font-family: 'Montserrat';
+                                                            font-style: normal;
+                                                            font-weight: 400;
+                                                            font-size: 14px;
+                                                            color: @grey-dark;
+                                                        }
+                                
+                                            }
+                                        
+                                    
+                                        }
+                                    }
+
+                                    fieldset.hidden-fields:not([style*="display:none"]) {
+                                       margin-bottom: 3em;
+                                    }
+                                    
+
+                                }
+
+                            }
+
                             form.form.form-login,
                             form#co-shipping-form {
 
@@ -509,6 +671,15 @@
 
                     }
 
+                    // li.checkout-payment-method {
+                    //     div#checkout-step-payment {
+                    //         form {
+
+                    //         }
+                    //     }
+                    // }
+
+
                 }
 
             }
@@ -529,9 +700,35 @@
                         line-height: 24px;
                         text-align: left;
                    }
+
+                   button.action-close {
+                    padding: unset;
+                   }
+
                 }
 
                 div.modal-inner-wrap {
+                    width: 680px;
+
+                    ::-webkit-scrollbar {
+                        display: initial;
+                        width: auto;
+                    }
+                    
+                    ::-webkit-scrollbar-track {
+                        background-color: transparent;
+                    }
+                    
+                    ::-webkit-scrollbar-thumb {
+                        background-color: #d6dee1;
+                        border-radius: 20px;
+                        border: 6px solid transparent;
+                        background-clip: content-box;
+                    }
+                    
+                    ::-webkit-scrollbar-thumb:hover {
+                        background-color: #a8bbbf;
+                    }
 
                     form.form.form-shipping-address {
                                 
@@ -617,7 +814,35 @@
 
                                 }
 
+                                div.field:nth-child(10) {
+
+                                    input {
+                                        width: -webkit-fill-available;
+                                        margin-right: unset;
+                                    }
+
+                                    div.control._with-tooltip {
+                                        div.field-tooltip.toggle {
+                                            display: none;
+                                        }
+                                    }
+
+                                }
+
                     }
+
+                    footer.modal-footer {
+                        button.action.secondary.action-hide-popup {
+                            border: 1px solid @primary-button-background;
+                            color: @primary-button-background;
+                            
+                            &:hover {
+                               border: 2px solid @primary-button-background;
+                               background: transparent;
+                            }
+
+                        }
+                    }   
 
                 }
 
@@ -636,49 +861,51 @@
     body#html-body.checkout-index-index {
 
         div#checkout {
-            // .authentication-wrapper {
-            //     display: none;
-            // }
+
             ul.opc-progress-bar {
-                display: block;
+                display: flex;
+
+                li {
+                    max-width: 42%;
+                }
             }
 
             .opc-estimated-wrapper {
                 display: none;
             }
 
-            div.authentication-wrapper {
-                width: -webkit-fill-available;
-                order: 20;
-                margin-top: 2em;
+            // div.authentication-wrapper {
+            //     width: -webkit-fill-available;
+            //     order: 20;
+            //     margin-top: 2em;
 
-                button.action.action-auth-toggle {
-                    display: none;
-                }
+            //     button.action.action-auth-toggle {
+            //         display: none;
+            //     }
 
-                aside.modal-custom.authentication-dropdown  {
-                    display: contents;
+            //     aside.modal-custom.authentication-dropdown  {
+            //         display: contents;
 
-                    div.modal-inner-wrap {
-                        position: unset;
-                        overflow: unset;
-                        transition: unset;
-                        transform: unset;
-                        box-shadow: unset;
-                        background: #F1F5FA;
-                        div.modal-content {
+            //         div.modal-inner-wrap {
+            //             position: unset;
+            //             overflow: unset;
+            //             transition: unset;
+            //             transform: unset;
+            //             box-shadow: unset;
+            //             background: #F1F5FA;
+            //             div.modal-content {
 
-                            div.block-content 
-                            form div.actions-toolbar 
-                            div.primary button {
-                                width: -webkit-fill-available;
-                            }
+            //                 div.block-content 
+            //                 form div.actions-toolbar 
+            //                 div.primary button {
+            //                     width: -webkit-fill-available;
+            //                 }
 
-                        }
-                    }
+            //             }
+            //         }
 
-                }
-            }
+            //     }
+            // }
 
             div.opc-wrapper {
                 width: -webkit-fill-available;
@@ -752,7 +979,7 @@
                 }
 
                 div.modal-inner-wrap {
-
+                    width: unset;
                     form.form.form-shipping-address {
                                 
                                 fieldset.field {
