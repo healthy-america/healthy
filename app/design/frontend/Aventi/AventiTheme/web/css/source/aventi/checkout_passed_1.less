@@ -572,6 +572,27 @@
 
                             }
 
+                            form#co-shipping-form {
+                               position: relative;
+                               margin-top: 72px;
+                               padding-top: 1.8em;
+                                &::after {
+                                    position: absolute;
+                                    top: -1em;
+                                    left: 0;
+                                    content: 'Datos de envio';
+                                    width: 100%;
+                                    height: 3em;
+                                    color: var(--negro, #050202);
+                                    text-align: left;
+                                    font-size: 18px;
+                                    font-family: 'Montserrat', sans-serif;
+                                    font-weight: 700;
+                                    line-height: 24px;
+                                }
+
+                            }
+
                             div.field.addresses {
                                 margin-bottom: 2em;
 
@@ -868,6 +889,26 @@
                                                             }
 
                                                         }
+                                                        div.actions-toolbar {
+                                                            div.primary {
+                                                                button.action.primary.checkout {
+                                                                    display: inline-block;
+                                                                    border-radius: 4px;
+                                                                    border: 1px solid var(--azul, #004088);
+                                                                    background: var(--blanco, #FFF);
+
+                                                                    span {
+                                                                        color: var(--azul, #004088);
+                                                                        text-align: center;
+                                                                        font-size: 14px;
+                                                                        font-family: 'Roboto',sans-serif;
+                                                                        font-style: normal;
+                                                                        font-weight: 600;
+                                                                        line-height: normal;
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
                                                     }
 
                                                 }
@@ -1133,7 +1174,7 @@
                         position: unset;
                         div.checkout-shipping-method {
                             position: unset;
-
+                           
                             div#shipping-method-buttons-container {
                                 position: absolute;
                                 margin-top: 2.5em;
@@ -1144,6 +1185,10 @@
                                         width: -webkit-fill-available;
                                     }
                                 }
+                            }
+
+                            div.step-title {
+                                color: @primary-button-background;
                             }
 
                         }
@@ -1164,17 +1209,46 @@
 
                             form[data-role="email-with-possible-login"] {
                                 padding: 2em 0.5em 2em 0.5em;
+                                background: #F1F5FA;
+                                border: 1px solid #F1F5FA;
+                                border-radius: 4px;
 
                                 &::before {
                                     color: var(--rojo, #DC041C);
                                 }
+
+                                #customer-email-fieldset {
+                                    display: grid;
+                                    gap: 1em;
+                                }
+
                             }
+
+                            form#co-shipping-form {
+                                margin-top: 85px;
+                                 &::after {
+                                     position: absolute;
+                                     top: -1em;
+                                     left: 0;
+                                     content: 'Datos de envio';
+                                     width: 100%;
+                                     height: 3em;
+                                     color: @primary-button-background;
+                                     text-align: left;
+                                     font-size: 18px;
+                                     font-family: 'Montserrat', sans-serif;
+                                     font-weight: 700;
+                                     line-height: 24px;
+                                 }
+ 
+                            }
+
                         }
                     }
 
 
                     li.checkout-payment-method {
-
+                        margin-top: 2em;
                         div#checkout-step-payment {
                             form {
                                 fieldset {
@@ -1202,15 +1276,55 @@
                                                             }
 
                                                         }
+                                                        div.actions-toolbar {
+                                                            div.primary {
+                                                                button.action.primary.checkout {
+                                                                    background: var(--azul, #004088);
+                                                                    border: 1px solid var(--azul, #004088);
+                                                                    width: -webkit-fill-available;
+
+                                                                    span {
+                                                                        color: var(--blanco, #FFF);
+                                                                    }
+
+                                                                }
+                                                            }
+                                                        }
                                                     }
 
                                                 }
                                             }
                                         }
                                     }
+
+                                    div.payment-option._collapsible.discount-code {
+                                        div.payment-option-title.field {
+                            
+                                            span.action.action-toggle {
+                                                span {
+                                                    color: @primary-button-background;
+                                                }
+                                            }
+                                        }
+
+                                        .payment-option-content {
+                                            form.form.form-discount {
+                                                div.actions-toolbar {
+                                                    div.primary {
+                                                        margin-bottom: unset;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+
+                                    }
+                                
                                 }
                             }
                         }
+
+
                     }
 
                 
