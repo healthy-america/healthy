@@ -12,19 +12,28 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
-
-    #html-body > div.modals-wrapper div.modal-inner-wrap > header > button{
+    #html-body > div.modals-wrapper div.modal-inner-wrap > header > button {
         width: 40px;
         border-radius: 100%;
         background: #fff;
-        box-shadow: 0px 0px 5px rgba(49,49,49,0.412);
+        box-shadow: 0px 0px 5px rgba(49, 49, 49, 0.412);
 
-        &::before{
+        &::before {
             color: #000;
             font-weight: 900;
         }
     }
 
+    #html-body
+        > div.modals-wrapper
+        > aside.modal-popup.success-ajax--popup
+        > div.modal-inner-wrap {
+        overflow: visible !important;
+        > header > button.action-close {
+            right: -13px;
+            top: -13px;
+        }
+    }
     .dots-data-active {
         display: flex !important;
         flex-direction: column-reverse !important;
@@ -112,7 +121,6 @@
                         color: @color-primary;
                         border: none;
                     }
-
                 }
             }
         }
@@ -127,7 +135,8 @@
         }
 
         .owl-nav {
-            .owl-next, .owl-prev {
+            .owl-next,
+            .owl-prev {
                 background: rgba(31, 32, 33, 0.6) !important;
                 border-radius: 0;
                 border: 0;
@@ -154,26 +163,26 @@
         height: 15px;
         width: 15px;
         background-color: #fffcf4;
-        margin: calc(15px*2);
+        margin: calc(15px * 2);
     }
 
     span.dot:nth-child(1) {
-        animation: preloader .7s ease-in-out alternate infinite;
+        animation: preloader 0.7s ease-in-out alternate infinite;
     }
 
     span.dot:nth-child(2) {
-        animation: preloader .7s ease-in-out alternate .3s infinite;
+        animation: preloader 0.7s ease-in-out alternate 0.3s infinite;
     }
 
     span.dot:nth-child(3) {
-        animation: preloader .7s ease-in-out alternate .5s infinite;
+        animation: preloader 0.7s ease-in-out alternate 0.5s infinite;
     }
 }
 
 @keyframes preloader {
     100% {
         transform: scale(3);
-        box-shadow: 10px 10px 22px -2px rgba(0,0,0,0.25);
+        box-shadow: 10px 10px 22px -2px rgba(0, 0, 0, 0.25);
     }
 }
 
