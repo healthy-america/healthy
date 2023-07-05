@@ -541,12 +541,286 @@
     .menu-wrapper {
         display: block !important;
     }
+
+    #html-body header.page-header {
+        position: fixed;
+        width: 100%;
+    }
+
+    .nav-before-open #html-body header.page-header {
+        .middle-header {
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 9999;
+        }
+
+        button.action.nav-tg:after {
+            opacity: 1;
+            top: 92px;
+            left: 400px;
+        }
+    }
+    #html-body header.page-header {
+        button.action.nav-tg:after {
+            content: "";
+            transition: all 0.3s ease;
+            opacity: 0;
+            left: 0;
+            background: rgba(31, 32, 33, 0.85);
+        }
+    }
+
+    #html-body
+        > div.page-wrapper
+        > header
+        > div
+        > div.middle-header
+        > div
+        > div
+        > div.col-0.col-tb-4.col-des-7.menu-wrapper {
+        display: none !important;
+    }
+    #html-body .header-area.header2 {
+        .menu-wrapper {
+            top: 92px;
+            box-shadow: none;
+            border: none;
+            max-height: ~"calc(100% - 93px)";
+            overflow-y: hidden;
+            .menu-content.menu-content-mb {
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+                justify-content: space-between;
+                .vertical-menu li > .dropdown-menu {
+                    flex-direction: column;
+                }
+                #mobile-menu {
+                    a:not(.active) {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        background: #fff !important;
+                        border-bottom: none !important;
+                        svg {
+                            width: 16px;
+                            height: 16px;
+                        }
+                    }
+                    .toggle-menu {
+                        > a {
+                            background: none !important;
+                            padding: 12px 13px;
+                            height: 48px;
+                            display: flex !important;
+                            gap: 0px !important;
+                            align-items: center;
+                        }
+                    }
+                    padding: 0 3px 0px 5px;
+                    .category-menu.level0 {
+                        height: fit-content;
+                        .hidden-des {
+                            display: none;
+                        }
+
+                        .dropdown-menu {
+                            position: relative !important;
+                            height: fit-content;
+                            height: 0px;
+                            overflow: hidden;
+                            transform: translate(0px, -100%);
+                            opacity: 0;
+                            z-index: 9;
+                            transition: all 0.1s ease;
+                        }
+
+                        .toggle-menu {
+                            > a > span::before {
+                                background: url("https://api.iconify.design/iconamoon/arrow-down-2-thin.svg?color=%23424242")
+                                    no-repeat center center / contain;
+                                display: block;
+                                width: 20px;
+                                height: 20px;
+                                content: "";
+                                top: -4px;
+                                position: relative;
+                            }
+                        }
+
+                        > a,
+                        > a span {
+                            color: #424242;
+                            font-size: 14px;
+                            font-family: Montserrat;
+                            font-weight: 400;
+                            line-height: 18px;
+                        }
+
+                        &.is-active {
+                            position: relative !important;
+
+                            .toggle-menu > a > span::before {
+                                background: url("https://api.iconify.design/iconamoon/arrow-down-2-thin.svg?color=white&rotate=180deg")
+                                    no-repeat center center / contain;
+                            }
+
+                            > a {
+                                background: @primary-button-background !important;
+                                color: @primary-button-color-text;
+                                border-radius: 4px;
+                                svg {
+                                    color: @primary-button-color-text;
+                                }
+                                span {
+                                    color: @primary-button-color-text;
+                                }
+                            }
+                            .dropdown-menu {
+                                height: 100%;
+                                transform: translate(0px, 0px);
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .bottom-content-menu {
+            padding: 10px 17px 21px 17px;
+            background: @grey-clear;
+
+            .header.links {
+                li:first-child {
+                    a:hover {
+                        color: @color-primary;
+                    }
+                    a {
+                        border: none;
+                    }
+
+                    a::before {
+                        content: "";
+                        display: inline-block;
+                        width: 20px;
+                        position: relative;
+                        height: 20px;
+                        top: 4px;
+                        margin-right: 8px;
+                        background: url(https://api.iconify.design/mdi/user-circle-outline.svg?color=%234a4f55)
+                            no-repeat center center / contain;
+                    }
+                }
+
+                li:nth-child(2) {
+                    a:hover {
+                        color: @color-primary;
+                    }
+                    a {
+                        border: none;
+                    }
+
+                    a::before {
+                        content: "";
+                        display: inline-block;
+                        width: 20px;
+                        position: relative;
+                        height: 20px;
+                        top: 4px;
+                        margin-right: 8px;
+                        background: url("https://api.iconify.design/iconamoon/star-thin.svg?color=%234a4f55")
+                            no-repeat center center / contain;
+                    }
+                }
+            }
+
+            &.notLogged {
+                .header.links {
+                    .link.wishlist {
+                        display: none;
+                    }
+
+                    li:first-child {
+                        margin-bottom: 20px;
+                    }
+
+                    li:last-child a {
+                        border-radius: 4px;
+                        border: 1px solid
+                            var(--button-primary__background, #004088);
+                        background: #fff;
+                        color: var(--button-primary__background, #004088);
+                        text-align: center;
+                        font-size: 14px;
+                        font-family: Roboto;
+                        margin-top: 5px;
+                        font-weight: 600;
+                        line-height: normal;
+                    }
+                }
+                .link.authorization-link a {
+                    border-radius: 4px;
+                    text-align: center;
+                    color: @primary-button-color-text;
+                    background: @primary-button-background;
+                    border: 1px solid @color-primary;
+                    transition: all 0.1s ease-in-out;
+
+                    font-size: 14px;
+                    font-family: Roboto;
+                    font-weight: 600;
+                    line-height: normal;
+
+                    &:hover {
+                        background: @primary-button-background-hover;
+                        border: 1px solid @primary-button-background;
+                    }
+
+                    &:active {
+                        background-color: @blue-selected;
+                        border: 1px solid @blue-selected;
+                    }
+                }
+            }
+            &.userLogged {
+                .link.authorization-link a {
+                    border-radius: 4px;
+                    border: 1px solid var(--button-primary__background, #004088);
+                    background: #fff;
+                    color: var(--button-primary__background, #004088);
+                    text-align: center;
+                    font-size: 14px;
+                    font-family: Roboto;
+                    margin-top: 5px;
+                    font-weight: 600;
+                    line-height: normal;
+                }
+            }
+            .close-myaccount {
+                display: none;
+            }
+        }
+    }
 }
 //
 //  Mobile
 //  _____________________________________________
 
 @media (max-width: 767px) {
+    .nav-before-open #html-body header.page-header {
+        button.action.nav-tg:after {
+            top: 60px;
+        }
+    }
+
+    #html-body .header-area.header2 {
+        .menu-wrapper {
+            max-height: ~"calc(100% - 60px)";
+            top: 60px;
+        }
+    }
+
     #html-body .header-area.header2.search-visible {
         .middle-header {
             .search-form {
@@ -556,6 +830,14 @@
                     fill: @color-secondary;
                 }
             }
+        }
+    }
+}
+
+@media (max-width: 454px) {
+    .nav-before-open #html-body header.page-header {
+        button.action.nav-tg:after {
+            left: ~"calc(100% - 54px)";
         }
     }
 }
