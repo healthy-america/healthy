@@ -15372,3 +15372,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "My account", "Mi cuenta"
 "Email Address__","E-mail"
 "Password__","Contraseña"
+"Discount Amount :","Monto de descuento:"
