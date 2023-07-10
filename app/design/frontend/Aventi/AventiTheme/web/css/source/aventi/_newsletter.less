@@ -1,0 +1,68 @@
+
+
+
+
+& when (@media-common =true) {
+
+
+    body#html-body {
+
+        div.container-newsletter {
+            display: grid;
+            place-content: center;
+
+            > p {
+                color: @black_secunday;
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                text-align: center;
+            }
+
+            > p:first-child {    
+                font-weight: 700;
+                font-size: 32px;
+            }
+
+            > p:last-child {
+                display: none;
+                font-weight: 400;
+                font-size: 12px;
+            }
+
+        }
+
+        .block.newsletter {
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            border: 2px solid @black;
+            max-width: 70%;
+
+            .action.subscribe {
+                font-family: 'Montserrat', sans-serif;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                color: @black_secunday;
+                border: 2px solid @white;
+                background-color: @primary-button-background;
+                -webkit-border-radius: 6px;
+                -moz-border-radius: 6px;
+                border-radius: 6px;
+
+            }
+        }
+
+        #newsletter-footer::placeholder {
+            color: @label-color-checkout;
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 18px;
+            transform: translateY(1px);
+        }
+        
+    }
+
+}

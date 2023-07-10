@@ -113,6 +113,21 @@
                                             width: 3.5em;
                                         }
 
+                                        > button.update-cart-item {
+                                            border-radius: 4px;
+                                            background: var(--azul, #004088);
+                                            border: unset;
+                                            margin: 1em 1em 0 0;
+                                            width: -webkit-fill-available;
+            
+                                            &:hover {
+                                                border-radius: 4px;
+                                                background: var(--azul-claro, #0C4D9F);
+                                                box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.10);
+                                            }
+
+                                        }
+
                                     }
 
 
@@ -165,7 +180,8 @@
                 align-items: baseline;
                 border-top: 1px solid @grey-m;
                 justify-content: center;
-
+                margin: 0 -10px 10px;
+                
                 > span.label {
                     margin-top: 0.7em;
                     .style_font_monserrat_mini_cart();
@@ -175,8 +191,7 @@
                     .style_font_monserrat_mini_cart();
                 }
 
-           }
-     
+            }
 
             > div.actions {
                
@@ -230,11 +245,18 @@
                     }
 
             }
+
+            > div.discount {
+                div.discount-total {
+                    margin-bottom: 1em;
+                }
+            }
+
         }
 
-        .page-header .header-area.header2.search-visible .middle-header .counter.qty {
-            z-index: 9999;
-        }
+        // .page-header .header-area.header2.search-visible .middle-header .counter.qty {
+        //     z-index: 9999;
+        // }
         
          
     }
@@ -265,12 +287,18 @@
 
             > div.actions {
                     
-                > div.secondary > a.action.btn-default > span {
+                > div.secondary {
+                    width: 100%;
 
-                    &::before {
-                        top: 0.6em;
+                    > a.action.btn-default > span {
+
+                        &::before {
+                            top: 0.6em;
+                        }
                     }
+
                 }
+
             }
         }
 
