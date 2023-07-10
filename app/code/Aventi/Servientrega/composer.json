@@ -1,0 +1,22 @@
+{
+    "name": "aventi/module-servientrega",
+    "description": "Shipping Integration for Evacol Ecommerce",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "jnustes@aventi.com.co",
+            "name": "Juan Jose Nustes"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Aventi\\Servientrega\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}
