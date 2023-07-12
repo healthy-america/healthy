@@ -71,20 +71,28 @@
                 > div.middle-footer {
                     background: @background-footer;
 
-                    > div.frame > div.line > div:first-child {
-                        display: grid;
-                        place-content: center;
-                    }
+                    > div.frame > div.line {
+                        justify-content: space-between;
+                        > div:first-child {
+                            display: grid;
+                            place-content: center;
+                        }
 
-                    > div.frame > div.line > div:nth-child(2) {
-                        flex: 0 0 25%;
-                        max-width: 25%;
-                    }
+                        > div:nth-child(2) {
+                            flex: 0 0 25%;
+                            max-width: 25%;
+                        }
 
+                        > div:nth-child(3) {
+                            flex: 0 0 20%;
+                            max-width: 20%;
+                        }
 
-                    > div.frame > div.line > div:nth-child(4) {
-                        flex: 0 0 0.5%;
-                        max-width: 0.5%;
+                        > div:nth-child(4) {
+                            flex: 0 0 0.5%;
+                            max-width: 0.5%;
+                        }
+
                     }
 
                 }
