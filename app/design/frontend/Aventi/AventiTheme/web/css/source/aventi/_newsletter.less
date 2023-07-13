@@ -7,36 +7,74 @@
 
     body#html-body {
 
-        div.container-newsletter {
-            display: grid;
-            place-content: center;
+        footer.page-footer {
 
-            > p {
-                color: @black_secunday;
-                font-family: 'Montserrat', sans-serif;
-                font-style: normal;
-                text-align: center;
-            }
+            div.footer.content {
+                div.footer-container { 
 
-            > p:first-child {    
-                font-weight: 700;
-                font-size: 32px;
-            }
+                    div.top-footer {
+                        background-color: @primary-button-background;
+                        padding: 3em;
 
-            > p:last-child {
-                display: none;
-                font-weight: 400;
-                font-size: 12px;
+                        div.container-newsletter {
+                            display: grid;
+                            place-content: center;
+
+                            p > a,
+                            > p {
+                                color: @black_secunday;
+                                font-family: 'Montserrat', sans-serif;
+                                font-style: normal;
+                                text-align: center;
+                                color: @white;
+                                font-size: 32px;
+                                font-weight: 700;
+                                line-height: 36px;
+                            }
+
+                            > p:first-child {    
+                                font-weight: 700;
+                                font-size: 32px;
+                            }
+
+                            > p:last-child {
+                                display: none;
+                                font-weight: 400;
+                                font-size: 12px;
+                            }
+
+                        }
+
+                        div.container-newsletter._text_letter_action {
+                            margin-top: 1.2em;
+                            > p:first-child {    
+                                font-weight: 700;
+                                font-size: 12px;
+                                text-align: center;
+
+                                a {
+                                    text-decoration: underline;
+                                    font-size: 12px;
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+
+                    }
+
+                }
             }
 
         }
-
+        
         .block.newsletter {
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px;
-            border: 2px solid @black;
+            margin-top: 0.8em;
+            width: 423.042px;
             max-width: 70%;
+            border-radius: 32px;
+            border: 0;
+            background: transparent;
+            padding: unset;
 
             .action.subscribe {
                 font-family: 'Montserrat', sans-serif;
@@ -44,25 +82,73 @@
                 font-weight: 700;
                 font-size: 14px;
                 color: @black_secunday;
-                border: 2px solid @white;
-                background-color: @primary-button-background;
-                -webkit-border-radius: 6px;
-                -moz-border-radius: 6px;
-                border-radius: 6px;
+                border-radius: 0px 32px 32px 0px;
+                border: 1px solid @label-color-checkout;
+                background: @label-color-checkout;
+            }
 
+            div.field.form-group.newsletter {
+                background: @white;
+                max-width: unset;
+                width: -webkit-fill-available;
+                margin-right: unset;
+                border-top-left-radius: 32px;
+                border-bottom-left-radius: 32px;
             }
         }
 
         #newsletter-footer::placeholder {
-            color: @label-color-checkout;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-style: italic;
             font-weight: 400;
-            font-size: 18px;
+            font-size: 14px;
             line-height: 18px;
             transform: translateY(1px);
+            color: var(--gris-claro, #D9DFE7);
         }
         
     }
 
+}
+
+
+@media screen and (max-width: 800px) {
+
+
+
+    body#html-body {
+
+        footer.page-footer {
+
+            div.footer.content {
+                div.footer-container { 
+
+                    div.top-footer {
+                        padding: 1.2em;
+
+                        div.container-newsletter._text_letter_action {
+                            margin-top: 1.2em;
+                            > p:first-child {    
+                                font-weight: 700;
+                                font-size: 9px;
+                                text-align: center;
+                                line-height: 1px;
+                                a {
+                                    text-decoration: underline;
+                                    font-size: 9px;
+                                    cursor: pointer;
+                                    color: @black_secunday;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .block.newsletter {
+                max-width: 100%;
+            }
+        }
+    }
+    
 }
