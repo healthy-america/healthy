@@ -433,15 +433,15 @@ use Magento\Framework\App\Action\Action;
                 <?php endif ?>
 
                 <?php if (($hideAddWishlist != 1)) : ?>
-                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && ($hideAddWishlist != 1)) : ?>
-                        <li>
-                            <button class="action towishlist" title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>" data-title="<?php echo __('Add to Wish List') ?>" aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>" data-post='<?php /* @escapeNotVerified */
-                                                                                                                                                                                                                                                                    echo $block->getAddToWishlistParams($_product); ?>' data-action="add-to-wishlist" role="button">
-                                <i class="pe-7s-like"></i>
-                            </button>
-                        </li>
+                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && ($hideAddWishlist != 1)) : ?>
+                            <li>
+                                <button class="action towishlist" title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>" data-title="<?php echo __('Add to Wish List') ?>" aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>" data-post='<?php /* @escapeNotVerified */
+                                                                                                                                                                                                                                                                        echo $block->getAddToWishlistParams($_product); ?>' data-action="add-to-wishlist" role="button">
+                                    <i class="pe-7s-like"></i>
+                                </button>
+                            </li>
+                        <?php endif ?>
                     <?php endif ?>
-                <?php endif ?>
                 <li>
                     <a data-productid="<?= $_product->getId(); ?>" class="action quickview" aria-label="Quickview" title="Quickview" href="<?= $this->getUrl() . 'aquickview/index/index/catalog/product/id/' . $_product->getId(); ?>">
                         <span><?= __('Quickview'); ?></span>
@@ -458,9 +458,12 @@ use Magento\Framework\App\Action\Action;
                     </a>
                 </h5>
             <?php endif ?>
-            <?php if ($hideReview != 1) : ?>
-                <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
-            <?php endif ?>
+            
+            <div class="_container_reviews">
+                <?php if ($hideReview != 1) : ?>
+                    <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                <?php endif ?>
+            </div>
 
             <?php if ($hidePrice != 1) : ?>
                 <?php echo $block->getProductPrice($_product) ?>

@@ -73,9 +73,12 @@
 
                     > div.frame > div.line {
                         justify-content: space-between;
+
                         > div:first-child {
                             display: grid;
                             place-content: center;
+                            flex: 0 0 25%;
+                            max-width: 25%;
                         }
 
                         > div:nth-child(2) {
@@ -91,6 +94,11 @@
                         > div:nth-child(4) {
                             flex: 0 0 0.5%;
                             max-width: 0.5%;
+                        }
+
+                        > div:last-child {
+                            flex: 0 0 25%;
+                            max-width: 25%;
                         }
 
                     }
