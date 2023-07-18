@@ -23,11 +23,11 @@
                 display: grid;
                 place-content: center;
                 width: -webkit-fill-available;
-                margin-bottom: 10px;
                 min-height: 20px;
 
                 div.product-reviews-summary {
                     div.rating-summary {
+                        z-index: 9;
                         transform: scale(1.5);
 
                         div.rating-result::before {
@@ -99,6 +99,29 @@
             }
           
         }
+
+
+        .product.product-item {
+            margin-bottom: unset;
+        }
+
+        .product.product-item .product-item-info,
+        .product-item-info.product-item.item.product  {
+            
+            .product-top {
+
+                a {
+                    padding: unset !important;
+                    height: 200px;
+
+                    img {
+                        object-fit: scale-down;
+                    }
+                }
+
+            }
+        }
+                  
 
     }
 

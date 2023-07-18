@@ -194,6 +194,7 @@
         }
     }
 
+    body#html-body.catalog-product-view,
     body#html-body #maincontent{
         // Cards products
         .product.product-item{
@@ -245,7 +246,7 @@
         .product.product-item .product-item-info,
         .product-item-info.product-item.item.product  {
             padding: 0px 15px;
-
+            
             @media (max-width: 1200px) {
                 box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             }
@@ -273,6 +274,8 @@
                 }
 
                 a {
+                    padding: unset !important;
+                    height: 250px;
                     background: #fff;
                 }
 
@@ -283,12 +286,24 @@
 
             // Detail
 
+            ._container_reviews {
+                display: grid;
+                place-content: center;
+                height: 28px;
+                max-height: 28px;
+
+                div.product-reviews-summary { 
+                    margin: unset
+                }
+            }
+
             .product.product-item-details {
                 padding-top: 0px;
+                //min-height: 90px;
 
                 .product.name {
-                    margin-bottom: 10px;
-                    min-height: 40px;
+                    margin: unset;
+                    min-height: 38px;
                     display: flex !important;
                     justify-content: center;
                     align-items: center;
@@ -300,6 +315,27 @@
                         line-height: 19px;
                         text-align: center;
                         color: #000000;
+                    }
+                }
+
+                div.product-reviews-summary {
+                    display: grid;
+                    place-content: center;
+                    margin: 8px 0 8px;
+                    
+                    div.rating-summary {
+                        transform: scale(1.5);
+                        margin: unset;
+
+                        div.rating-result::before {
+                            font-weight: 510;
+                            color: @black;
+                        }
+
+                        div.rating-result > span:before {
+                            font-weight: 550;
+                            color: #FFDD26;
+                        }
                     }
                 }
             }

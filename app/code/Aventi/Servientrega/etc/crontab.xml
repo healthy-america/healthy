@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="aventi_servientrega_tracking" instance="Aventi\Servientrega\Cron\TrackingStatus" method="execute">
+            <schedule>0 */2 * * *</schedule>
+        </job>
+        <job name="aventi_servientrega_generateshipping" instance="Aventi\Servientrega\Cron\GenerateShipping" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+    </group>
+</config>

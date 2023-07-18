@@ -75,6 +75,11 @@ class Stock extends \Aventi\SAP\Model\Integration
      */
     private \Magento\InventoryApi\Api\SourceRepositoryInterface $sourceRepository;
 
+    /**
+     * @var StockRegistryInterface
+     */
+    private $stockRegistry;
+
     public function __construct(
         \Aventi\SAP\Helper\Attribute $attributeDate,
         \Aventi\SAP\Logger\Logger $logger,
@@ -155,8 +160,8 @@ class Stock extends \Aventi\SAP\Model\Integration
                     $stockObject = (object) [
                         'sku' => $product['ItemCode'],
                         'qty' => ($product['Stock'] <= 0) ? 0 : $product['Stock'],
-                        'source' => $product['WhsCode'],
-                        'sourceName' => $product['WhsName'],
+                        'source' => 'default',
+//                        'sourceName' => $product['WhsName'],
                         'isInStock' => ($product['Stock'] <= 0) ? 0 : 1
                     ];
                     $this->managerStock($stockObject);
@@ -186,7 +191,7 @@ class Stock extends \Aventi\SAP\Model\Integration
     private function managerStock(object $stockObject)
     {
         try {
-            $this->checkSource($stockObject->source, $stockObject->sourceName);
+//            $this->checkSource($stockObject->source, $stockObject->sourceName);
             if (!$sourceItem = $this->getSourceBySku($stockObject->sku, $stockObject->source)) {
                 $sourceItem = $this->sourceItemFactory->create();
             }
@@ -194,12 +199,12 @@ class Stock extends \Aventi\SAP\Model\Integration
             if (!$resultCheck) {
                 $this->resTable['check']++;
             } else {
-                $this->resTable['updated']++;
                 $sourceItem->setSourceCode($stockObject->source);
                 $sourceItem->setSku($stockObject->sku);
                 $sourceItem->setQuantity($stockObject->qty);
                 $sourceItem->setStatus($stockObject->isInStock);
                 $this->sourceItemsSaveInterface->execute([$sourceItem]);
+                $this->resTable['updated']++;
             }
         } catch (NoSuchEntityException $e) {
             $this->resTable['fail']++;

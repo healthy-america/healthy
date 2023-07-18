@@ -149,7 +149,7 @@ class Product extends \Aventi\SAP\Model\Integration
 //                        'category_ids' => $this->attributeDate->getCategoryIds($product),
                         'custom_attributes' => [
                             'presentation' => $product['SalUnitMsr'],
-                            'invima_registration' => $product['U_invima']
+                            'invima_registration' => ''//$product['U_invima']
                         ]
                     ];
                     $this->managerProduct($itemObject);
@@ -232,7 +232,7 @@ class Product extends \Aventi\SAP\Model\Integration
         $newProduct->setPrice(0);
         $newProduct->setQty(0);
         $newProduct->setTypeId(\Magento\Catalog\Model\Product\Type::TYPE_SIMPLE);
-        $newProduct->setDescription($itemObject->long_description);
+//        $newProduct->setDescription($itemObject->long_description);
         $newProduct->setShortDescription($itemObject->short_description);
         $newProduct->setCustomAttributes($itemObject->custom_attributes);
         $newProduct->setUrlKey($urlKey);

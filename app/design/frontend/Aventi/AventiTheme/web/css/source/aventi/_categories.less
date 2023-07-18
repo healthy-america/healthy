@@ -192,4 +192,113 @@
             }
         }
     }
+
+
+
+    body#html-body.catalog-category-view {
+
+        #maincontent {
+
+            .product.product-item .product-item-info,
+            .product-item-info.product-item.item.product  {
+
+                .product-top {
+
+                    a.product {
+                        height: 180px;
+                    }
+
+                }
+
+                // Detail
+
+                .product.product-item-details {
+                    padding-top: 0px;
+
+                    div.product-reviews-summary {
+                        display: grid;
+                        place-content: center;
+                        margin: 8px 0 8px;
+                        
+                        div.rating-summary {
+                            transform: scale(1.5);
+                            margin: unset;
+
+                            div.rating-result::before {
+                                font-weight: 510;
+                                color: @black;
+                            }
+
+                            div.rating-result > span:before {
+                                font-weight: 550;
+                                color: #FFDD26;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+    }
+
+    body#html-body.instantsearch-result-index {
+
+        #maincontent {
+
+            .product.product-item .product-item-info,
+            .product-item-info.product-item.item.product  {
+
+                .product-top {
+
+                    a.product {
+                        height: 215px;
+                    }
+
+                }
+            }
+        }
+    }
+
+
+}
+
+
+@media screen and (max-width: 800px) {
+
+    body#html-body.catalog-category-view #maincontent {
+
+        div.category-product-container.product-container {
+            display: grid;
+            gap: 12px;
+
+            div.products.products-grid {  
+
+                ol.products.product-items {
+                    
+                    li.item.product.product-item-info.product-item  {
+
+                        div.product-top {
+
+                            a.product.product-item-photo {
+                                height: 250px;
+                                img.product-image-photo {
+                                    transform: scale(0.85);
+                                }   
+
+                            } 
+
+                        }
+
+                        overflow: hidden;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+    
 }
