@@ -15372,3 +15372,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "My account", "Mi cuenta"
 "Email Address__","E-mail"
 "Password__","Contraseña"
+"Enter your email...", "Correo electrónico"
+"Incorrect CAPTCHA, "CAPTCHA incorrecto"
+"Incorrect CAPTCHA","CAPTCHA incorrecto",module,Magento_Captcha
+"Incorrect CAPTCHA.","CAPTCHA incorrecto.",module,Magento_Captcha
