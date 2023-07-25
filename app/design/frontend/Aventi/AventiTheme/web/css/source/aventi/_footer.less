@@ -176,7 +176,6 @@
             > p:first-child {
                 font-style: normal;
                 font-size: 18px;
-                color: @grey;
                 font-family: 'Roboto', sans-serif;
                 font-weight: 500;
             }
@@ -186,14 +185,6 @@
         .container-text-information-footer#contact-social-network-container {
 
             > p {
-                padding-left: unset;
-            }
-
-            > p:last-child {
-                padding-left: unset;
-            }
-
-            > p:first-child {
                 padding-left: unset;
             }
 
@@ -292,7 +283,7 @@
 
                 //Footer Middle 
                 > div.middle-footer {
-
+                    padding: 45px 0 0 0;
                     //general estilos para los divs
                     > div.frame > div.line  {
                     
@@ -310,12 +301,29 @@
                         > div:nth-child(2) {
                             flex: 0 0 100%;
                             max-width: 100%;
+
+                            div.container-text-information-footer {
+                               > p {
+                                  justify-content: center;
+                                  align-items: center;
+
+                                  > span {
+                                    display: none;
+                                  }
+
+                               }
+                            }
+
                         }
 
                         > div:nth-child(3),
                         > div:nth-child(5) {
                             flex: 0 0 50%;
                             max-width: 50%;
+                        }
+
+                        > div:first-child {
+                            margin-bottom: unset;
                         }
 
                         > div:nth-child(3) {
@@ -328,7 +336,7 @@
 
                         > div:nth-child(2) {
                             order: 4;
-      
+                            margin-bottom: unset;
                             > div {
                                width: 100%;
       
@@ -348,6 +356,31 @@
 
                 }
 
+                //Footer Bottom
+                > div.bottom-footer {
+                    padding: 26px 0;
+                    > div.frame > div.line {
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 10px;
+
+                        > div {
+                            display: grid;
+                            flex: 0 0 100%;
+                            max-width: 100%;
+
+                            &:last-child {
+                                > div > div.box-container-aux-footer-bottom {
+                                    place-content: center;
+                                }
+                            }
+
+                        }
+                        
+                    }
+
+                }
 
             }
 

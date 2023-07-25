@@ -20,7 +20,7 @@ class LayoutProcessor
         ['shippingAddress']['children']['shipping-address-fieldset']['children'];
         $shippingForm['firstname']['placeholder'] = __('Nombre y Apellido');
         $shippingForm['lastname']['placeholder'] = __('Apellido');    
-        $shippingForm['company']['placeholder'] = __('Identificación');    
+        $shippingForm['company']['placeholder'] = __('Empresa');    
         $shippingForm['vat_id']['placeholder'] = __('Identificación');    
         $shippingForm['street']['children'][0]['placeholder'] = __('Dirección');    
         $shippingForm['city']['placeholder'] = __('Ciudad');

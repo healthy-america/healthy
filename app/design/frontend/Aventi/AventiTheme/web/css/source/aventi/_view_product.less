@@ -23,7 +23,7 @@
                 display: grid;
                 place-content: center;
                 width: -webkit-fill-available;
-                min-height: 20px;
+                min-height: 28px;
 
                 div.product-reviews-summary {
                     div.rating-summary {
@@ -128,6 +128,8 @@
 
 }
 
+
+                 
 @media screen and (max-width: 768px) {
 
     body#html-body.catalog-product-view {
@@ -147,12 +149,16 @@
 
                                 
                                 .price-box.price-final_price {
+                                    align-items: center;
                                     flex-wrap: wrap-reverse;
                                     height: 49px;
                                 }
 
-                                div.actions button {
-                                    padding: 0;
+                                div.actions {
+                                    margin-top: 0.3em;
+                                    button {
+                                        padding: 0;
+                                    }
                                 }
 
                             }
@@ -165,6 +171,18 @@
 
             }
 
+        }
+
+        .product.product-item .product-item-info,
+        .product-item-info.product-item.item.product  {
+            
+            .product-top {
+
+                a {
+                    height: 160px;
+                }
+
+            }
         }
 
     }

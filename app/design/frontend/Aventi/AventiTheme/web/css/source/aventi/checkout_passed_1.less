@@ -319,19 +319,22 @@
                     span {
 
                         &:before {
-                            background: @primary-button-background;
+                            background: @white;
+                            border: 3px solid @primary-button-background;
                         }
 
                         &:after {
                             transform: translateY(1px);
-                            content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=30&height=30');
+                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
                         }
 
                     }
                 }
 
                 li {
-                    max-width: 25%;
+                    max-width: 23%;
+                    width: 248px;
                     &::before {
                         background: @disabled-backgroun-checkout;
                     }
@@ -340,12 +343,18 @@
 
                         font-size: 0;
                         &::before {
-                            background: @disabled-backgroun-checkout;
+                            height: 49.5px;
+                            width: 49.5px;
+                            background: @white;
+                            border: 3px solid @disabled-backgroun-checkout;
                         }
 
                         &::after {
+                            top: 11px;
+                            width: 44px;
                             transform: translateY(1px);
-                            content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=30');
+                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
                         }
                     }
 
@@ -816,6 +825,10 @@
 
                                                             }
 
+                                                            .billing-address-details button.action.action-edit-address {
+                                                                display: none !important;
+                                                            }
+
                                                             fieldset.fieldset {
                                                                 div[data-bind="fadeVisible: isAddressFormVisible"] {
                                                                     
@@ -1148,13 +1161,45 @@
     body#html-body.checkout-index-index {
 
         div#checkout {
-
+            margin-bottom: 3em;
             ul.opc-progress-bar {
                 display: flex;
 
                 li {
                     max-width: 42%;
                 }
+
+                li._active {  
+
+                    span {
+    
+                        &:after {
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=22&height=22');
+                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
+                        }
+    
+                    }
+                }
+    
+                li {    
+                        
+                    span {
+    
+                        &::before {
+                                height: 33.5px;
+                                width: 33.5px;
+                        }
+    
+                        &::after {
+                                top: 9px;
+                                width: 28px;
+                                content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=22&height=22');
+                                //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
+                        }
+                    }
+    
+                }
+    
             }
 
             .opc-estimated-wrapper {
@@ -1180,6 +1225,7 @@
                                 margin-top: 2.5em;
                                 bottom: -3em;
                                 width: -webkit-fill-available;
+                                margin-bottom: 1em;
                                 div.primary {
                                     button.button.primary {
                                         width: -webkit-fill-available;
