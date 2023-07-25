@@ -4,27 +4,33 @@
         <policy id="script-src">
             <values>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
+                <value id='iconifyCode' type='host'>https://code.iconify.design</value>
             </values>
         </policy>
         <policy id="style-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-
+                <value id="netdna" type="host">https://netdna.bootstrapcdn.com</value>
+                <value id="netdnaWithoutHttps" type="host">http://netdna.bootstrapcdn.com</value>
             </values>
         </policy>
         <policy id="img-src">
             <values>
-                <value id="rimax" type="host">*.rimax.com.co</value>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
+                <value id='iconify' type='host'>*.iconify.design</value>
+                <value id='healthy' type='host'>https://healthy.aventidev.com</value>
+
             </values>
         </policy>
         <policy id="connect-src">
             <values>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
+                <value id='iconifyCode' type='host'>https://code.iconify.design</value>
             </values>
         </policy>
         <policy id="font-src">
             <values>
+                <value id="netdnaWithoutHttps" type="host">http://netdna.bootstrapcdn.com</value>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
             </values>
         </policy>

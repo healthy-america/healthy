@@ -1,0 +1,352 @@
+<?php $params = $this->getRequest()->getParams() ?>
+<div class="edit-static-form">
+    
+    <div class="line">
+        <div class="col-des-12 builder-title">
+            <h2><?php echo __('Select Block') ?></h2>
+        </div>
+    </div>
+
+    <div class="line">
+        <div class="col-des-12 no-padding-right">
+            <div class="bs-glyphicons">
+                <div class="block-group">
+                    <h3><?php echo __('Static Content') ?></h3>
+                    <ul class="bs-glyphicons-list">
+                        <li id="heading-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'heading']) ?>')">
+                            <em class="glyphicon glyphicon-font"></em>
+                            <em class="glyphicon-class"><?php echo __('Heading') ?></em>
+                        </li>
+                        <li id="static-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'static']) ?>')">
+                            <em class="glyphicon glyphicon-text-width"></em>
+                            <em class="glyphicon-class"><?php echo __('Text content & Images') ?></em>
+                        </li>
+                        
+                        <li id="image" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'image']) ?>')">
+                            <em class="glyphicon glyphicon-picture"></em>
+                            <em class="glyphicon-class"><?php echo __('Images') ?></em>
+                        </li>
+                        
+                        <li id="owl-banner-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'owl_banner']) ?>')">
+                            <em class="glyphicon glyphicon-picture"></em>
+                            <em class="glyphicon-class"><?php echo __('OWL Carousel Slider') ?></em>
+                        </li>
+                        
+                        <li id="masonry-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'masonry']) ?>')">
+                            <em class="glyphicon glyphicon-picture"></em>
+                            <em class="glyphicon-class"><?php echo __('Masonry Gallery') ?></em>
+                        </li>
+
+                        <li id="banner-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'promo_banner']) ?>')">
+                            <em class="glyphicon glyphicon-gift"></em>
+                            <em class="glyphicon-class"><?php echo __('Promo Banner') ?></em>
+                        </li>
+                        
+                        <li id="profile-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'profile']) ?>')">
+                            <em class="glyphicon glyphicon-user"></em>
+                            <em class="glyphicon-class"><?php echo __('Profile') ?></em>
+                        </li>
+                        
+                        <li id="accordion-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'accordion']) ?>')">
+                            <em class="glyphicon glyphicon-align-justify"></em>
+                            <em class="glyphicon-class"><?php echo __('Accordion') ?></em>
+                        </li>
+                        
+                        <li id="video-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'video']) ?>')">
+                            <em class="fa fa-youtube-play" style="font-size:30px; margin:5px 0"></em>
+                            <em class="glyphicon-class"><?php echo __('Video') ?></em>
+                        </li>
+                        
+                        <li id="map-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'map']) ?>')">
+                            <em class="glyphicon glyphicon-map-marker"></em>
+                            <em class="glyphicon-class"><?php echo __('Google Map') ?></em>
+                        </li>
+                        
+                        <li id="box-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'content_box']) ?>')">
+                            <em class="glyphicon glyphicon-ok-sign"></em>
+                            <em class="glyphicon-class"><?php echo __('Content Box') ?></em>
+                        </li>
+                        
+                        <li id="counter-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'counter_box']) ?>')">
+                            <em class="glyphicon glyphicon-arrow-up"></em>
+                            <em class="glyphicon-class"><?php echo __('Counter Box') ?></em>
+                        </li>
+                        
+                        <li id="counter-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'countdown_box']) ?>')">
+                            <em class="glyphicon glyphicon-arrow-down"></em>
+                            <em class="glyphicon-class"><?php echo __('Countdown Box') ?></em>
+                        </li>
+                        
+                        <li id="chart-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'chart']) ?>')">
+                            <em class="fa fa-bar-chart" style="margin:5px 0 10px; font-size:25px"></em>
+                            <em class="glyphicon-class"><?php echo __('Chart') ?></em>
+                        </li>
+                        
+                        <li id="progress-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'progress_bar']) ?>')">
+                            <em class="glyphicon glyphicon-tasks"></em>
+                            <em class="glyphicon-class"><?php echo __('Progress Bar') ?></em>
+                        </li>
+                        
+                        <li id="circle-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'progress_circle']) ?>')">
+                            <em class="fa fa-circle-o-notch" style="margin:5px 0 10px; font-size:23px"></em>
+                            <em class="glyphicon-class"><?php echo __('Progress Circle') ?></em>
+                        </li>
+                        
+                        <li id="divider-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'divider']) ?>')">
+                            <em class="fa fa-ellipsis-h" style="margin:5px 0 10px; font-size:23px"></em>
+                            <em class="glyphicon-class"><?php echo __('Divider') ?></em>
+                        </li>
+                        
+                        <li id="list-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'list']) ?>')">
+                            <em class="glyphicon glyphicon-th-list"></em>
+                            <em class="glyphicon-class"><?php echo __('List') ?></em>
+                        </li>
+                        
+                        <li id="button-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'button']) ?>')">
+                            <em class="glyphicon glyphicon-link"></em>
+                            <em class="glyphicon-class"><?php echo __('Button') ?></em>
+                        </li>
+                        
+                        <li id="table-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'table']) ?>')">
+                            <em class="glyphicon glyphicon-th"></em>
+                            <em class="glyphicon-class"><?php echo __('Table') ?></em>
+                        </li>
+                        
+                        <?php if ($params['page_type']=='cms'): ?>
+                            <li id="static-tabs-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'static_tabs']) ?>')">
+                                <em class="fa fa-object-ungroup"></em>
+                                <em class="glyphicon-class"><?php echo __('Tabs') ?></em>
+                            </li>
+                        <?php endif ?>
+                        
+                        <li id="modal-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'modal_popup']) ?>')">
+                            <em class="fa fa-window-maximize" style="font-size:22px; margin-bottom:8px"></em>
+                            <em class="glyphicon-class"><?php echo __('Modal Popup') ?></em>
+                        </li>
+                        
+                        <li id="form-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'form']) ?>')">
+                            <em class="fa fa-object-group"></em>
+                            <em class="glyphicon-class"><?php echo __('Form') ?></em>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="block-group">
+                    <h3><?php echo __('Catalog') ?></h3>
+                    <ul class="bs-glyphicons-list" id="list-item">
+                        <li id="snapppt-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'category_list']) ?>')">
+                            <em class="glyphicon glyphicon-list-alt"></em>
+                            <em class="glyphicon-class"><?php echo __('Category List') ?></em>
+                        </li>
+                        
+                        <li id="category-product" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'category_products']) ?>')">
+                            <em class="glyphicon glyphicon-align-center"></em>
+                            <em class="glyphicon-class"><?php echo __('Category Products') ?></em>
+                        </li>
+
+                        <li id="new-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'new_products']) ?>')">
+                            <em class="glyphicon glyphicon-fire"></em>
+                            <em class="glyphicon-class"><?php echo __('New Products') ?></em>
+                        </li>
+                        
+                        <li id="attribute-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'attribute_products']) ?>')">
+                            <em class="glyphicon glyphicon-flag"></em>
+                            <em class="glyphicon-class"><?php echo __('Products by Attribute') ?></em>
+                        </li>
+                        
+                        <li id="sale-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'sale']) ?>')">
+                            <em class="glyphicon glyphicon-certificate"></em>
+                            <em class="glyphicon-class"><?php echo __('Sale Products') ?></em>
+                        </li>
+                        
+                        <li id="rate-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'rate']) ?>')">
+                            <em class="glyphicon glyphicon-star"></em>
+                            <em class="glyphicon-class"><?php echo __('Top Rate Products') ?></em>
+                        </li>
+                        
+                        
+                        
+                        <li id="deals-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'deals']) ?>')">
+                            <em class="glyphicon glyphicon-tag"></em>
+                            <em class="glyphicon-class"><?php echo __('Deals') ?></em>
+                        </li>
+                        
+                        <?php if ($params['page_type']=='cms'): ?>
+                            <li id="tabs-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'tabs']) ?>')">
+                                <em class="fa fa-object-ungroup"></em>
+                                <em class="glyphicon-class"><?php echo __('Product Tabs') ?></em>
+                            </li>
+                        <?php endif ?>
+                        <li id="special_product" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'special_product']) ?>')">
+                            <em class="glyphicon glyphicon-qrcode"></em>
+                            <em class="glyphicon-class"><?php echo __('Single Product') ?></em>
+                        </li>
+                        
+
+                    </ul>
+                </div>
+            
+                <div class="block-group">
+                    <h3><?php echo __('Social') ?></h3>
+                    <ul class="bs-glyphicons-list">
+                        <li id="facebook-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'facebook']) ?>')">
+                            <em class="fa fa-facebook-square" style="font-size:30px"></em>
+                            <em class="glyphicon-class"><?php echo __('Facebook Fanbox') ?></em>
+                        </li>
+                        
+                        <li id="twitter-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'twitter']) ?>')">
+                            <em class="fa fa-twitter-square" style="font-size:30px"></em>
+                            <em class="glyphicon-class"><?php echo __('Twitter Timeline') ?></em>
+                        </li>
+                        
+                        <li id="instagram-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'instagram']) ?>')">
+                            <em class="glyphicon glyphicon-camera" style="font-size:30px"></em>
+                            <em class="glyphicon-class"><?php echo __('Instagram') ?></em>
+                        </li>
+                        <li id="snapppt-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'instagram_shop']) ?>')">
+                            <em class="fa fa-instagram" style="font-size:30px"></em>
+                            <em class="glyphicon-class"><?php echo __('Instagram Shop') ?></em>
+                        </li>
+                    </ul>
+                </div>
+            
+                <?php if ($this->isModuleActive('MGS_Lookbook') || $this->isModuleActive('MGS_Blog') || $this->isModuleActive('MGS_Portfolio') || $this->isModuleActive('MGS_Testimonial')): ?>
+                    <div class="block-group">
+                        <h3><?php echo __('Extensions') ?></h3>
+                        <ul class="bs-glyphicons-list">
+                            <?php if ($this->isModuleActive('MGS_Lookbook')): ?>
+                                <li id="lookbook-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'lookbook']) ?>')">
+                                    <em class="glyphicon glyphicon-remove-circle" style="transform: rotate(45deg); -webkit-transform: rotate(45deg); -ms-transform: rotate(45deg);"></em>
+                                    <em class="glyphicon-class"><?php echo __('Lookbook') ?></em>
+                                </li>
+                                
+                                <li id="lookbook-slider-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'lookbook_slider']) ?>')">
+                                    <em class="glyphicon glyphicon-picture"></em>
+                                    <em class="glyphicon-class"><?php echo __('Lookbook Slider') ?></em>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('MGS_Blog')): ?>
+                                <li id="blog-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'latest_post']) ?>')">
+                                    <em class="glyphicon glyphicon-comment"></em>
+                                    <em class="glyphicon-class"><?php echo __('Latest Post') ?></em>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('MGS_Portfolio')): ?>
+                                <li id="blog-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'portfolio']) ?>')">
+                                    <em class="glyphicon glyphicon-folder-open"></em>
+                                    <em class="glyphicon-class"><?php echo __('Portfolio') ?></em>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('MGS_Testimonial')): ?>
+                                <li id="blog-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'testimonial']) ?>')">
+                                    <em class="fa fa-quote-left"></em>&nbsp;&nbsp;<em class="fa fa-quote-right"></em>
+                                    <em class="glyphicon-class"><?php echo __('Testimonial') ?></em>
+                                </li>
+                            <?php endif ?>
+                        </ul>
+                    </div>
+                <?php endif ?>
+
+                <?php if ($params['page_type']=='cms'): ?>
+                    <div class="block-group">
+                        <h3><?php echo __('Mageplaza Extensions') ?></h3>
+                        <p class="note"><?php echo __('Here are the extensions from Mageplaza that we recommend you use:') ?></p>
+                        <ul class="bs-glyphicons-list">
+                            <?php if ($this->isModuleActive('Mageplaza_BannerSlider')): ?>
+                                <li id="mageplaza_slider-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'mageplaza_slider']) ?>')">
+                                    <em class="glyphicon glyphicon-picture"></em>
+                                    <em class="glyphicon-class"><?php echo __('Banner Slider') ?></em>
+                                </li>
+                                
+                            <?php else: ?>
+                                <li id="mageplaza_slider-item">
+                                    <a href="https://www.mageplaza.com/magento-2-banner-slider-extension/" target="_blank">
+                                        <em class="glyphicon glyphicon-picture"></em>
+                                        <em class="glyphicon-class"><?php echo __('Banner Slider') ?></em>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('Mageplaza_Blog')): ?>
+                                <li id="mageplaza_blog-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'mageplaza_blog']) ?>')">
+                                    <em class="glyphicon glyphicon-comment"></em>
+                                    <em class="glyphicon-class"><?php echo __('Blog Post') ?></em>
+                                </li>
+                                
+                            <?php else: ?>
+                                <li id="mageplaza_blog-item">
+                                    <a href="https://www.mageplaza.com/magento-2-blog-extension/" target="_blank">
+                                        <em class="glyphicon glyphicon-comment"></em>
+                                        <em class="glyphicon-class"><?php echo __('Blog Post') ?></em>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                            <?php if ($this->isModuleActive('Mageplaza_CountdownTimer')): ?>
+                                <li id="mageplaza_timer-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'mageplaza_countdown']) ?>')">
+                                    <em class="glyphicon glyphicon-arrow-down"></em>
+                                    <em class="glyphicon-class"><?php echo __('Countdown Timer') ?></em>
+                                </li>
+                                
+                            <?php else: ?>
+                                <li id="mageplaza_timer-item">
+                                    <a href="https://www.mageplaza.com/magento-2-countdown-timer" target="_blank">
+                                        <em class="glyphicon glyphicon-arrow-down"></em>
+                                        <em class="glyphicon-class"><?php echo __('Countdown Timer') ?></em>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('Mageplaza_DailyDeal')): ?>
+                                <li id="mageplaza_deal-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'mageplaza_deal']) ?>')">
+                                    <em class="glyphicon glyphicon-tag"></em>
+                                    <em class="glyphicon-class"><?php echo __('Daily Deal') ?></em>
+                                </li>
+                                
+                            <?php else: ?>
+                                <li id="mageplaza_deal-item">
+                                    <a href="https://www.mageplaza.com/magento-2-daily-deal-extension" target="_blank">
+                                        <em class="glyphicon glyphicon-tag"></em>
+                                        <em class="glyphicon-class"><?php echo __('Daily Deal') ?></em>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('Mageplaza_Shopbybrand')): ?>
+                                <li id="mageplaza_deal-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'mageplaza_brand']) ?>')">
+                                    <em class="glyphicon glyphicon-th"></em>
+                                    <em class="glyphicon-class"><?php echo __('Brands') ?></em>
+                                </li>
+                                
+                            <?php else: ?>
+                                <li id="mageplaza_deal-item">
+                                    <a href="https://www.mageplaza.com/magento-2-shop-by-brand" target="_blank">
+                                        <em class="glyphicon glyphicon-th"></em>
+                                        <em class="glyphicon-class"><?php echo __('Brands') ?></em>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php if ($this->isModuleActive('Mageplaza_Productslider')): ?>
+                                <li id="mageplaza_deal-item" onclick="setLocation('<?php echo $this->getUrl('fbuilder/create/element', ['page_id'=>$this->getRequest()->getParam('page_id'), 'product_id'=>$this->getRequest()->getParam('product_id'), 'overriden'=>$this->getRequest()->getParam('overriden'), 'page_type'=>$params['page_type'], 'block'=>$params['name'], 'type'=>'mageplaza_productslider']) ?>')">
+                                    <em class="glyphicon glyphicon-flag"></em>
+                                    <em class="glyphicon-class"><?php echo __('Product Slider') ?></em>
+                                </li>
+                                
+                            <?php else: ?>
+                                <li id="mageplaza_deal-item">
+                                    <a href="https://www.mageplaza.com/magento-2-product-slider-extension" target="_blank">
+                                        <em class="glyphicon glyphicon-flag"></em>
+                                        <em class="glyphicon-class"><?php echo __('Product Slider') ?></em>
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                        </ul>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    </div>
+</div>
