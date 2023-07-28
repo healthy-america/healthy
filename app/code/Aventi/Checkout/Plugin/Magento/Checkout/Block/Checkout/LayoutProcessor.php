@@ -18,7 +18,7 @@ class LayoutProcessor
         
         $shippingForm = &$result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children'];
-        $shippingForm['firstname']['placeholder'] = __('Nombre y Apellido');
+        $shippingForm['firstname']['placeholder'] = __('Nombre');
         $shippingForm['lastname']['placeholder'] = __('Apellido');    
         $shippingForm['company']['placeholder'] = __('Empresa');    
         $shippingForm['vat_id']['placeholder'] = __('Identificación');    
