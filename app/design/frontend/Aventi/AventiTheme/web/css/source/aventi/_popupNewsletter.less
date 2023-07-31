@@ -64,10 +64,19 @@
                                 }
                             }
 
+                            div#newsletter-popup-email-error {
+                                ._text_format_monserrated();
+                                font-size: 13px;
+                                font-weight: 500;
+                                color: @color-hover-newsletter;
+                                text-align: left;
+                            }
+
                             div.mgs-gdpr-checkbox {
                                 display: flex;
                                 justify-items: flex-start;
                                 align-items: center;
+                                flex-wrap: wrap;
 
                                 input[type="checkbox"] {
                                     top: 0;
@@ -80,6 +89,14 @@
                                     color: @label-color-checkout;
                                     font-size: 13px;
                                 }
+
+                                div.mage-error {
+                                    ._text_format_monserrated();
+                                    font-weight: 500;
+                                    font-size: 13px;
+                                    color: @color-hover-newsletter;
+                                }
+
                             }   
 
                             div.actions {
@@ -169,13 +186,10 @@
                             }
 
                             div.mgs-gdpr-checkbox {
-                                display: flex;
-                                justify-items: flex-start;
-                                align-items: center;
 
                                 input[type="checkbox"] {
                                     top: 0;
-                                    width: 50px;
+                                    width: 20px;
                                 }
 
                                 label {
@@ -184,6 +198,8 @@
                                     text-align: unset;
                                     color: @label-color-checkout;
                                     font-size: 13px;
+                                    width: 90%;
+                                    line-height: 1;
                                 }
                             }   
 
