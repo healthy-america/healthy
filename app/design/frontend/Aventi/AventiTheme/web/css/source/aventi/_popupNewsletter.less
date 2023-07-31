@@ -1,0 +1,199 @@
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//** @author  Cristian Duvan Machado Mosquera
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+//estilos general en todo el archivo
+._text_format_monserrated {
+    color: @white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+}
+
+& when (@media-common =true) {
+
+    body#html-body {
+
+        div#newsletter-popup {
+            div.block-popup-subscribe {
+                div.block-popup-top {
+
+                    div.pop-sletter-title {
+                        background: @color-primary;
+                        display: grid;
+                        place-content: center;
+                        h4 {
+                            ._text_format_monserrated();
+                            line-height: 1;
+                        }
+                        &::after {
+                            background: transparent;
+                        }
+                    }
+
+                    div.newsletter-popup-content {
+                        ._text_format_monserrated();
+                        color: @label-color-checkout;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+
+                    div.newsletter-popup-form {
+
+                        form.form.subscribe {
+                            margin-top: 1em;
+                            input#newsletter-popup-email {
+                                color: @label-color-checkout;
+                                &::placeholder {
+                                    ._text_format_monserrated();
+                                    text-align: unset;
+                                    color: @label-color-checkout;
+                                    font-size: 13px;
+                                    font-weight: 500;
+                                }
+                            }
+
+                            div.mgs-gdpr-checkbox {
+                                display: flex;
+                                justify-items: flex-start;
+                                align-items: center;
+
+                                input[type="checkbox"] {
+                                    top: 0;
+                                }
+
+                                label {
+                                    padding-left: 10px;
+                                    ._text_format_monserrated();
+                                    text-align: unset;
+                                    color: @label-color-checkout;
+                                    font-size: 13px;
+                                }
+                            }   
+
+                            div.actions {
+                                display: grid;
+                                place-content: center;
+                                margin-top: 1.6em;
+
+                                button {
+                                    font-family: 'Montserrat', sans-serif;
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    div.checkbox.dont-show-popup {
+                        padding: 0px 30px 30px;
+
+                        label {
+                            display: flex;
+                            align-items: center;
+                            gap: 5px;    
+                            ._text_format_monserrated();
+                            color: @label-color-checkout;
+                            font-size: 15px;
+                            font-weight: 500;                   
+                        }
+
+                    }
+
+                    input[type="checkbox"] {
+                        appearance: none;
+                        -webkit-appearance: none;
+                        background-color: transparent;
+                        border-radius: 4px;
+                        border: 1px solid @label-color-checkout;
+                        width: 20px;
+                        height: 20px;
+                        position: relative;
+                
+                        &:checked {
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                height: 16px;
+                                width: 16px;
+                                top: 1px;
+                                left: 1px;
+                                background:  @color-primary;;
+                                border-radius: 4px;
+                                opacity: .8;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
+}
+
+
+
+@media screen and (max-width: 800px) {
+
+    body#html-body {
+
+        div#newsletter-popup {
+            div.block-popup-subscribe {
+                div.block-popup-top {
+
+                    div.newsletter-popup-content {
+                        font-size: 13px;
+                    }
+
+                    div.newsletter-popup-form {
+
+                        form.form.subscribe {
+    
+                            input#newsletter-popup-email {
+                                &::placeholder {
+                                    font-size: 10px;
+                                }
+                            }
+
+                            div.mgs-gdpr-checkbox {
+                                display: flex;
+                                justify-items: flex-start;
+                                align-items: center;
+
+                                input[type="checkbox"] {
+                                    top: 0;
+                                    width: 50px;
+                                }
+
+                                label {
+                                    padding-left: 10px;
+                                    ._text_format_monserrated();
+                                    text-align: unset;
+                                    color: @label-color-checkout;
+                                    font-size: 13px;
+                                }
+                            }   
+
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+    
+}
