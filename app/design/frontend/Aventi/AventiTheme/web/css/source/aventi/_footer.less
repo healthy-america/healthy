@@ -39,7 +39,7 @@
             .box-style-footer-bottom {
                 display: flex;
                 height: 2em;
-                width: 10em;
+
 
                 p > {
                     font-family: 'Arial', sans-serif;
@@ -378,7 +378,13 @@
 
                             &:last-child {
                                 > div > div.box-container-aux-footer-bottom {
-                                    place-content: center;
+                                    place-content: unset;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    a.box-style-footer-bottom {
+                                        width: 10em;
+                                    }
                                 }
                             }
 
