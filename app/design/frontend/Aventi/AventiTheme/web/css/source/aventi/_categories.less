@@ -277,12 +277,15 @@
                 display: grid;
                 place-content: center;
                 ol.products.product-items {
-                    width: 310px;
-                    max-width: 311px;
+                    width: 95vw;
+                    max-width: unset;
+                    margin-top: unset;
 
                     li.item.product.product-item-info.product-item  {
                         display: grid;
                         gap: 5px;
+                        height: 406px;
+                        overflow: hidden;
                         div.product-top {
 
                             a.product.product-item-photo {
@@ -291,11 +294,30 @@
                                     transform: scale(0.85);
                                 }   
 
+                                div.product-image-photo {
+                                    background: @white;
+                                }
+
                             } 
 
                         }
 
-                        overflow: hidden;
+                        div.product-item-details {
+                            display: grid;
+                            place-content: center;
+                            div.price-box.price-final_price {
+                                span.special-price {
+                                    vertical-align: middle;
+                                    line-height: 0;
+                                }
+                            }
+                        }
+
+                        div.action-mobile {
+                            display: grid;
+                            align-items: flex-end;
+                        }
+                  
                     }
                 }
 
