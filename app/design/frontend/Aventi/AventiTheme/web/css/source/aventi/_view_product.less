@@ -66,6 +66,35 @@
 
                             div.product.product-item-details {
 
+                                .product.name {
+                                    .product-item-link {
+                                        font-size: 13.2px;
+                                    }
+                                }
+
+                                .price-box.price-final_price {
+                                    .price-wrapper ,
+                                    .special-price {
+                                        .price {
+                                            font-size: 13.2px;
+                                        }
+                                    }
+
+                                    span.old-price {
+                                        text-decoration: unset;
+                                        span.price-container.price-final_price  {
+                                            text-decoration: unset;
+                                            span.price-wrapper {
+                                                text-decoration: unset;
+                                                span.price {
+                                                    font-size: 12px;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                }
+
                                 div.actions {
                                     margin-top: 1em;
                                     form button {
@@ -136,30 +165,132 @@
        
         div#product-slider-related {
 
-            div.owl-stage {
 
+            ._container_review {
+                min-height: unset;
+                height: 16px;
+
+                 div.product-reviews-summary {
+                    div.rating-summary {
+                            transform: scale(1.1);
+                    }
+                 }
+
+            }
+
+            div.owl-stage {
+                height: 300px;
+                overflow: hidden;
                 > div.owl-item {
+                    width: 177.375px !important; //Magento inserta desde el element un ancho
 
                     > div.product.product-item {
                         padding: 0 5px !important;
 
                         div.product-item-info {
+                            display: grid;
+                            place-content: center;
+                            height: 223.575px;
+                            padding: 0px 8px;
 
-                            div.product.product-item-details {
+                            div.product-top {
+                                background: @white;
+                                overflow: hidden;
+                                a.product.product-item-photo  {
+                                    height: 120px;
+
+                                    img {
+                                        transform: scale(1.2);
+                                        height: -webkit-fill-available;
+                                        width: -webkit-fill-available;
+                                    }
+
+                                    div,span {
+                                        background: @white;
+                                    }
+                                }
 
                                 
-                                .price-box.price-final_price {
+                                span.product-label.sale-label {
+                                    height: 40px;
+                                    width: 40px;
+                                    right: 0px;
+
+                                    span {
+                                        line-height: 41px;
+                                        font-size: 12px;
+                                    }
+
+                                }
+
+                            }
+
+                            div.product.product-item-details {
+                                display: grid;
+                                place-content: center;
+                                gap: 2px;
+
+                                div.price-box.price-final_price {
                                     align-items: center;
-                                    flex-wrap: wrap-reverse;
-                                    height: 49px;
+                                    flex-wrap: unset;
+                                    height: auto;
+                                    overflow: hidden;
+
+                                    span.special-price {
+                                        span.price-container.price-final_price {
+                                            span.price-wrapper span.price {
+                                                font-size: 12px;
+                                            }
+                                        }
+                                    }
+
+                                    span.old-price {
+                                        text-decoration: unset;
+                                        span.price-container.price-final_price  {
+                                            text-decoration: unset;
+                                            span.price-wrapper {
+                                                text-decoration: unset;
+                                                span.price {
+                                                    font-size: 8px;
+                                                }
+                                            }
+
+                                        }
+                                    }
+
+                                    span.price-container.price-final_price  {
+                                        
+                                        span.price-wrapper {
+                                           
+                                            span.price {
+                                                font-size: 12px;
+                                            }
+                                        }
+
+                                    }
+                                    
+                                }
+
+                                h5.product.product-item-name {
+                                    min-height: auto;
+                                    a.product-item-link {
+                                        -webkit-line-clamp: 1;
+                                        font-size: 12px;
+                                    }
                                 }
 
                                 div.actions {
-                                    margin-top: 0.3em;
-                                    button {
-                                        padding: 0;
+                                    margin-top: unset;
+                                    form {
+                                        button {
+                                            margin: 0 -8px;
+                                            padding: 0;
+                                            height: 34px;
+                                            opacity: 1;
+                                        }
                                     }
                                 }
+
 
                             }
 

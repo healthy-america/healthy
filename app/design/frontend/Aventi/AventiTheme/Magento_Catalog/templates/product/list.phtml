@@ -185,6 +185,13 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                             <?php
                             $_productNameStripped = $block->stripTags($_product->getName(), null, true);
                             ?>
+                
+                            <div class="_container_reviews">
+                                <?php if ($_hideReview != 1) : ?>
+                                    <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                                <?php endif ?>
+                            </div>
+
                             <h5 class="product name product-item-name">
                                 <a class="product-item-link"
                                    href="<?= $escaper->escapeUrl($_product->getProductUrl()) ?>">
@@ -192,10 +199,6 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                     $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
                                 </a>
                             </h5>
-
-                            <?php if(!$_hideReview): ?>
-                                <?= $block->getReviewsSummaryHtml($_product, $templateType,true) ?>
-                            <?php endif; ?>
 
                             <?= /* @noEscape */
                             $block->getProductPrice($_product) ?>

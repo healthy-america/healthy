@@ -12,6 +12,8 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
+
+
     body#html-body {
         h1,
         h2,
@@ -483,6 +485,109 @@ html {
         }
     }
 }
+
+@media screen and (max-width: 800px) {
+
+    body#html-body #maincontent {
+
+        ._title_mobile_descuentos {
+            text-transform: capitalize;
+            margin-left: 3.35em;
+        }
+
+        div.discounts-products {
+
+            div.sale-products-grid.products-grid {
+                div.owl-stage-outer {
+                    height: 320px !important; //Magento le inserta un alto en elemento
+
+                    div.owl-stage {
+                        div.owl-item {
+                            div.product.product-item  {
+                                div.product-item-info {
+                                    position: relative;
+                                    display: grid;
+                                    height: 271px;
+                                    div.product-top {
+                                        overflow: hidden;
+                                        a.product.product-item-photo  {
+                                            height: 150px;
+                                            overflow: hidden;
+
+                                            img {
+                                                transform: scale(1.2);
+                                                object-fit: scale-down;
+                                                height: -webkit-fill-available;
+                                            }
+
+                                            div,span {
+                                                background: @white;
+                                            }
+                                        }
+
+                                        span.product-label.sale-label {
+                                            height: 40px;
+                                            width: 40px;
+                                            right: 0px;
+
+                                            span {
+                                                line-height: 41px;
+                                                font-size: 12px;
+                                            }
+
+                                        }
+
+                                    }
+
+                                    div.product.product-item-details {
+                                        display: grid;
+                                        place-content: center;
+
+                                        h5.product.product-item-name {
+                                            a.product-item-link {
+                                                font-size: 14px;
+                                            }
+                                        }
+
+                                        div.price-box.price-final_price {
+                                            span.special-price {
+                                                span.price-container.price-final_price {
+                                                    span.price-wrapper span.price {
+                                                      font-size: 14px;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+                                    div.action-mobile {
+                                        display: grid;
+                                        align-items: flex-end;
+
+                                        form {
+                                            button {
+                                                background:@product-button-background;
+                                                height: 34px;
+                                                opacity: 1;
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+        }
+
+    }
+  
+}
+
 
 // checkout success page
 .checkout-onepage-success {

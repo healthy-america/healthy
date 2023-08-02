@@ -33,9 +33,16 @@
                         background: @color-primary;
                         display: grid;
                         place-content: center;
+                        padding: 1.2em;
+
                         h4 {
                             ._text_format_monserrated();
                             line-height: 1;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            /* Establecemos el número máximo de líneas que queremos mostrar */
+                            -webkit-line-clamp: 2;
                         }
                         &::after {
                             background: transparent;
@@ -113,6 +120,8 @@
 
                     }
 
+                    .newsletter-popup-content,
+                    .newsletter-popup-form,
                     div.checkbox.dont-show-popup {
                         padding: 0px 30px 30px;
 
@@ -128,6 +137,10 @@
 
                     }
 
+                    .newsletter-popup-content {
+                        padding: 30px;
+                    }
+
                     input[type="checkbox"] {
                         appearance: none;
                         -webkit-appearance: none;
@@ -137,6 +150,7 @@
                         width: 20px;
                         height: 20px;
                         position: relative;
+                        margin: unset;
                 
                         &:checked {
                             &::before {
@@ -172,6 +186,7 @@
                 div.block-popup-top {
 
                     div.newsletter-popup-content {
+                        padding: 30px;
                         font-size: 13px;
                     }
 
@@ -205,6 +220,16 @@
 
                         }
 
+                    }
+
+                    div.newsletter-popup-content,
+                    div.newsletter-popup-form,
+                    div.checkbox.dont-show-popup {
+                        padding: 0px 15px 15px;
+                    }
+
+                    div.newsletter-popup-content {
+                        padding: 15px;
                     }
                 }
             }

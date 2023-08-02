@@ -451,6 +451,11 @@ use Magento\Framework\App\Action\Action;
 
         </div>
         <div class="product details product-item-details">
+            <div class="_container_reviews">
+                <?php if ($hideReview != 1) : ?>
+                    <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                <?php endif ?>
+            </div>
             <?php if ($hideName != 1) : ?>
                 <h5 class="product name product-item-name">
                     <a class="product-item-link" href="<?php echo $_product->getProductUrl() ?>">
@@ -458,12 +463,6 @@ use Magento\Framework\App\Action\Action;
                     </a>
                 </h5>
             <?php endif ?>
-            
-            <div class="_container_reviews">
-                <?php if ($hideReview != 1) : ?>
-                    <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
-                <?php endif ?>
-            </div>
 
             <?php if ($hidePrice != 1) : ?>
                 <?php echo $block->getProductPrice($_product) ?>

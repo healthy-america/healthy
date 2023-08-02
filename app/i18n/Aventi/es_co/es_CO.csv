@@ -13349,7 +13349,7 @@ Respaldamos nuestras aprobaciones con una protección de devolución de cargo de
 "We can't rebuild the index for an undefined product.","No se puede reconstruir el índice para un artículo no definido.",module,Magento_TargetRule
 "Could not rebuild index for empty products array","No se pudo reconstruir el índice de una matriz de productos vacía",module,Magento_TargetRule
 "-- Please Select --","--Seleccione--",module,Magento_TargetRule
-"Related Products","Artículos relacionados",module,Magento_TargetRule
+"Related Products","Productos Relacionados",module,Magento_TargetRule
 "Up-sells","Ventas ampliadas",module,Magento_TargetRule
 "Cross-sells","Ventas cruzadas",module,Magento_TargetRule
 "The attribute's model class name is invalid. Verify the name and try again.","The attribute's model class name is invalid. Verify the name and try again.",module,Magento_TargetRule
