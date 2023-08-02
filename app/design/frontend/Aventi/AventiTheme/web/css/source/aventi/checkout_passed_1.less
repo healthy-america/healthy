@@ -172,6 +172,7 @@
                     order: 30;
                     width: 40%;
                     position: relative;
+                    margin: unset;
 
                     header.modal-header {
                         display: none;
@@ -179,7 +180,7 @@
 
                     div.opc-block-summary {
                         background: @grey-clear;
-                        margin-top: 1.7em;
+                        margin-top: 5em;
                         width: 90%;
                         max-width: 886px;
                         position: absolute;
@@ -736,9 +737,15 @@
 
                                                     div.payment-method-title.field.choice {
                                                         display: flex;
+                                                        justify-content: space-between;
+                                                        align-items: center;
                                                         gap: 2em;
                                                         border-top: unset;
+
                                                         input[type="radio"] {
+                                                            top: 50%;
+                                                            left: 10px;
+                                                            transform: translate(-50%, -50%);
                                                             width: 15px;
                                                             height: 15px;
                                                             appearance: none;
@@ -1155,6 +1162,36 @@
 }
 
 
+
+@media screen and (max-width: 1050px) {
+
+    body#html-body.checkout-index-index {
+
+        div#checkout {
+
+            ul.opc-progress-bar {
+                margin-top: 80px;
+                margin-bottom: unset;
+            }
+
+            .opc-estimated-wrapper {
+                display: none;
+            }
+
+            aside.modal-custom.opc-sidebar.opc-summary-wrapper {
+                display: block;
+                div.opc-block-summary {
+                    margin-left: 5%;
+                }
+            }
+
+        }
+
+    }
+    
+}
+
+
 @media screen and (max-width: 1000px) {
 
 
@@ -1167,6 +1204,7 @@
 
                 li {
                     max-width: 42%;
+
                 }
 
                 li._active {  
@@ -1174,6 +1212,7 @@
                     span {
     
                         &:after {
+                            top: 9px;
                             content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=22&height=22');
                             //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
                         }
@@ -1191,7 +1230,7 @@
                         }
     
                         &::after {
-                                top: 9px;
+                                top: 5px;
                                 width: 28px;
                                 content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=22&height=22');
                                 //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
@@ -1200,10 +1239,6 @@
     
                 }
     
-            }
-
-            .opc-estimated-wrapper {
-                display: none;
             }
 
             div.opc-wrapper {
@@ -1445,3 +1480,31 @@
 }
 
 
+@media screen and (max-width: 850px) {
+
+    body#html-body.checkout-index-index {
+
+        div#checkout {
+
+
+            ul.opc-progress-bar {
+                margin-top: unset;
+            }
+
+            aside.modal-custom.opc-sidebar.opc-summary-wrapper {
+                display: none;
+            }
+
+        }
+
+        .checkout-payment-method 
+        .payment-methods 
+        .payment-method-title .payment-icon {
+            width: 35%;
+            object-fit: contain;
+            margin-right: unset;
+        }
+
+    }
+    
+}
