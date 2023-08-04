@@ -15380,3 +15380,5 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Your email address_","Ingresa tu correo"
 "Identification Customer","Identificación"
 "Login","Iniciar sesión"
+"We are happy to have you here!","¡Nos alegra tenerte aquí!"
+"By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.","Al crear una cuenta en nuestra tienda, podrás avanzar más rápido en el proceso de compra, almacenar múltiples direcciones de envío, ver y rastrear tus pedidos en tu cuenta, y mucho más."
