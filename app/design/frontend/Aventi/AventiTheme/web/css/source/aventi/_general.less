@@ -142,6 +142,21 @@
                 }
             }
         }
+
+        .mgs-instant-search-dropdown {
+            .mgs-instant-autocomplete-wrapper {
+                div.no-result {
+                    font-family: "Roboto" , sans-serif;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: @black_secunday;
+                    padding: 0.6em;
+                    font-style: normal;
+                }
+            }
+        }
+
     }
 
     // Inputs generales
@@ -488,7 +503,14 @@ html {
 
 @media screen and (max-width: 800px) {
 
-    body#html-body #maincontent {
+    body#html-body {
+
+    .mgs-instant-search-dropdown {
+        left: 5px;
+        right: 5px;
+    }
+
+    #maincontent {
 
         ._title_mobile_descuentos {
             text-transform: capitalize;
@@ -591,6 +613,8 @@ html {
             }
 
         }
+
+    }
 
     }
   
