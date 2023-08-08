@@ -10,6 +10,26 @@ define([
 ], function ($, Component, registry, utils) {
     'use strict';
 
+    function _fixedMobileAnimation({ 
+        searchComponent, 
+        callback
+    }) {
+
+        const width = window.innerWidth;
+            
+        //solamente si es menor a 800px
+        if (width < 800) {
+            //buscar el after button
+            const _after_button = document.querySelectorAll(searchComponent);
+            //add class hident-element
+            _after_button.forEach(element => {
+                callback(element);
+            });
+        } 
+        
+    }
+
+
     return Component.extend({
         defaults: {
             minSearchLength: 2
@@ -75,11 +95,24 @@ define([
         spinnerShow: function () {
             var spinner = $(this.searchFormSelector);
             spinner.addClass('loading');
+            _fixedMobileAnimation({ 
+                searchComponent: '#search_mini_form .control',
+                callback: (element) => {
+                    element.classList.add('hident-element');
+                }
+            });
+
         },
 
         spinnerHide: function () {
             var spinner = $(this.searchFormSelector);
             spinner.removeClass('loading');
+            _fixedMobileAnimation({
+                searchComponent: '#search_mini_form .control',
+                callback: (element) => {
+                    element.classList.remove('hident-element');
+                }
+            });
         }
 
     });

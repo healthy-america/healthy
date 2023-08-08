@@ -172,6 +172,14 @@
             }
         }
 
+
+        #search_mini_form.form.minisearch {
+           &.loading:after {
+                top: 0;
+                right: 5px;
+           }
+        }
+
     }
 
 }
@@ -181,6 +189,12 @@
 @media screen and (max-width: 800px) {
 
     body#html-body {
+
+        .hident-element {
+            &::after {
+                display: none !important;
+            }
+        }
 
         div#newsletter-popup {
             div.block-popup-subscribe {
@@ -244,6 +258,10 @@
                 padding: 0 40px 0 20px;
             }
 
+           &.loading:after {
+                top: 18px;
+                right: 25px;
+           }
         }
 
     }
