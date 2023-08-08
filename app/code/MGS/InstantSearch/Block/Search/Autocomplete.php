@@ -52,7 +52,7 @@ class Autocomplete extends Template
      */
     public function getTextNoRsult()
     {
-        return 'No Result';
+        return __('No Result');
     }
 
     public function getJsLayout()
