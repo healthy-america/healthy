@@ -101,6 +101,8 @@
                 .page-title {
                     font-weight: 400;
                     font-size: 42px;
+                    margin-right: unset;
+                    text-align: center;
                 }
             }
 
@@ -593,4 +595,61 @@
             }
         }
     }
+}
+
+
+@media screen and (max-width: 800px) {
+
+    body#html-body.account {
+
+        div.page-wrapper {
+           //header my account
+           #page-title-wrapper {
+                display: grid;
+                place-content: center;
+                padding: unset;
+                top: 60px;
+                height: 85px;
+
+                // &::before {
+                //     background: @color-primary ;
+                // }
+
+                h1.page-title {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    span.base {
+                        font-family: Montserrat;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 600;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        /* Agregar elipsis al final del texto desbordado */
+                        text-overflow: ellipsis;
+                        white-space: normal;
+                        padding: 0 20px;
+                    }
+
+                }
+
+           }
+
+           //content
+           #maincontent {
+                .columns {
+                    //right content
+                    .column.main {
+                        padding: 20px 20px 50px 20px;
+                    }
+                }
+           }
+
+        }
+
+    }
+
 }
