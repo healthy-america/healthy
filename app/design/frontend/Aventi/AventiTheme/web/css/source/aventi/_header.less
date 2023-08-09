@@ -118,18 +118,33 @@
                 }
 
                 .counter.qty {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: unset;
                     width: 12px;
                     height: 15px;
                     position: absolute;
                     left: 17px;
                     top: 0px;
                     opacity: 1;
-                    line-height: 15px;
+                    line-height: 1em;
                     min-width: 12px;
                     background: var(--link__color);
                     background: @color-secondary;
                     span {
+
+                        &.counter-number {
+                          @media screen and (max-width: 800px) {
+                              background: unset;
+                          }
+                        }
+                        
                         font-size: 10px;
+                    }
+
+                    @media screen and (max-width: 800px) {
+                        line-height: 1em;
                     }
                 }
             }
@@ -554,11 +569,21 @@
             z-index: 9999;
         }
 
-        button.action.nav-tg:after {
-            opacity: 1;
-            top: 92px;
-            left: 400px;
+        button.action.nav-tg {
+        
+            &:after {
+                opacity: 1;
+                top: 92px;
+                left: 400px;
+            }
+
+            &:before {
+                opacity: 0;
+                display: none;
+            }
+
         }
+        
     }
     #html-body header.page-header {
         button.action.nav-tg:after {

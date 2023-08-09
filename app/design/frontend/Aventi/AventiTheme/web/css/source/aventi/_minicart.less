@@ -22,6 +22,26 @@
         color: @black_secunday;
     }
 
+    .hidden-element {
+        display: none !important;
+    }
+
+    .close-modal-mini-cart {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 99;
+    }
+
+    .remove-after::after {
+        content: '';
+        display: none !important;
+        clear: both;
+    }
+
     body#html-body {
 
         .minicart-items .product-item .product.actions .action:hover {
@@ -300,6 +320,11 @@
                 }
 
             }
+        }
+
+        .page-header .header2.search-visible .middle-header 
+        .minicart-wrapper > a {
+            z-index: 9999;;
         }
 
     }

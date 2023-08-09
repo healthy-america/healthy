@@ -52,6 +52,7 @@
             </div>
             <?= $block->getChildHtml('minicart.addons') ?>
         </div>
+        <div class="close-modal-mini-cart hidden-element"></div>
     <?php else : ?>
         <?php $scriptString = <<<script
             require(['jquery'], function ($) {
