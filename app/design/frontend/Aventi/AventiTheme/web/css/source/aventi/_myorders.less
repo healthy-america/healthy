@@ -1,0 +1,105 @@
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common =true) {
+    //Time
+    body#html-body.sales-order-history {
+
+        ._title-ordenes {
+            display: none;
+        }
+            
+    
+    }     
+}
+
+
+@media screen and (max-width: 800px) {
+
+        //Time
+        body#html-body.sales-order-history {
+
+            ._title-ordenes {
+                display: block;
+                color: #050202;
+                font-family: Montserrat;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 24px; 
+                margin-bottom: 1em;
+            }
+            
+            #maincontent {
+                div.table-wrapper.orders-history {
+                    table#my-orders-table {
+                        
+                        thead {
+                            border: unset;
+                        }
+    
+                        tbody {
+                            display: grid;
+                            gap: 5px;
+                            border: unset;
+                            tr {
+                                display: grid;
+                                gap: 30px;
+                                border: unset;
+    
+                                td {
+                                    display: flex;
+                                    justify-content: flex-start;
+                                    align-items: center;
+                                    gap: 10px;
+    
+                                    color: @black_secunday;
+                                    font-family: 'Montserrat', sans-serif;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 18px; 
+    
+                                    &::before {
+                                        font-weight: 700; 
+                                        width: 50%;
+                                    }
+
+                                    &.actions {
+                                        a {
+                                            span {
+                                                color: @black_secunday;
+                                                font-family: 'Montserrat',sans-serif;
+                                                font-size: 14px;
+                                                font-style: normal;
+                                                font-weight: 400;
+                                                line-height: 18px;
+                                            }
+                                        }
+                                    }
+
+                                    &:last-child {
+                                        padding: 1em 0 1.32em 0 !important;
+                                        border-bottom: 2px solid #D2DBD5;
+                                    }
+                                }
+    
+                            }
+
+                            
+                        }
+                    }
+                }
+            }
+    
+        } 
+}
