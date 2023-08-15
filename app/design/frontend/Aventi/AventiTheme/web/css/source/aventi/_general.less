@@ -32,6 +32,28 @@
         li {
             font-family: "Montserrat";
         }
+
+        ._margin-top {
+            top: 0px;
+            padding-top: 61px;
+
+            .owl-dots {
+
+                .owl-dot.active {
+                    span {
+                        background: @color-dtop-active;
+                    }
+                }
+
+                .owl-dot {
+                    span {
+                        background: @color-dtop-normal;
+                    }
+                }
+
+            }
+        }
+
         //categories-section, por si los demas slider van a tener flechas
         .categories-section {
             .slider_mgs_carousel.owl-carousel {
