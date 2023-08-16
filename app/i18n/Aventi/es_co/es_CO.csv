@@ -15387,4 +15387,5 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Order_Total","Orden Total"
 "Email_","Email"
 "Email Address_","Email"
-"Password_","Contraseña"
+"Password_","Contraseña",
+"Allow remote shopping assistance","Permitir asistencia de compra remota"
