@@ -22,22 +22,24 @@
             <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
                 <div class="field note"><?= $block->escapeHtml(__('We are happy to have you here!')) ?></div>
                 <div class="field email required">
-                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
+                    <label class="label" for="email"><span><?= $block->escapeHtml(__('Email Address_')) ?></span></label>
                     <div class="control">
                         <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>"
                             <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
                                id="email" type="email" class="input-text"
                                title="<?= $block->escapeHtmlAttr(__('Email')) ?>"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Email_')) ?>"
                                data-mage-init='{"mage/trim-input":{}}'
                                data-validate="{required:true, 'validate-email':true}">
                     </div>
                 </div>
                 <div class="field password required">
-                    <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password')) ?></span></label>
+                    <label for="pass" class="label"><span><?= $block->escapeHtml(__('Password_')) ?></span></label>
                     <div class="control">
                         <input name="login[password]" type="password"
                             <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
                                class="input-text" id="pass"
+                               placeholder="<?= $block->escapeHtmlAttr(__('Password_')) ?>"
                                title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
                                data-validate="{required:true}">
                     </div>

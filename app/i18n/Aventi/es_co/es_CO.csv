@@ -5307,7 +5307,7 @@ Email template chosen based on theme fallback when ""Default"" option is selecte
 "Inactive","Inactivo",module,Magento_CustomerSegment
 "Apply To","Aplicar a",module,Magento_CustomerSegment
 "Visitors and Registered Customers","Visitantes y clientes registrados",module,Magento_CustomerSegment
-"Registered Customers","Clientes registrados",module,Magento_CustomerSegment
+"Registered Customers","INICIA SESIÓN",module,Magento_CustomerSegment
 "Visitors","Visitantes",module,Magento_CustomerSegment
 "Please save this information to specify segmentation conditions.","Por favor guarde esta información para especificar las condiciones de segmentación.",module,Magento_CustomerSegment
 "Matched Customers (%1)","Clientes coincidencia (%1)",module,Magento_CustomerSegment
@@ -15380,8 +15380,11 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Your email address_","Ingresa tu correo"
 "Identification Customer","Identificación"
 "Login","Iniciar sesión"
-"We are happy to have you here!","¡Nos alegra tenerte aquí!"
+"We are happy to have you here!","Estamos felices de tenerte aqui!"
 "By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.","Al crear una cuenta en nuestra tienda, podrás avanzar más rápido en el proceso de compra, almacenar múltiples direcciones de envío, ver y rastrear tus pedidos en tu cuenta, y mucho más."
-"You do not have an account?","No tienes una cuenta?"
+"You do not have an account?","¿No tienes una cuenta?"
 "Order#","Numero de orden"
 "Order_Total","Orden Total"
+"Email_","Email"
+"Email Address_","Email"
+"Password_","Contraseña"
