@@ -529,7 +529,7 @@
                 .col.qty,
                 .col.subtotal {
                     display: inline-block;
-                    width: 30%;
+                    width: 33.3%;
                     padding-bottom: 25px;
                     margin-top: 4px;
                     height: 68px;
@@ -544,6 +544,40 @@
                 }
 
                 .col.price {
+                    overflow: hidden;
+                    .price-box.price-final_price {
+                        //height: -webkit-fill-available;
+                        flex-direction: column-reverse;
+                        margin: -23px 0 -25px;
+                        gap: unset;
+
+                        &::after {
+                            content: "Precio";
+                            font-family: "Roboto";
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 14px;
+                            color: @grey;
+                            margin-top: 0.34em;
+                            margin-bottom: 0.59em;
+                        }
+
+                        span {
+                            margin: unset;
+
+                            &.old-price {
+                                margin-top: -0.28em;
+                                .price-wrapper {
+                                .price .price {
+                                        font-size: 12px;
+                                    }
+                                }   
+                            }
+
+                        }
+
+                    }
+
                     .price-excluding-tax {
                         display: flex;
                         flex-direction: column;
