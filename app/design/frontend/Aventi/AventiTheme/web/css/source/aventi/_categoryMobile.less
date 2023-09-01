@@ -75,16 +75,8 @@
                 }
 
                 div.product-container.category-product-container {
-                    div.category-product-actions {
-
-                        @media screen and (min-width: 1201px) { 
-                            .toolbar-sorter.sorter {
-                                display: flex;
-                                justify-content: end;
-                                gap: 15px;
-                            }
-                        }
-
+                    div.category-product-actions {    
+                        display: none;
                     }
                 }
 
@@ -108,6 +100,13 @@
 
 
     body#html-body.catalog-category-view  {
+
+        .columns {
+        
+            &::before {
+                top: -2px;
+            }
+        }
 
         .page-wrapper {
 
@@ -200,7 +199,6 @@
                 }  
 
                 .sidebar.sidebar-main {
-                    margin-top: unset;
                     border-top: unset;
                 }
       
@@ -209,11 +207,61 @@
         }
 
     }
+
+    body#html-body.catalog-category-view  {
+    
+        #maincontent {
+
+            div.category-product-container.product-container {
+
+                div.products.products-grid {
+                    ol.products.product-items {
+
+                        li.item.product.product-item-info.product-item  {
+                            div.product-top {
+                                overflow: hidden;
+                                a.product.product-item-photo {
+                                    height: 250px;
+                                    img.product-image-photo {
+                                        transform: scale(0.85);
+                                    }   
+
+                                    div.product-image-photo {
+                                        background: @white;
+                                    }
+
+                                }
+
+                                span.product-label.sale-label {
+                                    height: 40px;
+                                    width: 40px;
+                                    right: 2px;
+                                    span {
+                                        line-height: 40px;
+                                        font-size: 12px;
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
 }
 
 @media screen and (max-width: 800px) {
 
     body#html-body.catalog-category-view  {
+
+        .columns {
+            &::before {
+              display: none;
+            }
+        }
 
         .page-wrapper {
 
@@ -266,6 +314,10 @@
                 div.product-container.category-product-container {
                     border: unset;
                     overflow: hidden;
+
+                    div.category-product-actions {
+                        display: block;
+                    }
                 }
 
             }

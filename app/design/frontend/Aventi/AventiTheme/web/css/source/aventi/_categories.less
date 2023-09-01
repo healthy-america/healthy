@@ -96,8 +96,21 @@
             display: none;
         }
 
+        .columns {
+            position: relative;
+            &::before {
+                content: '';
+                height: 1px;
+                background-color: #B6BAC0;
+                left: 0;
+                right: 0;
+                position: absolute;
+                top: 7px;
+                margin: 0 15px;
+            }
+        }
+
         .category-product-actions {
-            border-bottom: 1px solid #b6bac0;
             padding-bottom: 19px;
 
             .form-item-select {
@@ -129,8 +142,7 @@
         
         .sidebar.sidebar-main {
             padding-right: 30px;
-            border-top: 1px solid #b6bac0;
-            margin-top: 4.4em;
+            margin-top: 30px;
 
             .block-content.filter-content {
                 background-color: @grey-light;
