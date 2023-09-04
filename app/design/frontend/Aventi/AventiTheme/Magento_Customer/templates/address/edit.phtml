@@ -95,18 +95,12 @@ $viewModel = $block->getViewModel();
                 </div>
             </div>
         </div>
-        <div class="field city required">
-            <label class="label" for="city">
-                <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?></span>
+        <div class="field country required">
+            <label class="label" for="country">
+                <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span>
             </label>
             <div class="control">
-                <input type="text"
-                       name="city"
-                       value="<?= $escaper->escapeHtmlAttr($block->getAddress()->getCity()) ?>"
-                       title="<?= $escaper->escapeHtmlAttr(__('City')) ?>"
-                       class="input-text <?= $escaper->escapeHtmlAttr($_cityValidationClass) ?>"
-                       placeholder="<?= $escaper->escapeHtml(__('City')) ?>"
-                       id="city">
+                <?= $block->getCountryHtmlSelect() ?>
             </div>
         </div>
         <div class="field region required">
@@ -130,6 +124,20 @@ $viewModel = $block->getViewModel();
                     <?= !$_displayAll ? ' disabled="disabled"' : '' ?>/>
             </div>
         </div>
+        <div class="field city required">
+            <label class="label" for="city">
+                <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?></span>
+            </label>
+            <div class="control">
+                <input type="text"
+                       name="city"
+                       value="<?= $escaper->escapeHtmlAttr($block->getAddress()->getCity()) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('City')) ?>"
+                       class="input-text <?= $escaper->escapeHtmlAttr($_cityValidationClass) ?>"
+                       placeholder="<?= $escaper->escapeHtml(__('City')) ?>"
+                       id="city">
+            </div>
+        </div>
         <div class="field zip required">
             <label class="label" for="zip">
                 <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?></span>
@@ -147,14 +155,6 @@ $viewModel = $block->getViewModel();
                     <span></span>
                 </div>
                 <?= /* @noEscape */ $secureRenderer->renderStyleAsTag("display: none;", 'div.message.warning') ?>
-            </div>
-        </div>
-        <div class="field country required">
-            <label class="label" for="country">
-                <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span>
-            </label>
-            <div class="control">
-                <?= $block->getCountryHtmlSelect() ?>
             </div>
         </div>
         <?php if ($viewModel->addressIsVatAttributeVisible()): ?>

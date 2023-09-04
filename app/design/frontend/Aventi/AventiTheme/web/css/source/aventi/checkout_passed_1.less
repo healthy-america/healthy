@@ -191,7 +191,7 @@
                         margin-top: 5em;
                         width: 90%;
                         max-width: 886px;
-                        position: absolute;
+                        position: unset;
 
                         span.title {
                             font-family: 'Montserrat', sans-serif;
@@ -1162,6 +1162,35 @@
             font-family: 'Montserrat' , sans-serif;
             font-weight: 600;
             line-height: 24px;
+        }
+
+        .content.minicart-items {
+            max-height: 420px;
+            overflow-x: hidden;
+            overflow-y: auto;
+       
+
+            ::-webkit-scrollbar {
+                display: initial;
+                width: 18px;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background-color: #d6dee1;
+                border-radius: 20px;
+                border: 6px solid transparent;
+                background-clip: content-box;
+            }
+            
+            ::-webkit-scrollbar-thumb:hover {
+                background-color: #a8bbbf;
+            }
+            
+       
         }
 
        

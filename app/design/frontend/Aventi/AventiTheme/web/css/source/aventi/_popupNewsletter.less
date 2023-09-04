@@ -54,6 +54,9 @@
                         color: @label-color-checkout;
                         font-size: 13px;
                         font-weight: 500;
+                        max-width: 750px;
+                        margin: auto;
+                        padding: 30px 30px 10px;
                     }
 
                     div.newsletter-popup-form {
@@ -81,7 +84,7 @@
 
                             div.mgs-gdpr-checkbox {
                                 display: flex;
-                                justify-items: flex-start;
+                                justify-content: center;
                                 align-items: center;
                                 flex-wrap: wrap;
 
@@ -123,6 +126,12 @@
 
                     }
 
+                    div.checkbox.dont-show-popup {
+                       display: flex;
+                       justify-content: center;
+                       align-items: center;
+                    }
+
                     .newsletter-popup-content,
                     .newsletter-popup-form,
                     div.checkbox.dont-show-popup {
@@ -138,10 +147,6 @@
                             font-weight: 500;                   
                         }
 
-                    }
-
-                    .newsletter-popup-content {
-                        padding: 30px;
                     }
 
                     input[type="checkbox"] {
@@ -210,7 +215,9 @@
                 div.block-popup-top {
 
                     div.newsletter-popup-content {
-                        padding: 30px;
+                        max-width: 750px;
+                        margin: auto;
+                        padding: 15px;
                         font-size: 13px;
                     }
 
@@ -247,29 +254,11 @@
 
                     }
 
-                    div.newsletter-popup-content,
                     div.newsletter-popup-form,
                     div.checkbox.dont-show-popup {
                         padding: 0px 15px 15px;
                     }
 
-                    div.checkbox.dont-show-popup {
-
-                        label {
-                            position: relative;
-                            justify-content: center;
-
-                            > input[type="checkbox"] {
-                                position: absolute;
-                                left: 0;
-                            }
-                        }
-
-                    }
-
-                    div.newsletter-popup-content {
-                        padding: 15px;
-                    }
                 }
             }
         }
