@@ -77,7 +77,7 @@
 
     #html-body.catalog-category-view {
         .breadcrumbs {
-            background: #fff;
+            background: @white;
 
             a {
                 font-family: "Montserrat";
@@ -85,7 +85,7 @@
                 font-weight: 400;
                 font-size: 14px;
                 line-height: 20px;
-                color: #7b7b7b !important;
+                color: @grey-dark !important;
 
                 &:hover {
                     color: @color-primary !important;
@@ -102,7 +102,7 @@
             &::before {
                 content: '';
                 height: 1px;
-                background-color: #B6BAC0;
+                background-color: @grey-m;
                 left: 0;
                 right: 0;
                 position: absolute;
@@ -157,14 +157,14 @@
                     margin-bottom: 15px;
                 }
                 .filter-options-title {
-                    background: #ffffff;
+                    background: @white;
                     border-radius: 4px;
                     padding: 10px 20px;
                     margin: 0;
 
                     font-family: "Montserrat";
                     font-weight: 400;
-                    color: #424242;
+                    color: @filter-option-title;
                     font-size: 14px;
                     line-height: 18px;
 
@@ -190,7 +190,7 @@
                         .filter-options-content {
                             border-radius: 4px;
                             padding: 10px 20px;
-                            background: #ffffff;
+                            background: @white;
                         }
 
                         .filter-options-title::after {
@@ -280,7 +280,7 @@
     
                                 div.rating-result > span:before {
                                     font-weight: 550;
-                                    color: #FFDD26;
+                                    color: @start-background;
                                 }
                             }
                         }
@@ -363,7 +363,7 @@
                                     div.slider-label {
                                         div {
                                             background: transparent;
-                                            color: #000;
+                                            color: @black;
                                         }
                                     }
     
@@ -371,15 +371,15 @@
     
                                         a.ui-slider-handle,
                                         div.ui-slider-range.ui-widget-header {
-                                            background: #428bca;
+                                            background: @background-filter;
                                         } 
     
                                         div.actions-primary {
                                             a.action.primary  {
                                                 border-radius: 4px;
-                                                background: var(--azul, #004088);
+                                                background: @primary-button-background;
                                                 &:hover {
-                                                    background: var(--azul, #0C4D9F);
+                                                    background: @primary-button-background-hover;
                                                     color: @color-white;
                                                 }
                                             }
@@ -457,7 +457,7 @@
 
                                 &::after {
                                     top: 2px;
-                                    color: #004088;
+                                    color: @product-button-background;
                                 }
 
                             }
@@ -486,12 +486,12 @@
                                 width: 3em;
                                 height: 28px;
                                 border-radius: 2px;
-                                background: var(--gris-claro, #E8E6E6);
+                                background: @bg-gray-black;
                                 box-shadow: 0px 0.5px 2px 0px rgba(0, 0, 0, 0.10);
 
 
                                 span.icon.pe-7s-edit {
-                                    color: #000;
+                                    color: @black;
                                     text-align: center;
                                     font-family: 'Montserrat',sans-serif;
                                     font-size: 12px;
@@ -602,7 +602,7 @@
                 background: var(--theme__color__primary);
 
                 h1 > span {
-                    color: var(--blanco, #FFF);
+                    color: @white;
                     text-align: center;
                     font-family: 'Montserrat', sans-serif;
                     font-size: 22px;
