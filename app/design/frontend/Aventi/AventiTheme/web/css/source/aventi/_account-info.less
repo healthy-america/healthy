@@ -2,59 +2,34 @@
 //  All devices
 & when (@media-common =true) {
     
-    body#html-body.customer-account-edit .page-wrapper {
+    body#html-body {
+    
+        &.account .page-wrapper {
 
-        #maincontent .columns .column.main {
-            margin-bottom: 2em;
-            form.form.form-edit-account {
-               
-                fieldset.fieldset.info {
- 
-                    > div.field.choice.email_ {
-                        margin-top: 1.5em;
+            #maincontent .columns .column.main {
+                margin-bottom: 2em;
+            }
+    
+        }
+
+        &.customer-account-edit  .page-wrapper {
+
+            #maincontent .columns .column.main {
+                margin-bottom: 2em;
+                form.form.form-edit-account {
+                
+                    fieldset.fieldset.info {
+    
+                        > div.field.choice.email_ {
+                            margin-top: 1.5em;
+                        }
                     }
-                }
 
-            }   
+                }   
+            }
+
         }
 
     }
-
-    body#html-body.account .page-wrapper {
-
-        #maincontent .columns .column.main {
-            margin-bottom: 2em;
-        }
-
-    }
-
-    // body#html-body.customer-address-form .page-wrapper {
-
-    //     #maincontent .columns .column.main {
-
-    //         form.form-address-edit {
-
-    //             > fieldset.fieldset:nth-child(2) {
-    //                 display: flex;
-    //                 flex-direction: column;
-    //                 gap: 20px;
-
-    //                 h3.block-title-info {
-    //                     margin-bottom: unset
-    //                 }
-
-    //                 div.field  {
-    //                    margin: unset;
-    //                    height: 62px;
-    //                    overflow: hidden;
-    //                 }
-
-    //             }
-
-    //         }
-
-    //     }
-
-    // }
 
 }
