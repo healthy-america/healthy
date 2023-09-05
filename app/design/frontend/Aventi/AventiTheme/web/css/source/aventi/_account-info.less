@@ -1,0 +1,35 @@
+
+//  All devices
+& when (@media-common =true) {
+    
+    body#html-body {
+    
+        &.account .page-wrapper {
+
+            #maincontent .columns .column.main {
+                margin-bottom: 2em;
+            }
+    
+        }
+
+        &.customer-account-edit  .page-wrapper {
+
+            #maincontent .columns .column.main {
+                margin-bottom: 2em;
+                form.form.form-edit-account {
+                
+                    fieldset.fieldset.info {
+    
+                        > div.field.choice.email_ {
+                            margin-top: 1.5em;
+                        }
+                    }
+
+                }   
+            }
+
+        }
+
+    }
+
+}
