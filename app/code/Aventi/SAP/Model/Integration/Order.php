@@ -104,7 +104,7 @@ class Order extends \Aventi\SAP\Model\Integration
     /**
      * @param OrderInterface $order
      * @param array $payload
-     * @return bool|arraygi
+     * @return bool|array
      */
     public function request(OrderInterface $order, array $payload) : bool|array
     {
