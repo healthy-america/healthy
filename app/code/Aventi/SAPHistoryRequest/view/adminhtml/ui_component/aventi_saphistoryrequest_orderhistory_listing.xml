@@ -1,0 +1,146 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>aventi_saphistoryrequest_orderhistory_columns</spinner>
+		<deps>
+			<dep>aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="aventi_saphistoryrequest_orderhistory_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">orderhistory_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Aventi_SAPHistoryRequest::OrderHistory</aclResource>
+		<dataProvider name="aventi_saphistoryrequest_orderhistory_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>orderhistory_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+        <filterSearch name="fulltext">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/search/search</item>
+                    <item name="displayArea" xsi:type="string">dataGridFilters</item>
+                    <item name="provider" xsi:type="string">aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing_data_source</item>
+                    <item name="chipsProvider" xsi:type="string">
+                        aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing.listing_top.listing_filters_chips
+                    </item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">
+                            aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing.listing_top.bookmarks
+                        </item>
+                        <item name="namespace" xsi:type="string">current.search</item>
+                    </item>
+                </item>
+            </argument>
+        </filterSearch>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="aventi_saphistoryrequest_orderhistory_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">orderhistory_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="aventi_saphistoryrequest/OrderHistory/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_listing.aventi_saphistoryrequest_orderhistory_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>orderhistory_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="orderhistory_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="parent_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Parent id</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+        <column name="increment_id">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Increment id</label>
+                <editor>
+                    <editorType>text</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+		<column name="created_at">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Created at</label>
+				<editor>
+					<editorType>date</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="updated_at">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Updated at</label>
+				<editor>
+					<editorType>date</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+        <actionsColumn name="actions" class="Aventi\SAPHistoryRequest\Ui\Component\Listing\Column\OrderHistoryActions">
+            <settings>
+                <indexField>orderhistory_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+	</columns>
+</listing>

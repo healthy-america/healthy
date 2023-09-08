@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="integration" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>SAP Integration</label>
+            <tab>aventi</tab>
+            <resource>Aventi_SAP::config_aventi_sap</resource>
+            <group id="history" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
+                <label>History comment</label>
+                <field id="order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="125" translate="label" type="select">
+                    <label>Active json history in Order</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[
+                        Save payload and response in request sync order to SAP.
+                    ]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

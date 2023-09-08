@@ -1,0 +1,217 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">aventi_saphistoryrequest_orderhistory_form.orderhistory_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Aventi\SAPHistoryRequest\Block\Adminhtml\OrderHistory\Edit\BackButton"/>
+		</buttons>
+		<namespace>aventi_saphistoryrequest_orderhistory_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>aventi_saphistoryrequest_orderhistory_form.orderhistory_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="orderhistory_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="orderhistory_form_data_source" class="Aventi\SAPHistoryRequest\Model\OrderHistory\DataProvider">
+			<settings>
+				<requestFieldName>orderhistory_id</requestFieldName>
+				<primaryFieldName>orderhistory_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="parent_id" formElement="input" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">OrderHistory</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Parent id</label>
+				<dataScope>parent_id</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+        <field name="increment_id" formElement="input" sortOrder="15">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">OrderHistory</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Increment id</label>
+                <dataScope>increment_id</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+        <container name="container-json-body">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">ui/form/components/complex</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="label" xsi:type="string">Body</item>
+                    <item name="additionalClasses" xsi:type="string">container-json-body</item>
+                    <item name="text" xsi:type="string" translate="true"><![CDATA[
+                    <p>
+                        Json body before send to sap.
+                    </p>
+                ]]></item>
+                </item>
+            </argument>
+            <button name="format_json_body">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="buttonClasses" xsi:type="string">format-json-body</item>
+                        <item name="actions" xsi:type="array"></item>
+                    </item>
+                </argument>
+                <settings>
+                    <displayAsLink>false</displayAsLink>
+                    <title translate="true">Format json</title>
+                </settings>
+            </button>
+            <button name="copy_json_body">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="buttonClasses" xsi:type="string">copy-json-body</item>
+                        <item name="actions" xsi:type="array"></item>
+                    </item>
+                </argument>
+                <settings>
+                    <displayAsLink>false</displayAsLink>
+                    <title translate="true">Copy</title>
+                </settings>
+            </button>
+            <field name="json_body" formElement="textarea" sortOrder="20">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">OrderHistory</item>
+                        <item name="cols" xsi:type="number">200</item>
+                        <item name="rows" xsi:type="number">80</item>
+                        <item name="disabled" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <dataScope>json_body</dataScope>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </settings>
+            </field>
+        </container>
+        <container name="container-json-response">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">ui/form/components/complex</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="label" xsi:type="string">Response</item>
+                    <item name="additionalClasses" xsi:type="string">container-json-response</item>
+                    <item name="text" xsi:type="string" translate="true"><![CDATA[
+                        <p>
+                            Json sap response.
+                        </p>
+                    ]]></item>
+                </item>
+            </argument>
+            <button name="format_json_response">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="buttonClasses" xsi:type="string">format-json-response</item>
+                        <item name="actions" xsi:type="array"></item>
+                    </item>
+                </argument>
+                <settings>
+                    <displayAsLink>false</displayAsLink>
+                    <title translate="true">Format json</title>
+                </settings>
+            </button>
+            <button name="copy_json_response">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="buttonClasses" xsi:type="string">copy-json-response</item>
+                        <item name="actions" xsi:type="array"></item>
+                    </item>
+                </argument>
+                <settings>
+                    <displayAsLink>false</displayAsLink>
+                    <title translate="true">Copy</title>
+                </settings>
+            </button>
+            <field name="json_response" formElement="textarea" sortOrder="30">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="source" xsi:type="string">OrderHistory</item>
+                        <item name="cols" xsi:type="number">200</item>
+                        <item name="rows" xsi:type="number">160</item>
+                        <item name="disabled" xsi:type="boolean">true</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataType>text</dataType>
+                    <dataScope>json_response</dataScope>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </settings>
+            </field>
+        </container>
+		<field name="created_at" formElement="date" sortOrder="40">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">OrderHistory</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Created at</label>
+				<dataScope>created_at</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="updated_at" formElement="date" sortOrder="50">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">OrderHistory</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Updated at</label>
+				<dataScope>updated_at</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+	</fieldset>
+</form>

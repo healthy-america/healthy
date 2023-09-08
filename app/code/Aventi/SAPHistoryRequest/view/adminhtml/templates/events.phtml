@@ -1,0 +1,108 @@
+<?php
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var \Magento\Backend\Block\Template $block*/ ?>
+<script>
+    require([
+        "jquery"
+    ], function ($) {
+       $(document).ready(function (){
+           addEventsBody();
+           addEventsResponse();
+       });
+
+       function addEventsBody() {
+           $(document).on('click', '.copy-json-body', function (e) {
+               e.preventDefault();
+               let text = $('body [name="json_body"]').val();
+               copyToClipboard(text).then(function() {
+                   this.showSuccessfulClipboardCopySnackBar = true
+               });
+           });
+
+           $(document).on('click', '.format-json-body', function (e) {
+               e.preventDefault();
+               prettyPrint('body [name="json_body"]');
+               $('body [name="json_body"]').animate({ color: "green" });
+           });
+
+           $(document).on('click', '.copy-json-body-update', function (e) {
+               e.preventDefault();
+               let text = $('body [name="json_body_update"]').val();
+               copyToClipboard(text).then(function() {
+                   this.showSuccessfulClipboardCopySnackBar = true
+               });
+           });
+
+           $(document).on('click', '.format-json-body-update', function (e) {
+               e.preventDefault();
+               prettyPrint('body [name="json_body_update"]');
+               $('body [name="json_body_update"]').animate({ color: "green" });
+           });
+       }
+
+        function addEventsResponse() {
+            $(document).on('click', '.copy-json-response', function (e) {
+                e.preventDefault();
+                let text = $('body [name="json_response"]').val();
+                copyToClipboard(text).then(function() {
+                    this.showSuccessfulClipboardCopySnackBar = true
+                });
+            });
+
+            $(document).on('click', '.format-json-response', function (e) {
+                e.preventDefault();
+                prettyPrint('body [name="json_response"]');
+                $('body [name="json_response"]').animate({ color: "green" });
+            });
+
+            $(document).on('click', '.copy-json-response-update', function (e) {
+                e.preventDefault();
+                let text = $('body [name="json_response_update"]').val();
+                copyToClipboard(text).then(function() {
+                    this.showSuccessfulClipboardCopySnackBar = true
+                });
+            });
+
+            $(document).on('click', '.format-json-response-update', function (e) {
+                e.preventDefault();
+                prettyPrint('body [name="json_response_update"]');
+                $('body [name="json_response_update"]').animate({ color: "green" });
+            });
+        }
+
+        function prettyPrint(select) {
+            var ugly = $(select).val();
+            var obj = JSON.parse(ugly);
+            var pretty = JSON.stringify(obj, undefined, 4);
+            $(select).val(pretty);
+        }
+
+        function copyToClipboard(textToCopy) {
+            // navigator clipboard api needs a secure context (https)
+            if (navigator.clipboard && window.isSecureContext) {
+                // navigator clipboard api method'
+                return navigator.clipboard.writeText(textToCopy);
+            } else {
+                // text area method
+                let textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                // make the textarea out of viewport
+                textArea.style.position = "fixed";
+                textArea.style.left = "-999999px";
+                textArea.style.top = "-999999px";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                return new Promise((res, rej) => {
+                    // here the magic happens
+                    document.execCommand('copy') ? res() : rej();
+                    textArea.remove();
+                });
+            }
+        }
+    });
+</script>

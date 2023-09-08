@@ -45,18 +45,25 @@ class Order extends \Aventi\SAP\Model\Integration
      */
     private \Aventi\SAP\Logger\Logger $_logger;
 
+    /**
+     * @var \Magento\Framework\Event\ManagerInterface
+     */
+    private \Magento\Framework\Event\ManagerInterface $eventManager;
+
     public function __construct(
         \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
         \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
         \Aventi\SAP\Helper\Order $order,
         \Aventi\SAP\Helper\Data $data,
-        \Aventi\SAP\Logger\Logger $logger
+        \Aventi\SAP\Logger\Logger $logger,
+        \Magento\Framework\Event\ManagerInterface $eventManager
     ) {
         $this->_orderRepository = $orderRepository;
         $this->_orderCollectionFactory = $orderCollectionFactory;
         $this->_helperOrder = $order;
         $this->_data = $data;
         $this->_logger = $logger;
+        $this->eventManager = $eventManager;
     }
 
     /**
@@ -80,21 +87,44 @@ class Order extends \Aventi\SAP\Model\Integration
             $order = $this->_orderRepository->get($orderInfo->getId());
             $this->_helperOrder->createInvoice($order);
             if ($order->getState() == 'processing') {
-                $this->_logger->debug("Entra aca");
                 $resProcess = $this->_helperOrder->processIteration(['syncing', 'error'], $order->getId());
                 if (!$resProcess) {
                     continue;
                 }
 
                 $orderData = $this->_helperOrder->processDataSAP($order);
-                $this->_logger->debug(json_encode($orderData));
-                $response = $this->_data->postResource(self::TYPE_URI, $orderData);
-                $this->_logger->debug(json_encode($response));
+                $response = $this->request($order, $orderData);
                 $this->processResponseOrder($order, $response);
             }
         }
 
         $this->printOrderTable($this->arrStatusOrders);
+    }
+
+    /**
+     * @param OrderInterface $order
+     * @param array $payload
+     * @return bool|arraygi
+     */
+    public function request(OrderInterface $order, array $payload) : bool|array
+    {
+        $this->eventManager->dispatch(
+            'sap_order_before_request',
+            [
+                'order' => $order,
+                'body' => $payload
+            ]
+        );
+        $response = $this->_data->postResource(self::TYPE_URI, $payload);
+
+        $this->eventManager->dispatch(
+            'sap_order_after_request',
+            [
+                'order' => $order,
+                'response' => $response
+            ]
+        );
+        return $response;
     }
 
     /**

@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Aventi_SAPHistoryRequest::aventi_saphistoryrequest_orderhistory" title="Order History" translate="title"
+        module="Magento_Backend" sortOrder="20" parent="Aventi_Core::home"
+        action="aventi_saphistoryrequest/orderhistory/index" resource="Magento_Backend::content"/>
+	</menu>
+</config>

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order_sap_history_request" resource="default" engine="innodb" comment="sales_order_sap_history_request Table">
+		<column xsi:type="int" name="orderhistory_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+		<constraint xsi:type="primary" referenceId="PRIMARY">
+			<column name="orderhistory_id"/>
+		</constraint>
+        <column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Magento order id"/>
+        <column name="increment_id" nullable="true" xsi:type="varchar" comment="Magento order increment id" length="32"/>
+		<column name="json_body" nullable="true" xsi:type="text" comment="json_body"/>
+		<column name="json_response" nullable="true" xsi:type="text" comment="json_response"/>
+		<column name="created_at" nullable="true" xsi:type="timestamp" comment="created_at"/>
+		<column name="updated_at" nullable="true" xsi:type="timestamp" comment="updated_at"/>
+        <constraint xsi:type="foreign" referenceId="fk_sales_order_sap_history_request_sales_order_entity_id"
+                    table="sales_order_sap_history_request"
+                    column="parent_id"
+                    referenceTable="sales_order"
+                    referenceColumn="entity_id"
+        />
+        <index referenceId="sap_history_request_int_orderhistory_id" indexType="btree">
+            <column name="orderhistory_id"/>
+        </index>
+        <index referenceId="sap_history_request_int_parent_id" indexType="btree">
+            <column name="parent_id"/>
+        </index>
+	</table>
+</schema>

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="sap_order_before_request">
+		<observer name="aventi_saphistoryrequest_observer_sap_orderbeforerequest_sap_order_before_request" instance="Aventi\SAPHistoryRequest\Observer\Sap\OrderBeforeRequest"/>
+	</event>
+	<event name="sap_order_after_request">
+		<observer name="aventi_saphistoryrequest_observer_sap_orderafterrequest_sap_order_after_request" instance="Aventi\SAPHistoryRequest\Observer\Sap\OrderAfterRequest"/>
+	</event>
+</config>

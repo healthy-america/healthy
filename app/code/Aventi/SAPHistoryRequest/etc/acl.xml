@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Aventi_SAPHistoryRequest::OrderHistory" title="OrderHistory" sortOrder="10">
+					<resource id="Aventi_SAPHistoryRequest::OrderHistory_save" title="Save OrderHistory" sortOrder="10"/>
+					<resource id="Aventi_SAPHistoryRequest::OrderHistory_delete" title="Delete OrderHistory" sortOrder="20"/>
+					<resource id="Aventi_SAPHistoryRequest::OrderHistory_update" title="Update OrderHistory" sortOrder="30"/>
+					<resource id="Aventi_SAPHistoryRequest::OrderHistory_view" title="View OrderHistory" sortOrder="40"/>
+				</resource>
+                <resource id="Aventi_SAPHistoryRequest::QuoteHistory" title="QuoteHistory" sortOrder="10">
+                    <resource id="Aventi_SAPHistoryRequest::QuoteHistory_save" title="Save QuoteHistory" sortOrder="10"/>
+                    <resource id="Aventi_SAPHistoryRequest::QuoteHistory_delete" title="Delete QuoteHistory" sortOrder="20"/>
+                    <resource id="Aventi_SAPHistoryRequest::QuoteHistory_update" title="Update QuoteHistory" sortOrder="30"/>
+                    <resource id="Aventi_SAPHistoryRequest::QuoteHistory_view" title="View QuoteHistory" sortOrder="40"/>
+                </resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

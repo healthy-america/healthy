@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="Aventi\SAPHistoryRequest\Api\OrderHistoryRepositoryInterface" type="Aventi\SAPHistoryRequest\Model\OrderHistoryRepository"/>
+	<preference for="Aventi\SAPHistoryRequest\Api\Data\OrderHistoryInterface" type="Aventi\SAPHistoryRequest\Model\OrderHistory"/>
+	<preference for="Aventi\SAPHistoryRequest\Api\Data\OrderHistorySearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+	<virtualType name="Aventi\SAPHistoryRequest\Model\ResourceModel\OrderHistory\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">sales_order_sap_history_request</argument>
+			<argument name="resourceModel" xsi:type="string">Aventi\SAPHistoryRequest\Model\ResourceModel\OrderHistory\Collection</argument>
+		</arguments>
+	</virtualType>
+
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="aventi_saphistoryrequest_orderhistory_listing_data_source" xsi:type="string">Aventi\SAPHistoryRequest\Model\ResourceModel\OrderHistory\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>
