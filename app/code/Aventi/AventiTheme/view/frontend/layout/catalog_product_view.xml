@@ -6,7 +6,9 @@
             <referenceBlock name="product.info.review" remove="true"/>
             <referenceBlock name="product.info.sku" remove="true"/>
             <referenceBlock name="product.brand.name" remove="true"/>
-            <block class="Magento\Catalog\Block\Product\View" name="custom.product.attributes" template="Aventi_AventiTheme::product/attributes.phtml" before="alert.urls" />
+            <referenceContainer name="product.info.price">
+               <block class="Magento\Catalog\Block\Product\View" name="custom.product.attributes" template="Aventi_AventiTheme::product/attributes.phtml" after="-" />
+            </referenceContainer>
         </referenceContainer>
 
         <referenceContainer name="sidebar.main">
