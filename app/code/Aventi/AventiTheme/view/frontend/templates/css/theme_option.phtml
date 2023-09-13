@@ -18,6 +18,12 @@ $_helper = $this->helper('Aventi\AventiTheme\Helper\Themeconfig');
 	<?php if ($_helper->getBasicColors($data, 'heading_color')) { ?>
 	--heading__color__base: <?= $_helper->getBasicColors($data, 'heading_color');?>;
 	<?php } ?>
+	<?php if ($_helper->getBasicColors($data, 'icon_base_color')) { ?>
+	--icon_base_color: <?= $_helper->getBasicColors($data, 'icon_base_color');?>;
+	<?php } ?>
+	<?php if ($_helper->getBasicColors($data, 'descount_base_color')) { ?>
+	--descount_base_color: <?= $_helper->getBasicColors($data, 'descount_base_color');?>;
+	<?php } ?>
 	<?php if ($_helper->getBasicColors($data, 'link_color')) { ?>
 	--link__color: <?= $_helper->getBasicColors($data, 'link_color');?>;
 	<?php } ?>
