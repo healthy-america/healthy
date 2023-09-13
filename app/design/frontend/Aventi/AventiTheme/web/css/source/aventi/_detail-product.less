@@ -314,7 +314,7 @@
                     //informacion de la derecha 
                     .product-info-main {
                         position: relative;
-                        
+                        margin-top: 1em;
                         //nombre del producto
                         .product-name {
                             font-weight: 600;
@@ -324,24 +324,36 @@
 
                         //precio y descripcion
                         .product-info-price{
+                            display: flex;
+                            flex-direction: column;
                             .price-box.price-final_price{
                                 margin-top: 0px;
                             }
 
                             .product.attribute{
-                                margin-top: 60px;
+                                order: 4;
+                                margin-top: 15px;
+                                &.overview {
+                                    p{
+                                        line-height: 1.5;
+                                        width: 99%; 
+                                        box-sizing: border-box; 
+                                        margin: 0 auto; 
+                                        overflow: hidden;
+                                    }
+                                }
                             }
                         }
 
                         //descripcion 2
-                        .custom-atribute{
-                            position: absolute;
+                        .custom-atribute {
 
                             &.one{
-                                top: 95px;
+                                margin-top: 15px;
+                                order: 2;
                             }
                             &.two{
-                                top: 120px;
+                                order: 3;
                             }
                         }
 
@@ -397,6 +409,15 @@
                                                 background: transparent;
                                             }
                                         }
+                                    }
+                                }
+
+                                .data.item.content {
+                                    .product.attibute.description p {
+                                        padding: 3px;
+                                        box-sizing: border-box;
+                                        margin: 0 auto;
+                                        overflow: hidden;
                                     }
                                 }
                             }

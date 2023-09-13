@@ -1,0 +1,107 @@
+
+
+
+
+& when (@media-common =true) {
+
+    body#html-body {
+
+        &.cms-page-view {
+            .container_general {
+                padding: 0 7em 5em 7em;
+
+                .container_psqr {
+                    h2 {
+                        text-align: center;
+                        color: @black_secunday;
+                        margin-bottom: 1em;
+                    }
+                    a.btn_links {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        margin: auto auto 1em;
+                        width: 145px;
+                        height: 3.5em;
+                        background: @white;
+                        color: var(--theme__color__primary);
+                        border: 1px solid var(--theme__color__primary);
+                        border-radius: 2px;
+                    }
+                    p {
+                        font-weight: 400;
+                        color: @black_secunday;
+                    }
+                }
+
+            }
+        } 
+
+        .icon_curcle_1 {
+            background-image: url("https://healthyamerica.vteximg.com.br/arquivos/icon_1.png") !important;
+            background-position: center center !important;
+            background-repeat: no-repeat !important;
+            background-size: 50% !important;
+        }
+
+        .absoluteItemCircle {
+            position: absolute;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            top: 0px;
+            background: #fff;
+            border: 1px solid #e6e6e6;
+            -webkit-border-radius: 300px;
+            -moz-border-radius: 300px;
+            border-radius: 300px;
+        }
+
+        .contentItemCircle {
+            position: relative;
+            margin: 42px;
+            z-index: 1;
+        }
+
+        .itemCircleCorporate {
+            display: inline-block;
+            vertical-align: top;
+            width: 20%;
+            margin-right: -4px;
+            z-index: 2;
+            position: relative;
+            margin-top: -22px;
+        }
+
+    }
+
+}
+
+
+@media screen and (max-width: 800px) {
+
+    body#html-body {
+
+        &.cms-page-view {
+
+            .container_general {
+                padding: 1.5em;
+            }
+
+            .container_psqr {
+
+                h2 {
+                   font-size: 22px;
+                }
+                p {
+                    font-size: 12px;
+                }
+                
+            }
+
+        } 
+
+    }
+    
+}
