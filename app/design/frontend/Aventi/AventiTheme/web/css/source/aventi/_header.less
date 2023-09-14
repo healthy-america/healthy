@@ -29,7 +29,7 @@
             }
 
             .top-header {
-                background: @topbarbg !important;
+                background: @topbarbg !important; //Le llega un !important desde el fbuildder.less
             }
 
             .middle-header {
@@ -573,7 +573,8 @@
     }
 
     #html-body header.page-header {
-        position: fixed;
+        position: sticky;
+        top: 0;
         width: 100%;
     }
 

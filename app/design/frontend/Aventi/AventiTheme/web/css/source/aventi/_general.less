@@ -476,6 +476,7 @@ html {
         background-color: @color-primary;
     }
 }
+
 //
 //  Desktop
 //  _____________________________________________
@@ -494,11 +495,6 @@ html {
 
     body#html-body {
         .page-wrapper {
-
-            #placeholder-header {
-                height: 142px !important; //tiene un !important en un style
-                width: -webkit-fill-available;
-            }
 
             #search_mini_form.form.minisearch {
                 margin-top: 10px;
@@ -522,19 +518,6 @@ html {
     }
 }
 
-@media screen and (max-width: 767px) {
-
-    body#html-body {
-        .page-wrapper {
-
-            #placeholder-header {
-                height: 60px !important; //tiene un !important en un style
-                width: -webkit-fill-available;
-            }
-        }
-    }
-    
-}
 
 //
 //  Mobile
@@ -562,13 +545,12 @@ html {
     }
 }
 
+
+
 @media screen and (max-width: 800px) {
 
     body#html-body {
 
-    #placeholder-header {
-        min-height: 60px;
-    }
 
     .login-container {
         margin-top: 40px;
