@@ -269,17 +269,20 @@
             }
         }
 
-        #search_mini_form.form.minisearch {
-            margin-top: 90px;
 
-            input#search {
-                padding: 0 40px 0 20px;
+        .page-wrapper { 
+            #search_mini_form.form.minisearch {
+                margin-top: 90px;
+
+                input#search {
+                    padding: 0 40px 0 20px;
+                }
+
+                &.loading:after {
+                        top: 18px;
+                        right: 25px;
+                }
             }
-
-           &.loading:after {
-                top: 18px;
-                right: 25px;
-           }
         }
 
     }
