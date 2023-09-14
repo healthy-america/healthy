@@ -29,6 +29,14 @@
                     <label>Heading Color</label>
                     <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
                 </field>
+                <field id="icon_base_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Base Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="descount_base_color" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Descount Base Color</label>
+                    <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
                 <field id="link_color" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Link Color</label>
                     <frontend_model>Aventi\AventiTheme\Block\System\Config\Form\Field\Color</frontend_model>
