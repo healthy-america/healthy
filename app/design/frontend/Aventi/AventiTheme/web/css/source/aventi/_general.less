@@ -487,14 +487,53 @@ html {
     (@break = @screen__m) {
 }
 
+
+
+//Header 
+@media screen and (max-width: 1200px) {
+
+    body#html-body {
+        .page-wrapper {
+
+            #placeholder-header {
+                height: 142px !important; //tiene un !important en un style
+                width: -webkit-fill-available;
+            }
+
+            #search_mini_form.form.minisearch {
+                margin-top: 10px;
+            }
+
+        }
+    }
+
+}
+
+
+
 // Tablet
 
-@media (min-width: 768px) {
+@media screen and (min-width: 767px) {
+    
     body:not(.active-builder) {
         .hidden-desktop {
             display: none !important;
         }
     }
+}
+
+@media screen and (max-width: 767px) {
+
+    body#html-body {
+        .page-wrapper {
+
+            #placeholder-header {
+                height: 60px !important; //tiene un !important en un style
+                width: -webkit-fill-available;
+            }
+        }
+    }
+    
 }
 
 //
