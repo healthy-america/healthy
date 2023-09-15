@@ -13949,7 +13949,7 @@ Respaldamos nuestras aprobaciones con una protección de devolución de cargo de
 "Please use this date format: dd/mm/yyyy. For example 17/03/2006 for the 17th of March, 2006.","Por favor, use este formato para fechas: dd/mm/aaaa. Por ejemplo, 17/03/2006 para el 17 de marzo de 2006.",module,Magento_Ui
 "Please enter a valid $ amount. For example $100.00.","Por favor, introduzca una cantidad válida en $. Por ejemplo: $100.00.",module,Magento_Ui
 "Please enter a number 0 or greater in this field.","Por favor, introduzca 0 o un número mayor en este campo.",module,Magento_Ui
-"Please enter a number greater than 0 in this field.","Por favor, introduzca un número mayor que 0 en este campo.",module,Magento_Ui
+"Please enter a number greater than 0 in this field.","Cantidad minima 1",module,Magento_Ui
 "Please input a valid CSS-length (Ex: 100px, 77pt, 20em, .5ex or 50%).","Por favor introduzca una longitud de CSS válida (Ex: 100px, 77pt, 20em, .5ex o 50%).",module,Magento_Ui
 "Please enter a valid number in this field.","Por favor, introduzca un número válido en este campo.",module,Magento_Ui
 "Please enter a valid integer in this field.","Por favor ingrese un número entero válido en este campo.",module,Magento_Ui
@@ -15254,7 +15254,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Please use this date format: dd/mm/yyyy. For example 17/03/2006 for the 17th of March, 2006.","Por favor, use este formato para fechas: dd/mm/aaaa. Por ejemplo, 17/03/2006 para el 17 de marzo de 2006.",lib,web
 "Please enter a valid $ amount. For example $100.00.","Por favor, introduzca una cantidad válida en $. Por ejemplo: $100.00.",lib,web
 "Please enter a number 0 or greater in this field.","Por favor, introduzca 0 o un número mayor en este campo.",lib,web
-"Please enter a number greater than 0 in this field.","Por favor, introduzca un número mayor que 0 en este campo.",lib,web
+"Please enter a number greater than 0 in this field.","Cantidad minima 1",lib,web
 "Please input a valid CSS-length (Ex: 100px, 77pt, 20em, .5ex or 50%).","Por favor introduzca una longitud de CSS válida (Ex: 100px, 77pt, 20em, .5ex o 50%).",lib,web
 "Please enter a valid number in this field.","Por favor, introduzca un número válido en este campo.",lib,web
 "The value is not within the specified range.","El valor no está dentro del rango especificado.",lib,web
