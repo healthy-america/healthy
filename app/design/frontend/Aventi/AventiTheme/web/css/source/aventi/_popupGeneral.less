@@ -200,6 +200,93 @@
            }
         }
 
+        .modals-wrapper aside[role="dialog"].modal-popup.confirm._show {
+            
+            .modal-inner-wrap {
+
+                .modal-header {
+                
+                    .modal-title {
+                        ._text_format_monserrated();
+                        text-align: left;
+                        font-size: 30px;
+                        font-weight: 700;
+                        color: @color-primary;
+                    }
+                    
+                    button.action-close {
+                        background: transparent;
+                        box-shadow: unset;
+                        width: unset;
+                    }
+                }
+
+                .modal-content {
+
+                    div {
+                        ._text_format_monserrated();
+                        font-size: 13px;
+                        font-weight: 500;
+                        color: @color-text-checkout;
+                        text-align: left;
+                    }
+
+                }
+
+                .modal-footer {
+                    display: flex;
+                    gap: 20px;
+                    flex-direction: row-reverse;
+                    justify-content: start;
+
+                    button.action-primary {
+
+                        color: @background-footer;
+                        background: @color-primary;
+                        border: 1px solid @color-primary;
+                        transition: all 0.1s ease-in-out;
+
+                        span {
+                            color: @background-footer;
+                        }
+
+                        &:hover {
+                            background: @blue-hover;
+                            border: 1px solid @blue-hover;
+                        }
+
+                        &:active {
+                            background-color: @blue-selected;
+                            border: 1px solid @blue-selected;
+                        }
+
+                    }
+
+                    button.action-secondary  {
+
+                        background: @white;
+                        font-family: 'Roboto' , sans-serif;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        color: @color-primary;
+                        border: @color-primary 1px solid;
+
+                        &:hover {
+                            background: @white;
+                            border: @color-primary 2px solid;
+                            font-weight: 900;
+                        }
+
+                    }
+
+                }
+                
+            }
+
+        }
+
     }
 
 }
@@ -282,6 +369,15 @@
                         top: 18px;
                         right: 25px;
                 }
+            }
+        }
+
+
+
+        .modals-wrapper aside[role="dialog"].modal-popup.confirm._show {
+            .modal-inner-wrap {
+                max-width: 95%;
+                width: 95%;
             }
         }
 
