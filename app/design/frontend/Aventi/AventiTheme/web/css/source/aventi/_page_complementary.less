@@ -2,9 +2,53 @@
 
 
 
-& when (@media-common =true) {
+& when (@media-common = true) {
 
     body#html-body {
+
+        &.contact-index-index {
+
+            #page-title-wrapper {
+                margin-bottom: unset;
+            }
+
+            .contact-form-content { 
+                display: grid;
+                place-content: center;  
+
+                div.line {
+
+                    > div:first-child {
+                        width: 430px;
+                        flex: 0 0 100%;
+                        max-width: 100%;
+
+                        > h2 {
+                            text-align: center;
+                            color: @color-primary;
+                            font-size: 32px;
+                        }
+
+                        form {
+                        
+                            textarea {
+                                resize: none;
+                            }
+
+                            div.actions-toolbar {
+                                display: grid;
+                                place-content: center;
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+        }
+
 
         &.cms-page-view {
             .container_general {
@@ -15,6 +59,10 @@
                         text-align: center;
                         color: @color-primary;
                         margin-bottom: 1em;
+                    }
+                    h3, h4 {
+                        color: @color-primary;
+                        margin-bottom: 0.4em;
                     }
                     ._container_a {
                         display: flex;
@@ -27,7 +75,7 @@
                             border: 1px solid @color-primary;
                             transition: all 0.1s ease-in-out;
                             border-radius: 4px;
-                            
+
                             span {
                                 color: @background-footer;
                             }
@@ -45,7 +93,7 @@
 
                         > a.btn_links:last-child {
                             background: @white;
-                            font-family: 'Roboto' , sans-serif;
+                            font-family: @roboto-font;
                             font-style: normal;
                             font-weight: 600;
                             font-size: 14px;
@@ -71,6 +119,23 @@
                     p {
                         font-weight: 400;
                         color: @black_secunday;
+                    }
+                    ul li {
+                        font-weight: 400;
+                        color: @black_secunday;
+                        margin: 10px 0;
+                        list-style: outside; 
+                        margin-left: 2em;
+
+                        a {
+                            color: @color-primary;
+
+                            &:hover {
+                                color: @blue-hover;
+                            }
+
+                        }
+
                     }
                 }
 
@@ -113,6 +178,29 @@
             margin-top: -22px;
         }
 
+        //container marcas
+        .containerMarcas {
+            position: relative;
+            margin: 0 -10px;
+            text-align: center;
+            
+            .item_marca {
+                width: 10%;
+                display: inline-block;
+                margin-right: -4px;
+                text-align: center;
+                margin-bottom: 40px;
+
+                img {
+                    width: 80%;
+                    display: block;
+                    margin: 0 auto;
+                }
+        
+            }
+
+        }
+
     }
 
 }
@@ -136,10 +224,28 @@
                 p {
                     font-size: 12px;
                 }
+
+                ul li {
+                    font-size: 12px;
+                }
                 
             }
-
         } 
+
+        &.contact-index-index {
+
+            .contact-form-content { 
+
+                div.line {
+
+                    > div:first-child {
+                        width: 100%;
+                    }
+
+                }
+            }
+
+        }
 
     }
     
