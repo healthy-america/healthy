@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var \Magento\Backend\Block\Template $block*/ ?>
+<script>
+    require([
+        "prototype"
+    ], function () {
+        window.citydropdownCityData = '<?= /** @noEscape */ $block->getUrl('citydropdown/city/data')?>';
+        window.citydropdownCityGet = '<?= /** @noEscape */ $block->getUrl('citydropdown/city/get')?>';
+    });
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Aventi_CityDropDown/js/city-update-edit": {}
+        }
+    }
+</script>
