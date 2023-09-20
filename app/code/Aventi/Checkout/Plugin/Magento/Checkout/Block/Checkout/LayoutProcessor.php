@@ -15,14 +15,17 @@ class LayoutProcessor
         $result,
         $jsLayout
     ) {
-        
+
         $shippingForm = &$result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children'];
         $shippingForm['firstname']['placeholder'] = __('Nombre');
-        $shippingForm['lastname']['placeholder'] = __('Apellido');    
-        $shippingForm['company']['placeholder'] = __('Empresa');    
-        $shippingForm['vat_id']['placeholder'] = __('Identificación');    
-        $shippingForm['street']['children'][0]['placeholder'] = __('Dirección');    
+        $shippingForm['lastname']['placeholder'] = __('Apellido');
+        $shippingForm['company']['placeholder'] = __('Empresa');
+        $shippingForm['vat_id']['placeholder'] = __('Identificación');
+        $shippingForm['middlename']['placeholder'] = __('Tipo de identificación');
+        $shippingForm['middlename']['sortOrder'] = 49;
+        $shippingForm['middlename']['label'] = __('Tipo de identificación');
+        $shippingForm['street']['children'][0]['placeholder'] = __('Dirección');
         $shippingForm['city']['placeholder'] = __('Ciudad');
         $shippingForm['postcode']['placeholder'] = __('Código postal');
         $shippingForm['telephone']['placeholder'] = __('Telefono');
