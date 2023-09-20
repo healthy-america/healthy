@@ -22,14 +22,39 @@ class LayoutProcessor
         $shippingForm['lastname']['placeholder'] = __('Apellido');
         $shippingForm['company']['placeholder'] = __('Empresa');
         $shippingForm['vat_id']['placeholder'] = __('Identificación');
-        $shippingForm['middlename']['placeholder'] = __('Tipo de identificación');
-        $shippingForm['middlename']['sortOrder'] = 49;
-        $shippingForm['middlename']['label'] = __('Tipo de identificación');
         $shippingForm['street']['children'][0]['placeholder'] = __('Dirección');
         $shippingForm['city']['placeholder'] = __('Ciudad');
         $shippingForm['postcode']['placeholder'] = __('Código postal');
         $shippingForm['telephone']['placeholder'] = __('Telefono');
 
+        $customOptions = [
+            [
+                'value' => 'default',
+                'label' => '---Tipo de identificación---',
+            ],
+            [
+                'value' => 'C.C',
+                'label' => 'C.C',
+            ],
+            // Add more options as needed
+        ];
+
+        $shippingForm['middlename'] = [
+            'component' => 'Magento_Ui/js/form/element/select',
+            'config' => [
+                'customScope' => 'shippingAddress.custom_attributes',
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/select',
+                'id' => 'middlename',
+            ],
+            'dataScope' => 'shippingAddress.custom_attributes.middlename',
+            'label' => __('Tipo de identificación'),
+            'provider' => 'checkoutProvider',
+            'visible' => true,
+            'sortOrder' => 49,
+            'validation' => [],
+            'options' => $customOptions,
+        ];
 
         //Your plugin code
         return $result;
