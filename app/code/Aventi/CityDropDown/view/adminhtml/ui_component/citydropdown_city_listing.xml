@@ -1,0 +1,165 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">citydropdown_city_listing.citydropdown_city_listing_data_source</item>
+		</item>
+	</argument>
+	<settings>
+		<spinner>citydropdown_city_columns</spinner>
+		<deps>
+			<dep>citydropdown_city_listing.citydropdown_city_listing_data_source</dep>
+		</deps>
+		<buttons>
+			<button name="add">
+				<url path="*/*/new"/>
+				<class>primary</class>
+				<label translate="true">Add new City</label>
+			</button>
+		</buttons>
+	</settings>
+	<dataSource name="citydropdown_city_listing_data_source" component="Magento_Ui/js/grid/provider">
+		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">city_id</param>
+			</storageConfig>
+			<updateUrl path="mui/index/render"/>
+		</settings>
+		<aclResource>Aventi_CityDropDown::City</aclResource>
+		<dataProvider name="citydropdown_city_listing_data_source" class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+			<settings>
+				<requestFieldName>id</requestFieldName>
+				<primaryFieldName>city_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<settings>
+			<sticky>true</sticky>
+		</settings>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="citydropdown_city_columns">
+		<settings>
+			<editorConfig>
+				<param name="selectProvider" xsi:type="string">citydropdown_city_listing.citydropdown_city_listing.citydropdown_city_columns.ids</param>
+				<param name="enabled" xsi:type="boolean">true</param>
+				<param name="indexField" xsi:type="string">city_id</param>
+				<param name="clientConfig" xsi:type="array">
+					<item name="saveUrl" xsi:type="url" path="citydropdown/City/inlineEdit"/>
+					<item name="validateBeforeSave" xsi:type="boolean">false</item>
+				</param>
+			</editorConfig>
+			<childDefaults>
+				<param name="fieldAction" xsi:type="array">
+					<item name="provider" xsi:type="string">citydropdown_city_listing.citydropdown_city_listing.citydropdown_city_columns_editor</item>
+					<item name="target" xsi:type="string">startEdit</item>
+					<item name="params" xsi:type="array">
+						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+						<item name="1" xsi:type="boolean">true</item>
+					</item>
+				</param>
+			</childDefaults>
+		</settings>
+		<selectionsColumn name="ids">
+			<settings>
+				<indexField>city_id</indexField>
+			</settings>
+		</selectionsColumn>
+		<column name="city_id">
+			<settings>
+				<filter>text</filter>
+				<sorting>asc</sorting>
+				<label translate="true">ID</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+		<column name="city_id">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">ID</label>
+			</settings>
+		</column>
+		<column name="name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Name</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+        <column name="region_name">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Department\State</label>
+			</settings>
+		</column>
+		<column name="postcode">
+			<settings>
+				<filter>text</filter>
+				<label translate="true">Postcode</label>
+				<editor>
+					<editorType>text</editorType>
+					<validation>
+						<rule name="required-entry" xsi:type="boolean">false</rule>
+					</validation>
+				</editor>
+			</settings>
+		</column>
+        <column name="inactive_payment_delivey" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Aventi\CityDropDown\Model\Source\Status"/>
+                <filter>select</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Payment delivery</label>
+                <dataType>select</dataType>
+                <editor>
+                    <editorType>select</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <column name="available" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Aventi\CityDropDown\Model\Source\Status"/>
+                <filter>select</filter>
+                <bodyTmpl>ui/grid/cells/html</bodyTmpl>
+                <label translate="true">Status</label>
+                <dataType>select</dataType>
+                <editor>
+                    <editorType>select</editorType>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">false</rule>
+                    </validation>
+                </editor>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Aventi\CityDropDown\Ui\Component\Listing\Column\CityActions">
+            <settings>
+                <indexField>city_id</indexField>
+                <resizeEnabled>false</resizeEnabled>
+                <resizeDefaultWidth>107</resizeDefaultWidth>
+            </settings>
+        </actionsColumn>
+	</columns>
+</listing>

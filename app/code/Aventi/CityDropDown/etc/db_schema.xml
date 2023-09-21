@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="aventi_citydropdown_city Table" engine="innodb" name="aventi_citydropdown_city" resource="default">
+        <column xsi:type="int" name="city_id" padding="6" unsigned="true" nullable="false" identity="true" comment="Entity Id" />
+		<column name="name" nullable="true" xsi:type="text"/>
+		<column name="region_id" nullable="true" xsi:type="text"/>
+		<column name="postcode" nullable="true" xsi:type="text"/>
+        <column name="inactive_payment_delivey" nullable="false" xsi:type="boolean" comment="payment_delivey" default="0"/>
+        <column name="available" nullable="false" xsi:type="boolean" comment="Available" default="1"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="city_id"/>
+        </constraint>
+	</table>
+</schema>
