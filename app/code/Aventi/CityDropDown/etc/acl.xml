@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+	<acl>
+		<resources>
+			<resource id="Magento_Backend::admin">
+				<resource id="Aventi_CityDropDown::City" title="City" sortOrder="10">
+					<resource id="Aventi_CityDropDown::City_save" title="Save City" translate="title" sortOrder="10"/>
+					<resource id="Aventi_CityDropDown::City_delete" title="Delete City" translate="title" sortOrder="20"/>
+					<resource id="Aventi_CityDropDown::City_update" title="Update City" translate="title" sortOrder="30"/>
+					<resource id="Aventi_CityDropDown::City_view" title="View City" translate="title" sortOrder="40"/>
+				</resource>
+			</resource>
+		</resources>
+	</acl>
+</config>

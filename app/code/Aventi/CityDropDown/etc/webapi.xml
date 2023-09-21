@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/aventi-citydropdown/city" method="POST">
+		<service class="Aventi\CityDropDown\Api\CityRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_CityDropDown::City_save"/>
+		</resources>
+	</route>
+	<route url="/V1/aventi-citydropdown/city/search" method="GET">
+		<service class="Aventi\CityDropDown\Api\CityRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Aventi_CityDropDown::City_view"/>
+		</resources>
+	</route>
+	<route url="/V1/aventi-citydropdown/city/:cityId" method="GET">
+		<service class="Aventi\CityDropDown\Api\CityRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Aventi_CityDropDown::City_view"/>
+		</resources>
+	</route>
+	<route url="/V1/aventi-citydropdown/city/:cityId" method="PUT">
+		<service class="Aventi\CityDropDown\Api\CityRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_CityDropDown::City_update"/>
+		</resources>
+	</route>
+	<route url="/V1/aventi-citydropdown/city/:cityId" method="DELETE">
+		<service class="Aventi\CityDropDown\Api\CityRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Aventi_CityDropDown::City_delete"/>
+		</resources>
+	</route>
+</routes>
