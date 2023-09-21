@@ -35,7 +35,7 @@ class LayoutProcessor
         $customOptions = [
             [
                 'value' => 'default',
-                'label' => '---Tipo de identificación---',
+                'label' => '---Identification type---',
             ],
             [
                 'value' => 'C.C',
@@ -55,7 +55,7 @@ class LayoutProcessor
                 'id' => 'middlename',
             ],
             'dataScope' => 'shippingAddress.middlename',
-            'label' => __('Tipo de identificación'),
+            'label' => __('Identification type'),
             'provider' => 'checkoutProvider',
             'visible' => true,
             'sortOrder' => 49,

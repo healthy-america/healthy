@@ -15389,3 +15389,6 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Email Address_","Email"
 "Password_","Contraseña",
 "Allow remote shopping assistance","Permitir asistencia de compra remota"
+"Identification type","Tipo de identificación"
+"Identification number","Identificación"
+"---Identification type---","---Tipo de identificación---"
