@@ -52,10 +52,6 @@ $viewModel = $block->getViewModel();
             <?= $_telephone->setTelephone($block->getAddress()->getTelephone())->toHtml() ?>
         <?php endif ?>
 
-        <?php if ($_fax->isEnabled()): ?>
-            <?= $_fax->setFax($block->getAddress()->getFax())->toHtml() ?>
-        <?php endif ?>
-
     </fieldset>
     <fieldset class="fieldset">
         <h3 class="block-title-info"><?= $escaper->escapeHtml(__('Address')) ?></h3>
@@ -157,6 +153,9 @@ $viewModel = $block->getViewModel();
                 <?= /* @noEscape */ $secureRenderer->renderStyleAsTag("display: none;", 'div.message.warning') ?>
             </div>
         </div>
+        <?php if ($_fax->isEnabled()): ?>
+            <?= $_fax->setFax($block->getAddress()->getFax())->toHtml() ?>
+        <?php endif ?>
         <?php if ($viewModel->addressIsVatAttributeVisible()): ?>
             <div class="field taxvat">
                 <label class="label" for="vat_id">

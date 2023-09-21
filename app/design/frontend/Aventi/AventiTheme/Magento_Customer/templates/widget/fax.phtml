@@ -1,0 +1,37 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Widget\Fax $block */
+
+$options = [
+    ['value' => '', 'label' => __('---Identification type---')],
+    ['value' => 'C.C', 'label' => __('C.C')],
+    ['value' => 'C.E', 'label' => __('C.E')],
+];
+?>
+
+<div class="field fax <?= $block->isRequired() ? 'required' : '' ?>">
+    <label for="fax" class="label">
+        <span>
+            <?= $block->escapeHtml(__('Identification type')) ?>
+        </span>
+    </label>
+    <div class="control">
+        <select id="fax" name="fax" class="input-select">
+            <?php $faxValue = $block->getFax(); ?>
+            <?php $selected = ($faxValue != '') ? 'selected="selected"' : ''; ?>
+            <?php foreach ($options as $faxOption): ?>
+                <?php $selected = ($faxValue == $block->escapeHtml($faxOption['value']))
+                    ? 'selected="selected"' : ''; ?>
+                <option
+                    value="<?php echo $block->escapeHtml($faxOption['value']) ?>"
+                    <?php echo $selected ?>
+                ><?php echo $block->escapeHtml($faxOption['label']) ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
