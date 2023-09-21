@@ -6,7 +6,7 @@
             <settings>
                 <dataType>text</dataType>
                 <visible>true</visible>
-                <label translate="true">---Identification type---</label>
+                <label translate="true">Identification type</label>
             </settings>
             <formElements>
                 <select>
