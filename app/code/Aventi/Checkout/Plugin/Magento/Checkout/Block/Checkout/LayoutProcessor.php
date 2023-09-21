@@ -9,7 +9,12 @@ namespace Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout;
 
 class LayoutProcessor
 {
-
+    /**
+     * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
+     * @param $result
+     * @param $jsLayout
+     * @return mixed
+     */
     public function afterProcess(
         \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
         $result,
@@ -36,18 +41,20 @@ class LayoutProcessor
                 'value' => 'C.C',
                 'label' => 'C.C',
             ],
-            // Add more options as needed
+            [
+                'value' => 'C.E',
+                'label' => 'C.E',
+            ],
         ];
 
         $shippingForm['middlename'] = [
             'component' => 'Magento_Ui/js/form/element/select',
             'config' => [
-                'customScope' => 'shippingAddress.custom_attributes',
                 'template' => 'ui/form/field',
                 'elementTmpl' => 'ui/form/element/select',
                 'id' => 'middlename',
             ],
-            'dataScope' => 'shippingAddress.custom_attributes.middlename',
+            'dataScope' => 'shippingAddress.middlename',
             'label' => __('Tipo de identificación'),
             'provider' => 'checkoutProvider',
             'visible' => true,
