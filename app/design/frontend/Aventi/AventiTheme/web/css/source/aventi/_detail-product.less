@@ -64,8 +64,29 @@
                 .product-info-main {
     
                     //se ocultan algunos elementos
-                    .product-social-links, .field.qty, .stock.available, .product-detail-deals {
+                    .product-social-links, .stock.available, .product-detail-deals {
                         display: none;
+                    }
+
+                    .field.qty {
+                        display: flex;
+                        max-width: 25%;
+                        padding: unset;
+                        overflow: hidden;
+
+                        .control {
+                            border-radius: 8px;
+                            width: -webkit-fill-available;
+                            
+                            input.input-text.qty {
+                                padding: 0 40px;
+                            }
+
+                            .qty-error {
+                                display: none; 
+                            }
+
+                        }   
                     }
     
                     //nombre del producto
@@ -110,11 +131,12 @@
                     //añadir al carrito
                     .box-tocart {
                         .actions {
-                            width: 100%;
-    
+                            width: 75%;
+
                             button.action.primary.tocart{
-                                width: 100%;
-    
+                                width: 90%;
+                                margin: 0 auto;
+
                                 span{
                                     text-transform: capitalize;
                                     display: flex;
@@ -372,12 +394,27 @@
                                     input{
                                         width: 100%;
                                         font-weight: 300;
+
+                                        &.input-text.qty {
+                                            padding: 0 26px;
+                                        }
+
                                     }
 
                                     span{
                                         padding-top: 7px;
                                         font-weight: 100;
                                     }
+
+                                    span.edit-qty {
+                                        left: 7px;
+
+                                        &.plus {
+                                            right: 7px;
+                                            left: unset;
+                                        }
+                                    }
+
                                 }
                             }
 
