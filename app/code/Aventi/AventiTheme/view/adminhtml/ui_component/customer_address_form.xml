@@ -2,11 +2,11 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <fieldset name="general">
-        <field name="middlename" sortOrder="31" formElement="select">
+        <field name="fax" sortOrder="31" formElement="select">
             <settings>
                 <dataType>text</dataType>
                 <visible>true</visible>
-                <label translate="true">Identification type</label>
+                <label translate="true">---Identification type---</label>
             </settings>
             <formElements>
                 <select>
