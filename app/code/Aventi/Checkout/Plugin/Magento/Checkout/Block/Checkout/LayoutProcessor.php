@@ -34,7 +34,7 @@ class LayoutProcessor
 
         $customOptions = [
             [
-                'value' => 'default',
+                'value' => '',
                 'label' => '---Identification type---',
             ],
             [
@@ -47,14 +47,14 @@ class LayoutProcessor
             ],
         ];
 
-        $shippingForm['middlename'] = [
+        $shippingForm['fax'] = [
             'component' => 'Magento_Ui/js/form/element/select',
             'config' => [
                 'template' => 'ui/form/field',
                 'elementTmpl' => 'ui/form/element/select',
-                'id' => 'middlename',
+                'id' => 'fax',
             ],
-            'dataScope' => 'shippingAddress.middlename',
+            'dataScope' => 'shippingAddress.fax',
             'label' => __('Identification type'),
             'provider' => 'checkoutProvider',
             'visible' => true,
