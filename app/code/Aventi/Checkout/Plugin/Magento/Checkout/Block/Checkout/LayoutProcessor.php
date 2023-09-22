@@ -7,8 +7,23 @@ declare(strict_types=1);
 
 namespace Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout;
 
+use Aventi\AventiTheme\Model\Config\Source\CustomerIdentificationTypeOptions;
+
 class LayoutProcessor
 {
+    /**
+     * @var CustomerIdentificationTypeOptions
+     */
+    private CustomerIdentificationTypeOptions $customerIdentificationTypeOptions;
+
+    /**
+     * @param CustomerIdentificationTypeOptions $customerIdentificationTypeOptions
+     */
+    public function __construct(CustomerIdentificationTypeOptions $customerIdentificationTypeOptions)
+    {
+        $this->customerIdentificationTypeOptions = $customerIdentificationTypeOptions;
+    }
+
     /**
      * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
      * @param $result
@@ -32,20 +47,7 @@ class LayoutProcessor
         $shippingForm['postcode']['placeholder'] = __('Código postal');
         $shippingForm['telephone']['placeholder'] = __('Telefono');
 
-        $customOptions = [
-            [
-                'value' => '',
-                'label' => '---Identification type---',
-            ],
-            [
-                'value' => 'C.C',
-                'label' => 'C.C',
-            ],
-            [
-                'value' => 'C.E',
-                'label' => 'C.E',
-            ],
-        ];
+        $customerIdentificationTypeOptions = $this->customerIdentificationTypeOptions->toOptionArray();
 
         $shippingForm['fax'] = [
             'component' => 'Magento_Ui/js/form/element/select',
@@ -60,7 +62,7 @@ class LayoutProcessor
             'visible' => true,
             'sortOrder' => 49,
             'validation' => [],
-            'options' => $customOptions,
+            'options' => $customerIdentificationTypeOptions,
         ];
 
         //Your plugin code

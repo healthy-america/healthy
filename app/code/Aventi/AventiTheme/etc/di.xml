@@ -3,4 +3,5 @@
 	<preference for="MGS\Fbuilder\Block\Panel\Create\Element" type="Aventi\AventiTheme\Rewrite\MGS\Fbuilder\Block\Panel\Create\Element"/>
 	<preference for="MGS\Fbuilder\Controller\Element\Save" type="Aventi\AventiTheme\Rewrite\MGS\Fbuilder\Controller\Element\Save"/>
     <preference for="MGS\Fbuilder\Block\Widget\OwlCarousel" type="Aventi\AventiTheme\Rewrite\MGS\Fbuilder\Block\Widget\OwlCarousel"/>
+    <preference for="Magento\Customer\Block\Widget\Fax" type="Aventi\AventiTheme\Block\Widget\Fax"/>
 </config>
