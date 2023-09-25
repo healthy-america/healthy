@@ -42,8 +42,16 @@
                                placeholder="<?= $block->escapeHtmlAttr(__('Password_')) ?>"
                                title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
                                data-validate="{required:true}">
+                        <span class="password-toggle" id="password-toggle">
+                            <span class="iconify" data-icon="simple-line-icons:eye" data-width="32" data-height="32"></span>
+                        </span>
                     </div>
                 </div>
+
+                <div class="field choice" data-bind="scope: 'showPassword'">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                </div>
+
                 <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
 
                 <?= $block->getChildHtml('form_additional_info') ?>
@@ -53,13 +61,43 @@
             </fieldset>
         </form>
     </div>
-    <script type="text/x-magento-init">
-        {
-            "*": {
-                "Magento_Customer/js/block-submit-on-send": {
-                    "formId": "login-form"
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "login-form"
+            },
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "showPassword": {
+                        "component": "Magento_Customer/js/show-password",
+                        "passwordSelector": "#pass"
+                    }
                 }
             }
         }
-    </script>
-</div>
+    }
+</script>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function () {
+            var passwordInput = $('#pass');
+            var passwordToggle = $('#password-toggle');
+
+            passwordToggle.on('click', function () {
+                passwordToggle.empty();
+                var type = passwordInput.attr('type');
+                if (type === 'password') {
+                    passwordInput.attr('type', 'text');
+                    passwordToggle.append('<span class="iconify" data-icon="iconamoon:eye-off-light" data-width="32" data-height="32"></span>')
+                } else {
+                    passwordInput.attr('type', 'password');
+                    passwordToggle.append('<span class="iconify" data-icon="simple-line-icons:eye" data-width="32" data-height="32"></span>')
+                }
+            });
+        });
+    });
+</script>
