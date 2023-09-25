@@ -44,6 +44,11 @@
                                data-validate="{required:true}">
                     </div>
                 </div>
+
+                <div class="field choice" data-bind="scope: 'showPassword'">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                </div>
+
                 <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
 
                 <?= $block->getChildHtml('form_additional_info') ?>
@@ -53,13 +58,21 @@
             </fieldset>
         </form>
     </div>
-    <script type="text/x-magento-init">
-        {
-            "*": {
-                "Magento_Customer/js/block-submit-on-send": {
-                    "formId": "login-form"
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "login-form"
+            },
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "showPassword": {
+                        "component": "Magento_Customer/js/show-password",
+                        "passwordSelector": "#pass"
+                    }
                 }
             }
         }
-    </script>
-</div>
+    }
+</script>
