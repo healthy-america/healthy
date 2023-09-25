@@ -42,6 +42,9 @@
                                placeholder="<?= $block->escapeHtmlAttr(__('Password_')) ?>"
                                title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
                                data-validate="{required:true}">
+                        <span class="password-toggle" id="password-toggle">
+                            <span class="iconify" data-icon="simple-line-icons:eye" data-width="32" data-height="32"></span>
+                        </span>
                     </div>
                 </div>
 
@@ -75,4 +78,26 @@
             }
         }
     }
+</script>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function () {
+            var passwordInput = $('#pass');
+            var passwordToggle = $('#password-toggle');
+
+            passwordToggle.on('click', function () {
+                passwordToggle.empty();
+                var type = passwordInput.attr('type');
+                if (type === 'password') {
+                    passwordInput.attr('type', 'text');
+                    passwordToggle.append('<span class="iconify" data-icon="iconamoon:eye-off-light" data-width="32" data-height="32"></span>')
+                } else {
+                    passwordInput.attr('type', 'password');
+                    passwordToggle.append('<span class="iconify" data-icon="simple-line-icons:eye" data-width="32" data-height="32"></span>')
+                }
+            });
+        });
+    });
 </script>
