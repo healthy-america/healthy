@@ -440,7 +440,7 @@
                 div.product-container.category-product-container {
                     display: grid;
                     gap: 30px;
-
+                    
                         div.category-product-actions {
                             border-bottom: unset;
                             padding: unset;
@@ -454,7 +454,7 @@
 
                                 &::after {
                                     top: 2px;
-                                    color: @product-button-background;
+                                    color: @color-primary;
                                 }
 
                             }
@@ -465,7 +465,6 @@
 
                             .action.sorter-action.sort-desc,
                             .action.sorter-action.sort-asc {
-                                    display: none !important;
                                     border: unset;
                                     height: 30px;
                                     width: 30px;
@@ -631,7 +630,21 @@
                     overflow: hidden;
 
                     div.category-product-actions {
-                        display: block;
+                        display: flex;
+                        width: 100%;
+                        justify-content: space-between;
+                        align-items: center;
+                        overflow: hidden;
+
+                        div.filter-toggle {
+                            float: unset;
+                            width: max-content;
+                        }
+
+                        div.toolbar.toolbar-products {
+                            width: 100%;
+                        }
+
                     }
                 }
 
