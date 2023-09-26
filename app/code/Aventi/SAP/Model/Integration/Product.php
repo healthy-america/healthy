@@ -136,6 +136,7 @@ class Product extends \Aventi\SAP\Model\Integration
                 $reader->enter(null, Reader::TYPE_OBJECT);
                 $total = (int)$reader->read('total');
                 $products = $reader->read('data');
+
                 $progressBar = $this->startProgressBar($total);
                 foreach ($products as $product) {
                     $itemObject = (object) [
@@ -150,7 +151,8 @@ class Product extends \Aventi\SAP\Model\Integration
                         'custom_attributes' => [
                             'presentation' => $product['SalUnitMsr'],
                             'invima_registration' => ''//$product['U_invima']
-                        ]
+                        ],
+                        'website' => $product['U_LINEA1']
                     ];
                     $this->managerProduct($itemObject);
                     $this->advanceProgressBar($progressBar);
@@ -223,6 +225,13 @@ class Product extends \Aventi\SAP\Model\Integration
         $urlKey = $this->generateURL($itemObject->name);
 
         $newProduct = $this->productFactory->create();
+
+        if ($itemObject->website === 'MARCA') {
+            $newProduct->setWebsiteIds([1]);
+        } else {
+            //TODO
+        }
+
         $newProduct->setSku($itemObject->sku);
         $newProduct->setName($itemObject->name);
         $newProduct->setAttributeSetId(4);
