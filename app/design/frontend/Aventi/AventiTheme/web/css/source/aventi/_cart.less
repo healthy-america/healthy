@@ -303,14 +303,21 @@
                 margin: 0;
                 padding: 0px;
 
+                #block-shipping {
+                    display: none;
+                }
+
+                .block.discount {
+                    margin-top: 33px;
+                }
+
                 .title {
                     position: unset;
                     background: #fff;
                     border: none;
                     width: 100%;
                     margin: 0;
-                    padding-bottom: 13px;
-                    padding-left: 0;
+                    padding: 0 0 13px 0;
 
                     strong {
                         font-family: "Montserrat";
@@ -343,9 +350,17 @@
 
 @media (max-width: 767px) {
     #html-body.checkout-cart-index {
-        .checkout-extra > .block > .content {
+        .checkout-extra {
+            
+        .block.discount {
+            padding: 0 1em 0 1em;
+        }
+
+        > .block > .content {
             min-height: 0;
             height: fit-content;
+        }
+
         }
 
         .cart-bottom {
