@@ -15390,3 +15390,6 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Password_","Contraseña",
 "Allow remote shopping assistance","Permitir asistencia de compra remota"
 "Send us a message_","CONTÁCTANOS"
+"Identification type","Tipo de identificación"
+"Identification number","Identificación"
+"---Identification type---","---Tipo de identificación---"

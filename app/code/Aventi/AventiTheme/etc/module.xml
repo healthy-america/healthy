@@ -3,6 +3,7 @@
     <module name="Aventi_AventiTheme">
         <sequence>
             <module name="MGS_Fbuilder"/>
+            <module name="Magento_Customer"/>
         </sequence>
     </module>
 </config>

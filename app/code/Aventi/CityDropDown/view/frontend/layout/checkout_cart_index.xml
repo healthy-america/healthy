@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <body>
+        <referenceBlock name="checkout.cart.shipping">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-summary" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="block-shipping" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="address-fieldsets" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="city_id" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Aventi_CityDropDown/js/form/element/city-select</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="customScope" xsi:type="string">shippingAddress</item>
+                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                                                    </item>
+                                                    <item name="options" xsi:type="array">
+                                                    </item>
+                                                    <item name="value" xsi:type="string">value_2</item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                    <item name="dataScope" xsi:type="string">shippingAddress.city_id</item>
+                                                    <item name="label" xsi:type="string" translate="true">City</item>
+                                                    <item name="sortOrder" xsi:type="string">195</item>
+                                                    <item name="filterBy" xsi:type="array">
+                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.region_id]]></item>
+                                                        <item name="field" xsi:type="string">region_id</item>
+                                                    </item>
+                                                </item>
+                                                <item name="city" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Aventi_CityDropDown/js/form/element/city</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="customScope" xsi:type="string">shippingAddress</item>
+                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/input</item>
+                                                    </item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                    <item name="dataScope" xsi:type="string">shippingAddress.city</item>
+                                                    <item name="label" xsi:type="string" translate="true">City</item>
+                                                    <item name="sortOrder" xsi:type="string">195</item>
+                                                    <item name="visible" xsi:type="boolean">false</item>
+                                                    <item name="validation" xsi:type="array">
+                                                        <item name="required-entry" xsi:type="string">true</item>
+                                                    </item>
+                                                    <item name="filterBy" xsi:type="array">
+                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.city_id]]></item>
+                                                        <item name="field" xsi:type="string">city_id</item>
+                                                    </item>
+                                                </item>
+                                                <item name="postcode" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Aventi_CityDropDown/js/form/element/post-code</item>
+                                                    <item name="validation" xsi:type="array">
+                                                        <item name="required-entry" xsi:type="string">true</item>
+                                                    </item>
+                                                    <item name="label" xsi:type="string" translate="true">Postcode</item>
+                                                    <item name="sortOrder" xsi:type="string">200</item>
+                                                    <item name="visible" xsi:type="boolean">true</item>
+                                                    <item name="disabled" xsi:type="string">disabled</item>
+                                                    <item name="filterBy" xsi:type="array">
+                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.city_id]]></item>
+                                                        <item name="field" xsi:type="string">city_id</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+   </body>
+</page>

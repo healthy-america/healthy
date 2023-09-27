@@ -1,0 +1,22 @@
+<?php
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<?php /** @var \Magento\Framework\View\Element\Template $block */ ?>
+<script>
+    require([
+        'jquery'
+    ], function ($) {
+        $citydropdownCityGet = '<?= /** @noEscape */ $block->getUrl('citydropdown/city/get')?>';
+        $citydropdownCityData = '<?= /** @noEscape */ $block->getUrl('citydropdown/city/data')?>';
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Aventi_CityDropDown/js/city-order-address-edit": {}
+        }
+    }
+</script>
