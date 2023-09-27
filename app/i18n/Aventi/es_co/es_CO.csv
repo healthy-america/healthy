@@ -15393,3 +15393,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Identification type","Tipo de identificación"
 "Identification number","Identificación"
 "---Identification type---","---Tipo de identificación---"
+"Show Password","Mostrar Contraseña"
