@@ -70,6 +70,11 @@ class Product extends \Aventi\SAP\Model\Integration
      */
     private \Magento\Framework\App\ResourceConnection $_resourceConnection;
 
+    private \Magento\Store\Api\StoreRepositoryInterface $storeRepository;
+
+    private \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository;
+
+
     /**
      * @param \Aventi\SAP\Helper\Attribute $attributeDate
      * @param \Aventi\SAP\Logger\Logger $logger
@@ -99,7 +104,9 @@ class Product extends \Aventi\SAP\Model\Integration
         \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct,
         \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement,
         \Magento\Catalog\Model\ProductFactory $productFactory,
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
+        \Magento\Store\Api\StoreRepositoryInterface $storeRepository,
+        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository
     ) {
         parent::__construct($attributeDate, $logger, $driver, $filesystem);
 
@@ -113,6 +120,8 @@ class Product extends \Aventi\SAP\Model\Integration
         $this->categoryLinkManagement = $categoryLinkManagement;
         $this->productFactory = $productFactory;
         $this->_resourceConnection = $resourceConnection;
+        $this->storeRepository = $storeRepository;
+        $this->websiteRepository = $websiteRepository;
     }
 
     /**
@@ -152,7 +161,7 @@ class Product extends \Aventi\SAP\Model\Integration
                             'presentation' => $product['SalUnitMsr'],
                             'invima_registration' => ''//$product['U_invima']
                         ],
-                        'website' => $product['U_LINEA1']
+                        'website_id' => $product['U_LINEA1']
                     ];
                     $this->managerProduct($itemObject);
                     $this->advanceProgressBar($progressBar);
@@ -226,10 +235,20 @@ class Product extends \Aventi\SAP\Model\Integration
 
         $newProduct = $this->productFactory->create();
 
-        if ($itemObject->website === 'MARCA') {
-            $newProduct->setWebsiteIds([1]);
-        } else {
-            //TODO
+        $healthyStoreId = $this->websiteRepository->get('base')->getId();
+        $healthySportsStoreId = $this->websiteRepository->get('healthy_sports')->getId();
+        $nutrivitaStoreId = $this->websiteRepository->get('nutrivita')->getId();
+
+        switch ($itemObject->website_id) {
+            case 'HEALTHY SPORTS':
+                $newProduct->setWebsiteIds([$healthySportsStoreId]);
+                break;
+            case 'NUTRIVITA':
+                $newProduct->setWebsiteIds([$nutrivitaStoreId]);
+                break;
+            default:
+                $newProduct->setWebsiteIds([$healthyStoreId]);
+                break;
         }
 
         $newProduct->setSku($itemObject->sku);
