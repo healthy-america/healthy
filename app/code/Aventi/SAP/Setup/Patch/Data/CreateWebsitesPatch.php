@@ -33,9 +33,17 @@ class CreateWebsitesPatch implements DataPatchInterface, PatchRevertableInterfac
     {
         $this->moduleDataSetup->startSetup();
 
-        // Create your websites here
-        $this->createWebsite('healthy_sports', 'Healthy Sports Website');
-        $this->createWebsite('nutrivita', 'Nutrivita Website');
+        $healthySportsWebsite = $this->websiteFactory->create()->load('healthy_sports', 'code');
+
+        if (!$healthySportsWebsite->getId()) {
+            $this->createWebsite('healthy_sports', 'Healthy Sports Website');
+        }
+
+        $nutrivitaWebsite = $this->websiteFactory->create()->load('nutrivita', 'code');
+
+        if (!$nutrivitaWebsite->getId()) {
+            $this->createWebsite('nutrivita', 'Nutrivita Website');
+        }
 
         $this->moduleDataSetup->endSetup();
     }
