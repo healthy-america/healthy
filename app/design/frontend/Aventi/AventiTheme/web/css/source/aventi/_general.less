@@ -509,16 +509,6 @@ html {
 
 
 
-// Tablet
-
-@media screen and (min-width: 767px) {
-    
-    body:not(.active-builder) {
-        .hidden-desktop {
-            display: none !important;
-        }
-    }
-}
 
 
 //
@@ -527,7 +517,11 @@ html {
 
 @media (max-width: 767px) {
     .hidden-xs {
-        display: none !important;
+        display: none !important; // Ocultar en mobile
+    }
+
+    .no-margin-unsset {
+        margin-bottom: unset !important; // Quitar si o si el margin bottom
     }
 
     @media (max-width: 500px) {
@@ -541,7 +535,8 @@ html {
                 > img {
                     left: -5px;
                     position: relative;
-                    max-width: 200px !important;
+                    max-width: 200px !important; // Le llega un ancho desde el frontend-builder
+                    max-height: 60px;
                 }
             }
     }

@@ -264,6 +264,22 @@
     }
 }
 
+
+@media screen and (max-width: 800px) {
+    body#html-body .brand-slider {
+
+        .owl-nav.disabled {
+            display: block !important; // Le llega un display none desde el MGS
+            .owl-next,
+            .owl-prev {
+                visibility: visible;
+                opacity: 1;
+            }
+        }
+
+    }
+}
+
 //
 //  Mobile
 //  _____________________________________________
