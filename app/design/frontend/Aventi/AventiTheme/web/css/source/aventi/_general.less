@@ -509,16 +509,6 @@ html {
 
 
 
-// Tablet
-
-@media screen and (min-width: 767px) {
-    
-    body:not(.active-builder) {
-        .hidden-desktop {
-            display: none !important; // Ocultar en Desktop
-        }
-    }
-}
 
 
 //
@@ -545,7 +535,7 @@ html {
                 > img {
                     left: -5px;
                     position: relative;
-                    max-width: 200px !important;
+                    max-width: 200px !important; // Le llega un ancho desde el frontend-builder
                     max-height: 60px;
                 }
             }
