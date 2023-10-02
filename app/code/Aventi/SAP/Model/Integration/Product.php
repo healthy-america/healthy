@@ -273,6 +273,7 @@ class Product extends \Aventi\SAP\Model\Integration
         $newProduct->setShortDescription($itemObject->short_description);
         $newProduct->setCustomAttributes($itemObject->custom_attributes);
         $newProduct->setUrlKey($urlKey);
+        $newProduct->setPageLayout('product-full-width');
 
         try {
             $this->productRepository->save($newProduct);
