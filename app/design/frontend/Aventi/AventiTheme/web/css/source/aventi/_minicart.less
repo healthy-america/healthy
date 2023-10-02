@@ -12,7 +12,7 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
-    
+
     .style_font_monserrat_mini_cart {
         font-family: 'Montserrat', sans-serif;
         font-style: normal;
@@ -48,8 +48,8 @@
             background-color: @white;
             border-color: @white;
         }
-         
-        .minicart-wrapper 
+
+        .minicart-wrapper
         #minicart-content-wrapper {
                 position: relative;
                 height: -webkit-fill-available;
@@ -70,18 +70,30 @@
                     color: @black_secunday;
 
                     > div.minicart-items-wrapper {
-
+                        max-height: 42vh;
                         > ol.minicart-items > li {
                         margin-bottom: 1.5em;
-                        
+                        position: relative;
+
+                        div.message.notice {
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            top: 0;
+                            max-height: 5em;
+                            font-size: 13px;
+                            line-height: 1;
+                            overflow: hidden;
+                        }
+
                         > div.product {
                                 border-bottom: 1px solid @grey-m;
 
                                 > div.product-item-photo {
-                                
+
                                     > div.product.actions {
-                                    
-                                        > div.secondary > a.action , 
+
+                                        > div.secondary > a.action ,
                                         > div.primary > a.action {
                                             background-color: #fff;
                                             border: 1px solid #fff;
@@ -107,7 +119,7 @@
                                             height: 8em !important;
                                             object-fit: cover;
                                         }
-        
+
                                     }
 
                                 }
@@ -139,7 +151,7 @@
                                             border: unset;
                                             margin: 1em 1em 0 0;
                                             width: -webkit-fill-available;
-            
+
                                             &:hover {
                                                 border-radius: 4px;
                                                 background: var(--azul-claro, #0C4D9F);
@@ -161,7 +173,7 @@
                     }
 
                 }
-            
+
                 h3.close-minicart {
                     background-color: @color-primary;
                     font-family: 'Montserrat', sans-serif;
@@ -203,7 +215,7 @@
                 border-top: 1px solid @grey-m;
                 justify-content: center;
                 margin: 0 -10px 10px;
-                
+
                 > span.label {
                     margin-top: 0.7em;
                     .style_font_monserrat_mini_cart();
@@ -216,7 +228,7 @@
             }
 
             > div.actions {
-               
+
                     > div.secondary > a {
                         display: flex;
                         gap: 1em;
@@ -275,14 +287,7 @@
             }
 
         }
-
-        // .page-header .header-area.header2.search-visible .middle-header .counter.qty {
-        //     z-index: 9999;
-        // }
-        
-         
     }
-
 }
 
 @media screen and (max-width: 900px) {
@@ -308,7 +313,7 @@
            }
 
             > div.actions {
-                    
+
                 > div.secondary {
                     width: 100%;
 
@@ -324,12 +329,12 @@
             }
         }
 
-        .page-header .header2.search-visible .middle-header 
+        .page-header .header2.search-visible .middle-header
         .minicart-wrapper > a {
             z-index: 9999;;
         }
 
     }
-    
-    
+
+
 }
