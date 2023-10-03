@@ -41,7 +41,6 @@
         }
 
         // Popup
-
         #sidebar-opener.open {
             &::after {
                 content: "";
@@ -93,6 +92,7 @@
             #page-title-wrapper {
                 background-image: url("/media/aventi/images/myAccount.png");
                 padding: 90px 0px;
+                align-items: center;
 
                 &::before {
                     background: rgba(0, 0, 0, 0.6);
@@ -103,6 +103,7 @@
                     font-size: 42px;
                     margin-right: unset;
                     text-align: center;
+                    max-width: unset;
                 }
             }
 
@@ -510,10 +511,65 @@
                 }
             }
         }
+
+        .column.main {
+            ul.items.order-links {
+                li.nav.item.current {
+                    border-color: @color-primary;
+                    color: @color-primary;
+                    strong {
+                        font-family: Montserrat;
+                        font-size: 16px;
+                        color: @color-primary;
+                        font-style: normal;
+                        font-weight: 600;
+                        overflow: hidden;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        text-overflow: ellipsis;
+                        white-space: normal;
+                        padding: 0 20px;
+                    }
+                }
+            }
+            div.order-details-items.ordered {
+                .block-title-account h3 {
+                    font-family: Montserrat;
+                    font-size: 16px;
+                    color: @color-primary;
+                    font-style: normal;
+                    font-weight: 600;
+                    overflow: hidden;
+                }
+
+                table.data.table.table-order-items {
+                    th span.price,
+                    td span.price,
+                    th,td {
+                        color: @color-text-checkout;
+                        font-weight: 400;
+                    }
+
+                    tfoot {
+                        tr.grand_total {
+                            td,
+                            th {
+                                strong span,
+                                strong {
+                                    color: @color-text-checkout;
+                                    font-weight: 800;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-//  Desktop
+// Desktop
 .media-width(@extremum, @break)
     when
     (@extremum = "min")
