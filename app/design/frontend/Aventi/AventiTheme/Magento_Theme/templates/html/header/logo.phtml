@@ -26,8 +26,8 @@ if($stickyMobile){
 <?php if ($block->isHomePage()):?>
     <strong class="logo<?= $class ?>">
 <?php else: ?>
-    <a class="logo<?= $class ?>" href="<?= $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
-<?php endif ?>
+    <a class="logo<?= $class ?>" href="<?= $block->getUrl('prehome/index/deletecookie?name=prehomecookie'); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
+        <?php endif ?>
         <img class="default-logo" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"
              <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
