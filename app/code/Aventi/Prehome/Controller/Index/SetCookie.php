@@ -11,6 +11,7 @@ use Magento\Framework\Stdlib\Cookie\CookieSizeLimitReachedException;
 use Magento\Framework\Stdlib\Cookie\FailureToSendException;
 use Magento\Framework\Stdlib\CookieManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Aventi\Prehome\Helper\SetDeleteCookie;
 
 class SetCookie extends Action
 {
@@ -31,17 +32,24 @@ class SetCookie extends Action
      */
     protected StoreManagerInterface $storeManager;
 
+    /**
+     * @var SetDeleteCookie
+     */
+    private SetDeleteCookie $setDeleteCookie;
+
     public function __construct(
         Context $context,
         JsonFactory $jsonResultFactory,
         CookieManagerInterface $cookieManager,
         CookieMetadataFactory $cookieMetadataFactory,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        SetDeleteCookie $setDeleteCookie
     ) {
         $this->jsonResultFactory = $jsonResultFactory;
         $this->cookieManager = $cookieManager;
         $this->cookieMetadataFactory = $cookieMetadataFactory;
         $this->storeManager = $storeManager;
+        $this->setDeleteCookie = $setDeleteCookie;
         parent::__construct($context);
     }
 
@@ -58,18 +66,7 @@ class SetCookie extends Action
         $cookieName = $this->getRequest()->getParam('name');
         $cookieValue = $this->getRequest()->getParam('value');
 
-        $stores = $this->storeManager->getStores();
-        foreach ($stores as $store) {
-            $domain = parse_url(rtrim($store->getBaseUrl(), "/"));
-            $cookieMetadata = $this->cookieMetadataFactory->createPublicCookieMetadata()
-                ->setPath("/")
-                ->setHttpOnly(false);
-            if (isset($domain['host'])) {
-                $cookieMetadata->setDomain($domain['host']);
-            }
-
-            $this->cookieManager->setPublicCookie($cookieName, $cookieValue, $cookieMetadata);
-        }
+        $this->setDeleteCookie->setCookieByStores($cookieName, $cookieValue);
 
         $result->setData(['success' => true]);
         return $result;
