@@ -5,12 +5,14 @@ namespace Aventi\Prehome\Controller\Index;
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\Controller\Result\Json;
 use Magento\Framework\Exception\InputException;
+use Magento\Framework\Stdlib\Cookie\CookieSizeLimitReachedException;
 use Magento\Framework\Stdlib\Cookie\FailureToSendException;
 use Magento\Framework\Stdlib\CookieManagerInterface;
 use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
+use Aventi\Prehome\Helper\SetDeleteCookie;
 use Psr\Log\LoggerInterface;
 
 class DeleteCookie implements HttpGetActionInterface
@@ -41,6 +43,11 @@ class DeleteCookie implements HttpGetActionInterface
     private StoreManagerInterface $storeManager;
 
     /**
+     * @var SetDeleteCookie
+     */
+    private SetDeleteCookie $setDeleteCookie;
+
+    /**
      * @var LoggerInterface
      */
     private LoggerInterface $logger;
@@ -51,6 +58,7 @@ class DeleteCookie implements HttpGetActionInterface
      * @param RequestInterface $request
      * @param ResultFactory $resultFactory
      * @param StoreManagerInterface $storeManager
+     * @param SetDeleteCookie $setDeleteCookie
      * @param LoggerInterface $logger
      */
     public function __construct(
@@ -59,6 +67,7 @@ class DeleteCookie implements HttpGetActionInterface
         RequestInterface $request,
         ResultFactory $resultFactory,
         StoreManagerInterface $storeManager,
+        SetDeleteCookie $setDeleteCookie,
         LoggerInterface $logger
     ) {
         $this->cookieManager = $cookieManager;
@@ -66,6 +75,7 @@ class DeleteCookie implements HttpGetActionInterface
         $this->request = $request;
         $this->resultFactory = $resultFactory;
         $this->storeManager = $storeManager;
+        $this->setDeleteCookie = $setDeleteCookie;
         $this->logger = $logger;
     }
 
@@ -73,24 +83,14 @@ class DeleteCookie implements HttpGetActionInterface
      * @return Json
      * @throws FailureToSendException
      * @throws InputException
+     * @throws CookieSizeLimitReachedException
      */
     public function execute()
     {
         $resultRedirect = $this->createResultRedirect();
         $cookieName = $this->getCookieName();
 
-        $stores = $this->storeManager->getStores();
-        foreach ($stores as $store) {
-            $domain = parse_url(rtrim($store->getBaseUrl(), "/"));
-            $cookieMetadata = $this->cookieMetadataFactory->createPublicCookieMetadata()
-                ->setPath("/")
-                ->setHttpOnly(false);
-            if (isset($domain['host'])) {
-                $cookieMetadata->setDomain($domain['host']);
-            }
-
-            $this->cookieManager->deleteCookie($cookieName, $cookieMetadata);
-        }
+        $this->setDeleteCookie->setCookieByStores($cookieName, null, false);
 
         return $resultRedirect->setPath('');
     }
