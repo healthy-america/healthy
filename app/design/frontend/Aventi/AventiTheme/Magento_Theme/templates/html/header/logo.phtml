@@ -23,11 +23,7 @@ if($stickyMobile){
 }
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-<?php if ($block->isHomePage()):?>
-    <strong class="logo<?= $class ?>">
-<?php else: ?>
     <a class="logo<?= $class ?>" href="<?= $block->getUrl('prehome/index/deletecookie?name=prehomecookie'); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
-        <?php endif ?>
         <img class="default-logo" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"
              <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
@@ -41,8 +37,4 @@ if($stickyMobile){
 			<img class="sticky-logo" src="<?php /* @escapeNotVerified */ echo $themeSettingConfig->getMediaUrl('mgs/setting/' . $stickyMobile) ?>"
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"/>
 		<?php endif ?>
-<?php if ($block->isHomePage()):?>
-    </strong>
-<?php else:?>
     </a>
-<?php endif?>
