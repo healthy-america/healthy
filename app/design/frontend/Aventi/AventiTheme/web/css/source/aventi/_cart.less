@@ -351,7 +351,7 @@
 @media (max-width: 767px) {
     #html-body.checkout-cart-index {
         .checkout-extra {
-            
+
         .block.discount {
             padding: 0 1em 0 1em;
         }
@@ -551,6 +551,14 @@
                 border: 1px solid @grey-m;
                 border-right: none;
                 border-left: none;
+
+                &.message.error {
+                    border: unset;
+                    font-size: 13px;
+                    max-height: 5em;
+                    overflow: hidden;
+                }
+
                 .col.price,
                 .col.qty,
                 .col.subtotal {
@@ -597,7 +605,7 @@
                                 .price .price {
                                         font-size: 12px;
                                     }
-                                }   
+                                }
                             }
 
                         }
