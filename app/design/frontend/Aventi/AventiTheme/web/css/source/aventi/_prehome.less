@@ -26,11 +26,11 @@
                     text-align: center;
                 }
             }
-            
+
         }
 
     }
-    
+
 }
 
 
@@ -39,11 +39,13 @@
     body#html-body.cms-index-index {
 
         div#prehome {
+            height: 100% !important; // Le llega estilos desde el element
+            max-height: 100vh;
             align-content: unset !important;
             overflow: auto;
 
             > div.row:first-child {
-                margin-top: 2em;
+                margin-top: 20px;
                 margin-bottom: 3em;
                 height: 30%;
                 h4 {
@@ -81,9 +83,9 @@
             > div.row:nth-child(3) {
                 display: none !important;
             }
-            
+
         }
 
     }
-    
+
 }
