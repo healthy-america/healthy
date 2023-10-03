@@ -13,6 +13,7 @@
 
 & when (@media-common =true) {
     #html-body.checkout-cart-index {
+
         .breadcrumbs {
             background: #fff;
 
@@ -30,12 +31,8 @@
             min-height: 200px;
             padding: 0;
             .page-title {
-                width: 100%;
-                max-width: 1250px;
                 text-align: left;
                 position: relative;
-                margin: auto;
-                height: 200px;
                 span {
                     font-family: "Montserrat";
                     font-style: normal;
@@ -92,6 +89,14 @@
                 border: 1px solid @grey-m;
                 border-right: none;
                 border-left: none;
+
+                &.message.error {
+                    border: unset;
+                    font-size: 13px;
+                    max-height: 5em;
+                    overflow: hidden;
+                }
+
                 .col.price,
                 .col.qty,
                 .col.subtotal {
@@ -142,7 +147,6 @@
                             font-weight: 600;
                             font-size: 16px;
                             line-height: 19px;
-
                             color: @black_secunday;
                         }
                     }
@@ -551,13 +555,6 @@
                 border: 1px solid @grey-m;
                 border-right: none;
                 border-left: none;
-
-                &.message.error {
-                    border: unset;
-                    font-size: 13px;
-                    max-height: 5em;
-                    overflow: hidden;
-                }
 
                 .col.price,
                 .col.qty,

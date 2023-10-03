@@ -2,11 +2,10 @@
 & when (@media-common =true) {
 
     body#html-body.catalog-product-view {
-         
+
         //titulo de pagina con fondo
         #page-title-wrapper{
             background-image: url('/media/aventi/images/myAccount.png');
-            padding: 150px 0px 20px 0px;
             text-align: left;
 
             &::before{
@@ -14,10 +13,6 @@
             }
 
             .page-title{
-                max-width: 1200px;
-                margin: auto;
-                padding: 0px 15px;
-
                 span{
                     font-weight: 600;
                     font-size: 42px;
@@ -44,7 +39,7 @@
                     font-weight: 400;
                     font-size: 14px;
                     color: @grey-dark;
-                    
+
                     a, strong{
                         max-width: unset;
                         font-weight: 400;
@@ -59,10 +54,10 @@
             .column.main{
                 padding-top: 20px;
                 border-bottom: 4px solid #D9D9D9;
-    
-                //informacion de la derecha 
+
+                //informacion de la derecha
                 .product-info-main {
-    
+
                     //se ocultan algunos elementos
                     .product-social-links, .stock.available, .product-detail-deals {
                         display: none;
@@ -77,32 +72,32 @@
                         .control {
                             border-radius: 8px;
                             width: -webkit-fill-available;
-                            
+
                             input.input-text.qty {
                                 padding: 0 40px;
                             }
 
                             .qty-error {
-                                display: none; 
+                                display: none;
                             }
 
-                        }   
+                        }
                     }
-    
+
                     //nombre del producto
                     .product-name {
                         font-weight: 700;
                         font-size: 32px;
                         color: @color-primary;
                     }
-    
+
                     //precio y descripcion
                     .product-info-price {
                         .price-box.price-final_price {
                             display: flex;
                             align-items: center;
                             gap: 10px;
-    
+
                             .special-price {
                                 .price {
                                     font-weight: 600;
@@ -117,17 +112,17 @@
                                 }
                             }
                         }
-    
+
                         .product.attribute.overview {
                             p{
                                 font-weight: 400;
-                                font-size: 14px;  
+                                font-size: 14px;
                                 text-align: justify;
                                 color: @grey;
                             }
                         }
                     }
-        
+
                     //añadir al carrito
                     .box-tocart {
                         .actions {
@@ -148,36 +143,36 @@
                             }
                         }
                     }
-        
+
                     //descripcion 2
                     .custom-atribute {
                         *{
                             color: @label-color-checkout;
                             font-size: 16px;
                             font-weight: 600;
-                            
+
                         }
                         .value {
                             font-weight: 400;
                             margin-left: 5px;
                         }
                     }
-    
+
                     //tabs
                     .product-tab-wrapper{
                         .product.data.items {
                             display: block;
                             float: none;
                             width: 100%;
-    
+
                             .data.item.title {
                                 width: 100%;
                                 padding: 0;
-                
+
                                 &:not(.active) {
                                     margin-bottom: 10px;
                                 }
-                
+
                                 a.data.switch {
                                     padding: 0px 20px !important;
                                     background: #F5F5F5 !important;
@@ -186,7 +181,7 @@
                                     color: @black;
                                     text-align: left;
                                     height: auto;
-                
+
                                     &::after {
                                         content: url("https://api.iconify.design/material-symbols/arrow-forward-ios-rounded.svg?color=%23424242&rotate=90deg");
                                         position: absolute;
@@ -194,7 +189,7 @@
                                         top: 4px;
                                     }
                                 }
-                
+
                                 &.active {
                                     a.data.switch {
                                         &::after {
@@ -203,37 +198,37 @@
                                     }
                                 }
                             }
-                
+
                             .data.content {
                                 float: none;
                                 margin: 0;
                                 padding: 10px 20px;
                                 margin-bottom: 10px;
                                 background: @white !important;
-                
+
                                 .description {
                                     font-weight: 400;
                                     font-size: 14px;
                                     color: @grey-dark;
                                 }
-    
+
                                 //tab de reviews
                                 .block.review-add{
                                     margin-bottom: 15px;
-    
+
                                     .block-title{
                                         display: none;
                                     }
-    
+
                                     .block-content{
                                         fieldset{
                                             margin: 0px;
-                                            
+
                                             //subtitle
                                             legend{
                                                 font-weight: 400;
                                                 font-size: 14px;
-    
+
                                                 span{
                                                     color: @grey-dark;
                                                 }
@@ -242,16 +237,16 @@
                                                     font-weight: 500;
                                                 }
                                             }
-    
+
                                             //inputs
                                             .line{
                                                 margin-top: 15px;
-                                                
+
                                                 .label{
                                                     &::after{
                                                         display: none;
                                                     }
-    
+
                                                     span{
                                                         color: @grey-dark;
                                                         font-weight: 400;
@@ -260,7 +255,7 @@
                                                 }
                                             }
                                         }
-    
+
                                         //boton enviar
                                         .actions-toolbar{
                                             margin: 0px;
@@ -332,8 +327,8 @@
                 .column.main{
                     padding-top: 70px;
                     border: none;
-        
-                    //informacion de la derecha 
+
+                    //informacion de la derecha
                     .product-info-main {
                         position: relative;
                         margin-top: 1em;
@@ -358,9 +353,9 @@
                                 &.overview {
                                     p{
                                         line-height: 1.5;
-                                        width: 99%; 
-                                        box-sizing: border-box; 
-                                        margin: 0 auto; 
+                                        width: 99%;
+                                        box-sizing: border-box;
+                                        margin: 0 auto;
                                         overflow: hidden;
                                     }
                                 }
@@ -425,7 +420,7 @@
                                 padding: 0px;
                             }
                         }
-            
+
                         //tabs
                         .product-tab-wrapper{
                             margin-top: 30px;
@@ -434,12 +429,12 @@
                             .product.data.items {
                                 .data.item.title {
                                     a.data.switch {
-                    
+
                                         &::after {
                                             background: transparent;
                                         }
                                     }
-                    
+
                                     &.active {
                                         a.data.switch {
                                             &::after {
@@ -462,11 +457,11 @@
                     }
                 }
             }
-    
+
             .page-main-details{
                 .block-releated{
                     margin: 0;
-                    
+
                     .block-heading{
                         margin: 0;
 
@@ -476,7 +471,7 @@
                                 color: @color-primary;
                             }
                         }
-    
+
                     }
                 }
             }
