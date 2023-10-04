@@ -6,7 +6,4 @@
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
 		<plugin name="Aventi_Checkout_Plugin_Magento_Checkout_Block_Checkout_LayoutProcessor" type="Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout\LayoutProcessor" sortOrder="10" disabled="false"/>
 	</type>
-    <type name="Magento\Checkout\Model\DefaultConfigProvider">
-        <plugin name="Aventi_Checkout_Plugin_Magento_Checkout_DefaultConfigProvider" type="Aventi\Checkout\Plugin\Checkout\Model\DefaultConfigProvider" sortOrder="10" disabled="false"/>
-    </type>
 </config>

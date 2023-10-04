@@ -75,8 +75,6 @@ class Discount
             $discountAmount += $discount;
         }
 
-        $this->logger->debug('Discount amount: ' . $discountAmount);
-
         return (max($discountAmount, 0));
     }
 }
