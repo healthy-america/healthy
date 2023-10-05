@@ -36,7 +36,7 @@ class Cart
      */
     public function afterGetSectionData(\Magento\Checkout\CustomerData\Cart $subject, $result)
     {
-        $result['custom_discount'] = $this->checkoutHelper->formatPrice($this->discountHelper->getDiscountAmount());
+        $result['discount_amount'] = $this->checkoutHelper->formatPrice($this->discountHelper->getDiscountAmount());
         return $result;
     }
 }
