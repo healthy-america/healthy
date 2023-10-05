@@ -6,15 +6,19 @@
  */
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <referenceContainer name="after.body.start">
-        <block class="Magento\Cms\Block\Block" name="prehome">
-            <arguments>
-                <argument name="block_id" xsi:type="string">prehome</argument>
-            </arguments>
-        </block>
-    </referenceContainer>
-    <referenceContainer name="before.body.end">
-        <block class="Magento\Framework\View\Element\Template" name="themesetting_newsletter_popup" template="Aventi_Prehome::html/newsletter_popup.phtml" />
-    </referenceContainer>
+    <head>
+        <script src="js/prehome.js" />
+    </head>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Cms\Block\Block" name="prehome">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">prehome</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="themesetting_newsletter_popup" template="Aventi_Prehome::html/newsletter_popup.phtml" />
+        </referenceContainer>
+    </body>
 </page>
-

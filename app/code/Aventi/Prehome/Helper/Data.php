@@ -10,8 +10,9 @@ use Magento\Framework\Stdlib\Cookie\CookieSizeLimitReachedException;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Stdlib\CookieManagerInterface;
 use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
+use Magento\Framework\Exception\LocalizedException;
 
-class SetDeleteCookie extends AbstractHelper
+class Data extends AbstractHelper
 {
     /**
      * @var StoreManagerInterface
@@ -66,6 +67,20 @@ class SetDeleteCookie extends AbstractHelper
             } else {
                 $this->cookieManager->deleteCookie($cookieName, $cookieMetadata);
             }
+        }
+    }
+
+    /**
+     * @param string $website
+     * @return string
+     */
+    public function getBaseUrlByWebsite(string $website = 'base')
+    {
+        try {
+            return $this->storeManager->getWebsite($website)->getDefaultStore()->getBaseUrl();
+        } catch (LocalizedException $e) {
+            $this->logger->error($e->getMessage());
+            return '';
         }
     }
 }

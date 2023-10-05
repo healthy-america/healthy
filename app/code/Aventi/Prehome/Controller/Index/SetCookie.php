@@ -11,7 +11,7 @@ use Magento\Framework\Stdlib\Cookie\CookieSizeLimitReachedException;
 use Magento\Framework\Stdlib\Cookie\FailureToSendException;
 use Magento\Framework\Stdlib\CookieManagerInterface;
 use Magento\Store\Model\StoreManagerInterface;
-use Aventi\Prehome\Helper\SetDeleteCookie;
+use Aventi\Prehome\Helper\Data;
 
 class SetCookie extends Action
 {
@@ -33,9 +33,9 @@ class SetCookie extends Action
     protected StoreManagerInterface $storeManager;
 
     /**
-     * @var SetDeleteCookie
+     * @var Data
      */
-    private SetDeleteCookie $setDeleteCookie;
+    private Data $setDeleteCookie;
 
     public function __construct(
         Context $context,
@@ -43,7 +43,7 @@ class SetCookie extends Action
         CookieManagerInterface $cookieManager,
         CookieMetadataFactory $cookieMetadataFactory,
         StoreManagerInterface $storeManager,
-        SetDeleteCookie $setDeleteCookie
+        Data $setDeleteCookie
     ) {
         $this->jsonResultFactory = $jsonResultFactory;
         $this->cookieManager = $cookieManager;

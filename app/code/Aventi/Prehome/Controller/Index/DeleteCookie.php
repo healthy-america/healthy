@@ -12,7 +12,7 @@ use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
 use Magento\Framework\App\RequestInterface;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
-use Aventi\Prehome\Helper\SetDeleteCookie;
+use Aventi\Prehome\Helper\Data;
 use Psr\Log\LoggerInterface;
 
 class DeleteCookie implements HttpGetActionInterface
@@ -43,9 +43,9 @@ class DeleteCookie implements HttpGetActionInterface
     private StoreManagerInterface $storeManager;
 
     /**
-     * @var SetDeleteCookie
+     * @var Data
      */
-    private SetDeleteCookie $setDeleteCookie;
+    private Data $data;
 
     /**
      * @var LoggerInterface
@@ -58,24 +58,24 @@ class DeleteCookie implements HttpGetActionInterface
      * @param RequestInterface $request
      * @param ResultFactory $resultFactory
      * @param StoreManagerInterface $storeManager
-     * @param SetDeleteCookie $setDeleteCookie
+     * @param Data $data
      * @param LoggerInterface $logger
      */
     public function __construct(
         CookieManagerInterface $cookieManager,
-        CookieMetadataFactory $cookieMetadataFactory,
-        RequestInterface $request,
-        ResultFactory $resultFactory,
-        StoreManagerInterface $storeManager,
-        SetDeleteCookie $setDeleteCookie,
-        LoggerInterface $logger
+        CookieMetadataFactory  $cookieMetadataFactory,
+        RequestInterface       $request,
+        ResultFactory          $resultFactory,
+        StoreManagerInterface  $storeManager,
+        Data                   $data,
+        LoggerInterface        $logger
     ) {
         $this->cookieManager = $cookieManager;
         $this->cookieMetadataFactory = $cookieMetadataFactory;
         $this->request = $request;
         $this->resultFactory = $resultFactory;
         $this->storeManager = $storeManager;
-        $this->setDeleteCookie = $setDeleteCookie;
+        $this->data = $data;
         $this->logger = $logger;
     }
 
@@ -89,18 +89,18 @@ class DeleteCookie implements HttpGetActionInterface
     {
         $resultRedirect = $this->createResultRedirect();
         $cookieName = $this->getCookieName();
-
-        $this->setDeleteCookie->setCookieByStores($cookieName, null, false);
-
-        return $resultRedirect->setPath('');
+        $this->data->setCookieByStores($cookieName, null, false);
+        $defaultStoreUrl = $this->data->getBaseUrlByWebsite();
+        return $resultRedirect->setUrl($defaultStoreUrl ?? '');
     }
 
     /**
+     * TODO: Error handling when cookie name is empty
      * @return string
      */
     public function getCookieName(): string
     {
-        return trim($this->request->getParam('name'), '/');
+        return trim($this->request->getParam('name') ?? '', '/');
     }
 
     /**
