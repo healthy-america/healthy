@@ -65,10 +65,6 @@
 
         &.customer-account-login {
 
-            .hidden-desktop {
-                display: none;
-            }
-
             #minicart-content-wrapper h3.close-minicart {
                 line-height: 50px;
             }
@@ -172,14 +168,16 @@
 
 }
 
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .hidden-desktop {
+        display: none;
+    }
+}
+
 // Mobile
 
 @media (max-width: 767px) {
     body#html-body.customer-account-login {
-
-        .hidden-desktop {
-            display: block;
-        }
 
         .block.block-customer-login {
             width: 100%;
@@ -216,6 +214,8 @@
         }
 
         .block.block-new-customer {
+            float: unset;
+            clear: unset;
             width: 100%;
             max-width: 500px;
             margin: auto;
