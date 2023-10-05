@@ -92,6 +92,14 @@
                 border: 1px solid @grey-m;
                 border-right: none;
                 border-left: none;
+
+                &.message.error {
+                    border: unset;
+                    font-size: 13px;
+                    max-height: 5em;
+                    overflow: hidden;
+                }
+                
                 .col.price,
                 .col.qty,
                 .col.subtotal {
@@ -551,13 +559,6 @@
                 border: 1px solid @grey-m;
                 border-right: none;
                 border-left: none;
-
-                &.message.error {
-                    border: unset;
-                    font-size: 13px;
-                    max-height: 5em;
-                    overflow: hidden;
-                }
 
                 .col.price,
                 .col.qty,

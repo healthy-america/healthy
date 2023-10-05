@@ -11,7 +11,7 @@
     //  olvidaste tu contraseña
 
     body#html-body {
-    
+
         &.customer-account-forgotpassword .form.password.forget {
             max-width: 700px;
             min-width: 0;
@@ -64,11 +64,16 @@
         }
 
         &.customer-account-login {
+
+            .hidden-desktop {
+                display: none;
+            }
+
             #minicart-content-wrapper h3.close-minicart {
-                line-height: 50px;           
+                line-height: 50px;
             }
             h2 {
-                font-family: "Montserrat";
+                font-family: @Montserrat-font;
                 font-style: normal;
                 font-weight: 600;
                 font-size: 16px;
@@ -78,7 +83,7 @@
 
             .field.note,
             #maincontent p {
-                font-family: "Montserrat";
+                font-family: @Montserrat-font;
                 font-style: normal;
                 font-weight: 400;
                 font-size: 14px;
@@ -148,7 +153,7 @@
                 margin-top: 25px;
 
                 .action.remind {
-                    font-family: "Montserrat";
+                    font-family: @Montserrat-font;
                     font-style: normal;
                     font-weight: 400;
                     font-size: 14px;
@@ -164,13 +169,18 @@
         }
 
     }
-    
+
 }
 
 // Mobile
 
 @media (max-width: 767px) {
     body#html-body.customer-account-login {
+
+        .hidden-desktop {
+            display: block;
+        }
+
         .block.block-customer-login {
             width: 100%;
             max-width: 500px;
@@ -188,7 +198,7 @@
         }
 
         h3 {
-            font-family: "Montserrat";
+            font-family: @Montserrat-font;
             font-weight: 400;
             font-size: 14px;
             line-height: 20px;
