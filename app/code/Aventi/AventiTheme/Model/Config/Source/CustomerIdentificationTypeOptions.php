@@ -16,9 +16,10 @@ class CustomerIdentificationTypeOptions implements OptionSourceInterface
     public function toOptionArray()
     {
         $options = [
-            ['value' => '', 'label' => __('---Identification type---')],
-            ['value' => 'C.C', 'label' => __('C.C')],
-            ['value' => 'C.E', 'label' => __('C.E')],
+            ['value' => '', 'label' => '---' . __('Identification type') . '---'],
+            ['value' => 'CC', 'label' => __('Identification card')],
+            ['value' => 'CE', 'label' => __("Foreigner's identification card")],
+            ['value' => 'RUT', 'label' => __('RUT')]
         ];
 
         return $options;
