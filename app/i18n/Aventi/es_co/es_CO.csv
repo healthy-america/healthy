@@ -4851,7 +4851,7 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "This account is not confirmed. <a href=""%1"">Click here</a> to resend confirmation email.","Esta cuenta no está confirmada. <a href=""%1"">haga clic aquí</a> para enviar correo electrónico de confirmación.",module,Magento_Customer
 "You must confirm your account. Please check your email for the confirmation link or <a href=""%1"">click here</a> for a new link.","Debes confirmar tu cuenta. Por favor compruebe su correo electrónico para el enlace de confirmación o <a href=""%1"">haga clic aquí</a> para un nuevo enlace.",module,Magento_Customer
 "There is already an account with this email address. If you are sure that it is your email address, <a href=""%1"">click here</a> to get your password and access your account.","Este correo ya tiene una cuenta activa, si olvidaste tu contraseña la puedes recuperar dando <a href=""%1"">click aquí</a>.",module,Magento_Customer
-"New Customers","Nuevos clientes",module,Magento_Customer
+"New Customers","REGISTRARSE",module,Magento_Customer
 "Creating an account has many benefits: check out faster, keep more than one address, track orders and more.","Crear una cuenta tiene muchos beneficios: Pago más rápido, guardar más de una dirección, seguimiento de pedidos y mucho más.",module,Magento_Customer
 "Company","Empresa",module,Magento_Customer
 "Fax","Fax",module,Magento_Customer
