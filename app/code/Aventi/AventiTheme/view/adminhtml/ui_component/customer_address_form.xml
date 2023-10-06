@@ -2,7 +2,21 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <fieldset name="general">
-        <field name="fax" sortOrder="31" formElement="select">
+        <field name="suffix" sortOrder="31" formElement="select">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <label translate="true">Customer type</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Aventi\AventiTheme\Model\Config\Source\CustomerTypeOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="fax" sortOrder="32" formElement="select">
             <settings>
                 <dataType>text</dataType>
                 <visible>true</visible>
@@ -16,7 +30,7 @@
                 </select>
             </formElements>
         </field>
-        <field name="vat_id" sortOrder="32" formElement="input">
+        <field name="vat_id" sortOrder="33" formElement="input">
             <settings>
                 <dataType>text</dataType>
                 <label translate="true">Identification number</label>

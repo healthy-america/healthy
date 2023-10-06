@@ -18,7 +18,7 @@ class CustomerIdentificationTypeOptions implements OptionSourceInterface
         $options = [
             ['value' => '', 'label' => '---' . __('Identification type') . '---'],
             ['value' => 'CC', 'label' => __('Identification card')],
-            ['value' => 'CE', 'label' => __("Foreigner's identification card")],
+            ['value' => 'CE', 'label' => __("Foreigner ID")],
             ['value' => 'RUT', 'label' => __('RUT')]
         ];
 
