@@ -7,29 +7,22 @@ declare(strict_types=1);
 
 namespace Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout;
 
-use Aventi\AventiTheme\Model\Config\Source\CustomerIdentificationTypeOptions;
 use Aventi\AventiTheme\Model\Config\Source\CustomerTypeOptions;
 
 class LayoutProcessor
 {
     /**
-     * @var CustomerIdentificationTypeOptions
-     */
-    private CustomerIdentificationTypeOptions $customerIdentificationTypeOptions;
-
-    /**
      * @var CustomerTypeOptions
      */
     private CustomerTypeOptions $customerTypeOptions;
 
+
     /**
-     * @param CustomerIdentificationTypeOptions $customerIdentificationTypeOptions
+     * @param CustomerTypeOptions $customerTypeOptions
      */
     public function __construct(
-        CustomerIdentificationTypeOptions $customerIdentificationTypeOptions,
         CustomerTypeOptions $customerTypeOptions
     ) {
-        $this->customerIdentificationTypeOptions = $customerIdentificationTypeOptions;
         $this->customerTypeOptions = $customerTypeOptions;
     }
 
@@ -62,7 +55,7 @@ class LayoutProcessor
             'component' => 'Aventi_Checkout/js/form/element/document-type',
             'config' => [
                 'template' => 'ui/form/field',
-                'elementTmpl' => 'Aventi_Checkout/form/element/customer-type',
+                'elementTmpl' => 'ui/form/element/select',
                 'id' => 'suffix',
             ],
             'dataScope' => 'shippingAddress.suffix',
@@ -70,10 +63,10 @@ class LayoutProcessor
             'provider' => 'checkoutProvider',
             'visible' => true,
             'sortOrder' => 48,
-            'validation' => []
+            'validation' => [],
+            'caption' => __('Please select an option'),
+            'options' => $customerTypeOptions
         ];
-
-        $customerIdentificationTypeOptions = $this->customerIdentificationTypeOptions->toOptionArray();
 
         $shippingForm['fax'] = [
             'component' => 'Aventi_Checkout/js/form/element/document-type',
@@ -89,7 +82,6 @@ class LayoutProcessor
             'validation' => []
         ];
 
-        //Your plugin code
         return $result;
     }
 }

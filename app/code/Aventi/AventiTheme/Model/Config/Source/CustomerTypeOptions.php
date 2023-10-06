@@ -16,7 +16,6 @@ class CustomerTypeOptions implements OptionSourceInterface
     public function toOptionArray()
     {
         $options = [
-            ['value' => '', 'label' => '---' . __('Customer type') . '---'],
             ['value' => 'Natural', 'label' => __('Natural')],
             ['value' => 'Legal', 'label' => __('Legal')],
         ];

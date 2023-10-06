@@ -20,10 +20,5 @@
     options: customerDocumentTypeOptions,
     optionsCaption: captionDocumentType,
     optionsValue: 'value',
-    optionsText: 'label',
-    optionsAfterRender: function(option, item) {
-        if (item && item.disabled) {
-            ko.applyBindingsToNode(option, {attr: {disabled: true}}, item);
-        }
-    }"
+    optionsText: 'label'"
 ></select>
