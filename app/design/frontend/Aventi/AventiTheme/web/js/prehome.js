@@ -3,7 +3,7 @@ require([
     'mage/cookies'
 ], function ($) {
 
-    const prehome = $('div#prehome');
+    const prehome = $('main#prehome');
     const check = $.cookie('prehomecookie');
     const body = $('body');
     const loader = $('div.loader');
