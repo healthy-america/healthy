@@ -392,7 +392,25 @@
 
                     div.product-container.category-product-container {
                         div.category-product-actions {
-                            display: none;
+                            position: absolute;
+                            top: -6%;
+                            right: 0;
+                            padding-right: 15px;
+
+                            .form-item-select {
+                                &:after {
+                                    top: 2px;
+                                    color: var(--theme__color__primary);
+                                }
+
+                                select {
+                                    height: 27px;
+                                }
+                            }
+
+                            .action.sorter-action.sort-asc {
+                                display: none !important; // Le llega estilos con un !important
+                            }
                         }
                     }
 
@@ -442,12 +460,15 @@
                     gap: 30px;
 
                         div.category-product-actions {
+                            position: unset;
+                            top: unset;
+                            right: unset;
                             border-bottom: unset;
                             padding: unset;
                             margin: unset;
 
                             .form-item-select {
-
+                                margin-top: 4px;
                                 select {
                                     height: 27px;
                                 }
@@ -465,11 +486,16 @@
 
                             .action.sorter-action.sort-desc,
                             .action.sorter-action.sort-asc {
+                                    margin-top: 4px;
                                     border: unset;
                                     height: 30px;
                                     width: 30px;
                                     padding: unset;
+                                    position: relative;
                                     &::after {
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
                                         content: url('https://api.iconify.design/system-uicons/grid.svg?color=%234a4f55&width=32&height=32');
                                     }
                             }
@@ -644,10 +670,8 @@
                         div.toolbar.toolbar-products {
                             width: 100%;
                         }
-
                     }
                 }
-
 
                 div.category-product-container.product-container {
 
