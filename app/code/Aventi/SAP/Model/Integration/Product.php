@@ -7,7 +7,23 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Model\Integration;
 
+use Aventi\SAP\Helper\Attribute;
+use Aventi\SAP\Helper\Data;
+use Aventi\SAP\Logger\Logger;
+use Aventi\SAP\Model\Integration\Check\Product\CheckFields;
+use Aventi\SAP\Model\Integration\Save\Product\Save;
 use Bcn\Component\Json\Reader;
+use Magento\Catalog\Api\CategoryLinkManagementInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Catalog\Model\ProductFactory;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\App\ResourceConnection;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\Filesystem;
+use Magento\Framework\Filesystem\DriverInterface;
+use Magento\Store\Api\StoreRepositoryInterface;
+use Magento\Store\Api\WebsiteRepositoryInterface;
+use Magento\Tax\Model\TaxRuleRepository;
 
 class Product extends \Aventi\SAP\Model\Integration
 {
@@ -70,20 +86,27 @@ class Product extends \Aventi\SAP\Model\Integration
      */
     private \Magento\Framework\App\ResourceConnection $_resourceConnection;
 
+    private \Magento\Store\Api\StoreRepositoryInterface $storeRepository;
+
+    private \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository;
+
     /**
-     * @param \Aventi\SAP\Helper\Attribute $attributeDate
-     * @param \Aventi\SAP\Logger\Logger $logger
-     * @param \Magento\Framework\Filesystem\DriverInterface $driver
-     * @param \Magento\Framework\Filesystem $filesystem
-     * @param \Aventi\SAP\Helper\Data $data
-     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
-     * @param \Magento\Tax\Model\TaxRuleRepository $taxRuleRepository
-     * @param \Magento\Framework\Event\ManagerInterface $eventManager
-     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
-     * @param \Aventi\SAP\Model\Integration\Check\Product\CheckFields $checkFields
-     * @param \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct
-     * @param \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement
-     * @param \Magento\Catalog\Model\ProductFactory $productFactory
+     * @param Attribute $attributeDate
+     * @param Logger $logger
+     * @param DriverInterface $driver
+     * @param Filesystem $filesystem
+     * @param Data $data
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param TaxRuleRepository $taxRuleRepository
+     * @param ManagerInterface $eventManager
+     * @param ProductRepositoryInterface $productRepository
+     * @param CheckFields $checkFields
+     * @param Save $saveProduct
+     * @param CategoryLinkManagementInterface $categoryLinkManagement
+     * @param ProductFactory $productFactory
+     * @param ResourceConnection $resourceConnection
+     * @param StoreRepositoryInterface $storeRepository
+     * @param WebsiteRepositoryInterface $websiteRepository
      */
     public function __construct(
         \Aventi\SAP\Helper\Attribute $attributeDate,
@@ -99,7 +122,9 @@ class Product extends \Aventi\SAP\Model\Integration
         \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct,
         \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement,
         \Magento\Catalog\Model\ProductFactory $productFactory,
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
+        \Magento\Store\Api\StoreRepositoryInterface $storeRepository,
+        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository,
     ) {
         parent::__construct($attributeDate, $logger, $driver, $filesystem);
 
@@ -113,6 +138,8 @@ class Product extends \Aventi\SAP\Model\Integration
         $this->categoryLinkManagement = $categoryLinkManagement;
         $this->productFactory = $productFactory;
         $this->_resourceConnection = $resourceConnection;
+        $this->storeRepository = $storeRepository;
+        $this->websiteRepository = $websiteRepository;
     }
 
     /**
@@ -136,6 +163,7 @@ class Product extends \Aventi\SAP\Model\Integration
                 $reader->enter(null, Reader::TYPE_OBJECT);
                 $total = (int)$reader->read('total');
                 $products = $reader->read('data');
+
                 $progressBar = $this->startProgressBar($total);
                 foreach ($products as $product) {
                     $itemObject = (object) [
@@ -150,7 +178,8 @@ class Product extends \Aventi\SAP\Model\Integration
                         'custom_attributes' => [
                             'presentation' => $product['SalUnitMsr'],
                             'invima_registration' => ''//$product['U_invima']
-                        ]
+                        ],
+                        'website_code' => $product['U_LINEA1']
                     ];
                     $this->managerProduct($itemObject);
                     $this->advanceProgressBar($progressBar);
@@ -223,6 +252,14 @@ class Product extends \Aventi\SAP\Model\Integration
         $urlKey = $this->generateURL($itemObject->name);
 
         $newProduct = $this->productFactory->create();
+
+        try {
+            $websiteId = $this->getWebsiteIds($itemObject->website_code);
+            $newProduct->setWebsiteIds([$websiteId]);
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            $this->logger->error("Website is not found: " . $e->getMessage());
+        }
+
         $newProduct->setSku($itemObject->sku);
         $newProduct->setName($itemObject->name);
         $newProduct->setAttributeSetId(4);
@@ -236,6 +273,7 @@ class Product extends \Aventi\SAP\Model\Integration
         $newProduct->setShortDescription($itemObject->short_description);
         $newProduct->setCustomAttributes($itemObject->custom_attributes);
         $newProduct->setUrlKey($urlKey);
+        $newProduct->setPageLayout('product-full-width');
 
         try {
             $this->productRepository->save($newProduct);
@@ -251,6 +289,20 @@ class Product extends \Aventi\SAP\Model\Integration
             \Magento\Framework\Exception\StateException $e) {
             $this->logger->error("An error has occurred creating product: " . $e->getMessage());
         }
+    }
+
+    /**
+     * @param $websiteCode
+     * @return int
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    private function getWebsiteIds($websiteCode)
+    {
+        return match ($websiteCode) {
+            'HEALTHY SPORTS' => $this->websiteRepository->get('healthy_sports')->getId(),
+            'NUTRIVITA' => $this->websiteRepository->get('nutrivita')->getId(),
+            default => $this->websiteRepository->get('base')->getId(),
+        };
     }
 
     /**
