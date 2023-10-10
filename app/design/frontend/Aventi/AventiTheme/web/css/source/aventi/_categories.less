@@ -98,6 +98,7 @@
         }
 
         .columns {
+            padding-top: 13px;
             position: relative;
             &::before {
                 content: '';
@@ -392,11 +393,7 @@
 
                     div.product-container.category-product-container {
                         div.category-product-actions {
-                            position: absolute;
-                            top: -6%;
-                            right: 0;
                             padding-right: 15px;
-
                             .form-item-select {
                                 &:after {
                                     top: 2px;
@@ -541,6 +538,9 @@
 
                 .sidebar.sidebar-main {
                     border-top: unset;
+                    margin-top: unset;
+                    padding-top: unset;
+                    height: 0;
                 }
 
             }
@@ -647,7 +647,6 @@
             #maincontent {
 
                 .sidebar.sidebar-main {
-                    margin-top: 0.5em;
                     border-top: unset;
                 }
 
