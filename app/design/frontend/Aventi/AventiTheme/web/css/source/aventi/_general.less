@@ -59,15 +59,15 @@
             .slider_mgs_carousel.owl-carousel {
 
                 .owl-nav {
-            
+
                     &:hover ,
                     &.disabled{
                         display: none !important;
                     }
-            
+
                     > div {
                         display: none;
-            
+
                         &:hover{
                             display: none;
                         }
@@ -192,7 +192,7 @@
                 border-radius: 4px;
                 height: 40px;
                 font-style: normal;
-                
+
                 &:hover,
                 &:focus,
                 &:active {
@@ -285,7 +285,7 @@
         .product.product-item .product-item-info,
         .product-item-info.product-item.item.product  {
             padding: 0px 15px;
-            
+
             @media (max-width: 1200px) {
                 box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             }
@@ -331,7 +331,7 @@
                 height: 28px;
                 max-height: 28px;
 
-                div.product-reviews-summary { 
+                div.product-reviews-summary {
                     margin: unset
                 }
             }
@@ -361,7 +361,7 @@
                     display: grid;
                     place-content: center;
                     margin: 8px 0 8px;
-                    
+
                     div.rating-summary {
                         transform: scale(1.5);
                         margin: unset;
@@ -460,12 +460,33 @@
     }
 
     // Finish cards products
-
     .owl-carousel .owl-nav > div:not(.disabled):hover {
         background: transparent !important;
 
         span {
             color: @color-secondary !important;
+        }
+    }
+
+    // Category banner.
+    body#html-body {
+        #page-title-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            align-items: end;
+            height: 200px;
+            max-height: 200px;
+            padding: 58px 0 22px;
+            overflow: hidden;
+
+            h1 {
+                margin: 0 auto;
+                padding: 0 15px;
+                width: 100%;
+                max-width: 1200px;
+                text-align: left;
+                font-size: 42px;
+            }
         }
     }
 }
@@ -492,7 +513,7 @@ html {
 
 
 
-//Header 
+//Header
 @media screen and (max-width: 1200px) {
 
     body#html-body {
@@ -674,7 +695,7 @@ html {
     }
 
     }
-  
+
 }
 
 
