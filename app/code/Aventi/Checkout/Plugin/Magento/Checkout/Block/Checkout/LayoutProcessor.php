@@ -7,21 +7,23 @@ declare(strict_types=1);
 
 namespace Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout;
 
-use Aventi\AventiTheme\Model\Config\Source\CustomerIdentificationTypeOptions;
+use Aventi\AventiTheme\Model\Config\Source\CustomerTypeOptions;
 
 class LayoutProcessor
 {
     /**
-     * @var CustomerIdentificationTypeOptions
+     * @var CustomerTypeOptions
      */
-    private CustomerIdentificationTypeOptions $customerIdentificationTypeOptions;
+    private CustomerTypeOptions $customerTypeOptions;
+
 
     /**
-     * @param CustomerIdentificationTypeOptions $customerIdentificationTypeOptions
+     * @param CustomerTypeOptions $customerTypeOptions
      */
-    public function __construct(CustomerIdentificationTypeOptions $customerIdentificationTypeOptions)
-    {
-        $this->customerIdentificationTypeOptions = $customerIdentificationTypeOptions;
+    public function __construct(
+        CustomerTypeOptions $customerTypeOptions
+    ) {
+        $this->customerTypeOptions = $customerTypeOptions;
     }
 
     /**
@@ -47,25 +49,39 @@ class LayoutProcessor
         $shippingForm['postcode']['placeholder'] = __('Código postal');
         $shippingForm['telephone']['placeholder'] = __('Telefono');
 
-        $customerIdentificationTypeOptions = $this->customerIdentificationTypeOptions->toOptionArray();
+        $customerTypeOptions = $this->customerTypeOptions->toOptionArray();
 
-        $shippingForm['fax'] = [
-            'component' => 'Magento_Ui/js/form/element/select',
+        $shippingForm['suffix'] = [
+            'component' => 'Aventi_Checkout/js/form/element/document-type',
             'config' => [
                 'template' => 'ui/form/field',
                 'elementTmpl' => 'ui/form/element/select',
+                'id' => 'suffix',
+            ],
+            'dataScope' => 'shippingAddress.suffix',
+            'label' => __('Customer type'),
+            'provider' => 'checkoutProvider',
+            'visible' => true,
+            'sortOrder' => 48,
+            'validation' => [],
+            'caption' => __('Please select an option'),
+            'options' => $customerTypeOptions
+        ];
+
+        $shippingForm['fax'] = [
+            'component' => 'Aventi_Checkout/js/form/element/document-type',
+            'config' => [
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'Aventi_Checkout/form/element/document-type',
                 'id' => 'fax',
             ],
             'dataScope' => 'shippingAddress.fax',
             'label' => __('Identification type'),
             'provider' => 'checkoutProvider',
-            'visible' => true,
             'sortOrder' => 49,
-            'validation' => [],
-            'options' => $customerIdentificationTypeOptions,
+            'validation' => []
         ];
 
-        //Your plugin code
         return $result;
     }
 }
