@@ -9,18 +9,19 @@ require([
     const loader = $('div.loader');
     const homebody = $('.page-wrapper');
 
-    console.log("Entra")
-
     prehome.ready(function() {
-
-        body.css('overflow', 'hidden')
-        homebody.css('display','none')
+        body.css('overflow', 'hidden');
+        homebody.css('display','none');
+        if (!prehome.hasClass('display-none_')) {
+            prehome.addClass('display-none_');
+        }
 
         if (check) {
             body.css('overflow', 'auto')
             homebody.css('display','flex')
             prehome.fadeOut()
         }else{
+            prehome.removeClass('display-none_')
             loader.fadeOut()
         }
 
