@@ -678,6 +678,11 @@
                         display: grid;
                         place-content: center;
                         ol.products.product-items {
+                            display: grid;
+                            gap: 13px;
+                            grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+                            place-items: center;
+                            height: auto !important;
                             width: 95vw;
                             max-width: unset;
                             margin-top: unset;
@@ -686,7 +691,13 @@
                                 display: grid;
                                 gap: 5px;
                                 height: 406px;
-                                overflow: hidden;
+                                position: unset !important;
+                                transition-property: unset !important;
+                                transition-duration: unset !important;
+                                transition-delay: unset !important;
+                                transform: unset !important;
+                                max-width: 90%;
+                                overflow: visible;
                                 div.product-top {
                                     overflow: hidden;
                                     a.product.product-item-photo {
