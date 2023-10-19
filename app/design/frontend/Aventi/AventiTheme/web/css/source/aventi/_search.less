@@ -1,129 +1,137 @@
 //  All devices
 & when (@media-common =true) {
 
-    body.catalogsearch-result-index{
+    body{
+        
+        #search_mini_form .mgs-instant-search-dropdown 
+        .mgs-instant-autocomplete-wrapper .product-items 
+        .product-item-details .product-info-price .price-box {
+            display: flex;
+        }
 
-        .page-wrapper{
-    
-            //titulo de pagina con fondo
-            #page-title-wrapper{
-                background-image: url('/media/aventi/images/myAccount.png');
-                padding: 150px 0px 20px 0px;
-                text-align: left;
-    
-                &::before{
-                    background: rgba(0,0,0,0.6);
-                }
-    
-                .page-title{
-                    max-width: 1200px;
-                    margin: auto;
-                    padding: 0px 15px;
+        &.catalogsearch-result-index{
+            .page-wrapper{
 
-                    span{
-                        font-weight: 600;
-                        font-size: 42px;
+                //titulo de pagina con fondo
+                #page-title-wrapper{
+                    background-image: url('/media/aventi/images/myAccount.png');
+                    padding: 150px 0px 20px 0px;
+                    text-align: left;
+
+                    &::before{
+                        background: rgba(0,0,0,0.6);
                     }
-                }
-            }
 
-            .breadcrumbs{
-                background: none;
-                padding: 20px 15px;
-                max-width: 1200px;
-                margin-bottom: 25px;
-
-                .items{
-                    display: flex;
-                    align-items: center;
-                    padding: 0;
-
-                    &::after{
-                        content: '';
+                    .page-title{
                         max-width: 1200px;
-                        width: 98%;
-                        background: #B6BAC0;
-                        height: 1px;
-                        position: absolute;
-                        left: 0;
-                        right: 0;
                         margin: auto;
-                        bottom: 0px;
-                    }
+                        padding: 0px 15px;
 
-                    .item{
+                        span{
+                            font-weight: 600;
+                            font-size: 42px;
+                        }
+                    }
+                }
+
+                .breadcrumbs{
+                    background: none;
+                    padding: 20px 15px;
+                    max-width: 1200px;
+                    margin-bottom: 25px;
+
+                    .items{
                         display: flex;
                         align-items: center;
-                        
-                        a, strong{
-                            max-width: unset;
-                            font-weight: 400;
-                            font-size: 14px;
-                            color: @grey-dark;
-                        }
-                    }
-                }
-            }
+                        padding: 0;
 
-            .columns{
-
-                .sidebar-additional{
-                    display: none;
-                }
-
-                .sidebar-main{
-                    .block-content.filter-content{
-                        background: @grey-light;
-                        min-height: 350px;
-                        padding: 25px 15px;
-                        max-width: 350px;
-
-                        h2{
-                            font-weight: 600;
-                            font-size: 14px;
-                            color: @black_secunday;
-                            margin-bottom: 10px;
+                        &::after{
+                            content: '';
+                            max-width: 1200px;
+                            width: 98%;
+                            background: #B6BAC0;
+                            height: 1px;
+                            position: absolute;
+                            left: 0;
+                            right: 0;
+                            margin: auto;
+                            bottom: 0px;
                         }
 
-                        .block-filter-content{
-                            background: @background-footer;
-                            padding: 0px 25px;
-                            border-radius: 4px;
-
-                            .filter-options-item{
-                                .filter-options-title{
-                                    font-weight: 400;
-                                    font-size: 14px;
-                                    color: #424242;
-                                    margin: 0px;
-                                    padding: 0px;
-                                    line-height: 3;
-
-                                    &::before{
-                                        display: none;
-                                    }
-                                    &::after{
-                                        bottom: 10px;
-                                        line-height: 1;
-                                        font-size: 22px;
-                                    }
-                                }
-                                .filter-options-content{
-                                    margin: 0px;
-                                }
+                        .item{
+                            display: flex;
+                            align-items: center;
+                            
+                            a, strong{
+                                max-width: unset;
+                                font-weight: 400;
+                                font-size: 14px;
+                                color: @grey-dark;
                             }
                         }
                     }
                 }
 
-                .column.main{
-                    .search.results{
-                        .category-product-actions{
-                            display: none;
-                        }
+                .columns{
 
-                        .products.list.items{
-                            margin: 0px;
+                    .sidebar-additional{
+                        display: none;
+                    }
+
+                    .sidebar-main{
+                        .block-content.filter-content{
+                            background: @grey-light;
+                            min-height: 350px;
+                            padding: 25px 15px;
+                            max-width: 350px;
+
+                            h2{
+                                font-weight: 600;
+                                font-size: 14px;
+                                color: @black_secunday;
+                                margin-bottom: 10px;
+                            }
+
+                            .block-filter-content{
+                                background: @background-footer;
+                                padding: 0px 25px;
+                                border-radius: 4px;
+
+                                .filter-options-item{
+                                    .filter-options-title{
+                                        font-weight: 400;
+                                        font-size: 14px;
+                                        color: #424242;
+                                        margin: 0px;
+                                        padding: 0px;
+                                        line-height: 3;
+
+                                        &::before{
+                                            display: none;
+                                        }
+                                        &::after{
+                                            bottom: 10px;
+                                            line-height: 1;
+                                            font-size: 22px;
+                                        }
+                                    }
+                                    .filter-options-content{
+                                        margin: 0px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .column.main{
+                        .search.results{
+                            .category-product-actions{
+                                display: none;
+                            }
+
+                            .products.list.items{
+                                margin: 0px;
+                            }
                         }
                     }
                 }
@@ -132,7 +140,6 @@
     }
 
     // Elastic search 
-
     body#html-body.instantsearch-result-index {
         .sidebar.sidebar-additional{
             display: none;

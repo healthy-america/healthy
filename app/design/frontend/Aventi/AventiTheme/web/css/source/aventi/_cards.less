@@ -10,16 +10,47 @@
 
 & when (@media-common = true)  {
 
-
     #html-body {
         // Cards products
         .product.product-item {
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
             padding: 0;
+            box-shadow: 0px 4px 15px transparent;
+            &:hover {
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+                padding: 0;
+
+                .details.product-item-details {
+                    .action-mobile {
+                        form {
+                            button.action.tocart.btn-cart.primary {
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+            }
 
             .product-top {
+                background-color: @white;
+                &:hover {
+                    a.product {
+                        &::after {
+                            background: transparent;
+                            transition: unset;
+                        }
+                    }
+
+                    .product-label {
+                        display: block;
+                    }
+                }
+
                 a.product {
-                    padding-bottom: 100% !important;
+                    padding-bottom: 100% !important; // Le llega un padding-bottom desde el elemento
+                    &::after {
+                        background: transparent;
+                        transition: unset;
+                    }
                 }
 
                 ul.actions-link {
@@ -39,7 +70,7 @@
                     top: 6px;
                     span {
                     line-height: 44px;
-                    font-family: "Montserrat";
+                    font-family: @Montserrat-font;
                     font-style: normal;
                     font-weight: 600;
                     font-size: 14px;
@@ -51,15 +82,14 @@
                 .product-label.new-label {
                     background: @grey;
                     border-radius: 4px;
-
-                    font-family: "Roboto";
+                    font-family: @roboto-font;
                     font-style: normal;
                     font-weight: 600;
                     font-size: 10.5px;
                     line-height: 23px;
                     text-align: center;
                     display: block;
-                    color: #ffffff;
+                    color: @white;
                     left: 0;
                     top: 12px;
                 }
@@ -87,12 +117,12 @@
                     align-items: center;
 
                     .product-item-link {
-                        font-family: "Roboto";
+                        font-family:@roboto-font;
                         font-weight: 600;
                         font-size: 16px;
                         line-height: 19px;
                         text-align: center;
-                        color: #000000;
+                        color: @black;
                         overflow: hidden;
                         text-overflow: ellipsis;
                         display: -webkit-box;
@@ -118,7 +148,7 @@
 
                         div.rating-result > span:before {
                             font-weight: 550;
-                            color: #FFDD26;
+                            color: @start-background;
                         }
                     }
                 }
@@ -131,32 +161,31 @@
                     flex-direction: row-reverse;
                     justify-content: center;
                     .price {
-                        font-family: "Roboto";
+                        font-family: @roboto-font;
                         font-weight: 600;
                         font-size: 16px;
                         line-height: 19px;
                         text-align: center;
-                        color: #000000;
+                        color: @black;
                     }
                     .special-price {
                         * {
-                            font-family: "Roboto";
+                            font-family: @roboto-font;
                             font-weight: 600;
                             font-size: 16px;
                             line-height: 19px;
                             text-align: center;
-                            color: #000000;
+                            color: @black;
                         }
                     }
                     .old-price {
                         * {
-                            font-family: "Roboto";
+                            font-family: @roboto-font;
                             font-weight: 600;
                             font-size: 12px;
                             line-height: 11px;
                             text-align: center;
                             text-decoration-line: line-through;
-
                             color: @color-secondary;
                         }
                     }
@@ -171,7 +200,7 @@
                             position: unset;
                             transform: none;
                             opacity: 1;
-                            visibility: visible;
+                            visibility: hidden;
 
                             span.text {
                                 display: block;
@@ -185,27 +214,47 @@
 
 }
 
-
-
-//
-//  Desktop
-//  _____________________________________________
-
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
-    
-
+@media screen and (max-width: @screen_1999) {
+    #html-body {
+        // Cards products
+        .product.product-item {
+            max-width: 90%;
+            margin-right: 5%;
+            margin-left: 5%;
+        }
+    }
 }
 
+// General para todos los mobile.
+@media screen and (max-width: @screen_766) {
+    #html-body {
+        // Cards products
+        .product.product-item {
+            max-width: 100%;
+            margin: unset;
+            .details.product-item-details {
+                .action-mobile {
+                    form {
+                        button.action.tocart.btn-cart.primary {
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}
 
-//
-//  Mobile
-//  _____________________________________________
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
-    body#html-body {
-
+// Query para solucionar el problema de los productos en la home.
+@media screen and (max-width: @screen_766) and (min-width: @screen_500) {
+    #html-body {
+        .discounts-products {
+            // Cards products
+            .product.product-item {
+                max-width: 80%;
+                margin-right: 10%;
+                margin-left: 10%;
+            }
+        }
     }
-
 }
