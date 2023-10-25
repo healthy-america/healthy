@@ -97,7 +97,13 @@
                             display: flex;
                             align-items: center;
                             gap: 10px;
-
+                            
+                            .price-final_price {
+                                margin: 10px 0;
+                            }
+                            
+                            .price-final_price 
+                            .price-wrapper,
                             .special-price {
                                 .price {
                                     font-weight: 600;
@@ -261,6 +267,47 @@
                                             margin: 0px;
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .product.media {
+                    .owl-carousel.gallery-horizontal {
+                        .owl-nav {
+                            .owl-next ,
+                            .owl-prev {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 30px;
+                                height: 30px;
+                                background: rgba(31, 32, 33, 0.60);
+                                border: none;
+                                border-radius: unset;
+                                opacity: 1;
+                                visibility: visible;
+
+                                .fa {
+                                    color: @white;
+                                    font-size: 24px;
+                                }
+                            }
+
+                            // Arrow next
+                            .owl-next {
+                                right: 0;
+                                .fa {
+                                    margin-left: 3px;
+                                }
+                            }
+
+                            // Arrow prev
+                            .owl-prev {
+                                left: 0;
+                                .fa {
+                                    margin-right: 3px;
                                 }
                             }
                         }
