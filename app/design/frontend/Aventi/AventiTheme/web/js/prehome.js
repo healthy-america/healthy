@@ -20,12 +20,14 @@ require([
             body.css('overflow', 'auto')
             homebody.css('display','flex')
             prehome.fadeOut()
+            loader.fadeOut()
         }else{
             prehome.removeClass('display-none_')
             loader.fadeOut()
         }
 
-        $('.container-content a').on('click', function () {
+        $('.container-content div').on('click', function () {
+            let _this = $(this);
             let url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie';
             $.ajax({
                 url: url,
@@ -36,9 +38,15 @@ require([
                 },
                 cache: false,
                 success: function (data) {
-                    $('body').css('overflow', 'auto');
-                    homebody.css('display','flex');
-                    prehome.fadeOut();
+                    let link = _this.attr('href');
+                    if(window.location.href !== link){
+                        window.location.href = link;
+                    }else{
+                        $('body').css('overflow', 'auto')
+                        homebody.css('display','flex')
+                        prehome.hide()
+                    }
+
                 }
             });
         })
