@@ -25,7 +25,7 @@ require([
             loader.fadeOut()
         }
 
-        prehome.find('img').on('click', function () {
+        $('.container-content a').on('click', function () {
             let url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie';
             $.ajax({
                 url: url,
