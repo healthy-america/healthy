@@ -470,39 +470,37 @@ use Magento\Framework\App\Action\Action;
 
             <?php echo $this->getLayout()->createBlock('Magento\Swatches\Block\Product\Renderer\Listing\Configurable')->setProduct($_product)->setTemplate('MGS_Fbuilder::products/swatches/renderer.phtml')->toHtml() ?>
 
-
-
-        </div>
-        <div class="action-mobile">
-        <?php if ($hideAddCart != 1) : ?>
-            <?php if ($_product->isSaleable()) : ?>
-                <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                <form data-role="tocart-form" data-product-sku="<?php echo /* @NoEscape */
-                                                                $_product->getSku() ?>" action="<?php echo /* @NoEscape */
-                                                                                                    $postParams['action'] ?>" method="post">
-                    <input type="hidden" name="product" value="<?php echo /* @escapeNotVerified */
-                                                                $postParams['data']['product'] ?>">
-                    <input type="hidden" name="<?php echo /* @escapeNotVerified */
-                                                Action::PARAM_NAME_URL_ENCODED ?>" value="<?php echo /* @escapeNotVerified */
-                                                                                                $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
-                    <?php echo $block->getBlockHtml('formkey') ?>
-                    <?php if ($_product->getTypeId() == 'simple') : ?>
-                        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary">
-                            <span class="icon pe-7s-shopbag"></span>
-                            <span class="text"><?= /* @escapeNotVerified */
-                                                __('Add to Cart') ?></span>
-                        </button>
-                    <?php else : ?>
-                        <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary" onclick="window.location.href = '<?php echo $block->getProductUrl($_product) ?>'">
-                            <span class="icon pe-7s-shopbag"></span>
-                            <span class="text"><?= /* @escapeNotVerified */
-                                                __('Add to Cart') ?></span>
-                        </button>
+            <div class="action-mobile">
+                <?php if ($hideAddCart != 1) : ?>
+                    <?php if ($_product->isSaleable()) : ?>
+                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                        <form data-role="tocart-form" data-product-sku="<?php echo /* @NoEscape */
+                                                                        $_product->getSku() ?>" action="<?php echo /* @NoEscape */
+                                                                                                            $postParams['action'] ?>" method="post">
+                            <input type="hidden" name="product" value="<?php echo /* @escapeNotVerified */
+                                                                        $postParams['data']['product'] ?>">
+                            <input type="hidden" name="<?php echo /* @escapeNotVerified */
+                                                        Action::PARAM_NAME_URL_ENCODED ?>" value="<?php echo /* @escapeNotVerified */
+                                                                                                        $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                            <?php echo $block->getBlockHtml('formkey') ?>
+                            <?php if ($_product->getTypeId() == 'simple') : ?>
+                                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary">
+                                    <span class="icon pe-7s-shopbag"></span>
+                                    <span class="text"><?= /* @escapeNotVerified */
+                                                        __('Add to Cart') ?></span>
+                                </button>
+                            <?php else : ?>
+                                <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary" onclick="window.location.href = '<?php echo $block->getProductUrl($_product) ?>'">
+                                    <span class="icon pe-7s-shopbag"></span>
+                                    <span class="text"><?= /* @escapeNotVerified */
+                                                        __('Add to Cart') ?></span>
+                                </button>
+                            <?php endif; ?>
+                        </form>
                     <?php endif; ?>
-                </form>
-            <?php endif; ?>
-        <?php endif ?>
-    </div>
+                <?php endif ?>
+            </div>
+        </div>
     </div>
 
 <?php endif; ?>

@@ -205,35 +205,35 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                             <?php if ($_product->isAvailable()): ?>
                                 <?= $block->getProductDetailsHtml($_product) ?>
                             <?php endif; ?>
+                            <?php if ($_product->isSaleable() && !$_hideAddCart): ?>
+                                    <div class="action-mobile">
+                                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                        <form data-role="tocart-form"
+                                              data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
+                                              action="<?= $escaper->escapeUrl($postParams['action']) ?>"
+                                              method="post">
+                                            <input type="hidden"
+                                                   name="product"
+                                                   value="<?= /* @noEscape */
+                                                   $postParams['data']['product'] ?>">
+                                            <input type="hidden"
+                                                   name="<?= /* @noEscape */
+                                                   Action::PARAM_NAME_URL_ENCODED ?>"
+                                                   value="<?=
+                                                   /* @noEscape */
+                                                   $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
+                                                   ?>">
+                                            <?= $block->getBlockHtml('formkey') ?>
+                                            <button type="submit"
+                                                    title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
+                                                    class="action tocart btn-cart primary ">
+                                                <span class="icon pe-7s-shopbag"></span>
+                                                <span class="text"><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                <?php endif; ?>
                         </div>
-                        <?php if ($_product->isSaleable() && !$_hideAddCart): ?>
-                                <div class="action-mobile">
-                                    <?php $postParams = $block->getAddToCartPostParams($_product); ?>
-                                    <form data-role="tocart-form"
-                                          data-product-sku="<?= $escaper->escapeHtml($_product->getSku()) ?>"
-                                          action="<?= $escaper->escapeUrl($postParams['action']) ?>"
-                                          method="post">
-                                        <input type="hidden"
-                                               name="product"
-                                               value="<?= /* @noEscape */
-                                               $postParams['data']['product'] ?>">
-                                        <input type="hidden"
-                                               name="<?= /* @noEscape */
-                                               Action::PARAM_NAME_URL_ENCODED ?>"
-                                               value="<?=
-                                               /* @noEscape */
-                                               $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
-                                               ?>">
-                                        <?= $block->getBlockHtml('formkey') ?>
-                                        <button type="submit"
-                                                title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
-                                                class="action tocart btn-cart primary ">
-                                            <span class="icon pe-7s-shopbag"></span>
-                                            <span class="text"><?= $escaper->escapeHtml(__('Add to Cart')) ?></span>
-                                        </button>
-                                    </form>
-                                </div>
-                            <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             <?php else: ?>

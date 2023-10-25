@@ -1,0 +1,260 @@
+//**
+//** Aventi
+//** https://www.aventi.co/ 
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common = true)  {
+
+    #html-body {
+        // Cards products
+        .product.product-item {
+            padding: 0;
+            box-shadow: 0px 4px 15px transparent;
+            &:hover {
+                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
+                padding: 0;
+
+                .details.product-item-details {
+                    .action-mobile {
+                        form {
+                            button.action.tocart.btn-cart.primary {
+                                visibility: visible;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .product-top {
+                background-color: @white;
+                &:hover {
+                    a.product {
+                        &::after {
+                            background: transparent;
+                            transition: unset;
+                        }
+                    }
+
+                    .product-label {
+                        display: block;
+                    }
+                }
+
+                a.product {
+                    padding-bottom: 100% !important; // Le llega un padding-bottom desde el elemento
+                    &::after {
+                        background: transparent;
+                        transition: unset;
+                    }
+                }
+
+                ul.actions-link {
+                    display: none;
+                }
+
+                .product-label.multiple-label {
+                    margin: 0;
+                }
+
+                .product-label.sale-label {
+                    background: @background-color-discount;
+                    border-radius: 100%;
+                    height: 45px;
+                    width: 45px;
+                    right: 6px;
+                    top: 6px;
+                    span {
+                    line-height: 44px;
+                    font-family: @Montserrat-font;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+                }
+
+                // New label
+
+                .product-label.new-label {
+                    background: @grey;
+                    border-radius: 4px;
+                    font-family: @roboto-font;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 10.5px;
+                    line-height: 23px;
+                    text-align: center;
+                    display: block;
+                    color: @white;
+                    left: 0;
+                    top: 12px;
+                }
+            }
+
+            .details.product-item-details {
+                padding-top: 0px;
+
+                ._container_reviews {
+                    display: grid;
+                    place-content: center;
+                    height: 28px;
+                    max-height: 28px;
+
+                    div.product-reviews-summary {
+                        margin: unset
+                    }
+                }
+
+                .product.name {
+                    margin: unset;
+                    min-height: 38px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .product-item-link {
+                        font-family:@roboto-font;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-align: center;
+                        color: @black;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        max-height: 48px;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+
+                div.product-reviews-summary {
+                    display: grid;
+                    place-content: center;
+                    margin: 8px 0 8px;
+
+                    div.rating-summary {
+                        transform: scale(1.5);
+                        margin: unset;
+
+                        div.rating-result::before {
+                            font-weight: 510;
+                            color: @black;
+                        }
+
+                        div.rating-result > span:before {
+                            font-weight: 550;
+                            color: @start-background;
+                        }
+                    }
+                }
+            
+
+                // Price
+
+                .price-box.price-final_price {
+                    display: flex;
+                    flex-direction: row-reverse;
+                    justify-content: center;
+                    .price {
+                        font-family: @roboto-font;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 19px;
+                        text-align: center;
+                        color: @black;
+                    }
+                    .special-price {
+                        * {
+                            font-family: @roboto-font;
+                            font-weight: 600;
+                            font-size: 16px;
+                            line-height: 19px;
+                            text-align: center;
+                            color: @black;
+                        }
+                    }
+                    .old-price {
+                        * {
+                            font-family: @roboto-font;
+                            font-weight: 600;
+                            font-size: 12px;
+                            line-height: 11px;
+                            text-align: center;
+                            text-decoration-line: line-through;
+                            color: @color-secondary;
+                        }
+                    }
+                }
+
+                .action-mobile {
+                    form {
+                        button.action.tocart.btn-cart.primary {
+                            width: 100%;
+                            border: 0;
+                            border-radius: 0;
+                            position: unset;
+                            transform: none;
+                            opacity: 1;
+                            visibility: hidden;
+
+                            span.text {
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
+
+}
+
+@media screen and (max-width: @screen_1999) {
+    #html-body {
+        // Cards products
+        .product.product-item {
+            max-width: 90%;
+            margin-right: 5%;
+            margin-left: 5%;
+        }
+    }
+}
+
+// General para todos los mobile.
+@media screen and (max-width: @screen_766) {
+    #html-body {
+        // Cards products
+        .product.product-item {
+            max-width: 100%;
+            margin: unset;
+            .details.product-item-details {
+                .action-mobile {
+                    form {
+                        button.action.tocart.btn-cart.primary {
+                            visibility: visible;
+                        }
+                    }
+                }
+            }
+        }
+    }    
+}
+
+// Query para solucionar el problema de los productos en la home.
+@media screen and (max-width: @screen_766) and (min-width: @screen_500) {
+    #html-body {
+        .discounts-products {
+            // Cards products
+            .product.product-item {
+                max-width: 80%;
+                margin-right: 10%;
+                margin-left: 10%;
+            }
+        }
+    }
+}

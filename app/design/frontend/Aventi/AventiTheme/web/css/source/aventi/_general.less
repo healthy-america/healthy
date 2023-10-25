@@ -12,8 +12,6 @@
 //  _____________________________________________
 
 & when (@media-common =true) {
-
-
     body#html-body {
         h1,
         h2,
@@ -227,234 +225,7 @@
 
         @media (max-width: 767px) {
             .owl-item.active {
-                transform: scale(1.07);
                 transition: all 0.3s ease-in-out;
-            }
-        }
-    }
-
-    body#html-body.catalog-product-view .page-main.page-main-details,
-    body#html-body #maincontent{
-        // Cards products
-        .product.product-item{
-            padding: 0 15px !important;
-
-            // Button add to cart
-            .action-mobile button.action.btn-cart.primary, .action-mobile .action.tocart.btn-cart {
-                transform: none;
-                position: relative;
-                margin: 0;
-                visibility: hidden;
-                opacity: 0;
-                transition: all 0.25s ease;
-                border: none;
-                padding: 8px;
-
-                left: -15px;
-                width: ~"calc(30px + 100%)";
-                border-radius: 0;
-                // Font
-
-                font-family: "Roboto";
-                font-weight: 600;
-                font-size: 16px;
-                line-height: 19px;
-                text-align: center;
-                color: @primary-button-color-text;
-
-                background: @product-button-background;
-
-                .icon.pe-7s-shopbag {
-                    display: none;
-                }
-
-                @media (max-width: 1200px) {
-                    visibility: visible;
-                    opacity: 1;
-                    bottom: 0;
-                    top: unset;
-                    margin: 0;
-
-                    span.text {
-                        display: block !important;
-                    }
-                }
-            }
-        }
-
-        .product.product-item .product-item-info,
-        .product-item-info.product-item.item.product  {
-            padding: 0px 15px;
-
-            @media (max-width: 1200px) {
-                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            }
-
-            &:hover {
-                box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.11);
-
-                .action-mobile button.action.btn-cart.primary, .action-mobile .action.tocart.btn-cart {
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    bottom: 0;
-                    top: unset;
-                    margin: 0;
-                }
-            }
-            .product-top {
-                overflow: visible;
-                &:hover {
-                    .product-label.sale-label {
-                        display: block !important;
-                    }
-                    a::after {
-                        display: none !important;
-                    }
-                }
-
-                a {
-                    padding: unset !important;
-                    height: 250px;
-                    background: #fff;
-                }
-
-                .actions-link.actions-secondary {
-                    display: none;
-                }
-            }
-
-            // Detail
-
-            ._container_reviews {
-                display: grid;
-                place-content: center;
-                height: 28px;
-                max-height: 28px;
-
-                div.product-reviews-summary {
-                    margin: unset
-                }
-            }
-
-            .product.product-item-details {
-                padding-top: 0px;
-                //min-height: 90px;
-
-                .product.name {
-                    margin: unset;
-                    min-height: 38px;
-                    display: flex !important;
-                    justify-content: center;
-                    align-items: center;
-                    .product-item-link {
-                        font-family: "Roboto";
-                        font-style: normal;
-                        font-weight: 600;
-                        font-size: 16px;
-                        line-height: 19px;
-                        text-align: center;
-                        color: #000000;
-                    }
-                }
-
-                div.product-reviews-summary {
-                    display: grid;
-                    place-content: center;
-                    margin: 8px 0 8px;
-
-                    div.rating-summary {
-                        transform: scale(1.5);
-                        margin: unset;
-
-                        div.rating-result::before {
-                            font-weight: 510;
-                            color: @black;
-                        }
-
-                        div.rating-result > span:before {
-                            font-weight: 550;
-                            color: #FFDD26;
-                        }
-                    }
-                }
-            }
-
-            // Price
-
-            .price-box.price-final_price {
-                display: flex;
-                flex-direction: row-reverse;
-                justify-content: center;
-                .price {
-                    font-family: "Roboto";
-                    font-weight: 600;
-                    font-size: 16px;
-                    line-height: 19px;
-                    text-align: center;
-                    color: #000000;
-                }
-                .special-price {
-                    * {
-                        font-family: "Roboto";
-                        font-weight: 600;
-                        font-size: 16px;
-                        line-height: 19px;
-                        text-align: center;
-                        color: #000000;
-                    }
-                }
-                .old-price {
-                    * {
-                        font-family: "Roboto";
-                        font-weight: 600;
-                        font-size: 12px;
-                        line-height: 11px;
-                        text-align: center;
-                        text-decoration-line: line-through;
-
-                        color: @color-secondary;
-                    }
-                }
-            }
-
-            // Labels
-
-            .product-label.multiple-label {
-                margin: 0;
-            }
-
-            .product-label.sale-label {
-                background: @background-color-discount;
-                border-radius: 100%;
-                height: 45px;
-                width: 45px;
-                right: -6px;
-                top: 6px;
-                span {
-                    line-height: 44px;
-                    font-family: "Montserrat";
-                    font-style: normal;
-                    font-weight: 600;
-                    font-size: 14px;
-                }
-            }
-
-            // New label
-
-            .product-label.new-label {
-                background: @grey;
-                border-radius: 4px;
-
-                font-family: "Roboto";
-                font-style: normal;
-                font-weight: 600;
-                font-size: 10.5px;
-                line-height: 23px;
-                text-align: center;
-                display: block;
-                color: #ffffff;
-                left: 0;
-                top: 12px;
             }
         }
     }
@@ -492,6 +263,10 @@
             display: none;
         }
     }
+
+    .display-none_ {
+        display: none !important; // Ocultar La caja si o si
+    }
 }
 
 body,
@@ -514,26 +289,16 @@ html {
     (@break = @screen__m) {
 }
 
-
-
 //Header
 @media screen and (max-width: 1200px) {
-
     body#html-body {
         .page-wrapper {
-
             #search_mini_form.form.minisearch {
                 margin-top: 10px;
             }
-
         }
     }
-
 }
-
-
-
-
 
 //
 //  Mobile
@@ -565,8 +330,6 @@ html {
             }
     }
 }
-
-
 
 @media screen and (max-width: 800px) {
 
@@ -605,96 +368,6 @@ html {
                 }
             }
         }
-
-        div.discounts-products {
-
-            div.sale-products-grid.products-grid {
-                div.owl-stage-outer {
-                    height: 320px !important; //Magento le inserta un alto en elemento
-
-                    div.owl-stage {
-                        div.owl-item {
-                            div.product.product-item  {
-                                div.product-item-info {
-                                    position: relative;
-                                    display: grid;
-                                    height: 271px;
-                                    div.product-top {
-                                        overflow: hidden;
-                                        a.product.product-item-photo  {
-                                            height: 150px;
-                                            overflow: hidden;
-
-                                            img {
-                                                transform: scale(1.2);
-                                                object-fit: scale-down;
-                                                height: -webkit-fill-available;
-                                            }
-
-                                            div,span {
-                                                background: @white;
-                                            }
-                                        }
-
-                                        span.product-label.sale-label {
-                                            height: 40px;
-                                            width: 40px;
-                                            right: 0px;
-
-                                            span {
-                                                line-height: 41px;
-                                                font-size: 12px;
-                                            }
-
-                                        }
-
-                                    }
-
-                                    div.product.product-item-details {
-                                        display: grid;
-                                        place-content: center;
-
-                                        h5.product.product-item-name {
-                                            a.product-item-link {
-                                                font-size: 14px;
-                                            }
-                                        }
-
-                                        div.price-box.price-final_price {
-                                            span.special-price {
-                                                span.price-container.price-final_price {
-                                                    span.price-wrapper span.price {
-                                                      font-size: 14px;
-                                                    }
-                                                }
-                                            }
-                                        }
-
-                                    }
-
-                                    div.action-mobile {
-                                        display: grid;
-                                        align-items: flex-end;
-
-                                        form {
-                                            button {
-                                                background:@product-button-background;
-                                                height: 34px;
-                                                opacity: 1;
-                                            }
-                                        }
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-
-                }
-            }
-
-        }
-
     }
 
     }
