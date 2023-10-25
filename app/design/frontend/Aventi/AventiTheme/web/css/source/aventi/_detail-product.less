@@ -97,18 +97,25 @@
                             display: flex;
                             align-items: center;
                             gap: 10px;
-
-                            .special-price {
-                                .price {
-                                    font-weight: 600;
-                                    font-size: 24px;
-                                    color: @color-primary;
-                                }
+                            
+                            .price-final_price {
+                                margin: 10px 0;
                             }
+
+                            * {
+                                line-height: 1;
+                            }
+
+                            .price {
+                                font-weight: 600;
+                                font-size: 24px;
+                                color: @color-primary;
+                            }
+
                             .old-price {
                                 .price {
                                     font-size: 14px;
-                                    color: #606060;
+                                    color: @color-discount-price;
                                 }
                             }
                         }
@@ -266,6 +273,47 @@
                         }
                     }
                 }
+
+                .product.media {
+                    .owl-carousel.gallery-horizontal {
+                        .owl-nav {
+                            .owl-next ,
+                            .owl-prev {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 30px;
+                                height: 30px;
+                                background: rgba(31, 32, 33, 0.60);
+                                border: none;
+                                border-radius: unset;
+                                opacity: 1;
+                                visibility: visible;
+
+                                .fa {
+                                    color: @white;
+                                    font-size: 24px;
+                                }
+                            }
+
+                            // Arrow next
+                            .owl-next {
+                                right: 0;
+                                .fa {
+                                    margin-left: 3px;
+                                }
+                            }
+
+                            // Arrow prev
+                            .owl-prev {
+                                left: 0;
+                                .fa {
+                                    margin-right: 3px;
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -366,7 +414,6 @@
                         .custom-atribute {
 
                             &.one{
-                                margin-top: 15px;
                                 order: 2;
                             }
                             &.two{
