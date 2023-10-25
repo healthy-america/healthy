@@ -101,20 +101,21 @@
                             .price-final_price {
                                 margin: 10px 0;
                             }
-                            
-                            .price-final_price 
-                            .price-wrapper,
-                            .special-price {
-                                .price {
-                                    font-weight: 600;
-                                    font-size: 24px;
-                                    color: @color-primary;
-                                }
+
+                            * {
+                                line-height: 1;
                             }
+
+                            .price {
+                                font-weight: 600;
+                                font-size: 24px;
+                                color: @color-primary;
+                            }
+
                             .old-price {
                                 .price {
                                     font-size: 14px;
-                                    color: #606060;
+                                    color: @color-discount-price;
                                 }
                             }
                         }
@@ -413,7 +414,6 @@
                         .custom-atribute {
 
                             &.one{
-                                margin-top: 15px;
                                 order: 2;
                             }
                             &.two{
