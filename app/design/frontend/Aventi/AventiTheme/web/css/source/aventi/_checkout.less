@@ -1071,8 +1071,6 @@
 
 }
 
-
-
 @media screen and (max-width: 1050px) {
 
     body#html-body.checkout-index-index {
@@ -1100,7 +1098,6 @@
     }
     
 }
-
 
 @media screen and (max-width: 1000px) {
 
@@ -1397,32 +1394,46 @@
     }
 }
 
-
 @media screen and (max-width: 850px) {
 
-    body#html-body.checkout-index-index {
+    body#html-body {
 
-        div#checkout {
+        &.checkout-index-index {
+
+            div#checkout {
 
 
-            ul.opc-progress-bar {
-                margin-top: unset;
+                ul.opc-progress-bar {
+                    margin-top: unset;
+                }
+
+                aside.modal-custom.opc-sidebar.opc-summary-wrapper {
+                    display: none;
+                }
+
             }
 
-            aside.modal-custom.opc-sidebar.opc-summary-wrapper {
-                display: none;
+            .checkout-payment-method 
+            .payment-methods 
+            .payment-method-title .payment-icon {
+                width: 35%;
+                object-fit: contain;
+                margin-right: unset;
             }
 
         }
 
-        .checkout-payment-method 
-        .payment-methods 
-        .payment-method-title .payment-icon {
-            width: 35%;
-            object-fit: contain;
-            margin-right: unset;
+        &.checkout-onepage-success {
+            #page-title-wrapper {
+                height: 100px;
+                padding: 25px 0 18px;
+                .page-title { 
+                    line-height: 1;
+                    span.base {
+                        font-size: 32px;
+                    }
+                }
+            }
         }
-
     }
-    
 }
