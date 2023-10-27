@@ -120,9 +120,14 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
                 <div class="line">
                     <div class="col-mb-4 col-tb-4 col-lg-4 col-des-3 hidden-xs hidden-sm"></div>
                     <div class="col-mb-4 col-tb-4 col-des-6 d-flex align-items-center logo-wrapper ">
-                        <button class="action nav-tg hidden-des"><?php echo $imgToggleMenu ?></button>
+                        <div class="_container_flex_ hidden-des">
+                            <div id="delete-cookie-home" class="house-prehome">
+                                <span class="iconify" data-icon="typcn:home"></span>
+                            </div>
+                            <button class="action nav-tg hidden-des"><?php echo $imgToggleMenu ?></button>
+                        </div>
                         <?php if ($_headerVer == 'header2') : ?>
-                            <div class=" hidden-tb hidden-mb">
+                            <div class="hidden-tb hidden-mb">
                                 <?= $block->getChildHtml('logo') ?>
                             </div>
                         <?php else : ?>
@@ -199,9 +204,8 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
         <div class="bottom-content">
             <div class="frame">
                 <div class="line">
-                    <div class="col-3 col-mb-12 col-des-3 hidden-tb hidden-sm hidden-mb">
-                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('claue_vertical_menu_header_2')->toHtml(); ?>
-
+                    <div class="col-3 col-mb-12 col-des-3 hidden-tb hidden-sm hidden-mb"> 
+                    <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('claue_vertical_menu_header_2')->toHtml(); ?>
                     </div>
                     <div class="col-12 col-mb-12 col-tb-12 col-des-6 hidden-xs">
                         <div class="parent-search">

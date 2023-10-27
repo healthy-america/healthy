@@ -15,7 +15,7 @@ require([
         if (!prehome.hasClass('display-none_')) {
             prehome.addClass('display-none_');
         }
-
+      
         if (check) {
             body.css('overflow', 'auto')
             homebody.css('display','flex')
