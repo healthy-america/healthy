@@ -1,0 +1,50 @@
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//**
+//** @author    Daniel Estupiñán
+//**
+//  *********************************************
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common =true) {
+    // Estilos para el header.
+    ._container_flex_ {
+        display: flex;
+        .house-prehome {
+            display: flex;
+            align-items: center;
+            height: auto;
+            width: auto;
+            margin-right: 2em;
+
+            svg {
+                width: 2.7em;
+                height: 85%;
+                cursor: pointer;
+                color: @white;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen_1999) {
+    // Estilos para el header.
+    ._container_flex_ {
+        gap: 2px;
+        .house-prehome {
+            margin-right: unset;
+            width: 24px;
+            svg {
+                width: 2em;
+                height: 22px;
+                margin-top: -2px;
+                color: @color-primary;
+            }
+        }
+    }
+}

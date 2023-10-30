@@ -23,7 +23,7 @@ if($stickyMobile){
 }
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-    <a class="logo<?= $class ?>" href="<?= $block->getUrl('prehome/index/deletecookie?name=prehomecookie'); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
+    <div id="home-logo-go" class="cursor-pointer logo<?= $class ?>" href="<?= $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
         <img class="default-logo" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"
              <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
@@ -37,4 +37,4 @@ if($stickyMobile){
 			<img class="sticky-logo" src="<?php /* @escapeNotVerified */ echo $themeSettingConfig->getMediaUrl('mgs/setting/' . $stickyMobile) ?>"
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"/>
 		<?php endif ?>
-    </a>
+        </div>
