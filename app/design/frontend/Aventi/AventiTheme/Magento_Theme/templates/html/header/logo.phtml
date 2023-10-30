@@ -23,7 +23,7 @@ if($stickyMobile){
 }
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt();?>
-    <div id="home-logo-go" class="cursor-pinter logo<?= $class ?>" href="<?= $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
+    <div id="home-logo-go" class="cursor-pointer logo<?= $class ?>" href="<?= $block->getUrl(''); ?>" title="<?php /* @escapeNotVerified */ echo $storeName ?>">
         <img class="default-logo" src="<?php /* @escapeNotVerified */ echo $block->getLogoSrc() ?>"
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"
              <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
@@ -38,20 +38,3 @@ if($stickyMobile){
              alt="<?php /* @escapeNotVerified */ echo $block->getLogoAlt() ?>"/>
 		<?php endif ?>
         </div>
-<script>
-    require([
-    'jquery',
-    'mage/cookies'
-    ], function ($) {
-        $('#home-logo-go').on('click', function(){
-           const href = $(this).attr('href');
-           const locateCurrent = window.location.href;
-           const check = $.cookie('prehomecookie');
-
-           if (locateCurrent !== href) {
-               $.cookie('prehomecookie', null);
-               window.location.href = href;
-           }
-        });
-    });
-</script>
