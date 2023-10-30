@@ -4,10 +4,10 @@ require([
 ], function ($) {
 
     $(document).ready(function () {
-        const prehome = $('main#prehome');
-        const body = $('body');
-        const loader = $('div.loader');
-        const homebody = $('.page-wrapper');
+        const prehome = $('main#prehome'),
+              body = $('body'),
+              loader = $('div.loader'),
+              homebody = $('.page-wrapper');
     
         $('#delete-cookie-home').on('click', async function () {
             const url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie';
