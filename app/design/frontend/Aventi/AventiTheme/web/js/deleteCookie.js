@@ -27,7 +27,7 @@ require([
                     else {
                         body.css('overflow', 'hidden');
                         homebody.css('display','none');
-                        prehome.removeClass('display-none_')
+                        prehome.removeClass('display-none_');
                         loader.fadeOut()
                     }
                 }

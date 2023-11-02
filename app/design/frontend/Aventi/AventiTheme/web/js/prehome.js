@@ -42,9 +42,11 @@ require([
                     if(window.location.href !== link){
                         window.location.href = link;
                     }else{
-                        $('body').css('overflow', 'auto')
-                        homebody.css('display','flex')
-                        prehome.hide()
+                        $('body').css('overflow', 'auto');
+                        homebody.css('display','flex');
+                        if (!prehome.hasClass('display-none_')) {
+                            prehome.addClass('display-none_');
+                        }
                     }
 
                 }
