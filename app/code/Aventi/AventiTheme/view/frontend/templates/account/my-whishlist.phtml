@@ -1,0 +1,28 @@
+<?php
+/**  
+  * @var \Aventi\AventiTheme\Block\Account\Wishlist $block 
+*/
+?>
+<?php if ($block->isLoggedIn()): ?>
+    <li class="link my-wishlist-link" data-bind="scope: 'wishlist'">
+        <a <?= /* @noEscape */ $block->getLinkAttributes() ?>><?= $block->escapeHtml($block->getLabel()) ?>
+            <!-- ko if: wishlist().counter -->
+            <span data-bind="text: wishlist().counter" class="counter qty"></span>
+            <!-- /ko -->
+        </a>
+    </li>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "wishlist": {
+                            "component": "Magento_Wishlist/js/view/wishlist"
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+<?php endif; ?>
