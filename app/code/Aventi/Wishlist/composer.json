@@ -1,0 +1,22 @@
+{
+    "name": "aventi/module-wishlist",
+    "description": "Custom module to override the Magento 2 wishlist functionality",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Brayan Sanchez",
+            "email": "bsanchez@aventi.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aventi\\Wishlist\\": ""
+        }
+    }
+}
