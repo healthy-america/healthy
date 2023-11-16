@@ -1,0 +1,65 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php
+/* @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Options $block */
+?>
+
+<?php $options = $block->getOptionList(); ?>
+<?php $additional = $options['additional'] ?? []; ?>
+<?php unset($options['additional']) ?>
+<?php if ($options): ?>
+    <div class="tooltip wrapper product-item-tooltip">
+        <span class="action details tooltip toggle"><?= $block->escapeHtml(__('See Details')) ?></span>
+        <div class="tooltip content">
+            <strong class="subtitle"><?= $block->escapeHtml(__('Giftcard Options Details')) ?></strong>
+            <dl>
+                <?php foreach ($options as $option): ?>
+                    <dt class="label"><?= $block->escapeHtml($option['label']) ?></dt>
+                    <dd class="values">
+                        <?php if (is_array($option['value'])): ?>
+                            <?= /* @noEscape */ nl2br(implode("\n", $option['value'])) ?>
+                        <?php else: ?>
+                            <?php if (isset($option['image']) && $option['image']): ?>
+                                <a href="<?= $block->escapeUrl($option['value']) ?>"
+                                   title="<?= $block->escapeHtml($option['label']) ?>">
+                                    <img src="<?= $block->escapeUrl($option['value']) ?>"
+                                         alt="<?= $block->escapeHtml($option['label']) ?>"
+                                         title="<?= $block->escapeHtml($option['label']) ?>"
+                                         class="wishlist-option-image" />
+                                </a>
+                            <?php else: ?>
+                                <?= /* @noEscape */ $option['value'] ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </dd>
+                <?php endforeach; ?>
+            </dl>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            ".wishlist-option-image": {
+                "Bss_GiftCard/js/view/wishlist/default-image" : {}
+            },
+            "*": {
+                "Bss_GiftCard/js/view/wishlist/configure-price" : <?= /* @noEscape */ $additional['value'] ?? '' ?>
+            }
+        }
+    </script>
+<?php endif ?>

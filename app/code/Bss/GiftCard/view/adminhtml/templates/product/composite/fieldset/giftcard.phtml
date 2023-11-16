@@ -1,0 +1,58 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Bss\GiftCard\Block\Adminhtml\Product\Composite\Fieldset\GiftCard */ ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $amountData = $block->getAmountData($_product); ?>
+
+<?php if ($_product->isSaleable()): ?>
+    <fieldset id="catalog_product_composite_configure_fields_configurable" class="fieldset admin__fieldset">
+        <legend class="legend admin__legend">
+            <span><?= $_product->getName() ?></span>
+        </legend>
+        <div class="product-options">
+            <div class="field admin__field _required required">
+                <label class="label admin__field-label">
+                    <span>Card Value</span>
+                </label>
+                <div class="control admin__field-control">
+                    <select name="bss_giftcard_amount" class="admin__control-select required-entry">
+                        <?php if (isset($amountData['amountList'])): ?>
+                            <option value="<?= $amountData['amountList']['value'] ?>"><?= $amountData['amountList']['price'] ?></option>
+                        <?php endif; ?>
+                        <?php if (isset($amountData['amountDynamic'])): ?>
+                            <option value="custom"><?= __('Other Amount...') ?></option>
+                        <?php endif; ?>
+                    </select>
+                </div>
+                <?php if (isset($amountData['amountDynamic'])): ?>
+                    <input type="text" name="bss_giftcard_amount_dynamic" class="input-text admin__control-text"
+                           placeholder="(<?= $amountData['amountDynamic']['minAmount'] . ' - ' . $amountData['amountDynamic']['maxAmount'] ?>)"
+                    min="<?= $amountData['amountDynamic']['minAmount'] ?>" max="<?= $amountData['amountDynamic']['maxAmount'] ?>">
+                <?php endif; ?>
+            </div>
+        </div>
+    </fieldset>
+    <script>
+        require([
+            'jquery',
+        ], function ($) {
+            $('[name="bss_giftcard_amount_dynamic"]').hide();
+            if ($('[name="bss_giftcard_amount"]').val() === 'custom')
+                $('[name="bss_giftcard_amount_dynamic"]').show();
+            $('[name="bss_giftcard_amount"]').change(function () {
+                if ($(this).val() === 'custom') {
+                    $('[name="bss_giftcard_amount_dynamic"]').show();
+                } else {
+                    $('[name="bss_giftcard_amount_dynamic"]').hide();
+                }
+            });
+        });
+    </script>
+<?php endif; ?>

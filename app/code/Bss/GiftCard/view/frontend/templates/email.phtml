@@ -1,0 +1,41 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Gift Card product data template
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ */
+
+$template = $block->getConfig();
+$message = $block->getMessage();
+$code = $block->getCode();
+?>
+<?php if ($template) : ?>
+    <?php if ($message && isset($template['message_color']) && $template['message_color']) : ?>
+        <?= __('Message:'); ?>
+        <p style="color: #<?= $template['message_color'];?>"><?= nl2br($message);?></p>
+    <?php endif; ?>
+    <?php if ($code && isset($template['code_color']) && $template['code_color']) : ?>
+        <?= __('Gift Card Code:'); ?>
+        <p style="color: #<?= $template['code_color'];?>"><?= $code;?></p>
+    <?php endif; ?>
+<?php endif; ?>

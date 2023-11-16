@@ -1,0 +1,59 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+/** @var \Bss\Giftcard\Pricing\Render\FinalPriceBox $block */
+
+/** @var \Bss\Giftcard\Pricing\Price\FinalPrice $finalPriceModel */
+$finalPriceModel = $block->getPrice();
+
+?>
+<?php if ($block->getSaleableItem()->isSalable()) : ?>
+<?php
+    $minimalPrice = $finalPriceModel->getMinimalPrice();
+    $maximalPrice = $finalPriceModel->getMaximalPrice();
+?>
+    <?php if ($block->showRangePrice()): ?>
+        <p class="price-from">
+            <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalPrice, [
+                'display_label'     => __('From'),
+                'price_id'          => $block->getPriceId('from-'),
+                'price_type'        => 'minPrice',
+                'include_container' => true
+            ]); ?>
+        </p>
+        <p class="price-to">
+            <?php /* @escapeNotVerified */ echo $block->renderAmount($maximalPrice, [
+                'display_label'     => __('To'),
+                'price_id'          => $block->getPriceId('to-'),
+                'price_type'        => 'maxPrice',
+                'include_container' => true
+            ]); ?>
+        </p>
+    <?php else: ?>
+        <?php /* @escapeNotVerified */ echo $block->renderAmount($minimalPrice, [
+            'price_id'          => $block->getPriceId('product-price-'),
+            'price_type'        => 'finalPrice',
+            'include_container' => true
+        ]); ?>
+    <?php endif ?>
+<?php endif ?>

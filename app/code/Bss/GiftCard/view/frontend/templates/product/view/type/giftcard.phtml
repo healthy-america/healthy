@@ -1,0 +1,49 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Gift Card product data template
+ *
+ * @var $block \Bss\GiftCard\Block\Product\View\Type\GiftCard
+ */
+?>
+<?php $product = $block->getProduct(); ?>
+
+<?php if ($product->isSalable()): ?>
+    <div class="bss-giftcard-product-info fieldset" data-bind="scope:'bss-giftcard-product-info'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <script type="text/x-magento-init">
+            {
+                ".bss-giftcard-product-info": {
+                    "Magento_Ui/js/core/app": {
+                        "components": {
+                            "bss-giftcard-product-info": {
+                                "component": "Bss_GiftCard/js/view/product/giftcard",
+                                "displayArea": "bss-giftcard-product-info",
+                                "giftCardConfig": <?= $block->getGiftCardJson() ?>
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    </div>
+    <div id="bss-giftcard-email-popup"></div>
+<?php endif; ?>

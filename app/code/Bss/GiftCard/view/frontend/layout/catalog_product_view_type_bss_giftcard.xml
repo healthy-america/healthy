@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Bss_GiftCard::css/lib/owl.carousel.css" />
+    </head>
+    <body>
+        <attribute name="class" value="page-product-bss-giftcard"/>
+        <referenceBlock name="product.info.form.options">
+            <block class="Bss\GiftCard\Block\Product\View\Type\GiftCard" name="product.info.bss.giftcard"
+                before="product.info.options.wrapper" template="Bss_GiftCard::product/view/type/giftcard.phtml"/>
+        </referenceBlock>
+
+        <referenceContainer name="product.info.type">
+            <block class="Bss\GiftCard\Block\Product\View\Type\StockStatus" name="product.info.bss.gifcard" as="product_type_data" template="Magento_Catalog::product/view/type/default.phtml"/>
+            <container name="product.info.bss.gifcard.extra" after="product.info.bss.gifcard" as="product_type_data_extra" label="Product Extra Info"/>
+        </referenceContainer>
+
+        <referenceContainer name="product.info.stock.sku">
+            <block class="Magento\Catalog\Block\Product\View"
+                name="product.info.bss.giftcard.expires"
+                after="product.info.sku"
+                template="Bss_GiftCard::product/view/type/expires.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

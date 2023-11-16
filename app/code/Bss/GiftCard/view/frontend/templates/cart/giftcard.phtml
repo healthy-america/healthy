@@ -1,0 +1,99 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+//  @codingStandardsIgnoreFile
+
+?>
+
+<?php /** @var  $block \Bss\GiftCard\Block\Cart\GiftCard */?>
+
+<?php $giftCardApply = $block->getGiftCardApply(); ?>
+<?php if ($block->isDisplay()) : ?>
+    <div class="block bss-giftcard"
+        id="block-bss-giftcard"
+        data-mage-init='{"collapsible":{"openedState": "active", "saveState": false}}'
+    >
+        <div class="title" data-role="title">
+            <strong id="block-bss-store-credit-heading" role="heading" aria-level="2">
+                <?= $block->escapeHtml(__('Gift Card Options')) ?>
+            </strong>
+        </div>
+
+        <div class="content" data-role="content" aria-labelledby="block-bss-giftcard-heading">
+            <div>
+                <?php if (!empty($giftCardApply)) : ?>
+                    <?php foreach ($giftCardApply as $info) : ?>
+                        <div>
+                            <span class="title title-gift-code"><?= $block->escapeHtml($info['giftcard_code']) ?></span>
+                            <a class="bss-giftcard-remove" href="<?= $block->escapeHtml($block->getRemoveUrl($info)) ?>"></a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <form id="bss-giftcard-form"
+                  action="<?= $block->escapeHtml($block->getUrl('giftcard/cart/giftCardPost')) ?>"
+                  method="post"
+                  data-mage-init='{"Bss_GiftCard/js/giftcard":{}}'>
+                <?php echo $this->getBlockHtml('formkey')?>
+                <div id="bss-giftcard-code-info" data-bind="scope:'bss-giftcard-code-info'">
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <script type="text/x-magento-init">
+                    {
+                        "#bss-giftcard-code-info": {
+                            "Magento_Ui/js/core/app": {
+                               "components": {
+                                    "bss-giftcard-code-info": {
+                                        "component": "Bss_GiftCard/js/view/cart/code-info"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    </script>
+                </div>
+
+                <div class="fieldset bss-giftcard">
+                    <input type="hidden" name="remove" id="remove-bss-giftcard" value="0" />
+                    <div class="field">
+                        <label for="bss-giftcard" class="label">
+                            <span><?= $block->escapeHtml(__('Enter Value')) ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text"
+                                class="input-text"
+                                id="bss-giftcard-code"
+                                name="bss_giftcard_code"
+                                value=""
+                                placeholder="<?= $block->escapeHtml(__('Enter Gift Code'));?>" />
+                        </div>
+                    </div>
+                    <div class="bss-gc-actions-toolbar">
+                        <button class="action bss-giftcard-apply primary"
+                            type="button" value="<?= $block->escapeHtml(__('Apply')) ?>">
+                            <span><?= $block->escapeHtml(__('Apply')) ?></span>
+                        </button>
+                        <button class="action bss-giftcard-check primary"
+                            type="button" value="<?= $block->escapeHtml(__('Check Status')) ?>">
+                            <span><?= $block->escapeHtml(__('Check Status')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<?php endif; ?>

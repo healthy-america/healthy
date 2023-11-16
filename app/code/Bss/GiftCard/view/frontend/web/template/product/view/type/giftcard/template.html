@@ -1,0 +1,64 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<div class="field bss-giftcard-template required">
+    <label data-bind="attr: {for: getType() + '_template'}" class="label">
+        <span><!-- ko i18n: 'Template'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <select data-validate="{required:true}"
+                data-bind="
+                    options: getTemplateList(),
+                    optionsText: 'name',
+                    optionsValue: 'template_id',
+                    optionsCaption: $t('Choose a Template...'),
+                    value: selectedTemplate,
+                    attr: {
+                        id: getType() + '_template',
+                        name: getType() + '_template'
+                    }"></select>
+    </div>
+    <!-- ko if:  (isDisplayedImages) -->
+    <div class="bss-giftcard-images">
+        <ul class="bss-giftcard-template-images-ul owl-theme owl-carousel"
+            data-bind="foreach: templateImages,afterRender: addOwlCarousel">
+            <!-- ko if: thumbnail -->
+            <li class="bss-giftcard-template-images"
+                data-bind="
+                    css: {'bss-img-selected' : $index() == 0},
+                    click: $parent.selectImage.bind($data, $parent),
+                    attr: {
+                        id: $parent.getType() + '_image_' + id
+                    }
+                ">
+                <img class="bss-giftcard-image" attr="src: thumbnail, alt: alt"/>
+            </li>
+            <!-- /ko -->
+        </ul>
+        <input type="hidden"
+               data-validate="{required:true}"
+               data-bind="
+                    attr: {
+                        id: getType() + '_selected_image',
+                        name: getType() + '_selected_image',
+                        value: isSelectedImage
+                    }">
+    </div>
+    <!-- /ko -->
+</div>

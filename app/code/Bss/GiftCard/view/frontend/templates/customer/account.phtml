@@ -1,0 +1,162 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+//  @codingStandardsIgnoreFile
+
+?>
+
+<?php /** @var  $block \Bss\GiftCard\Block\Customer\Account */?>
+
+<?php
+    $giftCards = $block->getGiftCardCutomer();
+?>
+
+ <script id="bss-giftcard-details" type="text/x-magento-template">
+    <div class="bss-giftcard-code-info table-wrapper">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Code')); ?></td>
+                    <td class="col code"><%- data.code %></td>
+                </tr>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Value')); ?></td>
+                    <td class="col value">
+                        <span><%- data.value %></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Origin Value')); ?></td>
+                    <td class="col origin_value">
+                        <span><%- data.origin_value %></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Status')); ?></td>
+                    <td class="col status"><span><%- data.status %></span></td>
+                </tr>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Expire Date')); ?></td>
+                    <td class="col expire_date"><%- data.expire_date %></td>
+                </tr>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Updated At')); ?></td>
+                    <td class="col updated_at"><%- data.updated_at %></td>
+                </tr>
+                <tr>
+                    <td class="col label"><?= $block->escapeHtml(__('Created At')); ?></td>
+                    <td class="col created_at"><%- data.created_at %></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</script>
+
+<form class="form" id="bss-gc-form"
+    action="<?= $block->escapeUrl($block->getUrl('giftcard/customer/account')) ?>"
+    method="post" enctype="multipart/form-data">
+    <?php echo $this->getBlockHtml('formkey')?>
+    <fieldset>
+        <legend class="legend">
+            <span><?= $block->escapeHtml(__('Gift Code Details')) ?></span>
+        </legend>
+        <div class="bss-giftcard-details"></div>
+        <div class="field required">
+            <div class="control">
+                <input type="text" class="required-entry input-text" name="bss_gc_code" value="">
+            </div>
+        </div>
+    </fieldset>
+
+    <div class="bss-gc-btn-actions">
+        <button type="submit" class="action save primary" title="<?= $block->escapeHtml(__('Submit')) ?>">
+            <span><?= $block->escapeHtml(__('Submit')) ?></span>
+        </button>
+    </div>
+</form>
+
+<div class="block bss-giftcard-block">
+    <div class="block-content">
+        <div class="table-wrapper">
+            <?php if ($block->getPagerHtml()) : ?>
+                <div class="bss-giftcard-history-toolbar toolbar top">
+                    <?php /* @noEscape */ echo $block->getPagerHtml(); ?>
+                </div>
+            <?php endif; ?>
+            <table id="bss-giftcard-history" class="data table table-giftcard-history">
+                <caption class="table-caption">
+                    <?= $block->escapeHtml(__('Gift Cards History')) ?>
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col code">
+                            <?= $block->escapeHtml(__('Code')); ?>
+                        </th>
+                        <th scope="col" class="col value">
+                            <?= $block->escapeHtml(__('Value')); ?>
+                        </th>
+                        <th scope="col" class="col expire_date">
+                            <?= $block->escapeHtml(__('Expire Date')); ?>
+                        </th>
+                        <th scope="col" class="col status">
+                            <?= $block->escapeHtml(__('Status')); ?>
+                        </th>
+                        <th scope="col" class="col order">
+                            <?= $block->escapeHtml(__('Order')); ?>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (!empty($giftCards)) : ?>
+                        <?php foreach ($giftCards as $giftCard) : ?>
+                            <tr>
+                                <td data-th="<?= $block->escapeHtml(__('Code')); ?>" class="col code">
+                                    <?= $block->getCode($giftCard->getCode()); ?>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Value')); ?>" class="col value">
+                                    <span>
+                                        <?= $block->convertPrice($giftCard->getValue()); ?>
+                                    </span>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Expire Date')); ?>"
+                                    class="col expire_date">
+                                    <?= $block->formatDateTime($giftCard->getExpiryDay()); ?>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Status')); ?>"
+                                    class="col staus">
+                                    <?= $block->escapeHtml($giftCard->getStatusLabel()); ?>
+                                </td>
+                                <td data-th="<?= $block->escapeHtml(__('Order')); ?>"
+                                    class="col order">
+                                    <?= $block->getOrderDetails($giftCard); ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "#bss-gc-form": {
+            "Bss_GiftCard/js/view/account/giftcard": {}
+        }
+    }
+</script>

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.item.renderers">
+            <block class="Bss\GiftCard\Block\Cart\Item\Renderer\GiftCard" name="checkout.cart.item.renderers.bss.giftcard" as="bss_giftcard" template="Bss_GiftCard::cart/item/default.phtml">
+                <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions" name="checkout.cart.item.renderers.bss.giftcard.actions" as="actions">
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Edit" name="checkout.cart.item.renderers.bss.giftcard.actions.edit" template="Magento_Checkout::cart/item/renderer/actions/edit.phtml"/>
+                    <block class="Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove" name="checkout.cart.item.renderers.bss.giftcard.actions.remove" template="Magento_Checkout::cart/item/renderer/actions/remove.phtml"/>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,85 @@
+<?php
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+namespace Bss\GiftCard\Model\Checkout\Orderline;
+
+use Klarna\Core\Api\BuilderInterface;
+use Klarna\Core\Model\Checkout\Orderline\AbstractLine;
+use Klarna\Core\Model\Checkout\Orderline\Discount;
+
+/**
+ * Generate order line details for gift card
+ */
+class Giftcard extends AbstractLine
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function collect(BuilderInterface $checkout)
+    {
+        /** @var \Magento\Quote\Model\Quote $quote */
+        $quote = $checkout->getObject();
+        $totals = $quote->getTotals();
+        if (!is_array($totals) || !isset($totals['bss_giftcard'])) {
+            return $this;
+        }
+        $total = $totals['bss_giftcard'];
+        $giftCards = $total->getGiftCard();
+        $amount = 0;
+        foreach ($giftCards as $giftCard) {
+            $amount += $giftCard['giftcard_amount'];
+        }
+        $amount = $giftCard['giftcard_amount'];
+        if ($amount !== 0) {
+            //$amount = $quote->getGiftCardsAmountUsed();
+            $value = -1 * $this->helper->toApiFloat($amount);
+            $checkout->addData([
+                'bssgiftcardaccount_unit_price'   => $value,
+                'bssgiftcardaccount_tax_rate'     => 0,
+                'bssgiftcardaccount_total_amount' => $value,
+                'bssgiftcardaccount_tax_amount'   => 0,
+                'bssgiftcardaccount_title'        => 'Bss Giftcard',
+                'bssgiftcardaccount_reference'    => $total->getCode()
+            ]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fetch(BuilderInterface $checkout)
+    {
+        if ($checkout->getBssgiftcardaccountTotalAmount()) {
+            $checkout->addOrderLine([
+                'type'             => Discount::ITEM_TYPE_DISCOUNT,
+                'reference'        => $checkout->getBssgiftcardaccountReference(),
+                'name'             => $checkout->getBssgiftcardaccountTitle(),
+                'quantity'         => 1,
+                'unit_price'       => $checkout->getBssgiftcardaccountUnitPrice(),
+                'tax_rate'         => $checkout->getBssgiftcardaccountTaxRate(),
+                'total_amount'     => $checkout->getBssgiftcardaccountTotalAmount(),
+                'total_tax_amount' => $checkout->getBssgiftcardaccountTaxAmount(),
+            ]);
+        }
+
+        return $this;
+    }
+}

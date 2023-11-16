@@ -1,0 +1,221 @@
+Reset,Reset
+"Save and Continue Edit","Save and Continue Edit"
+"Gift Card","Gift Card"
+Back,Back
+Delete,Delete
+Save,Save
+ID,ID
+"Order #","Order #"
+Amount,Amount
+"Updated At","Updated At"
+Code,Code
+Status,Status
+"Current Amount","Current Amount"
+"Initial Amount","Initial Amount"
+"Expiry Day","Expiry Day"
+Action,Action
+CSV,CSV
+"Images (.gif, .jpg, .png)","Images (.gif, .jpg, .png)"
+"Order # %1","Order # %1"
+"You deleted the gift code.","You deleted the gift code."
+"We can't find an gift code to delete.","We can't find an gift code to delete."
+"This gift card code no longer exists.","This gift card code no longer exists."
+"New Gift Card Code","New Gift Card Code"
+"Edit Code","Edit Code"
+"New Code","New Code"
+"Gift Card Code","Gift Card Code"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+Success,Success
+"Gift Code Account","Gift Code Account"
+"Gift Code Pattern","Gift Code Pattern"
+"Gift Card Template","Gift Card Template"
+"We can't find an gift card code to delete.","We can't find an gift card code to delete."
+"We can't find an pattern to delete.","We can't find an pattern to delete."
+"This pattern no longer exists.","This pattern no longer exists."
+"New Gift Card Pattern","New Gift Card Pattern"
+"Edit Pattern","Edit Pattern"
+"New Pattern","New Pattern"
+"Gift Card Pattern","Gift Card Pattern"
+"There is no sample file for this entity.","There is no sample file for this entity."
+"The file's format is not correct. Please download sample csv file and try again.","The file's format is not correct. Please download sample csv file and try again."
+"%1 code(s) bring errors because of duplicate data or empty row or Code is incorrect format. Please check again.","%1 code(s) bring errors because of duplicate data or empty row or Code is incorrect format. Please check again."
+"%1 code(s) have been successfully imported.","%1 code(s) have been successfully imported."
+"Empty row. Please check again.","Empty row. Please check again."
+"Please check again.","Please check again."
+"There are too few for generate.","There are too few for generate."
+"%1 coupon(s) have been generated.","%1 coupon(s) have been generated."
+"Pattern was saved","Pattern was saved"
+"Please add {L} or {D}. Maximum 6 {D} and {L}. Make sure the pattern code does not already exist","Please add {L} or {D}. Maximum 6 {D} and {L}. Make sure the pattern code does not already exist"
+"You deleted the template.","You deleted the template."
+"We can't find an template to delete.","We can't find an template to delete."
+"This template no longer exists.","This template no longer exists."
+"New Gift Card Template","New Gift Card Template"
+"Edit Template","Edit Template"
+"New Template","New Template"
+"A total of %1 record(s) have been updated.","A total of %1 record(s) have been updated."
+"Something went wrong while updating the template(s) status.","Something went wrong while updating the template(s) status."
+"There are some products using this Template. Please delete them first. (Template Id: %1)","There are some products using this Template. Please delete them first. (Template Id: %1)"
+"Template was saved","Template was saved"
+"We cannot apply the gift card code.","We cannot apply the gift card code."
+"Please enter gift card code.","Please enter gift card code."
+"You have already used this gift card code.","You have already used this gift card code."
+"You used gift card code ""%1"".","You used gift card code ""%1""."
+"The gift card code ""%1"" is not valid.","The gift card code ""%1"" is not valid."
+"You remove the coupon code success.","You remove the coupon code success."
+"Cannot remove gift card code.","Cannot remove gift card code."
+"My Gift Cards","My Gift Cards"
+"You can't preview email now.","You can't preview email now."
+Value,Value
+Sender,Sender
+Recipient,Recipient
+Template,Template
+Image,Image
+Message,Message
+"Delivery Date","Delivery Date"
+TimeZone,TimeZone
+"We found a duplicate website, price and value.","We found a duplicate website, price and value."
+"Same as value","Same as value"
+"Percentage of value","Percentage of value"
+Virtual,Virtual
+Physical,Physical
+Combined,Combined
+"Config Replace Hidden Character not allow input number ","Config Replace Hidden Character not allow input number "
+"%1 (Default)","%1 (Default)"
+Inactive,Inactive
+Active,Active
+Expired,Expired
+Used,Used
+"All Websites","All Websites"
+"Origin Value","Origin Value"
+"Current Value","Current Value"
+"Expire At","Expire At"
+Unlimited,Unlimited
+"Cart %1 doesn't contain products","Cart %1 doesn't contain products"
+"Customer cart doesn't contain products","Customer cart doesn't contain products"
+"Could not delete gift card code","Could not delete gift card code"
+"Gift card code is not valid","Gift card code is not valid"
+"Could not apply gift card code","Could not apply gift card code"
+"There are some products using this pattern. Please delete them first.","There are some products using this pattern. Please delete them first."
+"Pattern with id ""%1"" does not exist.","Pattern with id ""%1"" does not exist."
+"An error has occurred while adding product to cart.","An error has occurred while adding product to cart."
+"Please specify all the required information.","Please specify all the required information."
+"The template is not linked with the product.","The template is not linked with the product."
+"The image is not linked with the template.","The image is not linked with the template."
+"Max value is %1.","Max value is %1."
+"Min value is %1.","Min value is %1."
+"You must fill out both Min and Max dynamic price fields","You must fill out both Min and Max dynamic price fields"
+"Max amount must be greater than Min amount","Max amount must be greater than Min amount"
+"Could not found gift card code","Could not found gift card code"
+"Template with id ""%1"" does not exist.","Template with id ""%1"" does not exist."
+"We cannot register invoice. Please check pattern code","We cannot register invoice. Please check pattern code"
+"Gift Card (%1)","Gift Card (%1)"
+Edit,Edit
+Amounts,Amounts
+Website,Website
+Price,Price
+"Other Amount...","Other Amount..."
+"Browse to find or drag image here","Browse to find or drag image here"
+"Delete image","Delete image"
+Hidden,Hidden
+"Alt Text","Alt Text"
+"Image Size","Image Size"
+{size},{size}
+"Image Resolution","Image Resolution"
+"{width}^{height} px","{width}^{height} px"
+From,From
+To,To
+"Gift Card Options","Gift Card Options"
+"Enter Value","Enter Value"
+"Enter Gift Code","Enter Gift Code"
+Apply,Apply
+"Check Status","Check Status"
+Item,Item
+"See price before order confirmation.","See price before order confirmation."
+"What's this?","What's this?"
+Qty,Qty
+Subtotal,Subtotal
+"Expire Date","Expire Date"
+"Created At","Created At"
+"Gift Code Details","Gift Code Details"
+Submit,Submit
+"Gift Cards History","Gift Cards History"
+Order,Order
+Message:,Message:
+"Gift Card Code:","Gift Card Code:"
+"Expires After %1 day(s)","Expires After %1 day(s)"
+Generate,Generate
+"Download sample csv file","Download sample csv file"
+"%store_name: Gift Card Notification","%store_name: Gift Card Notification"
+"Gift card code: %code","Gift card code: %code"
+"Value: %value","Value: %value"
+"Out of date","Out of date"
+"Sender Name: %senderName","Sender Name: %senderName"
+"Recipient Name: %recipientName","Recipient Name: %recipientName"
+"Gift Card Code Information","Gift Card Code Information"
+"Card Value","Card Value"
+Preview,Preview
+"Sender Name","Sender Name"
+"Recipient Name","Recipient Name"
+"Sender Email","Sender Email"
+"Recipient Email","Recipient Email"
+"Select Timezone","Select Timezone"
+"Please save pattern","Please save pattern"
+Error,Error
+"Please enter again","Please enter again"
+"Please enter qty, amount field","Please enter qty, amount field"
+Note,Note
+"Can not check.","Can not check."
+Fail,Fail
+"Your gift card code was successfully removed.","Your gift card code was successfully removed."
+"Your gift card code was successfully applied.","Your gift card code was successfully applied."
+Fails.,Fails.
+General,General
+Enabled,Enabled
+"Email Configuration","Email Configuration"
+"Send Email to Sender","Send Email to Sender"
+"Email Sender","Email Sender"
+"Email Template to Sender","Email Template to Sender"
+"Email Template to Recipient","Email Template to Recipient"
+"Notification Email Template of Expiration to Recipient","Notification Email Template of Expiration to Recipient"
+"Send Notification Mail of Expiration before number of days","Send Notification Mail of Expiration before number of days"
+"Gift Card Setting","Gift Card Setting"
+"Enter 0 for unlimited usage day","Enter 0 for unlimited usage day"
+"Number of Characters Shown in Gift Code","Number of Characters Shown in Gift Code"
+"Replace Hidden Character by","Replace Hidden Character by"
+"Allowed Maximum Time (s) to Enter Gift Code Incorrectly","Allowed Maximum Time (s) to Enter Gift Code Incorrectly"
+"Gift Code Account Details","Gift Code Account Details"
+"Initial Value","Initial Value"
+"Send Gift Card","Send Gift Card"
+"Shipping Address","Shipping Address"
+"History Transaction","History Transaction"
+"Delete items","Delete items"
+"Delete selected items?","Delete selected items?"
+"Pattern Information","Pattern Information"
+Pattern,Pattern
+"Maximum number of D (digit) and L (letter) to be added is 6. E.g. BIRTHDAY-{D}-{L} results in BIRTHDAY-8-A","Maximum number of D (digit) and L (letter) to be added is 6. E.g. BIRTHDAY-{D}-{L} results in BIRTHDAY-8-A"
+"Code Quantity","Code Quantity"
+Unused,Unused
+"Import Codes","Import Codes"
+"Allowed file types: csv.","Allowed file types: csv."
+"Add Code Quantity","Add Code Quantity"
+"Add Code Value","Add Code Value"
+"Code List Grid","Code List Grid"
+"Add New Pattern","Add New Pattern"
+"Gift Code Pattern Name","Gift Code Pattern Name"
+"Code Pattern","Code Pattern"
+"Gift Code Qty","Gift Code Qty"
+"Unused Gift Code","Unused Gift Code"
+"Template Information","Template Information"
+Images,Images
+"Add New Template","Add New Template"
+"Change status","Change status"
+Name,Name
+"Gift Cards Information","Gift Cards Information"
+"Choose an Amount...","Choose an Amount..."
+"Choose an Template...","Choose an Template..."
+"Select Delivery Date","Select Delivery Date"
+"Choose an Timezone...","Choose an Timezone..."
+"Giftcard Options Details", "Giftcard Options Details",
+"Selected Image", "Selected Image"
+'Amount Dynamic is incorrect.','Amount Dynamic is incorrect.
+'Amount is incorrect.','Amount is incorrect.

@@ -1,0 +1,61 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<div class="field bss-giftcard-amount required">
+    <label data-bind="attr: {for: getType() + '_amounts'}" class="label">
+        <span><!-- ko i18n: 'Card Value'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <div data-bind="
+                attr: {
+                    class: getType() + '_amount_static'
+                }">
+            <select data-validate="{required:true}"
+                data-bind="
+                    options: getAmountList(),
+                    optionsText: 'label',
+                    optionsValue: 'value',
+                    optionsCaption: $t('Choose an Amount...'),
+                    value: selectAmount,
+                    attr: {
+                        id: getType() + '_amount',
+                        name: getType() + '_amount'
+                    }"></select>
+        </div>
+        <!-- ko if:  (isDisplayedDynamicAmount) -->
+        <div data-bind="
+                attr: {
+                    class: getType() + '_amount_dynamic'
+                }">
+            <input type="text"
+                data-validate="{required:true}"
+                data-bind="
+                    value: changeAmount,
+                    valueUpdate: 'afterkeydown',
+                    attr: {
+                        id: getType() + '_amount_dynamic',
+                        name: getType() + '_amount_dynamic',
+                        placeHolder: '(' + getMinAmount() + '-' + getMaxAmount() + ')',
+                        min: getMinAmount(),
+                        max: getMaxAmount()
+                    }">
+        </div>
+        <!-- /ko -->
+    </div>
+</div>

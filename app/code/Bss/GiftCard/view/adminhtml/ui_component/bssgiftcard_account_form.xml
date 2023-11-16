@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ *  @category  BSS
+ *  @package   Bss_GiftCard
+ *  @author    Extension Team
+ *  @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ *  @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">bssgiftcard_account_form.bssgiftcard_account_form_data_source</item>
+            <item name="deps" xsi:type="string">bssgiftcard_account_form.bssgiftcard_account_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Gift Card Code Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">bssgiftcard_account_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Pattern\Code\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Pattern\Code\Edit\DeleteButton</item>
+            <item name="reset" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Edit\ResetButton</item>
+            <item name="save" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Pattern\Code\Edit\SaveButton</item>
+            <item name="save_and_continue" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Edit\SaveAndContinueButton</item>
+        </item>
+    </argument>
+    <dataSource name="bssgiftcard_account_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Bss\GiftCard\Model\Pattern\Code\DataProvider</argument>
+            <argument name="name" xsi:type="string">bssgiftcard_account_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">code_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="giftcard/account/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="account">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Gift Code Account Details</item>
+            </item>
+        </argument>
+        <field name="code_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                </item>
+            </argument>
+        </field>
+        <field name="increment_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Order #</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="code">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Gift Card Code</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="status">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="default" xsi:type="string">1</item>
+                </item>
+                <item name="options" xsi:type="object">Bss\GiftCard\Model\Config\Source\Status</item>
+            </argument>
+        </field>
+        <field name="website_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Website</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="source" xsi:type="string">account</item>
+                </item>
+                <item name="options" xsi:type="object">Bss\GiftCard\Model\Config\Source\Website</item>
+            </argument>
+        </field>
+        <field name="origin_value">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Initial Value</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="value">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Current Value</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-zero-or-greater" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="expiry_day">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Expiry Date</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">account</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="send_giftcard">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Send Gift Card</item>
+            </item>
+        </argument>
+        <field name="sender_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Sender Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                </item>
+            </argument>
+        </field>
+        <field name="sender_email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Sender Email</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-emails" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="recipient_name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Recipient Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                </item>
+            </argument>
+        </field>
+        <field name="recipient_email">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Recipient Email</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-emails" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="shipping_address">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Shipping Address</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">account</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="message">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Message</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">account</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="history">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">History Transaction</item>
+            </item>
+        </argument>
+        <container name="history_container" >
+            <htmlContent name="html_content">
+                <block class="Bss\GiftCard\Block\Adminhtml\Pattern\Code\History" name="bss_giftcard_pattern_code_history"/>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

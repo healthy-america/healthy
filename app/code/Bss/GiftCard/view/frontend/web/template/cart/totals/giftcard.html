@@ -1,0 +1,31 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<!-- ko if: isDisplayed() -->
+    <!-- ko foreach: getGiftCardInfo -->
+    <tr class="totals">
+        <th colspan="1" class="mark" scope="row">
+            <span class="title" data-bind="text: title"></span>
+        </th>
+        <td class="amount" data-bind="attr: {'data-th': title}">
+            <span><span class="price" data-bind="text: $parent.getValue(amount)"></span></span>
+        </td>
+    </tr>
+    <!-- /ko -->
+<!-- /ko -->

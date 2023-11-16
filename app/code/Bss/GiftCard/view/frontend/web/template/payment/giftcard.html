@@ -1,0 +1,64 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<!-- ko if: isDisplayed() -->
+    <div class="payment-option _collapsible opc-payment-additional bss-giftcard"
+         data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+        <div class="payment-option-title field choice" data-role="title">
+            <span class="action action-toggle" id="block-bss-giftcard-heading" role="heading" aria-level="2">
+                <!-- ko i18n: 'Gift Card Options'--><!-- /ko -->
+            </span>
+        </div>
+        <div class="payment-option-content" data-role="content">
+            <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <!-- ko foreach: getRegion('giftCardDetails') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <!-- ko foreach: getRegion('giftCardApply') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <form class="form form-bss-giftcard" id="bss-giftcard-form">
+                <div class="payment-option-inner">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input-text"
+                                   type="text"
+                                   id="bss-giftcard-code"
+                                   name="bss_giftcard_code"
+                                   data-validate="{'required-entry':true}"
+                                   data-bind="value: giftCardCode, attr:{placeholder: $t('Enter gift code')} ">
+                        </div>
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button class="action primary bss-giftcard-apply" type="submit" data-bind="'value': $t('Apply'), click: apply">
+                            <span><!-- ko i18n: 'Apply'--><!-- /ko --></span>
+                        </button>
+                        <button class="action primary bss-giftcard-check" type="submit" data-bind="'value': $t('Check Status'), click: checkStatus">
+                            <span><!-- ko i18n: 'Check Status'--><!-- /ko --></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<!-- /ko -->
