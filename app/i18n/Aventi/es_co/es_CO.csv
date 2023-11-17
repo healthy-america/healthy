@@ -15401,3 +15401,5 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Please select a document type","Por favor selecciona un documento"
 "Please select an option","Por favor selecciona una opción"
 "Ship Here","Enviar Aquí"
+" Sign in with Google ","Google"
+" Sign in with Facebook ","Facebook"
