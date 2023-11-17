@@ -1,0 +1,128 @@
+/*
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_GiftCard
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+.bss-giftcard-product-info .bss_giftcard_amount_static, .bss-giftcard-product-info .bss-giftcard_amount_dynamic,
+.bss-giftcard-product-info .bss_giftcard-sender-name, .bss-giftcard-product-info .bss-giftcard-sender-email,
+.bss-giftcard-product-info .bss_giftcard-recipient-name, .bss-giftcard-product-info .bss-giftcard-recipient-email,
+.bss-giftcard-product-info .bss_giftcard-delivery-date, .bss-giftcard-product-info .bss-giftcard-timezone
+{
+    margin: 0 0 20px;
+    padding: 0 12px 0 0;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+}
+.bss-giftcard-amount {
+    margin-bottom: 0;
+}
+.bss_giftcard_amount_dynamic {
+    float: right;
+}
+ul.bss-giftcard-template-images-ul{
+    padding: 0;
+    margin-top: 10px;
+}
+ul li.bss-giftcard-template-images{
+    cursor: pointer;
+    border: 2px solid transparent;
+    list-style: none;
+}
+.bss-img-selected {
+    border: 2px solid #ff5501 !important;
+}
+.bss_owl_arr {
+    background-color: rgba(255, 255, 255, 0.3);
+    transition: background-color 0.3s ease-in-out;
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    width: 50px;
+    z-index: 900;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    user-select: none;
+    padding: 20px;
+    font-size: 50px;
+}
+.bss_owl_arr:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+.bss_owl_arr-prev {
+    left: 0;
+}
+.bss_owl_arr-next {
+    right: 0;
+}
+.bss-giftcard-images .owl-nav .disabled{
+    display: none;
+}
+
+#bss-giftcard-form {
+    .bss-giftcard div.field {
+        display: block;
+    }
+    .actions-toolbar button {
+        float: none;
+    }
+}
+
+.bss-giftcard-history-toolbar .pages {
+    position: unset!important;
+}
+
+.multishipping-checkout-overview {
+  .block.bss-giftcard .title {
+    border-top: 1px solid #cccccc;
+    cursor: pointer;
+    margin-bottom: 0;
+    position: relative;
+    padding: 10px 40px 10px 0;
+    display: block;
+    text-decoration: none;
+    color: #1979c3;
+    font-weight: 400;
+
+  }
+  .bss-giftcard-product-info .totals .amount {
+    padding-left: 5px;
+  }
+}
+.title-gift-code {
+  display: inline-block !important;
+}
+.bss-giftcard-remove {
+  &:before {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 18px;
+    line-height: 20px;
+    color: #757575;
+    content: '\e604';
+    font-family: 'luma-icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+  }
+}
+.wishlist-option-image {
+  width: 60px;
+  height: 60px;
+}

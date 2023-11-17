@@ -1,0 +1,70 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<!--@subject {{trans "%store_name: Gift Card Notification" store_name=$store.getFrontendName()}} @-->
+<!--@vars {
+"var customer":"Customer Name"
+} @-->
+{{template config_path="design/email/header_template"}}
+<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    <tr>
+        <td>
+            <p>{{trans "Sender Name: %senderName" senderName=$senderName |raw}}</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>{{trans "Recipient Name: %recipientName" recipientName=$recipientName |raw}}</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p>{{trans "Value: %value" value=$value |raw}}</p>
+        </td>
+    </tr>
+    {{if expires}}
+        <tr>
+            <td>
+                <p>{{trans "Expires At: %expires" expires=$expires |raw}}</p>
+            </td>
+        </tr>
+    {{/if}}
+    {{if message}}
+        <tr>
+            <td>
+                {{layout handle="giftcard_email_config" config=$template message=$message area="frontend"}}
+            </td>
+        </tr>
+    {{/if}}
+    <tr>
+        <td>
+            {{layout handle="giftcard_email_config" config=$template code=$code area="frontend"}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img
+                src="{{var img_url}}"
+                alt="{{var img_alt}}"
+                border="0"
+            />
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

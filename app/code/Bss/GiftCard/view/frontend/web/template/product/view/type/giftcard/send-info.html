@@ -1,0 +1,141 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2022 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<div class="field bss-giftcard-sender-name required">
+    <label data-bind="attr: {for: getType() + '_sender_name'}" class="label">
+        <span><!-- ko i18n: 'Sender Name'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <input type="text"
+               data-validate="{required:true}"
+               data-bind="
+                    value: senderName,
+                    attr: {
+                        id: getType() + '_sender_name',
+                        name: getType() + '_sender_name'
+                    }">
+    </div>
+</div>
+
+<div class="field bss-giftcard-recipient-name required">
+    <label data-bind="attr: {for: getType() + '_recipient_name'}" class="label">
+        <span><!-- ko i18n: 'Recipient Name'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <input type="text"
+               data-validate="{required:true}"
+               data-bind="
+                    value: recipientName,
+                    attr: {
+                        id: getType() + '_recipient_name',
+                        name: getType() + '_recipient_name'
+                    }">
+    </div>
+</div>
+
+<!-- ko ifnot: (isPhysical) -->
+<div class="field bss-giftcard-sender-email required">
+    <label data-bind="attr: {for: getType() + '_sender_email'}" class="label">
+        <span><!-- ko i18n: 'Sender Email'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <input type="text"
+               data-validate="{required:true, 'validate-email':true}"
+               data-bind="
+                    value: senderEmail,
+                    attr: {
+                        id: getType() + '_sender_email',
+                        name: getType() + '_sender_email'
+                    }">
+    </div>
+</div>
+
+<div class="field bss-giftcard-recipient-email required">
+    <label data-bind="attr: {for: getType() + '_recipient_email'}" class="label">
+        <span><!-- ko i18n: 'Recipient Email'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <input type="text"
+               data-validate="{required:true, 'validate-email':true}"
+               data-bind="
+                    value: recipientEmail,
+                    attr: {
+                        id: getType() + '_recipient_email',
+                        name: getType() + '_recipient_email'
+                    }">
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko if: (isMessage) -->
+<div class="field bss-giftcard-message">
+    <label data-bind="attr: {for: getType() + '_message'}" class="label">
+        <span><!-- ko i18n: 'Message'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <textarea data-bind="
+            value: messageValue,
+            attr: {
+                id: getType() + '_message_email',
+                name: getType() + '_message_email'
+            }"></textarea>
+    </div>
+</div>
+<!-- /ko -->
+
+<!-- ko ifnot: (isPhysical) -->
+<div class="field bss-giftcard-delivery-date">
+    <label data-bind="attr: {for: getType() + '_delivery_date'}" class="label">
+        <span><!-- ko i18n: 'Delivery Date'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <input type="text"
+               id="bss-giftcard-delivery-date-input"
+                data-bind="
+                    value: deliveryDate,
+                    attr: {
+                        name: getType() + '_delivery_date',
+                        autocomplete: 'off',
+                        placeHolder: $t('Select Delivery Date')
+                    },
+                    afterRender: initDate
+                ">
+    </div>
+</div>
+<div class="field bss-giftcard-timezone">
+    <label data-bind="attr: {for: getType() + '_timezone'}" class="label">
+        <span><!-- ko i18n: 'Select Timezone'--><!-- /ko --></span>
+    </label>
+    <div class="control">
+        <select
+            id="bss-giftcard-timezone-select"
+            data-bind="
+            value: timeZone,
+            options: getTimezoneList(),
+            optionsText: 'label',
+            optionsValue: 'value',
+            optionsCaption: $t('Choose a Timezone...'),
+            optionsAfterRender: getRenderTypeSelect(),
+            attr: {
+                id: getType() + '_timezone',
+                name: getType() + '_timezone'
+            }"></select>
+    </div>
+</div>
+<!-- /ko -->

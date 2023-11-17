@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ *  @category  BSS
+ *  @package   Bss_GiftCard
+ *  @author    Extension Team
+ *  @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ *  @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/bssGiftCard/template/:templateId" method="GET">
+        <service class="Bss\GiftCard\Api\TemplateRepositoryInterface" method="getTemplateById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/bssGiftCard/pattern/:patternId" method="GET">
+        <service class="Bss\GiftCard\Api\PatternRepositoryInterface" method="getPatternById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/bssGiftCard/checkCode" method="POST">
+        <service class="Bss\GiftCard\Api\GiftCardInterface" method="checkCode"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/bssGiftCard/guest/remove/:cartId/:giftCardQuoteId" method="DELETE">
+        <service class="Bss\GiftCard\Api\GiftCardInterface" method="guestRemove"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/bssGiftCard/mine/remove/:giftCardQuoteId" method="DELETE">
+        <service class="Bss\GiftCard\Api\GiftCardInterface" method="removeGiftCodeByCustomer"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/bssGiftCard/apply/:cartId/:giftCardCode" method="PUT">
+        <service class="Bss\GiftCard\Api\GiftCardInterface" method="apply"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/bssGiftCard/mine/apply/:giftCardCode" method="PUT">
+        <service class="Bss\GiftCard\Api\GiftCardInterface" method="applyGiftCodeByCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+</routes>

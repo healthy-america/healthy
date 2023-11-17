@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ *  @category  BSS
+ *  @package   Bss_GiftCard
+ *  @author    Extension Team
+ *  @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ *  @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Bss\GiftCard\Api\TemplateRepositoryInterface" type="Bss\GiftCard\Model\TemplateRepository"/>
+    <preference for="Bss\GiftCard\Api\PatternRepositoryInterface" type="Bss\GiftCard\Model\PatternRepository"/>
+    <preference for="Bss\GiftCard\Api\GiftCardInterface" type="Bss\GiftCard\Model\GiftCard" />
+    <preference for="Bss\GiftCard\Api\Data\GrandTotalDetailsInterface"
+        type="Bss\GiftCard\Model\Calculation\GrandTotalDetails" />
+
+    <type name="Magento\Quote\Model\Cart\TotalsConverter">
+        <plugin name="add_bss_giftcard_details" type="Bss\GiftCard\Plugin\Quote\GrandTotalDetails" sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="bssgiftcard_template_grid_data_source" xsi:type="string">bssGiftCardTemplateGrid</item>
+                <item name="bssgiftcard_pattern_grid_data_source" xsi:type="string">bssGiftCardPatternGrid</item>
+                <item name="bssgiftcard_account_grid_data_source" xsi:type="string">bssGiftCardAccountGrid</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="bssGiftCardTemplateGrid" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_giftcard_template</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\GiftCard\Model\ResourceModel\Template</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="bssGiftCardAccountGrid" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_giftcard_pattern_code</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\GiftCard\Model\ResourceModel\Pattern\Code</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Bss\GiftCard\Pricing\PriceInfo" type="Magento\Framework\Pricing\PriceInfo\Base">
+        <arguments>
+            <argument name="adjustmentCollection" xsi:type="object">Bss\GiftCard\Pricing\Adjustment\Collection</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Bss\GiftCard\Pricing\Adjustment\Collection" type="Magento\Framework\Pricing\Adjustment\Collection">
+    </virtualType>
+
+    <virtualType name="bssGiftCardPatternGrid" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">bss_giftcard_pattern</argument>
+            <argument name="resourceModel" xsi:type="string">Bss\GiftCard\Model\ResourceModel\Pattern</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Bss\GiftCard\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="final_price" xsi:type="string">Bss\GiftCard\Pricing\Price\FinalPrice</item>
+                <item name="wishlist_configured_price" xsi:type="string">Bss\GiftCard\Pricing\Price\ConfiguredPrice</item>
+            </argument>
+            <argument name="target" xsi:type="object">Magento\Catalog\Pricing\Price\Pool</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Bss\GiftCard\Pricing\Price\Collection" type="Magento\Framework\Pricing\Price\Collection">
+        <arguments>
+            <argument name="pool" xsi:type="object">Bss\GiftCard\Pricing\Price\Pool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Pricing\PriceInfo\Factory">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="bss_giftcard" xsi:type="array">
+                    <item name="infoClass" xsi:type="string">Bss\GiftCard\Pricing\PriceInfo</item>
+                    <item name="prices" xsi:type="string">Bss\GiftCard\Pricing\Price\Collection</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="bss_giftcard_plugin_sales_order" type="Bss\GiftCard\Plugin\Sales\Order" sortOrder="10"/>
+    </type>
+    <virtualType name="BssGiftCardOrderLine" type="Bss\GiftCard\Model\Checkout\Orderline\Giftcard"/>
+    <type name="Magento\Paypal\Model\Cart">
+        <plugin name="update_paypal_gift_card_order" type="Bss\GiftCard\Plugin\UpdateGiftCardForOrderByPaypal"/>
+    </type>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="renameGiftcard" xsi:type="object">Bss\GiftCard\Console\RenameGiftcard</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Klarna\Base\Model\Api\EntityHolder">
+        <arguments>
+            <argument name="instances" xsi:type="array">
+                <item name="bss_orderlines_gift_card" xsi:type="object">bss_gift_card</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="bss_gift_card" type="Bss\GiftCard\Model\Checkout\Orderline\GiftcardKlarnaBase"/>
+</config>

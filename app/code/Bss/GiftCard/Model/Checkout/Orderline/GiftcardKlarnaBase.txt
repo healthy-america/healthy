@@ -1,0 +1,132 @@
+<?php
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+namespace Bss\GiftCard\Model\Checkout\Orderline;
+
+use Klarna\Base\Helper\DataConverter;
+use Klarna\Base\Model\Api\DataHolder;
+use Klarna\Base\Model\Api\Parameter;
+use Klarna\Orderlines\Model\ItemGenerator;
+use Magento\Checkout\Model\SessionFactory;
+use Magento\Quote\Api\Data\CartInterface;
+use Magento\Sales\Api\Data\OrderInterface;
+
+class GiftcardKlarnaBase implements \Klarna\Orderlines\Api\OrderLineInterface
+{
+    /**
+     * @var SessionFactory
+     */
+    protected $checkoutSession;
+
+    /**
+     * @var DataConverter
+     */
+    protected $helper;
+
+    /**
+     * @param SessionFactory $checkoutSession
+     * @param DataConverter $dataConvert
+     */
+    public function __construct(
+        SessionFactory $checkoutSession,
+        DataConverter $dataConvert
+    ) {
+        $this->checkoutSession=$checkoutSession;
+        $this->helper=$dataConvert;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function collectPostPurchase(Parameter $parameter, DataHolder $dataHolder, OrderInterface $order)
+    {
+        return $this->collect($parameter, $dataHolder);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function collectPrePurchase(Parameter $parameter, DataHolder $dataHolder, CartInterface $quote)
+    {
+        return $this->collect($parameter, $dataHolder);
+    }
+
+    /**
+     * Collect
+     *
+     * @param Parameter $parameter
+     * @param DataHolder $dataHolder
+     * @return $this
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function collect(Parameter $parameter, DataHolder $dataHolder)
+    {
+        /** @var \Magento\Quote\Model\Quote $quote */
+        $quote = $this->checkoutSession->create()->getQuote();
+        $totals = $dataHolder->getTotals();
+        if (!is_array($totals) || !isset($totals['bss_giftcard'])) {
+            return $this;
+        }
+        $total = $totals['bss_giftcard'];
+        $giftCards = $total->getGiftCard();
+        $amount = 0;
+        foreach ($giftCards as $giftCard) {
+            $amount += $giftCard['giftcard_amount'];
+        }
+        if ($amount !== 0) {
+            $value = -1 * $this->helper->toApiFloat($amount);
+            $this->checkoutSession->create()->setBssgiftcardaccountTotalAmount([
+                'bssgiftcardaccount_unit_price'   => $value,
+                'bssgiftcardaccount_tax_rate'     => 0,
+                'bssgiftcardaccount_total_amount' => $value,
+                'bssgiftcardaccount_tax_amount'   => 0,
+                'bssgiftcardaccount_title'        => 'Bss Giftcard',
+                'bssgiftcardaccount_reference'    => $total->getCode()
+            ]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Fetch
+     *
+     * @param Parameter $parameter
+     * @return $this|GiftcardKlarnaBase
+     */
+    public function fetch(Parameter $parameter)
+    {
+        $data=$this->checkoutSession->create()->getBssgiftcardaccountTotalAmount();
+        if ($data) {
+            $parameter->addOrderLine([
+                'type'             => ItemGenerator::ITEM_TYPE_DISCOUNT,
+                'reference'        => $data['bssgiftcardaccount_reference'],
+                'name'             => $data['bssgiftcardaccount_title'],
+                'quantity'         => 1,
+                'unit_price'       => $data['bssgiftcardaccount_unit_price'],
+                'tax_rate'         => $data['bssgiftcardaccount_tax_rate'],
+                'total_amount'     => $data['bssgiftcardaccount_total_amount'],
+                'total_tax_amount' => $data['bssgiftcardaccount_tax_amount'],
+            ]);
+        }
+
+        return $this;
+    }
+}

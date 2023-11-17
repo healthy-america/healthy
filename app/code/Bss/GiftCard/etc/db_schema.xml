@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ *  @category  BSS
+ *  @package   Bss_GiftCard
+ *  @author    Extension Team
+ *  @copyright Copyright (c) 2017-2023 BSS Commerce Co. ( http://bsscommerce.com )
+ *  @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="bss_giftcard_amounts" resource="default" engine="innodb" comment="bss_giftcard_amounts">
+    <column xsi:type="int" name="amount_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Amount ID"/>
+    <column xsi:type="decimal" name="value" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Value"/>
+    <column xsi:type="decimal" name="price" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Price"/>
+    <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="true" identity="false" comment="Website Id"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="amount_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_AMOUNTS_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID" table="bss_giftcard_amounts" column="website_id" referenceTable="store_website" referenceColumn="website_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_AMOUNTS_AMOUNT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID" table="bss_giftcard_amounts" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="BSS_GIFTCARD_AMOUNTS_PRODUCT_ID" indexType="btree">
+      <column name="product_id"/>
+    </index>
+    <index referenceId="BSS_GIFTCARD_AMOUNTS_WEBSITE_ID" indexType="btree">
+      <column name="website_id"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_template" resource="default" engine="innodb" comment="bss_giftcard_template">
+    <column xsi:type="int" name="template_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Template ID"/>
+    <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Template name"/>
+    <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="1" comment="Template Status"/>
+    <column xsi:type="varchar" name="code_color" nullable="true" length="10" comment="Gift code color"/>
+    <column xsi:type="varchar" name="message_color" nullable="true" length="10" comment="Gift card message text color"/>
+    <column xsi:type="timestamp" name="created_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+    <column xsi:type="timestamp" name="updated_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="template_id"/>
+    </constraint>
+    <index referenceId="BSS_GIFTCARD_TEMPLATE_TEMPLATE_ID" indexType="btree">
+      <column name="template_id"/>
+    </index>
+    <index referenceId="BSS_GIFTCARD_TEMPLATE_STATUS" indexType="btree">
+      <column name="status"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_template_images" resource="default" engine="innodb" comment="bss_giftcard_template_images">
+    <column xsi:type="int" name="value_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Image ID"/>
+    <column xsi:type="varchar" name="value" nullable="true" length="255" comment="Value"/>
+    <column xsi:type="int" name="template_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Template Id"/>
+    <column xsi:type="smallint" name="position" padding="5" unsigned="true" nullable="true" identity="false" comment="Position"/>
+    <column xsi:type="varchar" name="label" nullable="true" length="255" comment="Alt"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="value_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_TEMPLATE_IMAGES_TEMPLATE_ID_BSS_GIFTCARD_TEMPLATE_TEMPLATE_ID" table="bss_giftcard_template_images" column="template_id" referenceTable="bss_giftcard_template" referenceColumn="template_id" onDelete="CASCADE"/>
+    <index referenceId="BSS_GIFTCARD_TEMPLATE_IMAGES_TEMPLATE_ID" indexType="btree">
+      <column name="template_id"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_pattern" resource="default" engine="innodb" comment="bss_giftcard_pattern">
+    <column xsi:type="int" name="pattern_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Pattern ID"/>
+    <column xsi:type="varchar" name="name" nullable="true" length="255" comment="Name"/>
+    <column xsi:type="varchar" name="pattern" nullable="true" length="255" comment="Pattern"/>
+    <column xsi:type="int" name="pattern_code_qty" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Total Qty Code"/>
+    <column xsi:type="int" name="pattern_code_unused" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Total Qty Unused Code"/>
+    <column xsi:type="int" name="pattern_code_qty_max" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Total Qty Code Max"/>
+    <column xsi:type="timestamp" name="created_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+    <column xsi:type="timestamp" name="updated_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="pattern_id"/>
+    </constraint>
+    <index referenceId="BSS_GIFTCARD_PATTERN_PATTERN" indexType="btree">
+      <column name="pattern"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_pattern_code" resource="default" engine="innodb" comment="bss_giftcard_pattern_code">
+    <column xsi:type="int" name="code_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Code ID"/>
+    <column xsi:type="varchar" name="code" nullable="true" length="255" comment="Code"/>
+    <column xsi:type="int" name="pattern_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Pattern Id"/>
+    <column xsi:type="decimal" name="value" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Value"/>
+    <column xsi:type="decimal" name="origin_value" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Origin Value"/>
+    <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Order Id"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Product Id"/>
+    <column xsi:type="smallint" name="sent" padding="5" unsigned="true" nullable="false" identity="false" default="1" comment="Sent"/>
+    <column xsi:type="timestamp" name="send_at" on_update="false" nullable="true" comment="Send At"/>
+    <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Status"/>
+    <column xsi:type="varchar" name="sender_name" nullable="true" length="255" comment="Sender Name"/>
+    <column xsi:type="varchar" name="recipient_name" nullable="true" length="255" comment="Recipient Name"/>
+    <column xsi:type="varchar" name="recipient_email" nullable="true" length="255" comment="Recipient Email"/>
+    <column xsi:type="varchar" name="sender_email" nullable="true" length="255" comment="Sender Email"/>
+    <column xsi:type="varchar" name="message" nullable="true" length="255" comment="Message"/>
+    <column xsi:type="int" name="image_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Image Id"/>
+    <column xsi:type="timestamp" name="expiry_day" on_update="false" nullable="true" comment="Expiry Day"/>
+    <column xsi:type="timestamp" name="created_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+    <column xsi:type="timestamp" name="updated_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated Time"/>
+    <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Website Id"/>
+    <column xsi:type="smallint" name="sent_expire_notify" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Was sent Notification Email about Expire code"/>
+    <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Store Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="code_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_PATTERN_CODE_ORDER_ID_SALES_ORDER_ENTITY_ID" table="bss_giftcard_pattern_code" column="order_id" referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_PATTERN_CODE_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="bss_giftcard_pattern_code" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="FK_1BD657E4A3BE655C23C16EFC6F15DF07" table="bss_giftcard_pattern_code" column="pattern_id" referenceTable="bss_giftcard_pattern" referenceColumn="pattern_id" onDelete="CASCADE"/>
+    <index referenceId="BSS_GIFTCARD_PATTERN_CODE_CODE" indexType="btree">
+      <column name="code"/>
+    </index>
+    <index referenceId="BSS_GIFTCARD_PATTERN_CODE_PATTERN_ID" indexType="btree">
+      <column name="pattern_id"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_product_template" resource="default" engine="innodb" comment="bss_giftcard_product_template">
+    <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="template_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Template Id"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_C7B832A72B029FF276EC0F39A6E101FA" table="bss_giftcard_product_template" column="template_id" referenceTable="bss_giftcard_template" referenceColumn="template_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_PRD_TEMPLATE_PRD_ID_CAT_PRD_ENTT_ENTT_ID" table="bss_giftcard_product_template" column="product_id" referenceTable="catalog_product_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+    <index referenceId="BSS_GIFTCARD_PRODUCT_TEMPLATE_TEMPLATE_ID" indexType="btree">
+      <column name="template_id"/>
+    </index>
+    <index referenceId="BSS_GIFTCARD_PRODUCT_TEMPLATE_PRODUCT_ID" indexType="btree">
+      <column name="product_id"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_quote" resource="default" engine="innodb" comment="bss_giftcard_quote">
+    <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Quote Id"/>
+    <column xsi:type="varchar" name="giftcard_code" nullable="true" length="255" comment="Gift Card Code"/>
+    <column xsi:type="decimal" name="base_giftcard_amount" scale="2" precision="12" unsigned="true" nullable="true" comment="Base Gift Card Amount"/>
+    <column xsi:type="decimal" name="giftcard_amount" scale="2" precision="12" unsigned="true" nullable="true" comment="Gift Card Amount"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="id"/>
+    </constraint>
+    <index referenceId="BSS_GIFTCARD_QUOTE_GIFTCARD_CODE" indexType="btree">
+      <column name="giftcard_code"/>
+    </index>
+    <index referenceId="BSS_GIFTCARD_QUOTE_QUOTE_ID" indexType="btree">
+      <column name="quote_id"/>
+    </index>
+  </table>
+  <table name="bss_giftcard_history" resource="default" engine="innodb" comment="bss_giftcard_history">
+    <column xsi:type="int" name="history_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+    <column xsi:type="int" name="code_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Code Id"/>
+    <column xsi:type="int" name="quote_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Quote Id"/>
+    <column xsi:type="decimal" name="amount" scale="4" precision="12" unsigned="false" nullable="false" default="0" comment="Amount"/>
+    <column xsi:type="timestamp" name="created_time" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Creation Time"/>
+    <column xsi:type="timestamp" name="updated_time" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="history_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="BSS_GIFTCARD_HISTORY_CODE_ID_BSS_GIFTCARD_PATTERN_CODE_CODE_ID" table="bss_giftcard_history" column="code_id" referenceTable="bss_giftcard_pattern_code" referenceColumn="code_id" onDelete="CASCADE"/>
+    <index referenceId="BSS_GIFTCARD_HISTORY_QUOTE_ID" indexType="btree">
+      <column name="quote_id"/>
+    </index>
+    <index referenceId="BSS_GIFTCARD_HISTORY_CODE_ID" indexType="btree">
+      <column name="code_id"/>
+    </index>
+  </table>
+    <table name="sales_order">
+        <column xsi:type="decimal" scale="4" precision="12" name="bss_giftcard_amount"/>
+        <column xsi:type="decimal" scale="4" precision="12" name="base_bss_giftcard_amount"/>
+    </table>
+    <table name="sales_invoice">
+        <column xsi:type="decimal" scale="4" precision="12" name="bss_giftcard_amount"/>
+        <column xsi:type="decimal" scale="4" precision="12" name="base_bss_giftcard_amount"/>
+    </table>
+    <table name="sales_creditmemo">
+        <column xsi:type="decimal" scale="4" precision="12" name="bss_giftcard_amount"/>
+        <column xsi:type="decimal" scale="4" precision="12" name="base_bss_giftcard_amount"/>
+    </table>
+    <table name="quote">
+        <column xsi:type="decimal" scale="4" precision="12" name="bss_giftcard_amount"/>
+        <column xsi:type="decimal" scale="4" precision="12" name="base_bss_giftcard_amount"/>
+    </table>
+</schema>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="klarnacheckout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="klarna_sidebar" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="giftcard" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Bss_GiftCard/js/view/payment/giftcard</item>
+                                                    <item name="displayArea" xsi:type="string">klarna-summary</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="errors" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                            <item name="component" xsi:type="string">Bss_GiftCard/js/view/payment/giftcard-messages</item>
+                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                        </item>
+                                                        <item name="giftcard-details" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">1</item>
+                                                            <item name="component" xsi:type="string">Bss_GiftCard/js/view/cart/code-info</item>
+                                                            <item name="displayArea" xsi:type="string">giftCardDetails</item>
+                                                        </item>
+                                                        <item name="giftcard-apply" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">2</item>
+                                                            <item name="component" xsi:type="string">Bss_GiftCard/js/view/cart/giftcard-apply</item>
+                                                            <item name="displayArea" xsi:type="string">giftCardApply</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

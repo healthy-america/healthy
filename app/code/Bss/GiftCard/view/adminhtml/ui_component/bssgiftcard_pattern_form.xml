@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ *  @category  BSS
+ *  @package   Bss_GiftCard
+ *  @author    Extension Team
+ *  @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ *  @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">bssgiftcard_pattern_form.bssgiftcard_pattern_form_data_source</item>
+            <item name="deps" xsi:type="string">bssgiftcard_pattern_form.bssgiftcard_pattern_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Pattern Information</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">bssgiftcard_pattern_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Pattern\Edit\BackButton</item>
+            <item name="delete" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Pattern\Edit\DeleteButton</item>
+            <item name="reset" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Edit\ResetButton</item>
+            <item name="save" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Pattern\Edit\SaveButton</item>
+            <item name="save_and_continue" xsi:type="string">Bss\GiftCard\Block\Adminhtml\Edit\SaveAndContinueButton</item>
+        </item>
+    </argument>
+    <dataSource name="bssgiftcard_pattern_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Bss\GiftCard\Model\Pattern\DataProvider</argument>
+            <argument name="name" xsi:type="string">bssgiftcard_pattern_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">pattern_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="giftcard/pattern/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+
+    <fieldset name="pattern">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General</item>
+            </item>
+        </argument>
+        <field name="pattern_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                </item>
+            </argument>
+        </field>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Name</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="pattern">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="label" xsi:type="string" translate="true">Pattern</item>
+                    <item name="class" xsi:type="string">Bss\GiftCard\Ui\Component\Pattern\Form\Element\Pattern</item>
+                    <item name="notice" xsi:type="string" translate="true">Maximum number of D (digit) and L (letter) to be added is 6. E.g. BIRTHDAY-{D}-{L} results in BIRTHDAY-8-A</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="pattern_code_qty">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="label" xsi:type="string" translate="true">Code Quantity</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="pattern_code_unused">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="label" xsi:type="string" translate="true">Unused</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="disabled" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+        </field>
+        <field name="import_codes">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Import Codes</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="componentType" xsi:type="string">fileUploader</item>
+                    <item name="notice" xsi:type="string" translate="true">Allowed file types: csv.</item>
+                    <item name="component" xsi:type="string">Bss_GiftCard/js/action/pattern/code/import</item>
+                    <item name="template" xsi:type="string">Bss_GiftCard/form/pattern/code/uploader</item>
+                    <item name="allowedExtensions" xsi:type="string">csv</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="string">giftcard/pattern_fileUploader/save</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="add_code_qty">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="label" xsi:type="string" translate="true">Add Code Quantity</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-digits" xsi:type="boolean">true</item>
+                        <item name="validate-greater-than-zero" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="add_code_amount">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="label" xsi:type="string" translate="true">Add Code Value</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-greater-than-zero" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="add_code_expiry">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string">Add Code Expiry</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="validate-date" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="source" xsi:type="string">pattern</item>
+                </item>
+            </argument>
+        </field>
+        <field name="generate">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Action</item>
+                    <item name="elementTmpl" xsi:type="string">Bss_GiftCard/form/pattern/code/generate</item>
+                    <item name="component" xsi:type="string">Bss_GiftCard/js/view/form/pattern/code/generate</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">pattern</item>
+                    <item name="elementId" xsi:type="string">generate</item>
+                    <item name="jsObjectName" xsi:type="string">pattern_code_listJsObject</item>
+                    <item name="generateUrl" xsi:type="url" path="giftcard/pattern/generate"/>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+    <fieldset name="code_list">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Code List Grid</item>
+            </item>
+        </argument>
+        <container name="code_list_container" >
+            <htmlContent name="html_content">
+                <block class="Bss\GiftCard\Block\Adminhtml\Pattern\CodeList" name="bss_giftcard_codelist"/>
+            </htmlContent>
+        </container>
+    </fieldset>
+</form>

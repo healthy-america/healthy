@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!--
+/**
+ *
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ *  @category  BSS
+ *  @package   Bss_GiftCard
+ *  @author    Extension Team
+ *  @copyright Copyright (c) 2017-2023 BSS Commerce Co. ( http://bsscommerce.com )
+ *  @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="bss" sortOrder="300">
+            <label><![CDATA[Bss Commerce]]></label>
+        </tab>
+        <section id="giftcard" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Gift Card</label>
+            <tab>bss</tab>
+            <resource>Bss_GiftCard::config_giftcard</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Version 1.1.1]]></comment>
+                </field>
+            </group>
+            <group id="email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Email Configuration</label>
+                <field id="active_to_sender" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Email to Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="identity" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="to_sender" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template to Sender</label>
+                    <source_model>Bss\GiftCard\Model\Config\Source\Email\Sender</source_model>
+                </field>
+                <field id="to_recipient" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Email Template to Recipient</label>
+                    <source_model>Bss\GiftCard\Model\Config\Source\Email\Recipient</source_model>
+                </field>
+                <field id="notify_to_recipient" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Notification Email Template of Expiration to Recipient</label>
+                    <source_model>Bss\GiftCard\Model\Config\Source\Email\Notify</source_model>
+                </field>
+                <field id="day_before_notify_expire" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Send Notification Mail of Expiration before number of days</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+
+            <group id="setting" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Gift Card Setting</label>
+                <field id="expire_day" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Expiry Day</label>
+                    <comment>Enter 0 for unlimited usage day</comment>
+                    <validate>validate-digits validate-zero-or-greater</validate>
+                </field>
+                <field id="number_character" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Characters Shown in Gift Code</label>
+                    <validate>validate-digits validate-greater-than-zero</validate>
+                </field>
+                <field id="replace_character" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Replace Hidden Character by</label>
+                    <backend_model>Bss\GiftCard\Model\Config\Backend\ReplaceCharacter</backend_model>
+                    <comment>Default format is XXX.Not allow input number</comment>
+                </field>
+                <field id="max_time_limit" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Maximum Time (s) to Enter Gift Code Incorrectly</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

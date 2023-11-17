@@ -1,0 +1,32 @@
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category  BSS
+ * @package   Bss_GiftCard
+ * @author    Extension Team
+ * @copyright Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license   http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+
+<!-- ko if: isDisplay() -->
+<div class="bss-giftcard-code-info table-wrapper">
+    <table class="table">
+        <caption class="table-caption" data-bind="i18n: 'Gift Card Code Information'"></caption>
+        <tbody data-bind="foreach: getCode()">
+            <tr>
+                <th class="col label" scope="row" data-bind="text: label"></th>
+                <td class="col data" data-bind="text: value"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- /ko -->
