@@ -1,10 +1,18 @@
 <?php
+/**
+  * Copyright  Aventi SAS All rights reserved.
+  * See COPYING.txt for license details.
+*/
+declare(strict_types=1);
 
 namespace Aventi\AventiTheme\Block\Account;
 
 use Magento\Customer\Model\Context;
 use Magento\Customer\Model\Url;
 
+/**
+ * Customer account navigation link
+ */
 class Link extends \Magento\Customer\Block\Account\Link
 {
     /**
@@ -15,6 +23,8 @@ class Link extends \Magento\Customer\Block\Account\Link
     protected $httpContext;
 
     /**
+     * Link Constructor
+     * 
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param Url $customerUrl
      * @param \Magento\Framework\App\Http\Context $httpContext

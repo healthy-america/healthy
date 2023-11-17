@@ -1,4 +1,9 @@
 <?php
+/**
+  * Copyright  Aventi SAS All rights reserved.
+  * See COPYING.txt for license details.
+*/
+declare(strict_types=1);
 
 namespace Aventi\AventiTheme\Block\Account;
 
@@ -6,6 +11,9 @@ use Magento\Framework\App\Http\Context;
 use Magento\Wishlist\Block\Link;
 use Magento\Wishlist\Helper\Data;
 
+/**
+ * Get wishlist link
+ */
 class Wishlist extends Link
 {
     protected $_template = 'Aventi_AventiTheme::account/my-wishlist.phtml';
@@ -18,6 +26,8 @@ class Wishlist extends Link
     protected $httpContext;
 
     /**
+     * Wishlist constructor.
+     * 
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param Data $wishlistHelper
      * @param Context $httpContext
