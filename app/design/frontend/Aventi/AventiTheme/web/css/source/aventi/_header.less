@@ -804,6 +804,16 @@
                         font-weight: 600;
                         line-height: normal;
                     }
+
+                    li {
+                        a {
+                            &::after,
+                            &::before {
+                                content: '';
+                                display: none;
+                            }
+                        }
+                    }
                 }
                 .link.authorization-link a {
                     border-radius: 4px;
