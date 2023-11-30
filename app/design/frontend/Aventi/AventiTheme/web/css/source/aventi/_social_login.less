@@ -1,9 +1,11 @@
 //  All devices
 & when (@media-common =true) {
-   body {
+   body#html-body {
 
         &.customer-account-login {
             .social-login-authentication-channel.account-social-login {
+                width: 100%;
+                margin-top: unset;
                 .block-content {
                     display: flex;
                     flex-wrap: wrap;
@@ -15,7 +17,7 @@
                         display: grid;
                         place-content: center;
 
-                        a.btn {
+                        a.btn.btn-block.btn-social {
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -24,6 +26,12 @@
                             height: 40px;
                             padding: 6px 8px;
                             background-color: @grey-clear;
+                            color: @color-primary;
+                            font-family: @Montserrat-font;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 20px;
 
                             > span {
                                 position: unset;
@@ -42,6 +50,10 @@
                                         content: url('https://api.iconify.design/fluent-mdl2/facebook-logo.svg?color=%23004993&width=30&height=30');
                                     }
                                 }
+                            }
+
+                            &:hover {
+                                color: @color-primary;
                             }
                         }
                     }

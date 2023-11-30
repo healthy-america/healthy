@@ -15404,3 +15404,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 " Sign in with Google ","Google"
 " Sign in with Facebook ","Facebook"
 "Gift Card Options","Tarjetas de regalo"
+"Sign in with Facebook","Facebook"
