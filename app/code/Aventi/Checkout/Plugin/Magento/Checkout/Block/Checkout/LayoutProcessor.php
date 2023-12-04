@@ -54,6 +54,7 @@ class LayoutProcessor
         $shippingForm['suffix'] = [
             'component' => 'Aventi_Checkout/js/form/element/document-type',
             'config' => [
+                "customScope" => "shippingAddress",
                 'template' => 'ui/form/field',
                 'elementTmpl' => 'ui/form/element/select',
                 'id' => 'suffix',
@@ -61,9 +62,8 @@ class LayoutProcessor
             'dataScope' => 'shippingAddress.suffix',
             'label' => __('Customer type'),
             'provider' => 'checkoutProvider',
-            'visible' => true,
             'sortOrder' => 48,
-            'validation' => [],
+            'validation' => ['required-entry' => true, 'validate-select' => true],
             'caption' => __('Please select an option'),
             'options' => $customerTypeOptions
         ];
@@ -71,15 +71,17 @@ class LayoutProcessor
         $shippingForm['fax'] = [
             'component' => 'Aventi_Checkout/js/form/element/document-type',
             'config' => [
+                "customScope" => "shippingAddress",
                 'template' => 'ui/form/field',
                 'elementTmpl' => 'Aventi_Checkout/form/element/document-type',
                 'id' => 'fax',
             ],
+            "required" => true,
             'dataScope' => 'shippingAddress.fax',
             'label' => __('Identification type'),
             'provider' => 'checkoutProvider',
             'sortOrder' => 49,
-            'validation' => []
+            'validation' => ['required-entry' => true, 'validate-select' => true],
         ];
 
         return $result;
