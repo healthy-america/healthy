@@ -63,7 +63,7 @@ class LayoutProcessor
             'label' => __('Customer type'),
             'provider' => 'checkoutProvider',
             'sortOrder' => 48,
-            'validation' => ['required-entry' => true, 'validate-select' => true],
+            'validation' => ['required-entry' => true],
             'caption' => __('Please select an option'),
             'options' => $customerTypeOptions
         ];
@@ -81,7 +81,7 @@ class LayoutProcessor
             'label' => __('Identification type'),
             'provider' => 'checkoutProvider',
             'sortOrder' => 49,
-            'validation' => ['required-entry' => true, 'validate-select' => true],
+            'validation' => ['required-entry' => true],
         ];
 
         return $result;
