@@ -1,9 +1,12 @@
 //  All devices
 & when (@media-common =true) {
-   body {
+   body#html-body {
 
+        &.customer-account-create,
         &.customer-account-login {
             .social-login-authentication-channel.account-social-login {
+                width: 100%;
+                margin-top: unset;
                 .block-content {
                     display: flex;
                     flex-wrap: wrap;
@@ -15,7 +18,7 @@
                         display: grid;
                         place-content: center;
 
-                        a.btn {
+                        a.btn.btn-block.btn-social {
                             display: flex;
                             justify-content: center;
                             align-items: center;
@@ -24,6 +27,12 @@
                             height: 40px;
                             padding: 6px 8px;
                             background-color: @grey-clear;
+                            color: @color-primary;
+                            font-family: @Montserrat-font;
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 700;
+                            line-height: 20px;
 
                             > span {
                                 position: unset;
@@ -43,10 +52,62 @@
                                     }
                                 }
                             }
+
+                            &:hover {
+                                color: @color-primary;
+                            }
                         }
                     }
                 }
             }
+
+            .container_title_networks {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin-top: 25px;
+
+                span {
+                    margin-bottom: unset;
+                }
+
+                span.line {
+                    width: 35%;
+                    height: 1px;
+                    background: #ccc;
+                }
+
+                span.title {
+                    width: 30%;
+                    color: @blue-title-social;
+                    font-family:  @Montserrat-font;
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 20px;
+                    text-align: center;
+                }
+            }
         }
    }
+}
+
+@media screen and (max-width: 1000px) {
+    body#html-body {
+        &.customer-account-create,
+        &.customer-account-login {
+
+            .container_title_networks {
+
+                span.line {
+                    width: 25%;
+                }
+
+                span.title {
+                    width: 50%;
+                }
+            }
+        }
+    }
 }
