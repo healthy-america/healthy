@@ -1080,12 +1080,17 @@
 
            &._active {
                 div.payment-option-content { 
+                    padding: unset;
                     form.form.form-bss-giftcard {
                         div.actions-toolbar {
                             div.primary {
                                 display: flex;
                                 flex-wrap: wrap;
                                 gap: 20px;
+
+                                button.bss-giftcard-check {
+                                    display: none;
+                                }
                             }
                         }
                     }
@@ -1414,6 +1419,16 @@
                 }
 
 
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @screen_750) {
+    body#html-body {
+        &.checkout-index-index {
+            .payment-option._collapsible.bss-giftcard {
+                padding: 0 15px 0 15px;
             }
         }
     }
