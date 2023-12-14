@@ -167,7 +167,7 @@ class Product extends \Aventi\SAP\Model\Integration
                         'name' => strtoupper(!empty($product['ItemName']) ? $product['ItemName'] : $product['ItemCode']),
                         'tax_class_id' => $this->getTax($product['TaxCodeAR']),
                         'status' => $this->getStatus($product['frozenFor']),
-                        'mgs_brand' => $this->getBrandIdByFirmCode($product['U_LINEA']),
+                        'mgs_brand' => '',
                         'short_description' => "",//$product['Description'],
                         'description' => $product['FrgnName'],
 //                        'category_ids' => $this->attributeDate->getCategoryIds($product),
