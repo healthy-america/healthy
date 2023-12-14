@@ -44,6 +44,11 @@ class Data extends AbstractHelper
     private \Magento\Framework\App\ResourceConnection $resourceConnection;
 
     /**
+     * @var \Magento\Store\Api\WebsiteRepositoryInterface
+     */
+    private \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository;
+
+    /**
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Framework\HTTP\Client\Curl $curl
      * @param \Aventi\SAP\Logger\Logger $logger
@@ -57,7 +62,8 @@ class Data extends AbstractHelper
         \Aventi\SAP\Logger\Logger $logger,
         Configuration $configHelper,
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
-        \Magento\Framework\App\ResourceConnection $resourceConnection
+        \Magento\Framework\App\ResourceConnection $resourceConnection,
+        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository
     ) {
         parent::__construct($context);
         $this->curl = $curl;
@@ -65,6 +71,7 @@ class Data extends AbstractHelper
         $this->configHelper = $configHelper;
         $this->_dateTime = $dateTime;
         $this->resourceConnection = $resourceConnection;
+        $this->websiteRepository = $websiteRepository;
     }
 
     /**
@@ -273,5 +280,35 @@ class Data extends AbstractHelper
         }
 
         return $id;
+    }
+
+    /**
+     * @param $websiteCode
+     * @return int
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getWebsiteIds($websiteCode)
+    {
+        return match ($websiteCode) {
+            'HEALTHY SPORTS' => $this->websiteRepository->get('healthy_sports')->getId(),
+            'NUTRIVITA' => $this->websiteRepository->get('nutrivita')->getId(),
+            default => $this->websiteRepository->get('base')->getId(),
+        };
+    }
+
+    /***
+     * @param $websiteId
+     * @return string
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getWebsiteName($websiteId)
+    {
+        $websiteCode = $this->websiteRepository->getById($websiteId)->getCode();
+
+        return match ($websiteCode) {
+            'healthy_sports' => 'HEALTHY SPORTS',
+            'nutrivita' => 'NUTRIVITA',
+            default => 'HEALTHY',
+        };
     }
 }

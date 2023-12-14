@@ -32,9 +32,20 @@ class Save implements InterfaceSave
             if (empty($data)) {
                 continue;
             }
-            $params->itemInterface->setData($key, $data);
+
+            if ($key === 'website_code') {
+                $data = explode(',', $data);
+                $params->itemInterface->setWebsiteIds($data);
+            } else {
+                $params->itemInterface->setData($key, $data);
+            }
+
             try {
-                $params->itemInterface->getResource()->saveAttribute($params->itemInterface, $key);
+                if ($key === 'website_code') {
+                    continue;
+                } else {
+                    $params->itemInterface->getResource()->saveAttribute($params->itemInterface, $key);
+                }
             } catch (\Exception$e) {
                 $this->logger->debug($e->getMessage());
             }
