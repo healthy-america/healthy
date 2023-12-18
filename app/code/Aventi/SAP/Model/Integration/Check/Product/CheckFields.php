@@ -8,9 +8,21 @@ declare(strict_types=1);
 namespace Aventi\SAP\Model\Integration\Check\Product;
 
 use Aventi\SAP\Model\Integration\Check\Check as AbstractCheck;
+use Aventi\SAP\Helper\Data;
 
 class CheckFields extends AbstractCheck
 {
+    /**
+     * @var Data
+     */
+    private Data $dataHelper;
+
+    public function __construct(
+        Data $dataHelper
+    ) {
+        $this->dataHelper = $dataHelper;
+    }
+
     public function getCurrentData($data)
     {
         $currentData = [
@@ -20,6 +32,7 @@ class CheckFields extends AbstractCheck
             'mgs_brand' => $data->mgs_brand,
             'description' => $data->description,
             'short_description' => $data->short_description,
+            'website_code' => $data->website_code,
         ];
 
         return $currentData;
@@ -33,7 +46,8 @@ class CheckFields extends AbstractCheck
             'status' => (int)$item->getData('status') ?? '',
             'mgs_brand' => $item->getData('mgs_brand') ?? '',
             'description' => $item->getDescription() ?? '',
-            'short_description' => $item->getShortDescription() ?? ''
+            'short_description' => $item->getShortDescription() ?? '',
+            'website_code' => $this->dataHelper->getWebsiteName(implode(',', $item->getWebsiteIds())) ?? ''
         ];
 
         return $headData;

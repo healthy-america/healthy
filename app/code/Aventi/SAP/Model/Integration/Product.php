@@ -88,8 +88,6 @@ class Product extends \Aventi\SAP\Model\Integration
 
     private \Magento\Store\Api\StoreRepositoryInterface $storeRepository;
 
-    private \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository;
-
     /**
      * @param Attribute $attributeDate
      * @param Logger $logger
@@ -123,8 +121,7 @@ class Product extends \Aventi\SAP\Model\Integration
         \Magento\Catalog\Api\CategoryLinkManagementInterface $categoryLinkManagement,
         \Magento\Catalog\Model\ProductFactory $productFactory,
         \Magento\Framework\App\ResourceConnection $resourceConnection,
-        \Magento\Store\Api\StoreRepositoryInterface $storeRepository,
-        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository,
+        \Magento\Store\Api\StoreRepositoryInterface $storeRepository
     ) {
         parent::__construct($attributeDate, $logger, $driver, $filesystem);
 
@@ -139,7 +136,6 @@ class Product extends \Aventi\SAP\Model\Integration
         $this->productFactory = $productFactory;
         $this->_resourceConnection = $resourceConnection;
         $this->storeRepository = $storeRepository;
-        $this->websiteRepository = $websiteRepository;
     }
 
     /**
@@ -163,15 +159,15 @@ class Product extends \Aventi\SAP\Model\Integration
                 $reader->enter(null, Reader::TYPE_OBJECT);
                 $total = (int)$reader->read('total');
                 $products = $reader->read('data');
-
                 $progressBar = $this->startProgressBar($total);
+
                 foreach ($products as $product) {
                     $itemObject = (object) [
                         'sku' => $product['ItemCode'],
                         'name' => strtoupper(!empty($product['ItemName']) ? $product['ItemName'] : $product['ItemCode']),
                         'tax_class_id' => $this->getTax($product['TaxCodeAR']),
                         'status' => $this->getStatus($product['frozenFor']),
-                        'mgs_brand' => $this->getBrandIdByFirmCode($product['U_LINEA']),
+                        'mgs_brand' => '',
                         'short_description' => "",//$product['Description'],
                         'description' => $product['FrgnName'],
 //                        'category_ids' => $this->attributeDate->getCategoryIds($product),
@@ -179,12 +175,12 @@ class Product extends \Aventi\SAP\Model\Integration
                             'presentation' => $product['SalUnitMsr'],
                             'invima_registration' => ''//$product['U_invima']
                         ],
-                        'website_code' => $product['U_LINEA1']
+                        'website_code' => $product['U_LINEA']
                     ];
                     $this->managerProduct($itemObject);
                     $this->advanceProgressBar($progressBar);
                     // Debug only
-                    //$total--;
+                    // $total--;
                 }
                 $start += $rows;
                 $this->finishProgressBar($progressBar, $start, $rows);
@@ -254,7 +250,7 @@ class Product extends \Aventi\SAP\Model\Integration
         $newProduct = $this->productFactory->create();
 
         try {
-            $websiteId = $this->getWebsiteIds($itemObject->website_code);
+            $websiteId = $this->data->getWebsiteIds($itemObject->website_code);
             $newProduct->setWebsiteIds([$websiteId]);
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             $this->logger->error("Website is not found: " . $e->getMessage());
@@ -289,20 +285,6 @@ class Product extends \Aventi\SAP\Model\Integration
             \Magento\Framework\Exception\StateException $e) {
             $this->logger->error("An error has occurred creating product: " . $e->getMessage());
         }
-    }
-
-    /**
-     * @param $websiteCode
-     * @return int
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     */
-    private function getWebsiteIds($websiteCode)
-    {
-        return match ($websiteCode) {
-            'HEALTHY SPORTS' => $this->websiteRepository->get('healthy_sports')->getId(),
-            'NUTRIVITA' => $this->websiteRepository->get('nutrivita')->getId(),
-            default => $this->websiteRepository->get('base')->getId(),
-        };
     }
 
     /**
