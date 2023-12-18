@@ -6,6 +6,7 @@ namespace Aventi\Checkout\Plugin\Magento\Checkout\CustomerData;
 
 use Aventi\Checkout\Helper\Discount;
 use Magento\Checkout\Helper\Data;
+use Magento\Framework\Pricing\PriceCurrencyInterface;
 
 class Cart
 {
@@ -19,12 +20,24 @@ class Cart
      */
     private Discount $discountHelper;
 
+    /**
+     * @var PriceCurrencyInterface
+     */
+    private PriceCurrencyInterface $priceCurrency;
+
+    /**
+     * @param Data $checkoutHelper
+     * @param Discount $discountHelper
+     * @param PriceCurrencyInterface $priceCurrency
+     */
     public function __construct(
         Data $checkoutHelper,
-        Discount $discountHelper
+        Discount $discountHelper,
+        PriceCurrencyInterface $priceCurrency
     ) {
         $this->checkoutHelper = $checkoutHelper;
         $this->discountHelper = $discountHelper;
+        $this->priceCurrency = $priceCurrency;
     }
 
     /**
@@ -36,7 +49,7 @@ class Cart
      */
     public function afterGetSectionData(\Magento\Checkout\CustomerData\Cart $subject, $result)
     {
-        $result['discount_amount'] = $this->checkoutHelper->formatPrice($this->discountHelper->getDiscountAmount());
+        $result['discount_amount'] = $this->discountHelper->getDiscountAmount();
         return $result;
     }
 }
