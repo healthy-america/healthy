@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Copyright © 2023 Aventi SAS. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace Aventi\Checkout\Plugin\Magento\Checkout\CustomerData;

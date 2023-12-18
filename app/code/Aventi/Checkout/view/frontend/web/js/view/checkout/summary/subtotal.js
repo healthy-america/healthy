@@ -1,3 +1,7 @@
+/**
+ * Copyright © 2023 Aventi, SAS. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 define([
     'ko',
     'Magento_Checkout/js/view/summary/abstract-total',
