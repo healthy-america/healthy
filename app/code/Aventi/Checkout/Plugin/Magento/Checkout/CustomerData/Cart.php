@@ -1,31 +1,22 @@
 <?php
-
+/**
+ * Copyright © 2023 Aventi SAS. All rights reserved.
+ * See COPYING.txt for license details.
+ */
 declare(strict_types=1);
 
 namespace Aventi\Checkout\Plugin\Magento\Checkout\CustomerData;
 
 use Aventi\Checkout\Helper\Discount;
-use Magento\Checkout\Helper\Data;
 
 class Cart
 {
     /**
-     * @var Data
+     * @param Discount $discountHelper
      */
-    protected Data $checkoutHelper;
-
-    /**
-     * @var Discount
-     */
-    private Discount $discountHelper;
-
     public function __construct(
-        Data $checkoutHelper,
-        Discount $discountHelper
-    ) {
-        $this->checkoutHelper = $checkoutHelper;
-        $this->discountHelper = $discountHelper;
-    }
+        private Discount $discountHelper,
+    ) {}
 
     /**
      * @param \Magento\Checkout\CustomerData\Cart $subject
@@ -36,7 +27,7 @@ class Cart
      */
     public function afterGetSectionData(\Magento\Checkout\CustomerData\Cart $subject, $result)
     {
-        $result['discount_amount'] = $this->checkoutHelper->formatPrice($this->discountHelper->getDiscountAmount());
+        $result['discount_amount'] = $this->discountHelper->getDiscountAmount();
         return $result;
     }
 }
