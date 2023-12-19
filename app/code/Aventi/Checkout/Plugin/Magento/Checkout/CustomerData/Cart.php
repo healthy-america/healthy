@@ -8,31 +8,15 @@ declare(strict_types=1);
 namespace Aventi\Checkout\Plugin\Magento\Checkout\CustomerData;
 
 use Aventi\Checkout\Helper\Discount;
-use Magento\Checkout\Helper\Data;
 
 class Cart
 {
     /**
-     * @var Data
-     */
-    protected Data $checkoutHelper;
-
-    /**
-     * @var Discount
-     */
-    private Discount $discountHelper;
-
-    /**
-     * @param Data $checkoutHelper
      * @param Discount $discountHelper
      */
     public function __construct(
-        Data $checkoutHelper,
-        Discount $discountHelper,
-    ) {
-        $this->checkoutHelper = $checkoutHelper;
-        $this->discountHelper = $discountHelper;
-    }
+        private Discount $discountHelper,
+    ) {}
 
     /**
      * @param \Magento\Checkout\CustomerData\Cart $subject
