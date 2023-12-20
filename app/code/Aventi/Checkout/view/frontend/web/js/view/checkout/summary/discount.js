@@ -18,6 +18,11 @@ define([
             this._super();
             this.cart = customerData.get('cart');
             this.discount = this.getFormattedPrice(this.cart().discount_amount);
+
+            // Reloads the discount amount when the cart is updated
+            this.cart.subscribe(() => {
+                this.discount = this.getFormattedPrice(this.cart().discount_amount);
+            });
         },
 
         /**
