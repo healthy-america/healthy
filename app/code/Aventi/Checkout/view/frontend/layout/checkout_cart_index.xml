@@ -7,34 +7,53 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="checkout.cart.totals">
-            <arguments>
-                <argument name="jsLayout" xsi:type="array">
-                    <item name="components" xsi:type="array">
-                        <item name="block-totals" xsi:type="array">
-                            <item name="children" xsi:type="array">
-                                <item name="subtotal" xsi:type="array">
-                                    <item name="component" xsi:type="string">Aventi_Checkout/js/view/checkout/summary/subtotal</item>
-                                    <item name="config" xsi:type="array">
-                                        <item name="template" xsi:type="string">Aventi_Checkout/checkout/summary/subtotal</item>
-                                    </item>
-                                </item>
-                                <item name="before_grandtotal" xsi:type="array">
-                                    <item name="sortOrder" xsi:type="string">40</item>
-                                    <item name="children" xsi:type="array">
-                                        <item name="cart.discount" xsi:type="array">
-                                            <item name="component" xsi:type="string">Aventi_Checkout/js/view/checkout/summary/discount</item>
-                                            <item name="config" xsi:type="array">
-                                                <item name="template" xsi:type="string">Aventi_Checkout/cart/discount</item>
+        <referenceContainer name="content">
+            <referenceBlock name="checkout.cart">
+                <referenceContainer name="checkout.cart.items">
+                    <referenceContainer name="checkout.cart.container">
+                        <referenceContainer name="cart.summary">
+                            <referenceContainer name="checkout.cart.totals.container">
+                                <referenceBlock name="checkout.cart.totals">
+                                    <arguments>
+                                        <argument name="jsLayout" xsi:type="array">
+                                            <item name="components" xsi:type="array">
+                                                <item name="block-totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="subtotal" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Aventi_Checkout/js/view/checkout/summary/subtotal</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Aventi_Checkout/checkout/summary/subtotal</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="before_grandtotal" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">40</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="cart.discount" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Aventi_Checkout/js/view/checkout/summary/discount</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Aventi_Checkout/cart/discount</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
                                             </item>
-                                        </item>
-                                    </item>
-                                </item>
-                            </item>
-                        </item>
-                    </item>
-                </argument>
-            </arguments>
-        </referenceBlock>
+                                        </argument>
+                                    </arguments>
+                                </referenceBlock>
+                            </referenceContainer>
+                        </referenceContainer>
+                        <referenceBlock name="checkout.cart.form">
+                            <arguments>
+                                <argument name="viewModelForm" xsi:type="object">
+                                    Aventi\Checkout\ViewModel\Checkout\HelperData
+                                </argument>
+                            </arguments>
+                        </referenceBlock>
+                    </referenceContainer>
+                </referenceContainer>
+            </referenceBlock>
+        </referenceContainer>
     </body>
 </page>
