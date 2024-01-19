@@ -136,7 +136,8 @@
         a.btn-secondary,
         button.btn-secondary,
         .secondary a.action.btn-default,
-        a.action.edit.btn {
+        a.action.edit.btn,
+        &.checkout-index-index .primary button.action-cancel{
             background: @background-footer;
             border: 1px solid @color-primary;
             color: @color-primary;
@@ -149,6 +150,8 @@
             &:hover {
                 border: 2px solid @blue-hover;
                 color: @blue-hover;
+                background: @background-footer;
+
                 span {
                     color: @blue-hover;
                 }
