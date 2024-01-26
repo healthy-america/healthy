@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Payment Method Facade configuration -->
+    <virtualType name="SistecreditoPaymentGatewayFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">\MagentoSistecredito\SistecreditoPaymentGateway\Model\Ui\ConfigProvider::CODE</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">MagentoSistecredito\SistecreditoPaymentGateway\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">SistecreditoPaymentGatewayValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">SistecreditoPaymentGatewayCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Configuration reader -->
+    <virtualType name="SistecreditoPaymentGatewayConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\MagentoSistecredito\SistecreditoPaymentGateway\Model\Ui\ConfigProvider::CODE</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Logger, initialized with SistecreditoPaymentGatewayConfig -->
+    <virtualType name="SistecreditoPaymentGatewayLogger" type="Magento\Payment\Model\Method\Logger">
+        <arguments>
+            <argument name="config" xsi:type="object">SistecreditoPaymentGatewayConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Commands infrastructure -->
+    <virtualType name="SistecreditoPaymentGatewayCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="initialize" xsi:type="string">SistecreditoPaymentGatewayInitializeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+
+    <!-- Initialization Command -->
+    <virtualType name="SistecreditoPaymentGatewayInitializeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">SistecreditoPaymentGatewayInitializationRequest</argument>
+            <argument name="transferFactory" xsi:type="object">MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Http\DummyTransferFactory</argument>
+            <argument name="client" xsi:type="object">MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Http\Client\DummyClient</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Initialization Request -->
+    <virtualType name="SistecreditoPaymentGatewayInitializationRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="transaction" xsi:type="string">MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Request\InitializationRequest</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Gateway endpoint (used by Confirmation controller) -->
+    <type name="MagentoSistecredito\SistecreditoPaymentGateway\Helper\GatewayEndpoint">
+        <arguments>
+            <argument name="gatewayConfig" xsi:type="object">MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Config\Config</argument>
+        </arguments>
+    </type>
+
+    <!-- Sistecredito Configuration Parser, to fetch the sistecredito gateway configuration as an object -->
+    <type name="MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\MagentoSistecredito\SistecreditoPaymentGateway\Model\Ui\ConfigProvider::CODE</argument>
+        </arguments>
+    </type>
+
+
+    <type name="MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Request\AuthorizationRequest">
+        <arguments>
+            <argument name="config" xsi:type="object">SistecreditoPaymentGatewayConfig</argument>
+        </arguments>
+    </type>
+
+    <!-- Value handlers infrastructure -->
+    <virtualType name="SistecreditoPaymentGatewayValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">SistecreditoPaymentGatewayConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SistecreditoPaymentGatewayConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">SistecreditoPaymentGatewayConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="MagentoSistecredito\SistecreditoPaymentGateway\Block\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">SistecreditoPaymentGatewayConfig</argument>
+        </arguments>
+    </type>
+
+    <!-- For magento 2.3 and higher: prevent CsrfValidator to throw exception -->
+    <type name="Magento\Framework\App\Request\CsrfValidator">
+        <plugin name="csrf_validator_skip" type="MagentoSistecredito\SistecreditoPaymentGateway\Plugin\CsrfValidatorSkip" />
+    </type>
+
+</config>

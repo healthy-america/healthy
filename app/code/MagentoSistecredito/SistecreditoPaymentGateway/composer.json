@@ -1,0 +1,33 @@
+{
+  "name": "sistecredito/sistecredito-gateway",
+  "description": "Magento Integration with sistecredito gateway",
+  "type": "magento2-module",
+  "require": {
+    "php": "~7.1.3||~7.2.0||~7.3.0",
+    "magento/module-sales": "102.0.*",
+    "magento/module-checkout": "100.3.*",
+    "magento/module-payment": "100.3.*",
+    "magento/framework": "102.0.*",
+    "magento/magento-composer-installer": "*",
+    "firebase/php-jwt": "^5.2"
+  },
+  "version": "100.0.3",
+  "license": ["OSL-3.0", "AFL-3.0"],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://repo.magento.com",
+      "options": {
+        "ssl": {
+          "verify_peer": "true"
+        }
+      }
+    }
+  ],
+  "autoload": {
+    "files": ["registration.php"],
+    "psr-4": {
+      "MagentoSistecredito\\SistecreditoPaymentGateway\\": ""
+    }
+  }
+}

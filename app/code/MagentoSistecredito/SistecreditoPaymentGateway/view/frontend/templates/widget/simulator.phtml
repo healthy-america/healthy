@@ -1,0 +1,8 @@
+<?php if ($this->getActiveSimulator()) : ?>
+
+    <script src="<?php echo $this->getUrlSimulatorJs() ?>"></script>
+    <app-simulator store="<?php echo $this->getSistecreditoStoreId() ?>"
+                   total="<?php echo $this->getProductPrice() ?>">
+    </app-simulator>
+
+<?php endif; ?>

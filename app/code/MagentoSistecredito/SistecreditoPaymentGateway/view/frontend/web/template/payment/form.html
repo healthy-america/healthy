@@ -1,0 +1,92 @@
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio" name="payment[method]" class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label class="label" data-bind="attr: {'for': getCode()}">
+            <span>Paga con</span>
+            <img data-bind="{
+                attr: {
+                    src: sistecreditoLogoSrc,
+                    alt: $t('Sistecredito Logo'),
+                    width: '110'
+                }
+            }" class="payment-icon sc-logo-sistecredito"/>
+        </label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- ko 'if': gatewayError$ -->
+        <span data-bind="{ text: gatewayError$ }" class="sc-error"></span>
+        <!-- /ko -->
+
+        <div class="field required">
+            <label data-bind="attr: {for: getCode() + '_id_type'}" class="label">
+                <span class="sc-required">
+                    <!-- ko i18n: 'Tipo de documento'-->
+                    <!-- /ko --></span>
+            </label>
+
+            <div class="control sc-container-control">
+                <select name="payment[id_type]" class="sc-select-payment select" data-bind="
+                                  options: getIdTypes(),
+                                  optionsValue: 'value',
+                                  optionsText: 'id_type',
+                                  value: idType">
+                </select>
+            </div>
+        </div>
+
+        <div class="field required sc-container-payment">
+            <label data-bind="attr: {for: getCode() + '_id_number'}" class="label">
+                <span class="sc-required">
+                    <!-- ko i18n: 'Número de documento'-->
+                    <!-- /ko --></span>
+            </label>
+
+            <div class="control sc-container-control">
+                <input placeholder="Ingresa un número de documento" class="sc-select-payment" type="text"
+                       name="payment[id_number]" data-bind="{ value: idNumber }"/>
+            </div>
+
+        </div>
+
+        <div class="payment-method-billing-address sc-sistecredito">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <div class="actions-toolbar sc-container-button">
+            <div class="primary">
+                <button
+                    class="sc-button-payment action primary checkout"
+                    type="submit"
+                    data-bind="{
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')}
+                    }">
+                    <span data-bind="i18n: 'Confirmar compra'"></span>
+                </button>
+            </div>
+        </div>
+
+        <div id="app-visor" afterRender="createScriptHtml()"></div>
+    </div>
+</div>
+

@@ -1,0 +1,86 @@
+.logo-siste {
+    background: url("../images/sistecredito.png");
+    background-position: left 0 center;
+    background-repeat: no-repeat;
+    background-size: 160px;
+    height: 20px;
+    width: auto;
+}
+
+.error-keys {
+    border: 1px solid #CF3339 !important;
+    color: #CF3339 !important;
+}
+
+.display_none{
+    display: none;
+}
+.alert{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.alert_accept{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.alert_continue{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.action_accept{
+    background: #00369C;
+    color: #ffff;
+    border-radius: 20px;
+    padding: 12px;
+}
+
+.action-default{
+    background: #00369C;
+    color: #ffff;
+    border-radius: 20px;
+    padding: 12px;
+}
+
+.modal-footer{
+    align-self: center;
+}
+
+.modal-title{
+    margin-right: 0 !important;
+}
+
+.modal-inner-wrap{
+    border-radius: 20px;
+    padding: 22px;
+    width: 50% !important;
+}
+
+.modal-title > div {
+    background: url("../images/success.svg");
+    background-position: top 0 center;
+    background-repeat: no-repeat;
+    height: 80px;
+}
+
+.modal-title > p{
+    background: url("../images/error.svg");
+    background-position: top 0 center;
+    background-repeat: no-repeat;
+    height: 80px;
+}
+
+@media (min-width: 992px) {
+    .modal-inner-wrap{
+        width: 30% !important;
+    }
+}
+
