@@ -15405,3 +15405,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 " Sign in with Facebook ","Facebook"
 "Gift Card Options","Tarjetas de regalo"
 "Sign in with Facebook","Facebook"
+"Enter gift code","Introduce el código de regalo"
+"Enter Value","Ingresa un valor."
+"Enter Gift Code","Introduce el código de regalo"
+"Check Status","Chekear Status"
