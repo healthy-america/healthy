@@ -34,7 +34,6 @@ require([
                 cache: false,
                 success: function () {
                     if (prehome.length === 0) {
-                        //ir a la raiz;
                         window.location.href = url_base_default;
                     }
                     else {
