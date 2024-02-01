@@ -20,6 +20,7 @@ require([
                 data: {},
                 cache: false,
                 success: function (data) {
+                    console.log(data)
                     url_base_default = data.default_store_url;
                 }
             });

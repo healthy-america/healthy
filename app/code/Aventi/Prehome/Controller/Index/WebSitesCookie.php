@@ -42,7 +42,11 @@ class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
     public function execute()
     {
       $defaultStoreUrl = $this->getUrlStoreDefault();
-      return $this->responseJson(['default_store_url' => $defaultStoreUrl]);
+      $isWebSiteDefault = $this->isWebsiteDefault();
+      return $this->responseJson([
+        'default_store_url' => $defaultStoreUrl,
+        'isWebsite' => $isWebSiteDefault 
+      ]);
     }
 
     /**
@@ -50,7 +54,7 @@ class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
      * 
      * @return string
      */
-    private function getUrlStoreDefault() : string
+    private function getUrlStoreDefault(): string
     {
         $defaultStoreView = $this->storeManager->getDefaultStoreView();
         return  $defaultStoreView->getBaseUrl();
@@ -66,5 +70,26 @@ class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
     {
         $jsonResponse = $this->resultFactory->create(ResultFactory::TYPE_JSON);
         return $jsonResponse->setData($data);
+    }
+
+    /**
+     * Get url base of store view active.
+     * 
+     * @return string
+     */
+    private function getActiveStoreUrl(): string
+    {
+        $activeStore = $this->storeManager->getStore();
+        return $activeStore->getBaseUrl();
+    }
+
+    /**
+     * Validate if active websitedefault
+     * 
+     * @return bool
+     */
+    private function isWebsiteDefault(): bool
+    {
+      return $this->getActiveStoreUrl() === $this->getUrlStoreDefault();
     }
 }
