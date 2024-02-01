@@ -9,11 +9,11 @@ require([
     const loader = $('div.loader');
     const homebody = $('.page-wrapper');
 
-    prehome.ready(function() {
+    prehome.ready(async function() {
         let url_base_default = BASE_URL.replace('index.php/', '') + 'prehome/index/webSitesCookie'
         let isDefaultWebSite = false;
 
-        $.ajax({
+        await $.ajax({
             url: url_base_default,
             type: "GET",
             data: {},
@@ -29,7 +29,7 @@ require([
             if (!prehome.hasClass('display-none_')) {
                 prehome.addClass('display-none_');
             }
-        
+
             if (check) {
                 body.css('overflow', 'auto')
                 homebody.css('display','flex')

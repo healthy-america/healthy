@@ -3,55 +3,54 @@
   * Copyright  Aventi SAS All rights reserved.
   * See COPYING.txt for license details.
 */
-
 declare(strict_types=1);
 
 namespace Aventi\Prehome\Controller\Index;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Action\HttpPostActionInterface;
-use Magento\Framework\App\RequestInterface;
-use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Store\Model\StoreManagerInterface;
 use Magento\Framework\Controller\Result\Json;
 
 /**
- *  Class WebSitesCookie
+ * @class WebSitesCookie
  */
-class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
+class WebSitesCookie implements HttpGetActionInterface, HttpPostActionInterface
 {
     /**
-     *  Construct
+     * @constructor
      *
-     * @param PageFactory $pageFactory
+     * @param ResultFactory $resultFactory
+     * @param StoreManagerInterface $storeManager
      */
     public function __construct(
-        private PageFactory $pageFactory,
-        private RequestInterface $request,
-        private ResultFactory $resultFactory,
-        private StoreManagerInterface $storeManager
+        private readonly ResultFactory $resultFactory,
+        private readonly StoreManagerInterface $storeManager
     ) {
     }
 
     /**
-     * Default category list view
+     * @inheritDoc
      *
-     * @return ResponseInterface
+     * @return Json
+     * @throws NoSuchEntityException
      */
     public function execute()
     {
-      $defaultStoreUrl = $this->getUrlStoreDefault();
-      $isWebSiteDefault = $this->isWebsiteDefault();
-      return $this->responseJson([
-        'default_store_url' => $defaultStoreUrl,
-        'isWebsite' => $isWebSiteDefault 
-      ]);
+        $defaultStoreUrl = $this->getUrlStoreDefault();
+        $isWebSiteDefault = $this->isWebsiteDefault();
+
+        return $this->responseJson([
+            'default_store_url' => $defaultStoreUrl,
+            'isWebsite' => $isWebSiteDefault
+        ]);
     }
 
     /**
      * Get url base of store view default.
-     * 
+     *
      * @return string
      */
     private function getUrlStoreDefault(): string
@@ -63,7 +62,7 @@ class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
     /**
      * Generate response json
      *
-     * @param array $data 
+     * @param array $data
      * @return Json
      */
     private function responseJson(array $data)
@@ -74,8 +73,9 @@ class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
 
     /**
      * Get url base of store view active.
-     * 
+     *
      * @return string
+     * @throws NoSuchEntityException
      */
     private function getActiveStoreUrl(): string
     {
@@ -84,12 +84,13 @@ class WebSitesCookie implements HttpGetActionInterface , HttpPostActionInterface
     }
 
     /**
-     * Validate if active websitedefault
-     * 
+     * Validate if active website default
+     *
      * @return bool
+     * @throws NoSuchEntityException
      */
     private function isWebsiteDefault(): bool
     {
-      return $this->getActiveStoreUrl() === $this->getUrlStoreDefault();
+        return $this->getActiveStoreUrl() === $this->getUrlStoreDefault();
     }
 }
