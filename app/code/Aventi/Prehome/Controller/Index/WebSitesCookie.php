@@ -56,6 +56,7 @@ class WebSitesCookie implements HttpGetActionInterface, HttpPostActionInterface
     private function getUrlStoreDefault(): string
     {
         $defaultStoreView = $this->storeManager->getDefaultStoreView();
+
         return  $defaultStoreView->getBaseUrl();
     }
 
@@ -68,6 +69,7 @@ class WebSitesCookie implements HttpGetActionInterface, HttpPostActionInterface
     private function responseJson(array $data)
     {
         $jsonResponse = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+
         return $jsonResponse->setData($data);
     }
 
@@ -80,6 +82,7 @@ class WebSitesCookie implements HttpGetActionInterface, HttpPostActionInterface
     private function getActiveStoreUrl(): string
     {
         $activeStore = $this->storeManager->getStore();
+        
         return $activeStore->getBaseUrl();
     }
 
