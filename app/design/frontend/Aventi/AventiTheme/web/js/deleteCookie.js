@@ -10,7 +10,21 @@ require([
               homebody = $('.page-wrapper');
     
         $('#delete-cookie-home svg').on('click', async function () {
-            const url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie';
+            let
+            url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie',
+            url_base_default = BASE_URL.replace('index.php/', '') + 'prehome/index/webSitesCookie';
+
+            $.ajax({
+                url: url_base_default,
+                type: "GET",
+                data: {},
+                cache: false,
+                success: function (data) {
+                    console.log(data)
+                    url_base_default = data.default_store_url;
+                }
+            });
+            
             $.ajax({
                 url: url,
                 type: "POST",
@@ -21,8 +35,7 @@ require([
                 cache: false,
                 success: function () {
                     if (prehome.length === 0) {
-                        //ir a la raiz;
-                        window.location.href = BASE_URL.replace('index.php/', '');
+                        window.location.href = url_base_default;
                     }
                     else {
                         body.css('overflow', 'hidden');
@@ -32,7 +45,7 @@ require([
                     }
                 }
             });
-        })
+        });
 
         $('#home-logo-go img').on('click', function(){
             const href = $(this).parent().attr('href');
