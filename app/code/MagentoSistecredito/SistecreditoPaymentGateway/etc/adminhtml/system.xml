@@ -63,9 +63,10 @@
                 <field id="validate_btn" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0">
                     <frontend_model>MagentoSistecredito\SistecreditoPaymentGateway\Block\System\Config\ValidateCredentials</frontend_model>
                 </field>
-                <field id="validate_field"  type='hidden' translate="label" sortOrder="110" showInDefault="1" showInStore="0">
+                <!-- Provisional change approve by sistecredito development area to start the project without the permanent solution -->
+                <!--<field id="validate_field"  type='hidden' translate="label" sortOrder="110" showInDefault="1" showInStore="0">
                     <validate>required-entry</validate>
-                </field>
+                </field>-->
                 <!--  END Sistecredito Gateway Params -->
 
                 <field id="allowspecific" translate="label" type="allowspecific" sortOrder="130" showInDefault="9" showInWebsite="1" showInStore="0">
