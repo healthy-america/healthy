@@ -8,67 +8,59 @@ declare(strict_types=1);
 namespace Aventi\SAP\Model\Integration;
 
 use Aventi\SAP\Helper\Data;
+use Aventi\SAP\Helper\Order as OrderHelper;
+use Aventi\SAP\Model\Integration;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Api\Data\OrderInterface;
+use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Sales\Model\Order as OrderModel;
+use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
 
-class Order extends \Aventi\SAP\Model\Integration
+/**
+ * @class Order
+ */
+class Order extends Integration
 {
     const TYPE_URI = 'order';
     const ORDER_STATUS_ERROR = 'error';
 
+    /**
+     * @var array
+     */
     private array $arrStatusOrders = [
         'headers' => ['Total orders', 'Total error', 'Total completed'],
         'rows' => ['total' => 0, 'error' => 0, 'success' => 0]
     ];
 
     /**
-     * @var \Magento\Sales\Api\OrderRepositoryInterface
+     * @constructor
+     *
+     * @param OrderRepositoryInterface $_orderRepository
+     * @param CollectionFactory $_orderCollectionFactory
+     * @param OrderHelper $_helperOrder
+     * @param Data $_data
+     * @param ManagerInterface $eventManager
      */
-    private \Magento\Sales\Api\OrderRepositoryInterface $_orderRepository;
-
-    /**
-     * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
-     */
-    private \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $_orderCollectionFactory;
-
-    /**
-     * @var \Aventi\SAP\Helper\Order
-     */
-    private \Aventi\SAP\Helper\Order $_helperOrder;
-
-    /**
-     * @var Data
-     */
-    private Data $_data;
-
-    /**
-     * @var \Aventi\SAP\Logger\Logger
-     */
-    private \Aventi\SAP\Logger\Logger $_logger;
-
-    /**
-     * @var \Magento\Framework\Event\ManagerInterface
-     */
-    private \Magento\Framework\Event\ManagerInterface $eventManager;
-
     public function __construct(
-        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
-        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $orderCollectionFactory,
-        \Aventi\SAP\Helper\Order $order,
-        \Aventi\SAP\Helper\Data $data,
-        \Aventi\SAP\Logger\Logger $logger,
-        \Magento\Framework\Event\ManagerInterface $eventManager
+        private readonly OrderRepositoryInterface $_orderRepository,
+        private readonly CollectionFactory        $_orderCollectionFactory,
+        private readonly OrderHelper              $_helperOrder,
+        private readonly Data                     $_data,
+        private readonly ManagerInterface         $eventManager
     ) {
-        $this->_orderRepository = $orderRepository;
-        $this->_orderCollectionFactory = $orderCollectionFactory;
-        $this->_helperOrder = $order;
-        $this->_data = $data;
-        $this->_logger = $logger;
-        $this->eventManager = $eventManager;
     }
 
     /**
+     * Process
+     *
      * @param $status
      * @return void
+     * @throws CouldNotDeleteException
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function process($status = null) : void
     {
@@ -81,7 +73,7 @@ class Order extends \Aventi\SAP\Model\Integration
         $this->arrStatusOrders['rows']['total'] = count($orders);
 
         /**
-         * @var $orderInfo \Magento\Sales\Model\Order
+         * @var $orderInfo OrderModel
          */
         foreach ($orders as $orderInfo) {
             $order = $this->_orderRepository->get($orderInfo->getId());
@@ -102,6 +94,8 @@ class Order extends \Aventi\SAP\Model\Integration
     }
 
     /**
+     * Request
+     *
      * @param OrderInterface $order
      * @param array $payload
      * @return bool|array
@@ -124,15 +118,18 @@ class Order extends \Aventi\SAP\Model\Integration
                 'response' => $response
             ]
         );
+
         return $response;
     }
 
     /**
+     * ProcessResponseOrder
+     *
      * @param OrderInterface $order
      * @param $response
      * @return void
      */
-    private function processResponseOrder(OrderInterface $order, $response)
+    private function processResponseOrder(OrderInterface $order, $response): void
     {
         $idSAP = $this->validateIdSAP($response['body']);
 
@@ -179,14 +176,17 @@ class Order extends \Aventi\SAP\Model\Integration
                 $this->arrStatusOrders['rows']['error']++;
                 break;
         }
+
         $this->_orderRepository->save($order);
     }
 
     /**
+     * ValidateIdSAP
+     *
      * @param $body
      * @return mixed|null
      */
-    private function validateIdSAP($body)
+    private function validateIdSAP($body): mixed
     {
         $response = json_decode($body, true);
 
@@ -194,10 +194,12 @@ class Order extends \Aventi\SAP\Model\Integration
     }
 
     /**
+     * GetErrorDesc
+     *
      * @param $body
      * @return array|string|string[]
      */
-    private function getErrorDesc($body)
+    private function getErrorDesc($body): array|string
     {
         $re = '/(ErrorDesc)\s{0,3}->\s{0,3}?(.{1,}")?/m';
         $description = $body;

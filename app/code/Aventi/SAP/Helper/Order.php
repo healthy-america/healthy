@@ -7,58 +7,48 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Helper;
 
+use Exception;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use Magento\Framework\DB\Transaction;
+use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderItemInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
+use Magento\Sales\Api\Data\TransactionSearchResultInterfaceFactory;
+use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Sales\Model\Order\Status\HistoryRepository;
+use Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory;
 
 class Order extends AbstractHelper
 {
-
     /**
-     * @var \Magento\Sales\Api\OrderRepositoryInterface
+     * @constructor
+     *
+     * @param Context $context
+     * @param OrderRepositoryInterface $_orderRepository
+     * @param CollectionFactory $_historyCollectionFactory
+     * @param Configuration $_configuration
+     * @param HistoryRepository $_historyRepository
+     * @param Transaction $_transaction
+     * @param TransactionSearchResultInterfaceFactory $paymentTransaction
      */
-    private \Magento\Sales\Api\OrderRepositoryInterface $_orderRepository;
-
-    /**
-     * @var Configuration
-     */
-    private Configuration $_configuration;
-
-    /**
-     * @var \Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory
-     */
-    private \Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory $_historyCollectionFactory;
-
-    /**
-     * @var \Magento\Sales\Model\Order\Status\HistoryRepository
-     */
-    private \Magento\Sales\Model\Order\Status\HistoryRepository $_historyRepository;
-
-    /**
-     * @var \Magento\Framework\DB\Transaction
-     */
-    private \Magento\Framework\DB\Transaction $_transaction;
-
     public function __construct(
-        Context $context,
-        \Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
-        \Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory $collectionFactory,
-        \Aventi\SAP\Helper\Configuration $configuration,
-        \Magento\Sales\Model\Order\Status\HistoryRepository $historyRepository,
-        \Magento\Framework\DB\Transaction $transaction
+        Context                                                  $context,
+        private readonly OrderRepositoryInterface                $_orderRepository,
+        private readonly CollectionFactory                       $_historyCollectionFactory,
+        private readonly Configuration                           $_configuration,
+        private readonly HistoryRepository                       $_historyRepository,
+        private readonly Transaction                             $_transaction,
+        private readonly TransactionSearchResultInterfaceFactory $paymentTransaction
     ) {
-        $this->_orderRepository = $orderRepository;
-        $this->_historyCollectionFactory = $collectionFactory;
-        $this->_configuration = $configuration;
-        $this->_historyRepository = $historyRepository;
-        $this->_transaction = $transaction;
         parent::__construct($context);
     }
 
     /**
+     * GetStringProductForSAP
      * Generate the structure of product for SAP
      *
      * @param OrderInterface $orderEntity
@@ -68,7 +58,6 @@ class Order extends AbstractHelper
     {
         $products = [];
         $items = $orderEntity->getAllVisibleItems();
-        $shippingAmount = (int) $orderEntity->getShippingAmount();
 
         /** @var OrderItemInterface $item */
         foreach ($items as $item) {
@@ -80,17 +69,13 @@ class Order extends AbstractHelper
                 'WhsCode' => $this->_configuration->getWhsCode(),
             ];
         }
-//        $products[] = [
-//            'ItemCode' => $this->_configuration->getShippingCode(),
-//            'Quantity' => 1,
-//            'WhsCode' => $this->_configuration->getWhsCode(),
-//            'Price' => $shippingAmount,
-//            'CamposUsuario' => ""
-//        ];
+
         return $products;
     }
 
     /**
+     * GetPercentOfSaleIfApply
+     *
      * @param OrderItemInterface $item
      * @return int
      */
@@ -110,14 +95,17 @@ class Order extends AbstractHelper
         } elseif ($originalPrice != $priceWithTax) {
             $discountPercent = (1 - ($priceWithTax / $originalPrice)) * 100;
         }
+
         return (int) $discountPercent;
     }
 
     /**
+     * ProcessIteration
+     *
      * @param array $statuses
      * @param $orderId
      * @return bool
-     * @throws \Magento\Framework\Exception\CouldNotDeleteException
+     * @throws CouldNotDeleteException
      */
     public function processIteration(array $statuses, $orderId): bool
     {
@@ -169,59 +157,29 @@ class Order extends AbstractHelper
     }
 
     /**
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
-     * @throws \Magento\Framework\Exception\LocalizedException
+     * ProcessDataSAP
+     *
+     * @throws NoSuchEntityException
+     * @throws LocalizedException
      */
     public function processDataSAP(OrderInterface $order): array
     {
         $products = $this->getStringProductForSAP($order);
         $customerInfo = $this->getStringCustomerInfoForSAP($order);
-        $idMagento = $order->getIncrementId();
-
-        $customerFullName = $order->getShippingAddress()->getFirstname() . ' ' .
-            $order->getShippingAddress()->getLastname();
         $paymentTitle = $order->getPayment()->getMethodInstance()->getTitle();
-        $paymentInfo = $this->getPaymentInfo($order->getPayment());
+        $paymentTransId = $this->getTransactionId($order);
 
-//        $comments = "ticketstores.co - #%s - Método Pago: %s - Email: %s";
-//        $comments = sprintf(
-//            $comments,
-//            $order->getIncrementId(),
-//            $paymentTitle,
-//            $order->getCustomerEmail()
-//        );
-
-//        $shippingAddress = $order->getShippingAddress()->getStreet()[0] . ' - ' .
-//            $order->getShippingAddress()->getTelephone();
-//        $billingAddress = $order->getBillingAddress()->getStreet()[0] . ' - ' .
-//            $order->getBillingAddress()->getTelephone();
-//        $customerId = trim($order->getShippingAddress()->getVatId());
-//        $shippingMethod = $order->getShippingMethod();
-//        if ($shippingMethod == 'flete_flete' || $shippingMethod == 'coordinadora_coordinadora') {
-//            $shipType = 'N';
-//        } elseif ($shippingMethod == 'express_express') {
-//            $shipType = 'E';
-//        } else {
-//            $shipType = 'N';
-//        }
-//
-//        $userFields = [
-//            "U_Direnvio~" . $shippingAddress,
-//            "U_dirfactura~" . $billingAddress,
-//            "U_mediopago~" . $paymentInfo['paymentMethod'],
-//            "U_infopago~" . $paymentInfo['paymentInfo'],
-//            "U_tipoenvio~" . $shipType,
-//            "U_nitcliente~" . $customerId,
-//            "U_magento~" . $idMagento
-//        ];
-//        $userFields = trim(implode("|", $userFields));
-        $userFields = "";
+        $userFields = [
+            "U_medipagoe~" . $paymentTitle,
+            "U_idtransaccion~" . $paymentTransId
+        ];
+        $userFields = trim(implode("|", $userFields));
 
         return [
             'TipoDocumento' => 17,
             'DocDueDate' => date_format(date_create($order->getCreatedAt()), 'm/d/Y'),
             'Serie' => $this->_configuration->getSerie(),
-            'CamposUsuario' => "", //$userFields,
+            'CamposUsuario' => $userFields,
             'CiudadS' => $order->getBillingAddress()->getCity(),
             'RegionS' => $this->getState($order->getShippingAddress()->getRegionId()),
             'DireccionS' => $order->getShippingAddress()->getStreet()[0],
@@ -233,6 +191,8 @@ class Order extends AbstractHelper
     }
 
     /**
+     * GetFormattedRegion
+     *
      * @throws LocalizedException
      */
     private function getFormattedRegion(?string $regionCode): string
@@ -346,9 +306,11 @@ class Order extends AbstractHelper
     }
 
     /**
-     * @throws \Magento\Framework\Exception\CouldNotDeleteException
+     * ResetAttempts
+     *
+     * @throws CouldNotDeleteException
      */
-    private function resetAttempts(OrderInterface $order)
+    private function resetAttempts(OrderInterface $order): void
     {
         foreach ($order->getStatusHistories() as $history) {
             $status = $history->getStatus();
@@ -359,10 +321,12 @@ class Order extends AbstractHelper
     }
 
     /**
+     * CreateInvoice
+     *
      * @throws LocalizedException
-     * @throws \Exception
+     * @throws Exception
      */
-    public function createInvoice($order)
+    public function createInvoice($order): void
     {
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $paymentMethod = $order->getPayment()->getMethod();
@@ -392,11 +356,13 @@ class Order extends AbstractHelper
     }
 
     /**
+     * GetPaymentInfo
+     *
      * @param OrderPaymentInterface|null $orderPayment
      * @return array
      * @throws LocalizedException
      */
-    private function getPaymentInfo(?\Magento\Sales\Api\Data\OrderPaymentInterface $orderPayment): array
+    private function getPaymentInfo(?OrderPaymentInterface $orderPayment): array
     {
         $paymentInfo = [
             "paymentMethod" => 'N/A',
@@ -420,10 +386,12 @@ class Order extends AbstractHelper
     }
 
     /**
+     * GetStringCustomerInfoForSAP
+     *
      * @param $orderEntity
      * @return array
      */
-    public function getStringCustomerInfoForSAP($orderEntity)
+    public function getStringCustomerInfoForSAP($orderEntity): array
     {
         $this->_logger->debug(json_encode($orderEntity->getShippingAddress()->toArray()));
         $identification = $orderEntity->getShippingAddress()->getVatId();
@@ -433,7 +401,7 @@ class Order extends AbstractHelper
         $telephone = $orderEntity->getShippingAddress()->getTelephone();
         $email = $orderEntity->getShippingAddress()->getEmail();
         $city  = $orderEntity->getShippingAddress()->getCity();
-        $state = $this->getState($orderEntity->getShippingAddress()->getStateId());
+//        $state = $this->getState($orderEntity->getShippingAddress()->getStateId());
         $address = strtoupper($orderEntity->getShippingAddress()->getStreet()[0]);
         $postalCode = $orderEntity->getShippingAddress()->getPostcode();
 
@@ -454,7 +422,7 @@ class Order extends AbstractHelper
             "StreetS" => $address,
             "CityS" => $city,
             "ZipCode" => $postalCode,
-            "StateS" => $state,
+            "StateS" => "",
 //            "Address2B":"Bogotá",
 //            "CountryB":"",
 //            "StreetB":"",
@@ -467,10 +435,12 @@ class Order extends AbstractHelper
     }
 
     /**
+     * GetState
+     *
      * @param $mState
      * @return string
      */
-    public function getState($mState)
+    public function getState($mState): string
     {
         $sapState = $mState;
         switch ($sapState) {
@@ -484,6 +454,24 @@ class Order extends AbstractHelper
                 $sapState = '003';
                 break;
         }
+
         return $sapState;
+    }
+
+    /**
+     * GetTransactionId
+     *
+     * @param OrderInterface $order
+     * @return string
+     */
+    public function getTransactionId(OrderInterface $order): string
+    {
+        $transactionId = '';
+        $transaction = $this->paymentTransaction->create()->addOrderIdFilter($order->getId());
+        foreach ($transaction->getItems() as $invoice) {
+            $transactionId = $invoice->getTxnId();
+        }
+
+        return $transactionId;
     }
 }
