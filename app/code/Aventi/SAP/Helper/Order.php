@@ -22,6 +22,9 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order\Status\HistoryRepository;
 use Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory;
 
+/**
+ * @class Order
+ */
 class Order extends AbstractHelper
 {
     /**
