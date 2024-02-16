@@ -1,20 +1,24 @@
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
 require([
     'jquery',
     'mage/cookies'
 ], function ($) {
 
-    $(document).ready(function () {
+    $(document).ready(async function () {
         const prehome = $('main#prehome'),
               body = $('body'),
               loader = $('div.loader'),
               homebody = $('.page-wrapper');
-    
+
         $('#delete-cookie-home svg').on('click', async function () {
             let
             url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie',
             url_base_default = BASE_URL.replace('index.php/', '') + 'prehome/index/webSitesCookie';
 
-            $.ajax({
+            await $.ajax({
                 url: url_base_default,
                 type: "GET",
                 data: {},
@@ -24,7 +28,7 @@ require([
                     url_base_default = data.default_store_url;
                 }
             });
-            
+
             $.ajax({
                 url: url,
                 type: "POST",
@@ -50,7 +54,7 @@ require([
         $('#home-logo-go img').on('click', function(){
             const href = $(this).parent().attr('href');
             const locateCurrent = window.location.href;
-    
+
             if (locateCurrent !== href) {
                 $.cookie('prehomecookie', null);
                 window.location.href = href;

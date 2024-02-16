@@ -1,3 +1,7 @@
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
 require([
     'jquery',
     'mage/cookies'
@@ -10,8 +14,8 @@ require([
     const homebody = $('.page-wrapper');
 
     prehome.ready(async function() {
-        let url_base_default = BASE_URL.replace('index.php/', '') + 'prehome/index/webSitesCookie'
-        let isDefaultWebSite = false;
+        let url_base_default = BASE_URL.replace('index.php/', '') + 'prehome/index/webSitesCookie',
+            isDefaultWebSite = false;
 
         await $.ajax({
             url: url_base_default,
@@ -41,30 +45,30 @@ require([
             }
 
             $('.container-content div').on('click', function () {
-                let _this = $(this);
-                let url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie';
-                $.ajax({
-                    url: url,
-                    type: "POST",
-                    data: {
-                        name: 'prehomecookie',
-                        value: 1
-                    },
-                    cache: false,
-                    success: function (data) {
-                        let link = _this.attr('href');
-                        if(window.location.href !== link){
-                            window.location.href = link;
-                        }else{
+                let _this = $(this),
+                    url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie',
+                    link = _this.attr('href');
+                if (window.location.href !== link) {
+                    window.location.href = link;
+                } else {
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: {
+                            name: 'prehomecookie',
+                            value: 1
+                        },
+                        cache: false,
+                        success: function (data) {
                             $('body').css('overflow', 'auto');
-                            homebody.css('display','flex');
+                            homebody.css('display', 'flex');
                             if (!prehome.hasClass('display-none_')) {
                                 prehome.addClass('display-none_');
                             }
-                        }
 
-                    }
-                });
+                        }
+                    });
+                }
             })
         }
     });
