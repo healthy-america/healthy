@@ -795,17 +795,23 @@
                                                                 button.action.primary.checkout {
                                                                     display: inline-block;
                                                                     border-radius: 4px;
-                                                                    border: 1px solid var(--azul, #004088);
-                                                                    background: var(--blanco, #FFF);
+                                                                    border: 1px solid @primary-button-background !important; //le llegan otros estilos con important
+                                                                    background: @white !important; //le llegan otros estilos con important
 
                                                                     span {
-                                                                        color: var(--azul, #004088);
+                                                                        color: @primary-button-background;
                                                                         text-align: center;
                                                                         font-size: 14px;
-                                                                        font-family: 'Roboto',sans-serif;
-                                                                        font-style: normal;
                                                                         font-weight: 600;
-                                                                        line-height: normal;
+                                                                    }
+
+                                                                    &:hover {
+                                                                        border: 2px solid @primary-button-background !important; //le llegan otros estilos con important
+                                                                        background: @white !important; //le llegan otros estilos con important
+
+                                                                        span {
+                                                                            color: @primary-button-background;
+                                                                        }
                                                                     }
 
                                                                     &:hover {
