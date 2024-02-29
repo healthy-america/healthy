@@ -44,7 +44,7 @@ require([
                 loader.fadeOut()
             }
 
-            $('.container-content div').on('click', function () {
+            $('.container-content div.active').on('click', function () {
                 let _this = $(this),
                     url = BASE_URL.replace('index.php/', '') + 'prehome/index/setcookie',
                     link = _this.attr('href');
