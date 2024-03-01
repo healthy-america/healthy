@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+    Copyright © Aventi SAS All rights reserved.
+    See COPYING.txt for license details.
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="sap">
+        <job name="aventi_sap_product" instance="Aventi\SAP\Cron\Product" method="execute">
+            <schedule>30 23 * * *</schedule>
+        </job>
+        <job name="aventi_sap_stock" instance="Aventi\SAP\Cron\Stock" method="execute">
+            <schedule>30 */6 * * *</schedule>
+        </job>
+        <job name="aventi_sap_price" instance="Aventi\SAP\Cron\Price" method="execute">
+            <schedule>30 23 * * *</schedule>
+        </job>
+        <job name="aventi_sap_stock_faster" instance="Aventi\SAP\Cron\StockFaster" method="execute">
+            <schedule>*/5 * * * *</schedule>
+        </job>
+        <job name="aventi_sap_order_new" instance="Aventi\SAP\Cron\OrderNew" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
+        <job name="aventi_sap_order_error" instance="Aventi\SAP\Cron\OrderError" method="execute">
+            <schedule>*/15 * * * *</schedule>
+        </job>
+    </group>
+</config>
