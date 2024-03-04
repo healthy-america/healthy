@@ -15,8 +15,6 @@ class SAPStatus
     const ERROR =  'error';
     const INCOMPLETE = 'incomplete';
     const PENDING = 'pending';
-
     const SYNC = 'syncing';
-
     const PROCESSING = 'processing';
 }
