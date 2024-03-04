@@ -9,6 +9,7 @@ namespace Aventi\SAP\Cron;
 
 use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration\Price as PriceIntegration;
+use Exception;
 
 /**
  * @class Price
@@ -35,7 +36,7 @@ class Price implements Cron
         $this->logger->info("Cronjob Sincronice Price is executed.");
         try {
             $this->managePrice->process(['fast' => false]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->debug('Error in price cronjob: ' . $e->getMessage());
         }
         $this->logger->info("Cronjob Sincronice Price is finished.");

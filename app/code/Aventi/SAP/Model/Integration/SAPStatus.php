@@ -7,6 +7,9 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Model\Integration;
 
+/**
+ * @class SAPStatus - SAP integration variables
+ */
 class SAPStatus
 {
     // Status

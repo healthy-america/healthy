@@ -10,6 +10,7 @@ namespace Aventi\SAP\Cron;
 use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration\SAPStatus;
 use Aventi\SAP\Model\Integration\Order;
+use Exception;
 
 /**
  * @class OrderNew
@@ -43,7 +44,7 @@ class OrderNew implements Cron
                     SAPStatus::INCOMPLETE
                 ]
             );
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->debug('Error in order cronjob: ' . $e->getMessage());
         }
         $this->logger->info("Cronjob Sincronice order is finished.");

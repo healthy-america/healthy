@@ -10,7 +10,7 @@ namespace Aventi\SAP\Cron;
 use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration\SAPStatus;
 use Aventi\SAP\Model\Integration\Order;
-use \Exception;
+use Exception;
 
 /**
  * @class OrderError
@@ -30,7 +30,7 @@ class OrderError implements Cron
     }
 
     /**
-     * @inerhitDoc
+     * @inheritDoc
      */
     public function execute(): int
     {

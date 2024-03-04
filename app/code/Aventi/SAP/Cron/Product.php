@@ -9,6 +9,7 @@ namespace Aventi\SAP\Cron;
 
 use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration\Product as ProductIntegration;
+use Exception;
 
 /**
  * @class Product
@@ -35,7 +36,7 @@ class Product implements Cron
         $this->logger->info("Cronjob Sincronice Product is executed.");
         try {
             $this->manageProduct->process(['fast' => false]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->debug('Error in product cronjob: ' . $e->getMessage());
         }
         $this->logger->info("Cronjob Sincronice Product is finished.");

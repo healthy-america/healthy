@@ -9,6 +9,7 @@ namespace Aventi\SAP\Cron;
 
 use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration\Stock as StockIntegration;
+use Exception;
 
 /**
  * @class Stock
@@ -35,7 +36,7 @@ class Stock implements Cron
         $this->logger->info("Cronjob Sincronice stock is executed.");
         try {
             $this->manageStock->process(['fast' => false]);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->logger->debug('Error in stock cronjob: ' . $e->getMessage());
         }
         $this->logger->info("Cronjob Sincronice stock is finished.");
