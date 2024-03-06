@@ -157,7 +157,7 @@ $viewModel = $block->getViewModel();
             <?= $_fax->setFax($block->getAddress()->getFax())->toHtml() ?>
         <?php endif ?>
         <?php if ($viewModel->addressIsVatAttributeVisible()): ?>
-            <div class="field taxvat">
+            <div class="field taxvat required">
                 <label class="label" for="vat_id">
                     <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('vat_id') ?></span>
                 </label>
