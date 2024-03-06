@@ -21,6 +21,8 @@ use Magento\Sales\Api\Data\TransactionSearchResultInterfaceFactory;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order\Status\HistoryRepository;
 use Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Store\Api\WebsiteRepositoryInterface;
 
 /**
  * @class Order
@@ -37,15 +39,19 @@ class Order extends AbstractHelper
      * @param HistoryRepository $_historyRepository
      * @param Transaction $_transaction
      * @param TransactionSearchResultInterfaceFactory $paymentTransaction
+     * @param ProductRepositoryInterface $_productRepository
+     * @param WebsiteRepositoryInterface $_websiteRepository
      */
-    public function __construct(
+    public function __construct( //NOSONAR
         Context                                                  $context,
         private readonly OrderRepositoryInterface                $_orderRepository,
         private readonly CollectionFactory                       $_historyCollectionFactory,
         private readonly Configuration                           $_configuration,
         private readonly HistoryRepository                       $_historyRepository,
         private readonly Transaction                             $_transaction,
-        private readonly TransactionSearchResultInterfaceFactory $paymentTransaction
+        private readonly TransactionSearchResultInterfaceFactory $paymentTransaction,
+        private readonly ProductRepositoryInterface              $_productRepository,
+        private readonly WebsiteRepositoryInterface              $_websiteRepository
     ) {
         parent::__construct($context);
     }
@@ -70,10 +76,54 @@ class Order extends AbstractHelper
                 'Price' => (int) $item->getOriginalPrice(),
                 'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
                 'WhsCode' => $this->_configuration->getWhsCode(),
+                'OcrCode' => $this->getOcrCode($item),
+                'OcrCode2' => $this->_configuration->getOcrCode2(),
+                'OcrCode3' => $this->_configuration->getOcrCode3()
             ];
         }
 
         return $products;
+    }
+
+    /**
+     * Get OcrCode
+     *
+     * @param $item
+     * @return int|void|null
+     */
+    private function getOcrCode($item)
+    {
+        $productId = $item->getProductId();
+        try {
+            $product = $this->_productRepository->getById($productId);
+            $websites = $product->getWebsiteIds();
+
+            if (!empty($websites)) {
+                $websiteId = $websites[0];
+                $website = $this->_websiteRepository->getById($websiteId);
+                $websiteCode = $website->getCode();
+
+                return $this->getOcrCodePerWebsite($websiteCode);
+            }
+        } catch (NoSuchEntityException $e) {
+            return $this->_logger->error($e->getMessage());
+        }
+    }
+
+    /**
+     * Get OcrCode per website
+     *
+     * @param $websiteCode
+     * @return int
+     */
+    public function getOcrCodePerWebsite($websiteCode): int
+    {
+        return match ($websiteCode) {
+            'healthy_sports' => 2101,
+            'base' => 2102,
+            'nutrivita' => 2104,
+            default => 2103
+        };
     }
 
     /**
@@ -177,10 +227,14 @@ class Order extends AbstractHelper
             "U_idtransaccion~" . $paymentTransId
         ];
         $userFields = trim(implode("|", $userFields));
+        $cardCode = $this->_configuration->getCardCode();
+        $slpCode = $this->_configuration->getSlpCode();
 
         return [
             'TipoDocumento' => 17,
+            'CardCode' => $cardCode,
             'DocDueDate' => date_format(date_create($order->getCreatedAt()), 'm/d/Y'),
+            "SlpCode" => $slpCode,
             'Serie' => $this->_configuration->getSerie(),
             'CamposUsuario' => $userFields,
             'CiudadS' => $order->getBillingAddress()->getCity(),
@@ -397,18 +451,14 @@ class Order extends AbstractHelper
     public function getStringCustomerInfoForSAP($orderEntity): array
     {
         $this->_logger->debug(json_encode($orderEntity->getShippingAddress()->toArray()));
-        $identification = $orderEntity->getShippingAddress()->getVatId();
+        $identification = $orderEntity->getShippingAddress()->getVatId() . "-1";
         $firstName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getFirstName()));
         $lastName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getLastName()));
-        $fLastName = explode(' ', $lastName);
         $telephone = $orderEntity->getShippingAddress()->getTelephone();
         $email = $orderEntity->getShippingAddress()->getEmail();
         $city  = $orderEntity->getShippingAddress()->getCity();
-//        $state = $this->getState($orderEntity->getShippingAddress()->getStateId());
         $address = strtoupper($orderEntity->getShippingAddress()->getStreet()[0]);
         $postalCode = $orderEntity->getShippingAddress()->getPostcode();
-
-//        $userFieldsAddress = trim(implode("|", $userFieldsAddress));
         $userFieldsAddress =  "";
         $userFields = "";
 
@@ -426,11 +476,6 @@ class Order extends AbstractHelper
             "CityS" => $city,
             "ZipCode" => $postalCode,
             "StateS" => "",
-//            "Address2B":"Bogotá",
-//            "CountryB":"",
-//            "StreetB":"",
-//            "CityB":"Bogotá",
-//            "StateB":"",
             "CamposUsuario" => $userFields,
             "CamposUsuarioDireccionShip" => $userFieldsAddress,
             "CamposUsuarioDireccionBill" => ""
