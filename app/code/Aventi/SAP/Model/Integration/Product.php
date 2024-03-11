@@ -19,6 +19,7 @@ use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filesystem;
 use Magento\Framework\Filesystem\DriverInterface;
 use Magento\Store\Api\StoreRepositoryInterface;
@@ -168,12 +169,11 @@ class Product extends \Aventi\SAP\Model\Integration
                         'tax_class_id' => $this->getTax($product['TaxCodeAR']),
                         'status' => $this->getStatus($product['frozenFor']),
                         'mgs_brand' => '',
-                        'short_description' => "",//$product['Description'],
+                        'short_description' => "",
                         'description' => $product['FrgnName'],
-//                        'category_ids' => $this->attributeDate->getCategoryIds($product),
                         'custom_attributes' => [
                             'presentation' => $product['SalUnitMsr'],
-                            'invima_registration' => ''//$product['U_invima']
+                            'invima_registration' => ''
                         ],
                         'website_code' => $product['U_LINEA']
                     ];
@@ -199,16 +199,13 @@ class Product extends \Aventi\SAP\Model\Integration
     /**
      * @param $itemObject
      * @return void
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
     public function managerProduct($itemObject)
     {
         try {
             $item = $this->productRepository->get($itemObject->sku);
             $resultCheck = $this->checkFields->checkData($itemObject, $item);
-//            $checkCategories = $this->checkFields->checkCategories($itemObject, $item);
-
-//            if (!$resultCheck && !$checkCategories) {
             if (!$resultCheck) {
                 $this->resTable['check']++;
             } else {
@@ -218,19 +215,10 @@ class Product extends \Aventi\SAP\Model\Integration
                         'product' => $item
                     ]);
                 }
-//                if ($checkCategories) {
-//                    $this->categoryLinkManagement->assignProductToCategories(
-//                        $itemObject->sku,
-//                        $itemObject->category_ids
-//                    );
-//                }
                 $this->resTable['updated']++;
             }
-        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+        } catch (NoSuchEntityException $e) {
             $this->createProduct($itemObject);
-        } catch (\Magento\Framework\Exception\LocalizedException $e) {
-            $this->resTable['fail']++;
-            $this->logger->error("An error has occurred: " . $e->getMessage());
         }
     }
 
@@ -252,7 +240,7 @@ class Product extends \Aventi\SAP\Model\Integration
         try {
             $websiteId = $this->data->getWebsiteIds($itemObject->website_code);
             $newProduct->setWebsiteIds([$websiteId]);
-        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+        } catch (NoSuchEntityException $e) {
             $this->logger->error("Website is not found: " . $e->getMessage());
         }
 
@@ -265,7 +253,6 @@ class Product extends \Aventi\SAP\Model\Integration
         $newProduct->setPrice(0);
         $newProduct->setQty(0);
         $newProduct->setTypeId(\Magento\Catalog\Model\Product\Type::TYPE_SIMPLE);
-//        $newProduct->setDescription($itemObject->long_description);
         $newProduct->setShortDescription($itemObject->short_description);
         $newProduct->setCustomAttributes($itemObject->custom_attributes);
         $newProduct->setUrlKey($urlKey);
@@ -277,7 +264,6 @@ class Product extends \Aventi\SAP\Model\Integration
                 'product' => $newProduct
             ]);
 
-//            $this->categoryLinkManagement->assignProductToCategories($itemObject->sku, $itemObject->category_ids);
             $this->resTable['new']++;
         } catch (
             \Magento\Framework\Exception\CouldNotSaveException |

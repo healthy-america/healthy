@@ -102,13 +102,21 @@
                     <label>WhsCode</label>
                     <comment>Warehouse code to items</comment>
                 </field>
-<!--                <field id="cardcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">-->
-<!--                    <label>CardCode</label>-->
-<!--                    <comment>CardCode to create orders</comment>-->
-<!--                </field>-->
+                <field id="cardcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">-->
+                    <label>CardCode</label>-->
+                    <comment>CardCode to create orders</comment>-->
+                </field>-->
                 <field id="slpcode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
                     <label>SlpCode</label>
                     <comment>SlpCode to create orders</comment>
+                </field>
+                <field id="ocrcode2" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>OcrCode2</label>
+                    <comment>OcrCode2 to create orders</comment>
+                </field>
+                <field id="ocrcode3" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>OcrCode3</label>
+                    <comment>OcrCode3 to create orders</comment>
                 </field>
                 <field id="listnum" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
                     <label>ListNum</label>

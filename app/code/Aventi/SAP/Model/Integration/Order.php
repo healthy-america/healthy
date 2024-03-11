@@ -78,6 +78,7 @@ class Order extends Integration
         foreach ($orders as $orderInfo) {
             $order = $this->_orderRepository->get($orderInfo->getId());
             $this->_helperOrder->createInvoice($order);
+
             if ($order->getState() == 'processing') {
                 $resProcess = $this->_helperOrder->processIteration(['syncing', 'error'], $order->getId());
                 if (!$resProcess) {
