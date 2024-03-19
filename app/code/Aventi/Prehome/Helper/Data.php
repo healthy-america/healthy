@@ -6,51 +6,48 @@ namespace Aventi\Prehome\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
-use Magento\Framework\Stdlib\Cookie\CookieSizeLimitReachedException;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Framework\Stdlib\CookieManagerInterface;
-use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
+use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Stdlib\Cookie\CookieMetadataFactory;
+use Magento\Framework\Stdlib\Cookie\CookieSizeLimitReachedException;
+use Magento\Framework\Stdlib\Cookie\FailureToSendException;
+use Magento\Framework\Stdlib\CookieManagerInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * @class Data
+ */
 class Data extends AbstractHelper
 {
     /**
-     * @var StoreManagerInterface
+     * @constructor
+     *
+     * @param Context $context
+     * @param StoreManagerInterface $storeManager
+     * @param CookieManagerInterface $cookieManager
+     * @param CookieMetadataFactory $cookieMetadataFactory
      */
-    private StoreManagerInterface $storeManager;
-
-    /**
-     * @var CookieManagerInterface
-     */
-    private CookieManagerInterface $cookieManager;
-
-    /**
-     * @var CookieMetadataFactory
-     */
-    private CookieMetadataFactory $cookieMetadataFactory;
-
     public function __construct(
-        Context $context,
-        StoreManagerInterface $storeManager,
-        CookieManagerInterface $cookieManager,
-        CookieMetadataFactory $cookieMetadataFactory
+        Context                                 $context,
+        private readonly StoreManagerInterface  $storeManager,
+        private readonly CookieManagerInterface $cookieManager,
+        private readonly CookieMetadataFactory  $cookieMetadataFactory
     ) {
         parent::__construct($context);
-        $this->storeManager = $storeManager;
-        $this->cookieManager = $cookieManager;
-        $this->cookieMetadataFactory = $cookieMetadataFactory;
     }
 
     /**
+     * Set cookie by stores
+     *
      * @param $cookieName
      * @param $cookieValue
      * @param bool $setCookie
      * @return void
      * @throws CookieSizeLimitReachedException
-     * @throws \Magento\Framework\Exception\InputException
-     * @throws \Magento\Framework\Stdlib\Cookie\FailureToSendException
+     * @throws InputException
+     * @throws FailureToSendException
      */
-    public function setCookieByStores($cookieName, $cookieValue, bool $setCookie = true)
+    public function setCookieByStores($cookieName, $cookieValue, bool $setCookie = true): void
     {
         $stores = $this->storeManager->getStores();
         foreach ($stores as $store) {
@@ -62,7 +59,7 @@ class Data extends AbstractHelper
                 $cookieMetadata->setDomain($domain['host']);
             }
 
-            if ($setCookie) {
+            if ($setCookie && $cookieValue) {
                 $this->cookieManager->setPublicCookie($cookieName, $cookieValue, $cookieMetadata);
             } else {
                 $this->cookieManager->deleteCookie($cookieName, $cookieMetadata);
@@ -71,15 +68,16 @@ class Data extends AbstractHelper
     }
 
     /**
+     * Get base url by website
+     *
      * @param string $website
      * @return string
      */
-    public function getBaseUrlByWebsite(string $website = 'base')
+    public function getBaseUrlByWebsite(string $website = 'base'): string
     {
         try {
             return $this->storeManager->getWebsite($website)->getDefaultStore()->getBaseUrl();
         } catch (LocalizedException $e) {
-            $this->logger->error($e->getMessage());
             return '';
         }
     }

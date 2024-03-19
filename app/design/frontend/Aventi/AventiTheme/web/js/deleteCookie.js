@@ -7,7 +7,7 @@ require([
     'mage/cookies'
 ], function ($) {
 
-    $(document).ready(async function () {
+    $(document).ready(function () {
         const prehome = $('main#prehome'),
               body = $('body'),
               loader = $('div.loader'),
@@ -33,8 +33,7 @@ require([
                 url: url,
                 type: "POST",
                 data: {
-                    name: 'prehomecookie',
-                    value: null
+                    name: 'prehomecookie'
                 },
                 cache: false,
                 success: function () {
@@ -56,7 +55,6 @@ require([
             const locateCurrent = window.location.href;
 
             if (locateCurrent !== href) {
-                $.cookie('prehomecookie', null);
                 window.location.href = href;
             }
         });
