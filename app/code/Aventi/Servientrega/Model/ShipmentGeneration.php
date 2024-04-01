@@ -1,188 +1,97 @@
 <?php
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
 
 namespace Aventi\Servientrega\Model;
 
+use Aventi\Servientrega\Helper\Configuration;
+use Aventi\Servientrega\Helper\WebService;
+use Exception;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\DB\TransactionFactory;
+use Magento\Framework\Event\ManagerInterface;
+use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Filesystem\DirectoryList;
+use Magento\Framework\Filesystem\Io\File;
+use Magento\Framework\UrlInterface;
 use Magento\InventoryApi\Api\GetSourcesAssignedToStockOrderedByPriorityInterface;
 use Magento\InventoryCatalogApi\Api\DefaultSourceProviderInterface;
 use Magento\InventorySalesApi\Model\StockByWebsiteIdResolverInterface;
 use Magento\Sales\Api\ShipmentRepositoryInterface;
+use Magento\Sales\Model\Convert\Order as OrderConverter;
 use Magento\Sales\Model\Order;
+use Magento\Sales\Model\Order\Shipment\TrackFactory;
 use Magento\Sales\Model\OrderRepository;
+use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
+use Magento\Shipping\Model\ShipmentNotifier;
+use Psr\Log\LoggerInterface;
 
+/**
+ * @class ShipmentGeneration
+ */
 class ShipmentGeneration
 {
-    const SHIPPING_METHOD = 'servientrega_servientrega';
 
     /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    private $_logger;
-
-    /**
-     * @var \Aventi\Servientrega\Helper\WebService
-     */
-    private $_webService;
-
-    /**
-     * @var \Magento\Shipping\Model\ShipmentNotifier
-     */
-    private $_shipmentNotifier;
-
-    /**
-     * @var Order
-     */
-    private $_order;
-
-    /**
-     * @var \Magento\Sales\Model\Convert\Order
-     */
-    private $_shipment;
-
-    /**
-     * @var \Magento\Sales\Model\Order\Shipment\TrackFactory
-     */
-    private $_trackFactory;
-
-    /**
-     * @var \Aventi\Servientrega\Helper\Configuration
-     */
-    private $_configuration;
-
-    /**
-     * @var \Magento\Framework\Filesystem\DirectoryList
-     */
-    protected $_fileSystemDir;
-
-    /**
-     * @var \Magento\Framework\UrlInterface
-     */
-    protected $_url;
-
-    /**
-     * @var \Magento\Sales\Model\ResourceModel\Order\CollectionFactory
-     */
-    private $_orderCollectionFactory;
-
-    /**
-     * @var TransactionFactory
-     */
-    private $_transactionFactory;
-
-    /**
-     * @var \Magento\Framework\Filesystem\Io\File
-     */
-    private $_fileSystem;
-
-    /**
-     * @var ShipmentRepositoryInterface
-     */
-    private $shipmentRepository;
-
-    /**
-     * @var SearchCriteriaBuilder
-     */
-    private $searchCriteriaBuilder;
-
-    /**
-     * @var OrderRepository
-     */
-    private $orderRepository;
-
-    /**
-     * @var StockByWebsiteIdResolverInterface
-     */
-    private $stockByWebsiteIdResolver;
-
-    /**
-     * @var GetSourcesAssignedToStockOrderedByPriorityInterface
-     */
-    private $getSourcesAssignedToStockOrderedByPriority;
-
-    /**
-     * @var DefaultSourceProviderInterface
-     */
-    private $defaultSourceProvider;
-
-    /**
-     * @var \Magento\Framework\Event\ManagerInterface
-     */
-    protected $_eventManager;
-
-    /**
-     * ShipmentGeneration constructor.
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Aventi\Servientrega\Helper\WebService $webService
-     * @param \Magento\Shipping\Model\ShipmentNotifier $shipmentNotifier
-     * @param Order $order
-     * @param \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $collectionFactory
-     * @param \Magento\Sales\Model\Convert\Order $shipment
-     * @param \Magento\Sales\Model\Order\Shipment\TrackFactory $trackFactory
-     * @param \Aventi\Servientrega\Helper\Configuration $configuration
-     * @param \Magento\Framework\Filesystem\DirectoryList $fileSystemDir
-     * @param \Magento\Framework\Filesystem\Io\File $fileSystem
-     * @param \Magento\Framework\UrlInterface $url
-     * @param TransactionFactory $transactionFactory
+     * Constructor
+     *
+     * @param LoggerInterface $_logger
+     * @param WebService $_webService
+     * @param ShipmentNotifier $_shipmentNotifier
+     * @param Order $_order
+     * @param CollectionFactory $_orderCollectionFactory
+     * @param OrderConverter $_shipment
+     * @param TrackFactory $_trackFactory
+     * @param Configuration $_configuration
+     * @param DirectoryList $_fileSystemDir
+     * @param File $_fileSystem
+     * @param UrlInterface $_url
      * @param ShipmentRepositoryInterface $shipmentRepository
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param OrderRepository $orderRepository
      * @param StockByWebsiteIdResolverInterface $stockByWebsiteIdResolver
      * @param GetSourcesAssignedToStockOrderedByPriorityInterface $getSourcesAssignedToStockOrderedByPriority
      * @param DefaultSourceProviderInterface $defaultSourceProvider
-     * @param \Magento\Framework\Event\ManagerInterface $eventManager
+     * @param ManagerInterface $_eventManager
      */
-    public function __construct(
-        \Psr\Log\LoggerInterface                                   $logger,
-        \Aventi\Servientrega\Helper\WebService                     $webService,
-        \Magento\Shipping\Model\ShipmentNotifier                   $shipmentNotifier,
-        Order                                                      $order,
-        \Magento\Sales\Model\ResourceModel\Order\CollectionFactory $collectionFactory,
-        \Magento\Sales\Model\Convert\Order                         $shipment,
-        \Magento\Sales\Model\Order\Shipment\TrackFactory           $trackFactory,
-        \Aventi\Servientrega\Helper\Configuration                  $configuration,
-        \Magento\Framework\Filesystem\DirectoryList                $fileSystemDir,
-        \Magento\Framework\Filesystem\Io\File                      $fileSystem,
-        \Magento\Framework\UrlInterface                            $url,
-        TransactionFactory                                         $transactionFactory,
-        ShipmentRepositoryInterface                                $shipmentRepository,
-        SearchCriteriaBuilder                                      $searchCriteriaBuilder,
-        OrderRepository $orderRepository,
-        StockByWebsiteIdResolverInterface $stockByWebsiteIdResolver,
-        GetSourcesAssignedToStockOrderedByPriorityInterface $getSourcesAssignedToStockOrderedByPriority,
-        DefaultSourceProviderInterface $defaultSourceProvider,
-        \Magento\Framework\Event\ManagerInterface $eventManager
+    public function __construct(//NOSONAR
+        private readonly LoggerInterface                                    $_logger,
+        private readonly WebService                                         $_webService,
+        private readonly ShipmentNotifier                                   $_shipmentNotifier,
+        private readonly Order                                              $_order,
+        private readonly CollectionFactory                                  $_orderCollectionFactory,
+        private readonly OrderConverter                                      $_shipment,
+        private readonly TrackFactory                                        $_trackFactory,
+        private readonly Configuration                                       $_configuration,
+        protected DirectoryList                                              $_fileSystemDir,
+        private readonly File                                                $_fileSystem,
+        protected UrlInterface                                               $_url,
+        private readonly ShipmentRepositoryInterface                         $shipmentRepository,
+        private readonly SearchCriteriaBuilder                               $searchCriteriaBuilder,
+        private readonly OrderRepository                                     $orderRepository,
+        private readonly StockByWebsiteIdResolverInterface                   $stockByWebsiteIdResolver,
+        private readonly GetSourcesAssignedToStockOrderedByPriorityInterface $getSourcesAssignedToStockOrderedByPriority,
+        private readonly DefaultSourceProviderInterface                      $defaultSourceProvider,
+        protected ManagerInterface                                           $_eventManager
     ) {
-        $this->_logger = $logger;
-        $this->_webService = $webService;
-        $this->_shipmentNotifier = $shipmentNotifier;
-        $this->_order = $order;
-        $this->_orderCollectionFactory = $collectionFactory;
-        $this->_shipment = $shipment;
-        $this->_trackFactory = $trackFactory;
-        $this->_configuration = $configuration;
-        $this->_fileSystemDir = $fileSystemDir;
-        $this->_fileSystem = $fileSystem;
-        $this->_url = $url;
-        $this->_transactionFactory = $transactionFactory;
-        $this->shipmentRepository = $shipmentRepository;
-        $this->searchCriteriaBuilder = $searchCriteriaBuilder;
-        $this->orderRepository = $orderRepository;
-        $this->stockByWebsiteIdResolver = $stockByWebsiteIdResolver;
-        $this->getSourcesAssignedToStockOrderedByPriority = $getSourcesAssignedToStockOrderedByPriority;
-        $this->defaultSourceProvider = $defaultSourceProvider;
-        $this->_eventManager = $eventManager;
     }
 
     /**
+     * GenerateShipmentGuide
+     *
      * @param Order $order
-     * @throws \Exception
+     * @return void
+     * @throws InputException
+     * @throws NoSuchEntityException
+     * @throws AlreadyExistsException
      */
-    public function generateShipmentGuide(Order $order)
+    public function generateShipmentGuide(Order $order): void
     {
         $orderItems = $order->getAllVisibleItems();
         $qty = 0;
@@ -244,7 +153,7 @@ class ShipmentGeneration
             'Ide_Num_Identific_Dest' => $shippingInfo['vat_id']
         ];
 
-        $this->_logger->debug(json_encode($params));
+        $this->checkPaymentMethod($order);
 
         $response = $this->_webService->CargueMasivoExterno($params);
         if ($response->CargueMasivoExternoResult) {
@@ -252,7 +161,7 @@ class ShipmentGeneration
             try {
                 $this->savePDFsGuide($guideNumber);
                 $this->createShipment($order->getId(), $guideNumber);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $this->_logger->error($e->getMessage());
                 $message = 'Hubo un error en el proceso de Servientrega para la orden #' .
                     $order->getIncrementId() . $e->getMessage();
@@ -266,11 +175,16 @@ class ShipmentGeneration
     }
 
     /**
-     * @throws NoSuchEntityException
-     * @throws \Magento\Framework\Exception\AlreadyExistsException
+     * CreateShipment
+     *
+     * @param $orderId
+     * @param $trackingNumber
+     * @return void
+     * @throws AlreadyExistsException
      * @throws InputException
+     * @throws NoSuchEntityException
      */
-    private function createShipment($orderId, $trackingNumber)
+    private function createShipment($orderId, $trackingNumber): void
     {
         $order = null;
         try {
@@ -278,11 +192,11 @@ class ShipmentGeneration
             try {
                 $shipment = $this->prepareShipment($order, $trackingNumber);
                 $this->shipmentRepository->save($shipment);
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 throw new LocalizedException(__($e->getMessage()));
             }
             $this->_shipmentNotifier->notify($shipment);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $message = 'Cannot create shipment for order #' . $order->getIncrementId() . ' ' . $e->getMessage();
             $order->addCommentToStatusHistory($message);
         }
@@ -290,11 +204,14 @@ class ShipmentGeneration
     }
 
     /**
-     * @param $order Order
+     * PrepareShipment
+     *
+     * @param Order $order
      * @param $trackingNumber
      * @return Order\Shipment
-     * @throws LocalizedException
+     * @throws FileSystemException
      * @throws InputException
+     * @throws LocalizedException
      */
     private function prepareShipment(Order $order, $trackingNumber): Order\Shipment
     {
@@ -311,7 +228,7 @@ class ShipmentGeneration
                 // Add shipment item to shipment
                 $shipment->addItem($shipmentItem);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new LocalizedException(__("An error has occurred" . " --- " . $e->getMessage()));
         }
         $shipment->addComment($this->getGeneratedShippingComments($trackingNumber), false, false);
@@ -344,10 +261,15 @@ class ShipmentGeneration
     }
 
     /**
+     * OrdersToShip
      * Retrieves orders to be shipped and generates the shipment.
-     * @throws \Exception
+     *
+     * @return void
+     * @throws AlreadyExistsException
+     * @throws InputException
+     * @throws NoSuchEntityException
      */
-    public function ordersToShip()
+    public function ordersToShip(): void
     {
         $orderCollection = $this->_orderCollectionFactory->create()
             ->addFieldToSelect(['increment_id'])
@@ -368,10 +290,13 @@ class ShipmentGeneration
     }
 
     /**
-     * @param \Magento\Sales\Model\Order\Shipment $shipment
+     * SaveShipment
+     *
+     * @param Order\Shipment $shipment
      * @param string $trackingNumber The number guide.
+     * @return void
      */
-    public function saveShipment(\Magento\Sales\Model\Order\Shipment $shipment, string $trackingNumber)
+    public function saveShipment(\Magento\Sales\Model\Order\Shipment $shipment, string $trackingNumber): void
     {
         $dataCarrier = [
             'weight' => '10',
@@ -389,17 +314,18 @@ class ShipmentGeneration
             $shipment->save();
             $this->_shipmentNotifier->notify($shipment);
             $this->savePDFsGuide($trackingNumber);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->_logger->error($e->getMessage());
         }
     }
 
     /**
+     * GetGeneratedShippingComments
+     *
      * @param $guide
-     * @return \Magento\Framework\Phrase|string
-     * @throws FileSystemException
+     * @return string
      */
-    public function getGeneratedShippingComments($guide)
+    public function getGeneratedShippingComments($guide): string
     {
         if ($this->_configuration->allowSavePDF()) {
             $urls = $this->getUrls($guide);
@@ -414,10 +340,13 @@ class ShipmentGeneration
     }
 
     /**
+     * SavePDFsGuide
+     *
      * @param $guide
+     * @return void
      * @throws FileSystemException
      */
-    public function savePDFsGuide($guide)
+    public function savePDFsGuide($guide): void
     {
         $param = [
             'numberGuide' => $guide,
@@ -434,6 +363,8 @@ class ShipmentGeneration
     }
 
     /**
+     * GetOrCreateFolder
+     *
      * @return string
      * @throws FileSystemException
      */
@@ -448,18 +379,22 @@ class ShipmentGeneration
         } catch (FileSystemException $e) {
             throw new FileSystemException(__("Directory does not exists or cannot be read"));
         }
+
         return $folder;
     }
 
     /**
+     * GetUrls
      * Retrieve urls where files are saved.
+     *
      * @param $guide
-     * @return array
+     * @return string[]
      */
     public function getUrls($guide): array
     {
         $guideUrl = $this->_configuration->getPDFPath();
         $uriTracking = $this->_configuration->getURLMTrack();
+
         return [
             'guideUrl' => $guideUrl . $guide . '.pdf',
             'trackingUrl' => $uriTracking . $guide
@@ -467,7 +402,9 @@ class ShipmentGeneration
     }
 
     /**
+     * GetShipment
      * Checks if order has any shipment.
+     *
      * @param $orderId
      * @return array|null
      */
@@ -477,7 +414,7 @@ class ShipmentGeneration
         try {
             $shipments = $this->shipmentRepository->getList($searchCriteria);
             $shipmentsRecords = $shipments->getItems();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->_logger->debug($e->getMessage());
             $shipmentsRecords = null;
         }
@@ -486,7 +423,9 @@ class ShipmentGeneration
     }
 
     /**
+     * GetFormattedCity
      * Get postcode formatted.
+     *
      * @param $postcode
      * @return string|null
      */
@@ -495,10 +434,17 @@ class ShipmentGeneration
         if ($postcode) {
             return $postcode . '000';
         }
+
         return null;
     }
 
-    private function getFormattedRegion($region)
+    /**
+     * GetFormattedRegion
+     *
+     * @param $region
+     * @return mixed|string
+     */
+    private function getFormattedRegion($region): mixed
     {
         $fRegion = null;
         if ($region == 'VALLE DEL CAUCA') {
@@ -506,15 +452,18 @@ class ShipmentGeneration
         } else {
             $fRegion = $region;
         }
+
         return $fRegion;
     }
 
     /**
-     * This method is only for debug; deletes all items shipped and returns to
-     * processing status order.
-     * @throws \Exception
+     * ReviewShipments
+     * This method is only for debug; deletes all items shipped and returns to processing status order.
+     *
+     * @return void
+     * @throws Exception
      */
-    public function reviewShipments()
+    public function reviewShipments(): void
     {
         //Only for debug. No delete.
         $myOrder = $this->_order->loadByIncrementId('000001426');
@@ -545,8 +494,22 @@ class ShipmentGeneration
             ->setStatus(Order::STATE_PROCESSING);
         try {
             $this->orderRepository->save($myOrder);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->_logger->error($e->getMessage());
+        }
+    }
+
+    /**
+     * CheckPaymentMethod
+     * Check if payment method is 'Cash On Delivery' if, it's send another billing code
+     *
+     * @param Order $order
+     * @return void
+     */
+    public function checkPaymentMethod(Order $order): void
+    {
+        if ($order->getPayment()->getMethod() === 'cashondelivery') {
+            $this->_webService->isCashOnDelivery();
         }
     }
 }
