@@ -46,10 +46,10 @@ class WebService extends AbstractHelper
      * CargueMasivoExterno
      *
      * @param $params
-     * @return false|SimpleXMLElementAlias|string
+     * @return mixed
      * @throws Exception
      */
-    public function CargueMasivoExterno($params): SimpleXMLElementAlias|bool|string
+    public function CargueMasivoExterno($params): mixed
     {
         $body = [
             'envios' => [
@@ -71,7 +71,7 @@ class WebService extends AbstractHelper
      * @return false|SimpleXMLElementAlias|string
      * @throws Exception
      */
-    public function AnularGuias($data): SimpleXMLElementAlias|bool|string
+    public function AnularGuias($data): mixed
     {
         $params = [
             'num_Guia' => '2052660119', //Numero de guía.
@@ -89,7 +89,7 @@ class WebService extends AbstractHelper
      * @return false|SimpleXMLElementAlias|string
      * @throws Exception
      */
-    public function GenerarGuiaSticker(array $param): SimpleXMLElementAlias|bool|string
+    public function GenerarGuiaSticker(array $param): mixed
     {
         $body = [
             'num_Guia' => $param['numberGuide'],
@@ -107,10 +107,10 @@ class WebService extends AbstractHelper
      * GenerarGuiaStickerTiendasVirtuales
      *
      * @param array $params
-     * @return false|SimpleXMLElementAlias|string
+     * @return mixed
      * @throws Exception
      */
-    public function GenerarGuiaStickerTiendasVirtuales(array $params): SimpleXMLElementAlias|bool|string
+    public function GenerarGuiaStickerTiendasVirtuales(array $params): mixed
     {
         $body = array_merge($params, [
             'ide_CodFacturacion' => $this->_billing_code
@@ -123,10 +123,10 @@ class WebService extends AbstractHelper
      * ConsultarGuia
      *
      * @param $param
-     * @return false|SimpleXMLElementAlias|string
+     * @return mixed
      * @throws Exception
      */
-    public function ConsultarGuia($param): SimpleXMLElementAlias|bool|string
+    public function ConsultarGuia($param): mixed
     {
         $body = [
             'NumeroGuia' => $param
@@ -139,10 +139,10 @@ class WebService extends AbstractHelper
      * EstadoGuiasXML
      *
      * @param $guides
-     * @return false|SimpleXMLElementAlias|string
+     * @return mixed
      * @throws Exception
      */
-    public function EstadoGuiasXML($guides): SimpleXMLElementAlias|bool|string
+    public function EstadoGuiasXML($guides): mixed
     {
         $body = [
             'ID_Cliente' => $this->_configuration->getClientID(),
