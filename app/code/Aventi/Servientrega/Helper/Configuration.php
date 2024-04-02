@@ -33,16 +33,6 @@ class Configuration extends AbstractHelper
     const URL_MOBILE_TRACKING = 'https://mobile.servientrega.com/WebSitePortal/RastreoEnvioDetalle.html?Guia=';
 
     /**
-     * Constructor
-     *
-     * @param Context $context
-     */
-    public function __construct(Context $context)
-    {
-        parent::__construct($context);
-    }
-
-    /**
      * GetMode
      *
      * @param null $store

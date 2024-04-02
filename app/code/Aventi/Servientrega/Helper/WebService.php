@@ -51,7 +51,6 @@ class WebService extends AbstractHelper
      */
     public function CargueMasivoExterno($params): SimpleXMLElementAlias|bool|string
     {
-        $response = null;
         $body = [
             'envios' => [
                 'CargueMasivoExternoDTO' => [
@@ -62,14 +61,7 @@ class WebService extends AbstractHelper
             ]
         ];
 
-        try {
-            $response = $this->_data->getResource(__FUNCTION__, $body);
-        } catch (\SoapFault $e) {
-            $this->_logger->error($e->getMessage());
-            $response = false;
-        }
-
-        return $response;
+        return $this->_data->getResource(__FUNCTION__, $body);
     }
 
     /**
@@ -99,7 +91,6 @@ class WebService extends AbstractHelper
      */
     public function GenerarGuiaSticker(array $param): SimpleXMLElementAlias|bool|string
     {
-        // '292825253'
         $body = [
             'num_Guia' => $param['numberGuide'],
             'num_GuiaFinal' => $param['numberGuide'],

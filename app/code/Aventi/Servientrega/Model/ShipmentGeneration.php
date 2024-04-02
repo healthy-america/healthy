@@ -26,6 +26,7 @@ use Magento\InventorySalesApi\Model\StockByWebsiteIdResolverInterface;
 use Magento\Sales\Api\ShipmentRepositoryInterface;
 use Magento\Sales\Model\Convert\Order as OrderConverter;
 use Magento\Sales\Model\Order;
+use Magento\Sales\Model\Order\Shipment;
 use Magento\Sales\Model\Order\Shipment\TrackFactory;
 use Magento\Sales\Model\OrderRepository;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
@@ -163,7 +164,7 @@ class ShipmentGeneration
                 $this->createShipment($order->getId(), $guideNumber);
             } catch (Exception $e) {
                 $this->_logger->error($e->getMessage());
-                $message = 'Hubo un error en el proceso de Servientrega para la orden #' .
+                $message = __('There was an error in Servientrega for the order: ') .
                     $order->getIncrementId() . $e->getMessage();
                 $order->addCommentToStatusHistory($message);
                 $this->orderRepository->save($order);
@@ -197,7 +198,7 @@ class ShipmentGeneration
             }
             $this->_shipmentNotifier->notify($shipment);
         } catch (Exception $e) {
-            $message = 'Cannot create shipment for order #' . $order->getIncrementId() . ' ' . $e->getMessage();
+            $message = __('Cannot create shipment for order #') . $order->getIncrementId() . ' ' . $e->getMessage();
             $order->addCommentToStatusHistory($message);
         }
         $this->orderRepository->save($order);
@@ -208,12 +209,12 @@ class ShipmentGeneration
      *
      * @param Order $order
      * @param $trackingNumber
-     * @return Order\Shipment
+     * @return Shipment
      * @throws FileSystemException
      * @throws InputException
      * @throws LocalizedException
      */
-    private function prepareShipment(Order $order, $trackingNumber): Order\Shipment
+    private function prepareShipment(Order $order, $trackingNumber): Shipment
     {
         $shipment = $this->_shipment->toShipment($order);
         try {
@@ -229,7 +230,7 @@ class ShipmentGeneration
                 $shipment->addItem($shipmentItem);
             }
         } catch (Exception $e) {
-            throw new LocalizedException(__("An error has occurred" . " --- " . $e->getMessage()));
+            throw new LocalizedException(__("An error has occurred: " . $e->getMessage()));
         }
         $shipment->addComment($this->getGeneratedShippingComments($trackingNumber), false, false);
         $shipment->register();
@@ -292,11 +293,11 @@ class ShipmentGeneration
     /**
      * SaveShipment
      *
-     * @param Order\Shipment $shipment
+     * @param Shipment $shipment
      * @param string $trackingNumber The number guide.
      * @return void
      */
-    public function saveShipment(\Magento\Sales\Model\Order\Shipment $shipment, string $trackingNumber): void
+    public function saveShipment(Shipment $shipment, string $trackingNumber): void
     {
         $dataCarrier = [
             'weight' => '10',
@@ -329,6 +330,7 @@ class ShipmentGeneration
     {
         if ($this->_configuration->allowSavePDF()) {
             $urls = $this->getUrls($guide);
+
             return __("Guide number # ") . "<a href=\"" . $urls['guideUrl'] . "\" download=\"true\" >" . $guide . "</a>"
                 . "<br>"
                 . __("Tracking number # ") . "<a target=\"_blank\" href=\"" . $urls['trackingUrl'] . "\">" . $guide . "</a>";
@@ -446,7 +448,6 @@ class ShipmentGeneration
      */
     private function getFormattedRegion($region): mixed
     {
-        $fRegion = null;
         if ($region == 'VALLE DEL CAUCA') {
             $fRegion = 'VALLE';
         } else {
