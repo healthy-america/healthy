@@ -16,3 +16,5 @@
 "Shipped By", "Enviado por"
 "Tracking Number", "Número de seguimiento"
 "Download Shipping Labels (Sticker Version)", "Descargar Guías (Versión Sticker)"
+"There was an error in Servientrega for the order: ", "Hubo un error en el proceso de Servientrega para la orden #"
+"Cannot create shipment for order #", "No se pudo crear la guía para la orden: "

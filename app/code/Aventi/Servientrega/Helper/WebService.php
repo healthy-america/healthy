@@ -1,46 +1,56 @@
 <?php
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+declare(strict_types=1);
 
 namespace Aventi\Servientrega\Helper;
 
+use Exception;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use SimpleXMLElement as SimpleXMLElementAlias;
 
+/**
+ * @class WebService
+ */
 class WebService extends AbstractHelper
 {
     /**
-     * @var Data
-     */
-    private $_data;
-    /**
-     * @var Configuration
-     */
-    private $_configuration;
-
-    /**
-     * WebService constructor.
+     * Constructor
+     *
      * @param Context $context
-     * @param Data $data
-     * @param Configuration $configuration
+     * @param Data $_data
+     * @param Configuration $_configuration
      */
     public function __construct(
-        Context $context,
-        \Aventi\Servientrega\Helper\Data $data,
-        \Aventi\Servientrega\Helper\Configuration $configuration
+        Context                        $context,
+        private readonly Data          $_data,
+        private readonly Configuration $_configuration
     ) {
-        $this->_data = $data;
-        $this->_configuration = $configuration;
         parent::__construct($context);
     }
 
     /**
-     * @param array $params
-     * @return false|SimpleXMLElementAlias|string
-     * @throws \Exception
+     * IsCashOnDelivery
+     *
+     * @return void
      */
-    public function CargueMasivoExterno($params)
+    public function isCashOnDelivery(): void
     {
-        $response = null;
+        $this->_data->isCashOnDelivery = true;
+    }
+
+    /**
+     * CargueMasivoExterno
+     *
+     * @param $params
+     * @return mixed
+     * @throws Exception
+     */
+    public function CargueMasivoExterno($params): mixed
+    {
         $body = [
             'envios' => [
                 'CargueMasivoExternoDTO' => [
@@ -51,51 +61,56 @@ class WebService extends AbstractHelper
             ]
         ];
 
-        try {
-            $response = $this->_data->getResource(__FUNCTION__, $body);
-        } catch (\SoapFault $e) {
-            $this->_logger->error($e->getMessage());
-            $response = false;
-        }
-        return $response;
+        return $this->_data->getResource(__FUNCTION__, $body);
     }
 
     /**
+     * AnularGuias
+     *
      * @param $data
-     * @return SimpleXMLElementAlias|string|null
-     * @throws \Exception
+     * @return false|SimpleXMLElementAlias|string
+     * @throws Exception
      */
-    public function AnularGuias($data)
+    public function AnularGuias($data): mixed
     {
         $params = [
             'num_Guia' => '2052660119', //Numero de guía.
             'num_GuiaFinal' => '2052660119' //Numero de guia
         ];
+
         return $this->_data->getResource(__FUNCTION__, $params);
     }
 
     /**
+     * GenerarGuiaSticker
      * Sends a request to generate the Sticker Guide PDF.
+     *
      * @param array $param
-     * @return SimpleXMLElementAlias|string|null
-     * @throws \Exception
+     * @return false|SimpleXMLElementAlias|string
+     * @throws Exception
      */
-    public function GenerarGuiaSticker(array $param)
+    public function GenerarGuiaSticker(array $param): mixed
     {
-        // '292825253'
         $body = [
             'num_Guia' => $param['numberGuide'],
             'num_GuiaFinal' => $param['numberGuide'],
             'sFormatoImpresionGuia' => $param['formatGuide'],
             'Id_ArchivoCargar' => '0',
             'interno' => false,
-            'ide_CodFacturacion' => $this->_configuration->getBillingCode()
+            'ide_CodFacturacion' => $this->_configuration->getBillingCode($this->_data->isCashOnDelivery)
         ];
 
         return $this->_data->getResource(__FUNCTION__, $body);
     }
 
-    public function GenerarGuiaStickerTiendasVirtuales(array $params)
+    /**
+     * GenerarGuiaStickerTiendasVirtuales
+     *
+     * @param array $params
+     * @return mixed
+     * @throws Exception
+     */
+    public function GenerarGuiaStickerTiendasVirtuales(array $params): mixed
     {
         $body = array_merge($params, [
             'ide_CodFacturacion' => $this->_billing_code
@@ -105,30 +120,35 @@ class WebService extends AbstractHelper
     }
 
     /**
+     * ConsultarGuia
+     *
      * @param $param
-     * @return SimpleXMLElementAlias|string|null
-     * @throws \Exception
+     * @return mixed
+     * @throws Exception
      */
-    public function ConsultarGuia($param)
+    public function ConsultarGuia($param): mixed
     {
         $body = [
             'NumeroGuia' => $param
         ];
+
         return $this->_data->getResource(__FUNCTION__, $body, true);
     }
 
     /**
+     * EstadoGuiasXML
+     *
      * @param $guides
-     * @return SimpleXMLElementAlias|string|null
-     * @throws \Exception
+     * @return mixed
+     * @throws Exception
      */
-    public function EstadoGuiasXML($guides)
+    public function EstadoGuiasXML($guides): mixed
     {
         $body = [
             'ID_Cliente' => $this->_configuration->getClientID(),
             'RelacionGuias' => $guides
         ];
+
         return $this->_data->getResource(__FUNCTION__, $body, true);
     }
-
 }

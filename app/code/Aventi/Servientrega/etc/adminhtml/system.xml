@@ -1,4 +1,10 @@
 <?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
 	<system>
 		<section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
@@ -90,9 +96,23 @@
                         <field id="mode">test</field>
                     </depends>
                 </field>
+                <field id="cash_billing_code_test" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="145" translate="label" type="text">
+                    <label>Cash On Delivery Billing Code</label>
+                    <comment>The code for the contract with Servientrega for specific payment method "Cash On Delivery".</comment>
+                    <depends>
+                        <field id="mode">test</field>
+                    </depends>
+                </field>
                 <field id="billing_code_prod" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="140" translate="label" type="text">
                     <label>Billing Code</label>
                     <comment>The code for the contract with Servientrega.</comment>
+                    <depends>
+                        <field id="mode">prod</field>
+                    </depends>
+                </field>
+                <field id="cash_billing_code_prod" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="145" translate="label" type="text">
+                    <label>Cash On Delivery Billing Code</label>
+                    <comment>The code for the contract with Servientrega for specific payment method "Cash On Delivery".</comment>
                     <depends>
                         <field id="mode">prod</field>
                     </depends>

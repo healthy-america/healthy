@@ -4,23 +4,37 @@ namespace Aventi\Servientrega\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
+use SoapClient;
+use SoapFault;
+use SoapHeader;
 
+/**
+ * @class Data
+ */
 class Data extends AbstractHelper
 {
-    /**
-     * @var Configuration
-     */
-    protected $_configuration;
 
+    /**
+     * @var bool
+     */
+    public bool $isCashOnDelivery = false;
+
+    /**
+     * Constructor
+     *
+     * @param Context $context
+     * @param Configuration $_configuration
+     */
     public function __construct(
         Context $context,
-        \Aventi\Servientrega\Helper\Configuration $configuration
+        protected Configuration $_configuration
     ) {
         parent::__construct($context);
-        $this->_configuration = $configuration;
     }
 
     /**
+     * OptionsSoap
+     *
      * @return array
      */
     public function optionsSoap(): array
@@ -44,57 +58,69 @@ class Data extends AbstractHelper
     }
 
     /**
+     * ParamsHeader
+     *
      * @return array
-     * @throws \Exception
      */
     private function paramsHeader(): array
     {
-
-//        $pwd = $this->EncriptarContrasena(['strcontrasena' => $this->_configuration->getUserPassword()]);
+        //$pwd = $this->EncriptarContrasena(['strcontrasena' => $this->_configuration->getUserPassword()]);
         $pwd = $this->_configuration->getUserPassword();
 
         return [
             'login' => $this->_configuration->getUserName(),
-//            'pwd' => $pwd->EncriptarContrasenaResult,
+            //'pwd' => $pwd->EncriptarContrasenaResult,
             'pwd' => $pwd,
-            'Id_CodFacturacion' => $this->_configuration->getBillingCode(),
-            'Nombre_Cargue' => '' //Nombre Cargue, preguntar
+            'Id_CodFacturacion' => $this->_configuration->getBillingCode($this->isCashOnDelivery),
+            'Nombre_Cargue' => ''
         ];
     }
 
     /**
      * @param $name_function
      * @param $params
-     * @param false $tracking
-     * @return \SimpleXMLElement|string
-     * @throws \Exception
+     * @param bool $tracking
+     * @return mixed
      */
-    public function getResource($name_function, $params, $tracking = false)
+    public function getResource($name_function, $params, bool $tracking = false): mixed
     {
-        $result = null;
         try {
             if (!$tracking) {
-                $headerData = strpos($name_function, 'Contrasena') !== false ? '' : $this->paramsHeader();
-                $client = new \SoapClient($this->_configuration->getUrlWebservice(), $this->optionsSoap());
+                $headerData = str_contains($name_function, 'Contrasena') ? '' : $this->paramsHeader();
+                $client = new SoapClient($this->_configuration->getUrlWebservice(), $this->optionsSoap());
                 $client->__setLocation($this->_configuration->getUrlWebservice());
-                $header = new \SoapHeader($this->_configuration->getNameSpacesGuide(), 'AuthHeader', $headerData);
+                $header = new SoapHeader($this->_configuration->getNameSpacesGuide(), 'AuthHeader', $headerData);
                 $client->__setSoapHeaders($header);
             } else {
-                $client = new \SoapClient($this->_configuration->getUrlTracking(), $this->optionsSoap());
+                $client = new SoapClient($this->_configuration->getUrlTracking(), $this->optionsSoap());
             }
             $result = $client->$name_function($params);
-        } catch (\SoapFault $e) {
+        } catch (SoapFault $e) {
             $this->_logger->error($e->getMessage());
-            return false;
+            $result = false;
         }
+
         return $result;
     }
 
-    public function EncriptarContrasena($params)
+    /**
+     * EncriptarContrasena
+     *
+     * @param $params
+     * @return mixed
+     */
+    public function EncriptarContrasena($params): mixed
     {
         return $this->getResource(__FUNCTION__, $params);
     }
-    public function DesencriptarContrasena($params)
+
+    /**
+     * DesencriptarContrasena
+     *
+     * @param $params
+     * @return mixed
+     */
+    public function DesencriptarContrasena($params): mixed
     {
         return $this->getResource(__FUNCTION__, $params);
     }
