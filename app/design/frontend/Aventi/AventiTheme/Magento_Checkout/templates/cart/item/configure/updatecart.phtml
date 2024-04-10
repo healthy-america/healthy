@@ -60,7 +60,7 @@
             ], function(jQuery){
                 (function($) {
                     if($('#'+qtyInput).attr('disabled')!='disabled'){
-                        qty = $('#'+qtyInput).attr('value');
+                        qty = $('#'+qtyInput).val();
                         qty = parseInt(qty);
                         qty++;
                         $('#'+qtyInput).val(qty);
@@ -75,7 +75,7 @@
             ], function(jQuery){
                 (function($) {
                     if($('#'+qtyInput).attr('disabled')!='disabled'){
-                        qty = $('#'+qtyInput).attr('value');
+                        qty = $('#'+qtyInput).val();
                         qty = parseInt(qty);
 
                         if(qty>1){
