@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Aventi\SAP\Helper;
 
 use Exception;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\DB\Transaction;
@@ -21,7 +22,6 @@ use Magento\Sales\Api\Data\TransactionSearchResultInterfaceFactory;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order\Status\HistoryRepository;
 use Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory;
-use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Store\Api\WebsiteRepositoryInterface;
 
 /**
@@ -42,7 +42,7 @@ class Order extends AbstractHelper
      * @param ProductRepositoryInterface $_productRepository
      * @param WebsiteRepositoryInterface $_websiteRepository
      */
-    public function __construct( //NOSONAR
+    public function __construct(//NOSONAR
         Context                                                  $context,
         private readonly OrderRepositoryInterface                $_orderRepository,
         private readonly CollectionFactory                       $_historyCollectionFactory,
@@ -232,7 +232,7 @@ class Order extends AbstractHelper
 
         return [
             'TipoDocumento' => 17,
-            'CardCode' => $cardCode,
+            'CardCode' => "CN",
             'DocDueDate' => date_format(date_create($order->getCreatedAt()), 'm/d/Y'),
             "SlpCode" => $slpCode,
             'Serie' => $this->_configuration->getSerie(),
@@ -413,6 +413,30 @@ class Order extends AbstractHelper
     }
 
     /**
+     * GetState
+     *
+     * @param $mState
+     * @return string
+     */
+    public function getState($mState): string
+    {
+        $sapState = $mState;
+        switch ($sapState) {
+            case "731":
+                $sapState = '001';
+                break;
+            case "747":
+                $sapState = '002';
+                break;
+            case "721":
+                $sapState = '003';
+                break;
+        }
+
+        return $sapState;
+    }
+
+    /**
      * GetPaymentInfo
      *
      * @param OrderPaymentInterface|null $orderPayment
@@ -450,8 +474,7 @@ class Order extends AbstractHelper
      */
     public function getStringCustomerInfoForSAP($orderEntity): array
     {
-        $this->_logger->debug(json_encode($orderEntity->getShippingAddress()->toArray()));
-        $identification = $orderEntity->getShippingAddress()->getVatId() . "-1";
+        $identification = $orderEntity->getShippingAddress()->getVatId();
         $firstName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getFirstName()));
         $lastName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getLastName()));
         $telephone = $orderEntity->getShippingAddress()->getTelephone();
@@ -460,11 +483,11 @@ class Order extends AbstractHelper
         $address = strtoupper($orderEntity->getShippingAddress()->getStreet()[0]);
         $postalCode = $orderEntity->getShippingAddress()->getPostcode();
         $userFieldsAddress =  "";
-        $userFields = "";
+        $userFields = $this->getCustomerUserFields($orderEntity->getShippingAddress());
 
         return [
             "LicTradNum" => $identification,
-            "CardName" => $lastName . ' ' . $firstName,
+            "CardName" => strtoupper($lastName . ' ' . $firstName),
             "CardFName" => "",
             "ListNum" => $this->_configuration->getListNum(),
             "GroupCode" => $this->_configuration->getGroupCode(),
@@ -477,33 +500,9 @@ class Order extends AbstractHelper
             "ZipCode" => $postalCode,
             "StateS" => "",
             "CamposUsuario" => $userFields,
-            "CamposUsuarioDireccionShip" => $userFieldsAddress,
-            "CamposUsuarioDireccionBill" => ""
+            "CamposUsuarioDireccionShip" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~N",
+            "CamposUsuarioDireccionBill" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~Y"
         ];
-    }
-
-    /**
-     * GetState
-     *
-     * @param $mState
-     * @return string
-     */
-    public function getState($mState): string
-    {
-        $sapState = $mState;
-        switch ($sapState) {
-            case "731":
-                $sapState = '001';
-                break;
-            case "747":
-                $sapState = '002';
-                break;
-            case "721":
-                $sapState = '003';
-                break;
-        }
-
-        return $sapState;
     }
 
     /**
@@ -521,5 +520,65 @@ class Order extends AbstractHelper
         }
 
         return $transactionId;
+    }
+
+    /**
+     * GetDocumentType
+     *
+     * @param $doc
+     * @return int
+     */
+    public function getDocumentType($doc): int
+    {
+        $sapDoc = $doc;
+        switch ($doc) {
+            case "CC":
+                $sapDoc = 13;
+                break;
+            case "CE":
+                $sapDoc = 22;
+                break;
+            case "RUT":
+                $sapDoc = 31;
+                break;
+        }
+
+        return $sapDoc;
+    }
+
+    /**
+     * GetCustomerUserFields
+     *
+     * @param $address
+     * @return string
+     */
+    public function getCustomerUserFields($address): string
+    {
+        $lastname = explode(
+            " ",
+            strtoupper(str_replace('Ñ', 'N', $address->getLastname()))
+        );
+        $formatUserFields = "U_HBT_ConsumFinal~Y|U_regional1~R810|U_centroc1~20263|U_HBT_RegTrib~RS";
+        $userFileds =[
+            "U_HBT_TipDoc" => $this->getDocumentType($address->getFax()),
+            "U_HBT_ActEco" => $address->getFax() === "RUT" ? "0010" : null,
+            "U_HBT_MunMed" => $address->getPostcode(),
+            "U_HBT_TipEnt" => $address->getSuffix() === "Natural" ? "1" : "2",
+            "U_HBT_Nombres" => strtoupper(str_replace('Ñ', 'N', $address->getFirstName())),
+            "U_HBT_Apellido1" => $lastname[0],
+            "U_HBT_Apellido2" => $lastname[1] ?? null,
+            "U_HBT_Nacional" => $address->getFax() === "CE" ? 2 : 1,
+            "U_HBT_TipExt" => $address->getFax() === "CE" ? 1 : 0,
+            "U_HBT_RegFis" => 49,
+            "U_HBT_MedPag" => "ZZZ",
+            "U_HBT_MailRecep_FE" => $address->getEmail(),
+            "U_HBT_InfoTrib" => $address->getSuffix() === "Natural" ? "ZZ" : "01" // Will be changed with checkout field
+        ];
+
+        foreach ($userFileds as $field => $value) {
+            $formatUserFields .=  "|" . $field . "~" . $value;
+        }
+
+        return $formatUserFields;
     }
 }
