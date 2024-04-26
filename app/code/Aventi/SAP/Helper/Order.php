@@ -72,8 +72,8 @@ class Order extends AbstractHelper
         foreach ($items as $item) {
             $products[] = [
                 'ItemCode' => $item->getSku(),
-                'Quantity' => (int) $item->getQtyOrdered(),
-                'Price' => (int) $item->getOriginalPrice(),
+                'Quantity' => (int)$item->getQtyOrdered(),
+                'Price' => (int)$item->getOriginalPrice(),
                 'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
                 'WhsCode' => $this->_configuration->getWhsCode(),
                 'OcrCode' => $this->getOcrCode($item),
@@ -136,8 +136,8 @@ class Order extends AbstractHelper
     {
         $discountPercent = 0;
         $originalPrice = $item->getOriginalPrice(); #original_price
-        $priceWithTax =  $item->getPriceInclTax(); #prince_incl_tax
-        $discountAmount =  (int) $item->getDiscountAmount(); #discount_amount
+        $priceWithTax = $item->getPriceInclTax(); #prince_incl_tax
+        $discountAmount = (int)$item->getDiscountAmount(); #discount_amount
 
         if ($discountAmount !== 0) {
             $discountPercent = $item->getDiscountPercent();
@@ -149,7 +149,7 @@ class Order extends AbstractHelper
             $discountPercent = (1 - ($priceWithTax / $originalPrice)) * 100;
         }
 
-        return (int) $discountPercent;
+        return (int)$discountPercent;
     }
 
     /**
@@ -172,7 +172,7 @@ class Order extends AbstractHelper
         $historiesModel->load();
 
         foreach ($historiesModel as $history) {
-            $iteration = (int) (preg_replace('/\D+/i', '', $history->getData('comment')));
+            $iteration = (int)(preg_replace('/\D+/i', '', $history->getData('comment')));
             if ($iteration != 10) {
                 $history->delete();
             }
@@ -212,14 +212,14 @@ class Order extends AbstractHelper
     /**
      * ProcessDataSAP
      *
-     * @throws NoSuchEntityException
-     * @throws LocalizedException
+     * @param OrderInterface $order
+     * @return array
      */
     public function processDataSAP(OrderInterface $order): array
     {
         $products = $this->getStringProductForSAP($order);
         $customerInfo = $this->getStringCustomerInfoForSAP($order);
-        $paymentTitle = $order->getPayment()->getMethodInstance()->getTitle();
+        $paymentTitle = $this->getPaymentTitle($order);
         $paymentTransId = $this->getTransactionId($order);
 
         $userFields = [
@@ -227,7 +227,6 @@ class Order extends AbstractHelper
             "U_idtransaccion~" . $paymentTransId
         ];
         $userFields = trim(implode("|", $userFields));
-        $cardCode = $this->_configuration->getCardCode();
         $slpCode = $this->_configuration->getSlpCode();
 
         return [
@@ -420,20 +419,13 @@ class Order extends AbstractHelper
      */
     public function getState($mState): string
     {
-        $sapState = $mState;
-        switch ($sapState) {
-            case "731":
-                $sapState = '001';
-                break;
-            case "747":
-                $sapState = '002';
-                break;
-            case "721":
-                $sapState = '003';
-                break;
-        }
+        return match ($mState) {
+            "731" => '001',
+            "747" => '002',
+            "721" => '003',
+            default => $mState,
+        };
 
-        return $sapState;
     }
 
     /**
@@ -479,10 +471,9 @@ class Order extends AbstractHelper
         $lastName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getLastName()));
         $telephone = $orderEntity->getShippingAddress()->getTelephone();
         $email = $orderEntity->getShippingAddress()->getEmail();
-        $city  = $orderEntity->getShippingAddress()->getCity();
+        $city = $orderEntity->getShippingAddress()->getCity();
         $address = strtoupper($orderEntity->getShippingAddress()->getStreet()[0]);
         $postalCode = $orderEntity->getShippingAddress()->getPostcode();
-        $userFieldsAddress =  "";
         $userFields = $this->getCustomerUserFields($orderEntity->getShippingAddress());
 
         return [
@@ -523,6 +514,22 @@ class Order extends AbstractHelper
     }
 
     /**
+     * GetPaymentTitle
+     *
+     * @param OrderInterface $order
+     * @return string
+     */
+    public function getPaymentTitle(OrderInterface $order): string
+    {
+        try {
+            return $order->getPayment()->getMethodInstance()->getTitle();
+        }catch (LocalizedException $e) {
+            $this->_logger->error($e->getMessage());
+            return '';
+        }
+    }
+
+    /**
      * GetDocumentType
      *
      * @param $doc
@@ -530,20 +537,12 @@ class Order extends AbstractHelper
      */
     public function getDocumentType($doc): int
     {
-        $sapDoc = $doc;
-        switch ($doc) {
-            case "CC":
-                $sapDoc = 13;
-                break;
-            case "CE":
-                $sapDoc = 22;
-                break;
-            case "RUT":
-                $sapDoc = 31;
-                break;
-        }
-
-        return $sapDoc;
+        return match ($doc) {
+            "CC" => 13,
+            "CE" => 22,
+            "RUT" => 31,
+            default => $doc
+        };
     }
 
     /**
@@ -559,14 +558,14 @@ class Order extends AbstractHelper
             strtoupper(str_replace('Ñ', 'N', $address->getLastname()))
         );
         $formatUserFields = "U_HBT_ConsumFinal~Y|U_regional1~R810|U_centroc1~20263|U_HBT_RegTrib~RS";
-        $userFileds =[
+        $userFileds = [
             "U_HBT_TipDoc" => $this->getDocumentType($address->getFax()),
             "U_HBT_ActEco" => $address->getFax() === "RUT" ? "0010" : null,
             "U_HBT_MunMed" => $address->getPostcode(),
             "U_HBT_TipEnt" => $address->getSuffix() === "Natural" ? "1" : "2",
             "U_HBT_Nombres" => strtoupper(str_replace('Ñ', 'N', $address->getFirstName())),
             "U_HBT_Apellido1" => $lastname[0],
-            "U_HBT_Apellido2" => $lastname[1] ?? null,
+            "U_HBT_Apellido2" => isset($lastname[1]) ? $lastname[1] : '',
             "U_HBT_Nacional" => $address->getFax() === "CE" ? 2 : 1,
             "U_HBT_TipExt" => $address->getFax() === "CE" ? 1 : 0,
             "U_HBT_RegFis" => 49,
@@ -576,7 +575,7 @@ class Order extends AbstractHelper
         ];
 
         foreach ($userFileds as $field => $value) {
-            $formatUserFields .=  "|" . $field . "~" . $value;
+            $formatUserFields .= "|" . $field . "~" . $value;
         }
 
         return $formatUserFields;
