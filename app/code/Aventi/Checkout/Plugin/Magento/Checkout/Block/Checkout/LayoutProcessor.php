@@ -8,6 +8,7 @@ declare(strict_types=1);
 namespace Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout;
 
 use Aventi\AventiTheme\Model\Config\Source\CustomerTypeOptions;
+use Magento\Checkout\Block\Checkout\LayoutProcessor as Source;
 
 class LayoutProcessor
 {
@@ -15,7 +16,6 @@ class LayoutProcessor
      * @var CustomerTypeOptions
      */
     private CustomerTypeOptions $customerTypeOptions;
-
 
     /**
      * @param CustomerTypeOptions $customerTypeOptions
@@ -27,17 +27,16 @@ class LayoutProcessor
     }
 
     /**
-     * @param \Magento\Checkout\Block\Checkout\LayoutProcessor $subject
+     * @param Source $subject
      * @param $result
      * @param $jsLayout
      * @return mixed
      */
     public function afterProcess(
-        \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
+        Source $subject,
         $result,
         $jsLayout
     ) {
-
         $shippingForm = &$result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children'];
         $shippingForm['firstname']['placeholder'] = __('Nombre');
@@ -82,6 +81,13 @@ class LayoutProcessor
             'provider' => 'checkoutProvider',
             'sortOrder' => 49,
             'validation' => ['required-entry' => true],
+        ];
+
+        // Add document validation
+        $result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        ['shippingAddress']['children']['shipping-address-fieldset']['children']['vat_id']['validation'] = [
+            'required-entry' => true,
+            'document-validation' => '^\d{9}-\d$'
         ];
 
         return $result;

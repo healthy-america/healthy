@@ -1,6 +1,13 @@
 <?php
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
 
 namespace Aventi\SAP\Plugin\Magento\Checkout\Block\Checkout;
+
+use Magento\Checkout\Block\Checkout\LayoutProcessor as Source;
 
 /**
  * Class LayoutProcessor
@@ -10,17 +17,10 @@ namespace Aventi\SAP\Plugin\Magento\Checkout\Block\Checkout;
 class LayoutProcessor
 {
     public function afterProcess(
-        \Magento\Checkout\Block\Checkout\LayoutProcessor $subject,
+        Source $subject,
         $result,
         $jsLayout
     ) {
-        $result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
-        ['shippingAddress']['children']['shipping-address-fieldset']['children']['vat_id']['validation'] = [
-            'required-entry' => true,
-            'validate-number' => true,
-            'min_text_length' => 8,
-            'max_text_length' => 13
-        ];
 
         $result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['vat_id']['sortOrder'] = 50;
