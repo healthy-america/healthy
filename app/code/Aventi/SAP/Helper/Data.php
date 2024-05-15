@@ -7,81 +7,50 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Helper;
 
+use Aventi\SAP\Logger\Logger;
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
 use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Stdlib\DateTime\DateTime;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\HTTP\Client\Curl;
+use Magento\Store\Api\WebsiteRepositoryInterface;
 
+/**
+ * Class Data
+ */
 class Data extends AbstractHelper
 {
-    const ROW_START = 0;
-    const ROW_END = 1000;
+    protected ?string $_token = null;
 
     /**
-     * @var \Magento\Framework\HTTP\Client\Curl
-     */
-    private \Magento\Framework\HTTP\Client\Curl $curl;
-
-    /**
-     * @var \Aventi\SAP\Logger\Logger
-     */
-    private \Aventi\SAP\Logger\Logger $logger;
-
-    /**
-     * @var Configuration
-     */
-    private Configuration $configHelper;
-
-    private ?string $_token = null;
-
-    /**
-     * @var DateTime
-     */
-    private DateTime $_dateTime;
-
-    /**
-     * @var \Magento\Framework\App\ResourceConnection
-     */
-    private \Magento\Framework\App\ResourceConnection $resourceConnection;
-
-    /**
-     * @var \Magento\Store\Api\WebsiteRepositoryInterface
-     */
-    private \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository;
-
-    /**
-     * @param \Magento\Framework\App\Helper\Context $context
-     * @param \Magento\Framework\HTTP\Client\Curl $curl
-     * @param \Aventi\SAP\Logger\Logger $logger
+     * Constructor
+     *
+     * @param Context $context
+     * @param Curl $curl
+     * @param Logger $logger
      * @param Configuration $configHelper
-     * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
-     * @param \Magento\Framework\App\ResourceConnection $resourceConnection
+     * @param WebsiteRepositoryInterface $websiteRepository
      */
     public function __construct(
-        \Magento\Framework\App\Helper\Context $context,
-        \Magento\Framework\HTTP\Client\Curl $curl,
-        \Aventi\SAP\Logger\Logger $logger,
-        Configuration $configHelper,
-        \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
-        \Magento\Framework\App\ResourceConnection $resourceConnection,
-        \Magento\Store\Api\WebsiteRepositoryInterface $websiteRepository
+        Context                             $context,
+        private readonly Curl               $curl,
+        private readonly Logger             $logger,
+        private readonly Configuration      $configHelper,
+        private readonly WebsiteRepositoryInterface $websiteRepository
     ) {
         parent::__construct($context);
-        $this->curl = $curl;
-        $this->logger = $logger;
-        $this->configHelper = $configHelper;
-        $this->_dateTime = $dateTime;
-        $this->resourceConnection = $resourceConnection;
-        $this->websiteRepository = $websiteRepository;
     }
 
     /**
+     * GetResource
+     *
      * @param $typeUri
      * @param $start
      * @param $rows
      * @param $fast
      * @return false|string
      */
-    public function getResource($typeUri, $start, $rows, $fast)
+    public function getResource($typeUri, $start, $rows, $fast): bool|string
     {
         $mainUri = $this->configHelper->getUrlWS();
         try {
@@ -108,11 +77,13 @@ class Data extends AbstractHelper
     }
 
     /**
+     * PostResource
+     *
      * @param $typeUri
      * @param $params
      * @return array|false
      */
-    public function postResource($typeUri, $params)
+    public function postResource($typeUri, $params): bool|array
     {
         $mainUri = $this->configHelper->getUrlWS();
         try {
@@ -125,8 +96,8 @@ class Data extends AbstractHelper
                     "Content-Type" => "application/json"
 //                    "Authorization" => "Bearer {$this->getToken()}"
                 ];
-//                $this->curl->setHeaders($headers);
-                $this->curl->post($url, $params);
+                $this->curl->setHeaders($headers);
+                $this->curl->post($url, json_encode($params));
                 return [
                     "status" => $this->curl->getStatus(),
                     "body" => $this->curl->getBody()
@@ -143,6 +114,7 @@ class Data extends AbstractHelper
 
     /**
      * Returns formatted url.
+     *
      * @param $mainUri
      * @param $type
      * @param null $start
@@ -157,7 +129,7 @@ class Data extends AbstractHelper
             case 'price':
                 if ($fast) {
                     $uri = $this->configHelper->getUrlPriceFast();
-                }else{
+                } else {
                     $uri = $this->configHelper->getUrlPrice();
                 }
                 $uri .= $start . "/" . $rows;
@@ -184,9 +156,6 @@ class Data extends AbstractHelper
             case 'brand':
                 $uri = $this->configHelper->getUrlBrand();
                 break;
-            case 'category':
-                $uri = $this->configHelper->getUrlCategory();
-                break;
             default:
                 throw new LocalizedException(__("Option undefined"));
         }
@@ -200,6 +169,7 @@ class Data extends AbstractHelper
 
     /**
      * Returns generated token by SAP WS.
+     *
      * @return string|null
      */
     public function getToken(): ?string
@@ -207,12 +177,23 @@ class Data extends AbstractHelper
         return $this->_token;
     }
 
-    public function setToken($token)
+    /**
+     * SetToken
+     *
+     * @param $token
+     * @return void
+     */
+    public function setToken($token): void
     {
         $this->_token = $token;
     }
 
-    private function generateToken()
+    /**
+     * GenerateToken
+     *
+     * @return void
+     */
+    private function generateToken(): void
     {
         $mainUri = $this->configHelper->getUrlWS();
         try {
@@ -237,57 +218,13 @@ class Data extends AbstractHelper
     }
 
     /**
-     * @param $sap
-     * @param $companyId
-     * @return float|int|string|null
-     */
-    public function getCompanyId($sap, $companyId = null): float|int|string|null
-    {
-        $id = null;
-        $connection = $this->resourceConnection->getConnection();
-        if (is_numeric($companyId)) {
-            $sql = 'UPDATE aw_ca_company  SET `sap` = "' . addslashes($sap) . '" WHERE  id = ' . (int)$companyId;
-            $connection->query($sql);
-            $id  = $companyId;
-        } else {
-            $sql = 'SELECT id from aw_ca_company where `sap` = "' . addslashes($sap) . '"';
-            $id = $connection->fetchOne($sql);
-            $id = is_numeric($id) ? $id : null;
-        }
-        return $id;
-    }
-
-    /**
-     * @param $address
-     * @param $customerId
-     * @param $addressId
-     * @return float|int|string|null
-     */
-    public function getCustomerAddressSAP($address, $customerId = null, $addressId = null)
-    {
-        $id = null;
-
-        $connection = $this->resourceConnection->getConnection();
-
-        if (is_numeric($addressId)) {
-            $sql = 'UPDATE customer_address_entity  SET `sap` = "' . addslashes($address) . '" WHERE  entity_id = ' . (int)$addressId;
-            $connection->query($sql);
-            $id  = $addressId;
-        } else {
-            $sql = 'SELECT entity_id from customer_address_entity where `sap` = "' . addslashes($address) . '" AND `parent_id` = "' . addslashes($customerId) . '"';
-            $id = $connection->fetchOne($sql);
-            $id = is_numeric($id) ? $id : null;
-        }
-
-        return $id;
-    }
-
-    /**
+     * GetWebsiteIds
+     *
      * @param $websiteCode
      * @return int
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
-    public function getWebsiteIds($websiteCode)
+    public function getWebsiteIds($websiteCode): int
     {
         return match ($websiteCode) {
             'HEALTHY SPORTS' => $this->websiteRepository->get('healthy_sports')->getId(),
@@ -296,12 +233,14 @@ class Data extends AbstractHelper
         };
     }
 
-    /***
+    /**
+     * GetWebsiteName
+     *
      * @param $websiteId
      * @return string
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws NoSuchEntityException
      */
-    public function getWebsiteName($websiteId)
+    public function getWebsiteName($websiteId): string
     {
         $websiteCode = $this->websiteRepository->getById($websiteId)->getCode();
 
