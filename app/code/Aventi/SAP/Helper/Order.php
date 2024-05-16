@@ -425,7 +425,6 @@ class Order extends AbstractHelper
             "721" => '003',
             default => $mState,
         };
-
     }
 
     /**
@@ -488,8 +487,15 @@ class Order extends AbstractHelper
             "CountryS" => "CO",
             "StreetS" => $address,
             "CityS" => $city,
-            "ZipCode" => $postalCode,
+            "ZipCodeS" => $postalCode,
             "StateS" => "",
+            "Address2B" => $address,
+            "CountryB" => "CO",
+            "StreetB" => $address,
+            "CityB" => $city,
+            "ZipCodeB" => $postalCode,
+            "StateB" => "",
+            "Territory" => 108,
             "CamposUsuario" => $userFields,
             "CamposUsuarioDireccionShip" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~N",
             "CamposUsuarioDireccionBill" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~Y"
@@ -523,7 +529,7 @@ class Order extends AbstractHelper
     {
         try {
             return $order->getPayment()->getMethodInstance()->getTitle();
-        }catch (LocalizedException $e) {
+        } catch (LocalizedException $e) {
             $this->_logger->error($e->getMessage());
             return '';
         }
