@@ -136,7 +136,6 @@ class Order extends AbstractHelper
     {
         $discountPercent = 0;
         $originalPrice = $item->getOriginalPrice(); #original_price
-        $priceWithTax = $item->getPriceInclTax(); #prince_incl_tax
         $discountAmount = (int)$item->getDiscountAmount(); #discount_amount
 
         if ($discountAmount !== 0) {
@@ -145,8 +144,6 @@ class Order extends AbstractHelper
                 $priceWithDiscount = $originalPrice - $discountAmount;
                 $discountPercent = (1 - ($priceWithDiscount / $originalPrice)) * 100;
             }
-        } elseif ($originalPrice != $priceWithTax) {
-            $discountPercent = (1 - ($priceWithTax / $originalPrice)) * 100;
         }
 
         return (int)$discountPercent;
