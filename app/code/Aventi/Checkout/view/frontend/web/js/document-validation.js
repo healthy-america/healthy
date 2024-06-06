@@ -14,7 +14,7 @@ define([
             'document-validation',
             function (value, param) {
 
-                if($('select[name="suffix"]').val() === 'Legal'){
+                if($('select[name="fax"]').val() === 'RUT'){
                     return utils.isEmpty(value) || new RegExp(param).test(value);
                 }else{
                     return utils.isEmpty(value) || value.length <= 10
