@@ -574,7 +574,7 @@ class Order extends AbstractHelper
             "U_HBT_RegFis" => 49,
             "U_HBT_MedPag" => "ZZZ",
             "U_HBT_MailRecep_FE" => $address->getEmail(),
-            "U_HBT_InfoTrib" => $address->getSuffix() === "Natural" ? "ZZ" : "01" // Will be changed with checkout field
+            "U_HBT_InfoTrib" => $address->getSuffix() === "Natural" ? "ZZ" : $address->getCompany()
         ];
 
         foreach ($userFileds as $field => $value) {

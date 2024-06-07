@@ -27,12 +27,15 @@ define([
         initialize: function () {
             this._super();
             this.enableSelect(false);
+            this.tributaryInfoField = registry.get('checkout.steps.shipping-step.shippingAddress.shipping-address-fieldset.company');
+            this.tributaryInfoField.hide();
             return this;
         },
 
         onUpdate: function (value) {
             this._super();
             this.getDocumentTypes()
+            this.enableTributaryField()
         },
 
         getDocumentTypes: function () {
@@ -71,6 +74,16 @@ define([
             });
 
             self.customerDocumentTypeOptions(documentTypeOptions);
+        },
+
+        enableTributaryField: function () {
+            const customerType = this.value();
+
+            if(customerType === 'Legal'){
+                this.tributaryInfoField.show();
+            }else{
+                this.tributaryInfoField.hide();
+            }
         }
     });
 });

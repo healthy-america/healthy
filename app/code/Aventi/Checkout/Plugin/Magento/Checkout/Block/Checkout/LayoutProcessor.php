@@ -8,22 +8,21 @@ declare(strict_types=1);
 namespace Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout;
 
 use Aventi\AventiTheme\Model\Config\Source\CustomerTypeOptions;
+use Aventi\Checkout\Model\Source\Config\TributaryInformation;
 use Magento\Checkout\Block\Checkout\LayoutProcessor as Source;
 
 class LayoutProcessor
 {
     /**
-     * @var CustomerTypeOptions
-     */
-    private CustomerTypeOptions $customerTypeOptions;
-
-    /**
+     * Constructor
+     *
      * @param CustomerTypeOptions $customerTypeOptions
+     * @param TributaryInformation $tributaryInformationOptions
      */
     public function __construct(
-        CustomerTypeOptions $customerTypeOptions
+        private CustomerTypeOptions $customerTypeOptions,
+        private TributaryInformation $tributaryInformationOptions
     ) {
-        $this->customerTypeOptions = $customerTypeOptions;
     }
 
     /**
@@ -81,6 +80,21 @@ class LayoutProcessor
             'provider' => 'checkoutProvider',
             'sortOrder' => 49,
             'validation' => ['required-entry' => true],
+        ];
+
+        $shippingForm['company'] = [
+            'component' => 'Magento_Ui/js/form/element/select',
+            'config' => [
+                "customScope" => "shippingAddress",
+                'template' => 'ui/form/field',
+                'elementTmpl' => 'ui/form/element/select',
+                'id' => 'company',
+            ],
+            'dataScope' => 'shippingAddress.company',
+            'label' => __('Tributary information') . "*",
+            'provider' => 'checkoutProvider',
+            'sortOrder' => 49,
+            'options' => $this->tributaryInformationOptions->getAllOptions()
         ];
 
         // Add document validation
