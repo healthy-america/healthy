@@ -492,7 +492,7 @@ class Order extends AbstractHelper
             "CityB" => $city,
             "ZipCodeB" => $postalCode,
             "StateB" => "",
-            "Territory" => 108,
+            "Territory" => $this->_configuration->getTerritory(),
             "CamposUsuario" => $userFields,
             "CamposUsuarioDireccionShip" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~N",
             "CamposUsuarioDireccionBill" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~Y"
