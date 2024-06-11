@@ -41,6 +41,7 @@ class Configuration extends AbstractHelper
     const XML_PATH_SAP_LISTNUM = 'integration/document/listnum';
     const XML_PATH_SAP_GROUPCODE = 'integration/document/groupcode';
     const XML_PATH_SAP_GROUPNUM = 'integration/document/groupnum';
+    const XML_PATH_SAP_TERRITORY = 'integration/document/territory';
 
     /**
      * Get URL WS
@@ -249,6 +250,17 @@ class Configuration extends AbstractHelper
     public function getGroupCode($store = null): mixed
     {
         return $this->scopeConfig->getValue(self::XML_PATH_SAP_GROUPCODE, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    /**
+     * Get Territory code
+     *
+     * @param $store
+     * @return mixed
+     */
+    public function getTerritory($store = null): mixed
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SAP_TERRITORY, ScopeInterface::SCOPE_STORE, $store);
     }
 
     /**

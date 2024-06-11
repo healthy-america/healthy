@@ -128,6 +128,10 @@
                     <label>Shipping Code</label>
                     <comment>Product shipping code to save the value</comment>
                 </field>
+                <field id="territory" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label" type="text">
+                    <label>Territory Code</label>
+                    <comment>Default territory code to save the value</comment>
+                </field>
             </group>
             <group id="settings_template" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
                 <label>Email Template Settings</label>
