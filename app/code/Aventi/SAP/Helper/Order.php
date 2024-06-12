@@ -478,6 +478,7 @@ class Order extends AbstractHelper
             "CardFName" => "",
             "ListNum" => $this->_configuration->getListNum(),
             "GroupCode" => $this->_configuration->getGroupCode(),
+            "SlpCode" => $this->_configuration->getSlpCode(),
             "Phone1" => $telephone,
             "Email" => $email,
             "Address2S" => $address,
