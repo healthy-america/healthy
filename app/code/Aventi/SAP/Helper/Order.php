@@ -504,14 +504,18 @@ class Order extends AbstractHelper
      * GetTransactionId
      *
      * @param OrderInterface $order
-     * @return string
+     * @return ?string
      */
-    public function getTransactionId(OrderInterface $order): string
+    public function getTransactionId(OrderInterface $order): ?string
     {
         $transactionId = '';
-        $transaction = $this->paymentTransaction->create()->addOrderIdFilter($order->getId());
-        foreach ($transaction->getItems() as $invoice) {
-            $transactionId = $invoice->getTxnId();
+        if ($order->getPayment()->getMethod() === 'sample_gateway') {
+            $transactionId = $order->getPayment()->getAdditionalInformation("reference");
+        } else {
+            $transaction = $this->paymentTransaction->create()->addOrderIdFilter($order->getId());
+            foreach ($transaction->getItems() as $invoice) {
+                $transactionId = $invoice->getTxnId();
+            }
         }
 
         return $transactionId;

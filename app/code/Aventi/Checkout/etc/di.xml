@@ -6,4 +6,6 @@
     <type name="Magento\Checkout\Block\Checkout\LayoutProcessor">
 		<plugin name="Aventi_Checkout_Plugin_Magento_Checkout_Block_Checkout_LayoutProcessor" type="Aventi\Checkout\Plugin\Magento\Checkout\Block\Checkout\LayoutProcessor" sortOrder="10" disabled="false"/>
 	</type>
+
+    <preference for="Bancolombia\Wompi\Controller\Response\Result" type="Aventi\Checkout\Rewrite\Bancolombia\Wompi\Controller\Response\Result"/>
 </config>
