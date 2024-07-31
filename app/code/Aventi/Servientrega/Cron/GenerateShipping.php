@@ -1,41 +1,45 @@
 <?php
 /**
- * Copyright ©  All rights reserved.
+ * Copyright © Aventi SAS All rights reserved.
  * See COPYING.txt for license details.
  */
 
 namespace Aventi\Servientrega\Cron;
 
+use Aventi\Servientrega\Model\ShipmentGeneration;
+use Magento\Framework\Exception\AlreadyExistsException;
+use Magento\Framework\Exception\InputException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Psr\Log\LoggerInterface;
+
+/**
+ * Class GenerateShipping
+ */
 class GenerateShipping
 {
-    protected $logger;
-    /**
-     * @var \Aventi\Servientrega\Model\ShipmentGeneration
-     */
-    private $shipment;
-
     /**
      * Constructor
      *
-     * @param \Psr\Log\LoggerInterface $logger
-     * @param \Aventi\Servientrega\Model\ShipmentGeneration $shipmentGeneration
+     * @param LoggerInterface $logger
+     * @param ShipmentGeneration $shipment
      */
     public function __construct(
-        \Psr\Log\LoggerInterface $logger,
-        \Aventi\Servientrega\Model\ShipmentGeneration $shipmentGeneration
+        protected LoggerInterface $logger,
+        private readonly ShipmentGeneration $shipment
     ) {
-        $this->logger = $logger;
-        $this->shipment = $shipmentGeneration;
     }
 
     /**
      * Execute the cron
      *
      * @return void
+     * @throws AlreadyExistsException
+     * @throws InputException
+     * @throws NoSuchEntityException
      */
     public function execute()
     {
-        $this->logger->addInfo("Cronjob GenerateShipping is executed.");
+        $this->logger->info("Cronjob GenerateShipping is executed.");
         $this->shipment->ordersToShip();
     }
 }
