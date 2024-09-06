@@ -1,5 +1,5 @@
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © Aventi, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
@@ -8,9 +8,9 @@ define([
     'Magento_Checkout/js/model/shipping-rates-validator',
     'Magento_Checkout/js/model/shipping-rates-validation-rules',
     'Aventi_Servientrega/js/model/shipping-rates-validator',
-    'Aventi_Servientrega/js/model/shipping-rates-validator-rules'
+    'Aventi_Servientrega/js/model/shipping-rates-validation-rules'
 ], function (
-    uiComponent,
+    Component,
     defaultShippingRatesValidator,
     defaultShippingRatesValidationRules,
     servientregaShippingRatesValidator,
@@ -19,7 +19,7 @@ define([
     'use strict';
 
     defaultShippingRatesValidator.registerValidator('servientrega', servientregaShippingRatesValidator);
-    defaultShippingRatesValidationRules.registerValidator('servientrega', servientregaShippingRatesValidationRules);
+    defaultShippingRatesValidationRules.registerRules('servientrega', servientregaShippingRatesValidationRules);
 
-    return uiComponent;
+    return Component;
 });

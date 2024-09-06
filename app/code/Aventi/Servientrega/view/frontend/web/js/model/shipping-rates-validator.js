@@ -1,35 +1,27 @@
 /**
- * Copyright © Magento, Inc. All rights reserved.
+ * Copyright © Aventi, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
 
 define([
     'jquery',
     'mageUtils',
-    'Aventi_Servientrega/shipping-rates-validation-rules',
+    'Aventi_Servientrega/js/model/shipping-rates-validation-rules',
     'mage/translate'
-], function (
-    $,
-    utils,
-    validationRules,
-    $t
-) {
+], function ($, utils, validationRules, $t) {
     'use strict';
-
     return {
         validationErrors: [],
-
-        validate: function (address) {
+        validate: function(address) {
             var self = this;
             this.validationErrors = [];
-            $.each(validationRules.getRules(), function (field, rule) {
-                var message;
+            $.each(validationRules.getRules(), function(field, rule) {
                 if (rule.required && utils.isEmpty(address[field])) {
-                    message = $t('Field ') + field + $t(' is required.');
+                    var message = $t('Field ') + field + $t(' is required.');
                     self.validationErrors.push(message);
                 }
             });
-            return !this.validationErrors.length;
+            return !Boolean(this.validationErrors.length);
         }
     };
 });
