@@ -42,13 +42,13 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
     $settingContentCondition = true;
 }
 ?>
-<?php // Image Toogle menu button 
+<?php // Image Toogle menu button
 ?>
 <?php $imgToggleMenu = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M4 6H20V8H4V6ZM4 11H20V13H4V11ZM4 16H20V18H4V16Z" fill="black"/>
 </svg>
 '; ?>
-<?php // Tab Menu - Responsive Header 
+<?php // Tab Menu - Responsive Header
 ?>
 
 <?php if (in_array('curency', $blockEnable)) {
@@ -79,7 +79,7 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
 
 <?php $htmlTabMenu .= '</ul>'; ?>
 
-<?php $mgsMegamenu = $block->getChildHtml('megamenu'); // MGS_Megamenu 
+<?php $mgsMegamenu = $block->getChildHtml('megamenu'); // MGS_Megamenu
 ?>
 <?php if (!$block->getChildHtml('megamenu')) {
     $mgsMegamenu = $block->getChildHtml('store.menu'); // Default menu magento
@@ -90,7 +90,7 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
 <?php else : ?>
     <?php $htmlTabContent = '<div class="data item tab-content megamenu-content"><div id="main-Menucontent" class="tab-pane active"><div class="horizontal-menu ">' . $mgsMegamenu . '</div></div><div id="main-Accountcontent" class="tab-pane"><div class="top-links">' . $block->getChildHtml('login.form.header') . '</div></div>' . $htmlTabSetting . '</div>'; ?>
 <?php endif; ?>
-<?php // Tab Setting - Header Desktop 
+<?php // Tab Setting - Header Desktop
 ?>
 <?php if (in_array('curency', $blockEnable)) : ?>
     <?php $htmlContSet = '<div class="content"><div class="header-set customer-web-config">' . $currency . $storeLanguage . '</div><div class="my-acccount"><div class="header-acccount">' . $block->getChildHtml('login.form.header') . '</div></div></div>'; ?>
@@ -204,7 +204,7 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
         <div class="bottom-content">
             <div class="frame">
                 <div class="line">
-                    <div class="col-3 col-mb-12 col-des-3 hidden-tb hidden-sm hidden-mb"> 
+                    <div class="col-3 col-mb-12 col-des-3 hidden-tb hidden-sm hidden-mb">
                     <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('claue_vertical_menu_header_2')->toHtml(); ?>
                     </div>
                     <div class="col-12 col-mb-12 col-tb-12 col-des-6 hidden-xs">
@@ -212,8 +212,10 @@ if ((in_array('store', $blockEnable) && trim(preg_replace('/\s+/', ' ', $block->
                             <?= $block->getChildHtml('topSearch') ?>
                         </div>
                     </div>
-                    <div class="col-3 col-mb-12 col-des-3 hidden-tb hidden-sm hidden-mb">
-                        <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header_2_bottom_middle_block')->toHtml(); ?>
+                    <div class="col-3 col-mb-12 col-des-3 hidden-tb hidden-sm hidden-mb blog-button">
+                        <a href="/blog">
+                            <?= /* @noEscape */ $escaper->escapeHtml(__('Blog')); ?>
+                        </a>
                     </div>
                 </div>
             </div>

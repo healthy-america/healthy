@@ -13,6 +13,29 @@
 
 & when (@media-common =true) {
     body#html-body {
+
+        // scroll to top button
+        a.scroll-to-top {
+            bottom: 160px !important; // Burned style
+        }
+
+        // Whatsapp & blog button
+        .custom-floating-button {
+            position: fixed;
+            right: 23px;
+            z-index: 100;           
+
+            &.whatsapp {
+                bottom: 20px;
+
+                a {
+                    img {
+                        max-width: 70px;
+                    }
+                }
+            }
+        }
+
         h1,
         h2,
         h3,
@@ -318,6 +341,25 @@ html {
 //  _____________________________________________
 
 @media (max-width: 767px) {
+    body#html-body {
+        // Whatsapp & blog button
+        .custom-floating-button {
+            position: fixed;
+            right: 23px;
+            z-index: 100;           
+
+            &.whatsapp {
+                bottom: 20px;
+
+                a {
+                    img {
+                        max-width: 70px;
+                    }
+                }
+            }
+        }
+    }
+
     .hidden-xs {
         display: none !important; // Ocultar en mobile
     }
