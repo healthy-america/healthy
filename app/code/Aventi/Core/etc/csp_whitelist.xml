@@ -1,49 +1,84 @@
 <?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
 <csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
     <policies>
         <policy id="script-src">
             <values>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
-                <value id='iconifyCode' type='host'>https://code.iconify.design</value>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="adobedtm" type="host">*.adobedtm.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
             </values>
         </policy>
         <policy id="style-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-                <value id="netdna" type="host">https://netdna.bootstrapcdn.com</value>
-                <value id="netdnaWithoutHttps" type="host">http://netdna.bootstrapcdn.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
             </values>
         </policy>
         <policy id="img-src">
             <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
-                <value id='iconify' type='host'>*.iconify.design</value>
-                <value id='healthy' type='host'>https://healthy.aventidev.com</value>
-
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
+                <value id="amazonaws" type="host">*.amazonaws.com</value>
+                <value id="kaptcha.com" type="host">*.kaptcha.com</value>
             </values>
         </policy>
         <policy id="connect-src">
             <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
-                <value id='iconifyCode' type='host'>https://code.iconify.design</value>
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
             </values>
         </policy>
         <policy id="font-src">
             <values>
-                <value id="netdnaWithoutHttps" type="host">http://netdna.bootstrapcdn.com</value>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
             </values>
         </policy>
-
         <policy id="frame-src">
             <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
+                <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="kaptcha.com" type="host">*.kaptcha.com</value>
             </values>
         </policy>
-
         <policy id="form-action">
             <values>
+                <value id="cloudflare" type="host">*.cloudflare.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
+                <value id="googleapis" type="host">*.googleapis.com</value>
+                <value id="gstatic" type="host">*.gstatic.com</value>
+                <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
             </values>
         </policy>
     </policies>

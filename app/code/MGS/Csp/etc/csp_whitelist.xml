@@ -4,7 +4,7 @@
         <policy id="script-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-                <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="twitter" type="host">*.twitter.com</value>
                 <value id="google-analytics" type="host">*.google-analytics.com</value>
                 <value id="twimg" type="host">*.twimg.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
@@ -13,7 +13,19 @@
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="nrdata" type="host">*.nr-data.net</value>
                 <value id="newrelic" type="host">*.newrelic.com</value>
+                <value id="maps.googleapis" type="host">*.maps.googleapis.com</value>
                 <value id="trackedlink" type="host">*.trackedlink.net</value>
+                <value id="cloudfront" type="host">*.cloudfront.net</value>
+                <value id="rdstation" type="host">*.rdstation.com.br</value>
+                <value id="google" type="host">*.google.com</value>
+                <value id="maps-gstatic" type="host">*.maps.gstatic.com</value>
+                <value id="google-maps" type="host">maps.googleapis.com</value>
+                <value id="googletagmanager" type="host">*.googletagmanager.com</value>
+                <value id="googleadservices" type="host">*.googleadservices.com</value>
+                <value id="adobedtm" type="host">*.adobedtm.com</value>
+                <value id="adobe" type="host">*.adobe.com</value>
+                <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
+                <value id="script-hash" type="hash" algorithm="sha256">RTByaTks5j/yvmwxSb8CM7ngq6JWVbQeTSaq58MYpCA=</value>
             </values>
         </policy>
         <policy id="style-src">
@@ -27,7 +39,12 @@
                 <value id="trustedshops" type="host">*.trustedshops.com</value>
                 <value id="usercentrics" type="host">*.usercentrics.eu</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-
+                <value id="google" type="host">*.google.com</value>
+                <value id="maps.gstatic.com" type="host">*.maps.gstatic.com</value>
+                <value id="google-maps-images" type="host">maps.gstatic.com</value>
+                <value id="google-maps" type="host">maps.googleapis.com</value>
+                <value id="google-fonts" type="host">fonts.googleapis.com</value>
+                <value id="google-analytics.com" type="host">*.google-analytics.com</value>
             </values>
         </policy>
         <policy id="img-src">
@@ -44,6 +61,14 @@
                 <value id="data" type="host">'self' data:</value>
                 <value id="lightemporium" type="host">*.lightemporium.com</value>
                 <value id="usercentrics" type="host">*.usercentrics.eu</value>
+                <value id="google" type="host">*.google.com</value>
+                <value id="maps.gstatic.com" type="host">*.maps.gstatic.com</value>
+                <value id="google-maps-images" type="host">maps.gstatic.com</value>
+                <value id="google-maps" type="host">maps.googleapis.com</value>
+                <value id="google-analytics.com" type="host">*.google-analytics.com</value>
+                <value id="google-analytics.com" type="host">*.google-analytics.com</value>
+                <value id="google-arrowtheme.com" type="host">https://clauem2.arrowtheme.com</value>
+                <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
             </values>
         </policy>
         <policy id="connect-src">
@@ -60,6 +85,14 @@
                 <value id="nrdata" type="host">*.nr-data.net</value>
                 <value id="newrelic" type="host">*.newrelic.com</value>
                 <value id="ampproject" type="host">*.ampproject.org</value>
+                <value id="rdstation" type="host">*.rdstation.com.br</value>
+                <value id="google" type="host">*.google.com</value>
+                <value id="googlein" type="host">*.google.co.in</value>
+                <value id="maps.gstatic.com" type="host">*.maps.gstatic.com</value>
+                <value id="maps.googleapis.com" type="host">*.maps.googleapis.com</value>
+                <value id="google-analytics.com" type="host">*.google-analytics.com</value>
+                <value id="google-maps" type="host">maps.googleapis.com</value>
+                <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
             </values>
         </policy>
         <policy id="font-src">
@@ -78,12 +111,17 @@
             <values>
                 <value id="twitter.com" type="host">*.twitter.com</value>
                 <value id="twitter.com" type="host">*.youtube.com/</value>
+                <value id="google" type="host">*.google.com</value>
+                <value id="youtube" type="host">*.youtube.com</value>
+                <value id="youtube_nocookie" type="host">*.youtube-nocookie.com</value>
+                <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
             </values>
         </policy>
 
         <policy id="form-action">
             <values>
                 <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="google" type="host">*.google.com</value>
             </values>
         </policy>
     </policies>
