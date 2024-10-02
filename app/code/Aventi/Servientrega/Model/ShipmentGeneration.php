@@ -100,6 +100,8 @@ class ShipmentGeneration
             $qty += $item->getQtyOrdered();
         }
         $shippingInfo = $order->getShippingAddress()->getData();
+        $isCashOnDelivery = $this->checkPaymentMethod($order);
+
         $params = [
             'Num_Guia' => 0,
             'Num_Sobreporte' => 0,
@@ -142,19 +144,17 @@ class ShipmentGeneration
             'Des_DepartamentoOrigen' => '', // Opcional.
             'Gen_Cajaporte' => 0, // Opcional; 0 por defecto.
             'Gen_Sobreporte' => 0, // Opcional; 0 por defecto.
-            'Nom_UnidadEmpaque' => 'GENERICA',
+            'Nom_UnidadEmpaque' => $isCashOnDelivery ? 'GENERICA' : 'GENERICO',
             'Des_UnidadLongitud' => 'cm', // Por defecto cm.
             'Des_UnidadPeso' => 'kg', // Por defecto kg.
             'Num_ValorDeclaradoSobreTotal' => 0, // Opcional; depende del valor de Sobre porte.
             'Num_Factura' => 'ORDEN-' . $order->getIncrementId(),
             'Des_CorreoElectronico' => $shippingInfo['email'],
-            'Num_Recaudo' => 0, // Depende si el cliente tiene logística de recaudo.
+            'Num_Recaudo' => $isCashOnDelivery ? $order->getGrandTotal() : 0, // Depende si el cliente tiene logística de recaudo.
             'Est_EnviarCorreo' => false, // Booleano para notificar envío al cliente.
             'Tipo_Doc_Destinatario' => 'CC', // CC o NIT.
             'Ide_Num_Identific_Dest' => $shippingInfo['vat_id']
         ];
-
-        $this->checkPaymentMethod($order);
 
         $response = $this->_webService->CargueMasivoExterno($params);
         if ($response->CargueMasivoExternoResult) {
@@ -505,12 +505,15 @@ class ShipmentGeneration
      * Check if payment method is 'Cash On Delivery' if, it's send another billing code
      *
      * @param Order $order
-     * @return void
+     * @return bool
      */
-    public function checkPaymentMethod(Order $order): void
+    public function checkPaymentMethod(Order $order): bool
     {
         if ($order->getPayment()->getMethod() === 'cashondelivery') {
             $this->_webService->isCashOnDelivery();
+            return true;
         }
+
+        return false;
     }
 }
