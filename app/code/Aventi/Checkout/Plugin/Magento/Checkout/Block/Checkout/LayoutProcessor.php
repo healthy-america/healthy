@@ -97,11 +97,14 @@ class LayoutProcessor
             'options' => $this->tributaryInformationOptions->getAllOptions()
         ];
 
+        $result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
+        ['shippingAddress']['children']['shipping-address-fieldset']['children']['postcode']['visible'] = false;
+
         // Add document validation
         $result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['vat_id']['validation'] = [
             'required-entry' => true,
-            'document-validation' => '^\d{9}-\d$'
+            'pattern' => '^[0-9]+(-[0-9])?$'
         ];
 
         return $result;
