@@ -1,6 +1,13 @@
-//  All devices
-& when (@media-common =true) {
+//**
+//** Aventi
+//** https://www.aventi.co/
+//**
+//*********************************************
 
+//
+//  All devices
+//  _____________________________________________
+& when (@media-common =true) {
     body#html-body.catalog-product-view {
 
         //titulo de pagina con fondo
@@ -57,6 +64,15 @@
 
                 //informacion de la derecha
                 .product-info-main {
+
+                    // bundle options styles
+                    .bundle-options-container {
+                        form#product_addtocart_form {
+                            .bundle-options-wrapper {
+                                display: none;
+                            }
+                        }
+                    }
 
                     //se ocultan algunos elementos
                     .product-social-links, .stock.available, .product-detail-deals {
