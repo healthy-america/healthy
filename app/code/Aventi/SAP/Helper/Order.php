@@ -15,6 +15,7 @@ use Magento\Framework\DB\Transaction;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\Filter\RemoveAccents;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\Data\OrderItemInterface;
 use Magento\Sales\Api\Data\OrderPaymentInterface;
@@ -41,6 +42,7 @@ class Order extends AbstractHelper
      * @param TransactionSearchResultInterfaceFactory $paymentTransaction
      * @param ProductRepositoryInterface $_productRepository
      * @param WebsiteRepositoryInterface $_websiteRepository
+     * @param RemoveAccents $removeAccents
      */
     public function __construct(//NOSONAR
         Context                                                  $context,
@@ -51,7 +53,8 @@ class Order extends AbstractHelper
         private readonly Transaction                             $_transaction,
         private readonly TransactionSearchResultInterfaceFactory $paymentTransaction,
         private readonly ProductRepositoryInterface              $_productRepository,
-        private readonly WebsiteRepositoryInterface              $_websiteRepository
+        private readonly WebsiteRepositoryInterface              $_websiteRepository,
+        private readonly RemoveAccents                           $removeAccents
     ) {
         parent::__construct($context);
     }
@@ -226,6 +229,10 @@ class Order extends AbstractHelper
         $userFields = trim(implode("|", $userFields));
         $slpCode = $this->_configuration->getSlpCode();
 
+        $addressComplement = isset($order->getShippingAddress()->getStreet()[1]) ?
+            strtoupper($order->getShippingAddress()->getStreet()[1]) : '';
+        $comment = "Complemento Dir: $addressComplement | Metodo de pago: $paymentTitle";
+
         return [
             'TipoDocumento' => 17,
             'CardCode' => "CN",
@@ -237,7 +244,7 @@ class Order extends AbstractHelper
             'RegionS' => $this->getState($order->getShippingAddress()->getRegionId()),
             'DireccionS' => $order->getShippingAddress()->getStreet()[0],
             'Detalles' => $products,
-            'Comments' => "",//$comments,
+            'Comments' => $comment,
             'BusinessPartner' => $customerInfo,
             'Referencia' => $order->getIncrementId()
         ];
@@ -463,8 +470,8 @@ class Order extends AbstractHelper
     public function getStringCustomerInfoForSAP($orderEntity): array
     {
         $identification = $orderEntity->getShippingAddress()->getVatId();
-        $firstName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getFirstName()));
-        $lastName = str_replace('Ñ', 'N', strtoupper($orderEntity->getShippingAddress()->getLastName()));
+        $firstName = $this->removeAccents->filter(strtoupper($orderEntity->getShippingAddress()->getFirstName()));
+        $lastName = $this->removeAccents->filter(strtoupper($orderEntity->getShippingAddress()->getLastName()));
         $telephone = $orderEntity->getShippingAddress()->getTelephone();
         $email = $orderEntity->getShippingAddress()->getEmail();
         $city = $orderEntity->getShippingAddress()->getCity();
@@ -481,13 +488,13 @@ class Order extends AbstractHelper
             "SlpCode" => $this->_configuration->getSlpCode(),
             "Phone1" => $telephone,
             "Email" => $email,
-            "Address2S" => $address,
+            "Address2S" => "",
             "CountryS" => "CO",
             "StreetS" => $address,
             "CityS" => $city,
             "ZipCodeS" => $postalCode,
             "StateS" => "",
-            "Address2B" => $address,
+            "Address2B" => "",
             "CountryB" => "CO",
             "StreetB" => $address,
             "CityB" => $city,

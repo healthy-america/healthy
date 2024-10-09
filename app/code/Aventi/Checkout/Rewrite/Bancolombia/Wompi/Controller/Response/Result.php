@@ -66,7 +66,8 @@ class Result extends Source
             if ($transaction_status == "APPROVED") {
                 $order->setData('state', Order::STATE_PROCESSING);
                 $order->setData('status', Order::STATE_PROCESSING);
-                $order->getPayment()->setAdditionalInformation('reference', $json->data->reference);
+                $reference = explode("-", $json->data->id);
+                $order->getPayment()->setAdditionalInformation('reference', end($reference));
 
                 $resultRedirect->setPath('checkout/onepage/success');
             } else {
