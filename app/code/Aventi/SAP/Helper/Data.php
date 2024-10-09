@@ -221,10 +221,10 @@ class Data extends AbstractHelper
      * GetWebsiteIds
      *
      * @param $websiteCode
-     * @return int
+     * @return mixed
      * @throws NoSuchEntityException
      */
-    public function getWebsiteIds($websiteCode): int
+    public function getWebsiteIds($websiteCode): mixed
     {
         return match ($websiteCode) {
             'HEALTHY SPORTS' => $this->websiteRepository->get('healthy_sports')->getId(),

@@ -9,13 +9,13 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="sap">
         <job name="aventi_sap_product" instance="Aventi\SAP\Cron\Product" method="execute">
-            <schedule>30 23 * * *</schedule>
+            <schedule>0 */6 * * *</schedule>
         </job>
         <job name="aventi_sap_stock" instance="Aventi\SAP\Cron\Stock" method="execute">
             <schedule>30 */6 * * *</schedule>
         </job>
         <job name="aventi_sap_price" instance="Aventi\SAP\Cron\Price" method="execute">
-            <schedule>30 23 * * *</schedule>
+            <schedule>0 */4 * * *</schedule>
         </job>
         <job name="aventi_sap_stock_faster" instance="Aventi\SAP\Cron\StockFaster" method="execute">
             <schedule>*/5 * * * *</schedule>
