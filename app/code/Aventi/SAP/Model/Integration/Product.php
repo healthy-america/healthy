@@ -237,12 +237,13 @@ class Product extends \Aventi\SAP\Model\Integration
 
         $newProduct = $this->productFactory->create();
 
-        try {
-            $websiteId = $this->data->getWebsiteIds($itemObject->website_code);
-            $newProduct->setWebsiteIds([$websiteId]);
-        } catch (NoSuchEntityException $e) {
-            $this->logger->error("Website is not found: " . $e->getMessage());
-        }
+        // Commented while other websites isn't on
+        //try {
+        //    $websiteId = $this->data->getWebsiteIds($itemObject->website_code);
+        //    $newProduct->setWebsiteIds([$websiteId]);
+        //} catch (NoSuchEntityException $e) {
+        //    $this->logger->error("Website is not found: " . $e->getMessage());
+        //}
 
         $newProduct->setSku($itemObject->sku);
         $newProduct->setName($itemObject->name);
