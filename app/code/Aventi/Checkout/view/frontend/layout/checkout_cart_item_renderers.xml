@@ -19,6 +19,11 @@
                     <argument name="viewModel" xsi:type="object">Aventi\Checkout\ViewModel\Checkout\HelperData</argument>
                 </arguments>
             </referenceBlock>
+            <referenceBlock name="checkout.cart.item.renderers.grouped">
+                <arguments>
+                    <argument name="viewModel" xsi:type="object">Aventi\Checkout\ViewModel\Checkout\HelperData</argument>
+                </arguments>
+            </referenceBlock>
         </referenceBlock>
     </body>
 </page>
