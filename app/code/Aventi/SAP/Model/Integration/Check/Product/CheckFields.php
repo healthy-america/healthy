@@ -12,55 +12,56 @@ use Aventi\SAP\Helper\Data;
 
 class CheckFields extends AbstractCheck
 {
-    /**
-     * @var Data
-     */
-    private Data $dataHelper;
-
     public function __construct(
-        Data $dataHelper
+        private Data $dataHelper
     ) {
-        $this->dataHelper = $dataHelper;
     }
 
-    public function getCurrentData($data)
+    /**
+     * GetCurrentData
+     *
+     * @param object $data
+     * @return array
+     */
+    public function getCurrentData($data): array
     {
-        $currentData = [
+        return [
             'name' => $data->name,
             'tax_class_id' => $data->tax_class_id,
-            'status' =>  $data->status,
+            'status' => $data->status,
             'mgs_brand' => $data->mgs_brand,
-            'description' => $data->description,
-            'short_description' => $data->short_description,
-            'website_code' => $data->website_code,
+            'description' => $data->description
+            // 'website_code' => $data->website_code,
         ];
-
-        return $currentData;
     }
 
-    public function getHeadData($item, $data)
+    /**
+     * GetHeadData
+     *
+     * @param $item
+     * @param $data
+     * @return array
+     */
+    public function getHeadData($item, $data): array
     {
-        $headData = [
+        return [
             'name' => $item->getData('name') ?? '',
             'tax_class_id' => $item->getData('tax_class_id') ?? '',
             'status' => (int)$item->getData('status') ?? '',
             'mgs_brand' => $item->getData('mgs_brand') ?? '',
-            'description' => $item->getDescription() ?? '',
-            'short_description' => $item->getShortDescription() ?? '',
-            'website_code' => $this->dataHelper->getWebsiteName(implode(',', $item->getWebsiteIds())) ?? ''
+            'description' => $item->getDescription() ?? ''
+            // 'website_code' => $this->dataHelper->getWebsiteName(implode(',', $item->getWebsiteIds())) ?? ''
         ];
-
-        return $headData;
     }
 
     /**
      * Checks categories product and retrieves differences.
+     *
      * @param object $data
      * @param object $product
-     * @return array|false returns <b>FALSE</b> if there aren't
-     * differences, otherwise returns an array containing the data.
+     * @return array|false returns FALSE if there aren't differences, otherwise returns an array containing the data.
      */
-    public function checkCategories(object $data, object $product)
+    public function checkCategories(object $data, object $product): bool|array
     {
         $arrayCatWs = [];
         $arrayCatProd = [];
@@ -75,6 +76,7 @@ class CheckFields extends AbstractCheck
         if (empty($categoryDiff)) {
             return false;
         }
+
         return $categoryDiff;
     }
 }

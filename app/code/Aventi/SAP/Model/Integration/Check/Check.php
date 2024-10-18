@@ -15,7 +15,6 @@ abstract class Check
     {
         $currentData = $this->getCurrentData($data);
         $headData = $this->getHeadData($item, $data);
-
         $checkData = array_diff_assoc($currentData, $headData);
 
         return empty($checkData) ? false : $checkData;

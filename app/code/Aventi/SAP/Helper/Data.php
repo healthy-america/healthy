@@ -56,7 +56,6 @@ class Data extends AbstractHelper
         try {
             if ($mainUri) {
                 $url = $this->formatUrl($mainUri, $typeUri, $start, $rows, $fast);
-                $this->logger->debug($url);
                 $headers = [
                     "Content-Type" => "application/json"
                 ];

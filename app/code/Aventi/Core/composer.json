@@ -12,9 +12,7 @@
         "proprietary"
     ],
     "name": "aventi/module-core",
-    "require": {
-        "aventi/module-core": ">1"
-    },
+    "require": {},
     "support": {
         "email": "magento@aventi.com",
         "docs": "http://aventi.com/"
