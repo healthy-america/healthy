@@ -1,0 +1,22 @@
+{
+    "name": "aventi/module-hideproductspricezero",
+    "description": "Aventi SAS",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Aventi",
+            "email": "soporte@aventi.co"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aventi\\HideProductsPriceZero\\": ""
+        }
+    }
+}

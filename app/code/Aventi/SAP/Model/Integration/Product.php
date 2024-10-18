@@ -209,12 +209,10 @@ class Product extends \Aventi\SAP\Model\Integration
             if (!$resultCheck) {
                 $this->resTable['check']++;
             } else {
-                if ($resultCheck) {
-                    $this->saveProduct->saveFields($this->getDataCheck($item, $resultCheck));
-                    $this->eventManager->dispatch('sap_product_save_after', [
-                        'product' => $item
-                    ]);
-                }
+                $this->saveProduct->saveFields($item, $resultCheck);
+                $this->eventManager->dispatch('sap_product_save_after', [
+                    'product' => $item
+                ]);
                 $this->resTable['updated']++;
             }
         } catch (NoSuchEntityException $e) {

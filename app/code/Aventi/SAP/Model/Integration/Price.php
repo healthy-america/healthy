@@ -151,7 +151,7 @@ class Price extends \Aventi\SAP\Model\Integration
                 $this->resTable['check']++;
             } else {
                 $this->resTable['updated']++;
-                $this->saveProduct->saveFields($this->getDataCheck($item, $resultCheck));
+                $this->saveProduct->saveFields($item, $resultCheck);
             }
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             $this->resTable['fail']++;

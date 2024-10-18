@@ -7,47 +7,35 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Model\Integration\Save\Product;
 
+use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration\Save\Save as InterfaceSave;
+use Magento\Catalog\Api\Data\ProductInterface;
+use Magento\Framework\Exception\LocalizedException;
 
 class Save implements InterfaceSave
 {
-
     /**
-     * @var \Aventi\SAP\Logger\Logger
-     */
-    private $logger;
-
-    /**
-     * @param \Aventi\SAP\Logger\Logger $logger
+     * @param Logger $logger
      */
     public function __construct(
-        \Aventi\SAP\Logger\Logger $logger
+        private Logger $logger
     ) {
-        $this->logger = $logger;
     }
 
-    public function saveFields($params)
+    /**
+     * Saves the fields with the values to update. The fields can be the Product or Price.
+     *
+     * @param ProductInterface $item The source (Product or Price) to update.
+     * @param array $checkData The data previously checked with the fields.
+     */
+    public function saveFields(ProductInterface $item, array $checkData): void
     {
-        foreach ($params->checkData as $key => $data) {
-            if (empty($data)) {
-                continue;
-            }
-
-            if ($key === 'website_code') {
-                $data = explode(',', $data);
-                $params->itemInterface->setWebsiteIds($data);
-            } else {
-                $params->itemInterface->setData($key, $data);
-            }
-
+        foreach ($checkData as $key => $field) {
+            $item->setData($key, $field);
             try {
-                if ($key === 'website_code') {
-                    continue;
-                } else {
-                    $params->itemInterface->getResource()->saveAttribute($params->itemInterface, $key);
-                }
-            } catch (\Exception$e) {
-                $this->logger->debug($e->getMessage());
+                $item->getResource()->saveAttribute($item, $key);
+            } catch (LocalizedException $e) {
+                $this->logger->error($e->getMessage());
             }
         }
     }
