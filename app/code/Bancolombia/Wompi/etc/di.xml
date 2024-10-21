@@ -157,7 +157,7 @@
             <argument name="config" xsi:type="object">BancolombiaWompiConfig</argument>
         </arguments>
     </type>
-    
+
      <type name="Bancolombia\Wompi\Api\PostManagementInterface">
         <arguments>
             <argument name="checkoutSession" xsi:type="object">Magento\Checkout\Model\Session</argument>

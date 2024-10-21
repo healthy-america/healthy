@@ -27,18 +27,13 @@ class Result extends Action
 
     public function execute()
     {
-        
-        
-                 
-        $order = $this->checkoutSession->getLastRealOrder();  
+        $order = $this->checkoutSession->getLastRealOrder();
         $idget = filter_input(INPUT_GET, 'id');
         $id = isset($idget) ? $idget : '';
         $shippingAddress = $order->getShippingAddress();
-   
-
 
         if($id)
-        {   
+        {
             if($this->config->getValue('test_mode')==='1' )
             {
                 $wompi="https://sandbox.wompi.co/v1/transactions";
@@ -50,29 +45,23 @@ class Result extends Action
             $transaction_status = $json->data->status;
             if($transaction_status == "APPROVED")
             {
-            $order->setData('state', Order::STATE_PROCESSING)->save();
-            $order->setData('status', Order::STATE_PROCESSING)->save();         
-            $resultRedirect = $this->resultRedirectFactory->create();
-            $resultRedirect->setPath('checkout/onepage/success');
-            return $resultRedirect;
+                $order->setData('state', Order::STATE_PROCESSING)->save();
+                $order->setData('status', Order::STATE_PROCESSING)->save();
+                $resultRedirect = $this->resultRedirectFactory->create();
+                $resultRedirect->setPath('checkout/onepage/success');
+                return $resultRedirect;
             }
             else{
-            $order->setData('state', Order::STATE_CANCELED)->save();
-            $order->setData('status', Order::STATE_CANCELED)->save();   
-            $this->messageManager->addError( __('No se pudo proceder con el pago') );
-            $this->messageManager->addNotice( __('Consulte con su banco.') );    
-            
-            $resultRedirect = $this->resultRedirectFactory->create();
-            $resultRedirect->setPath('checkout/onepage/failure');
-            return $resultRedirect;
+                $order->setData('state', Order::STATE_CANCELED)->save();
+                $order->setData('status', Order::STATE_CANCELED)->save();
+                $this->messageManager->addError( __('No se pudo proceder con el pago') );
+                $this->messageManager->addNotice( __('Consulte con su banco.') );
+
+                $resultRedirect = $this->resultRedirectFactory->create();
+                $resultRedirect->setPath('checkout/onepage/failure');
+                return $resultRedirect;
             }
-        
         }
-
-
     }
 }
     ?>
-
-
-    
