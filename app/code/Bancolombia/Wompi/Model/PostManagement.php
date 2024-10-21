@@ -9,12 +9,14 @@ use Magento\Sales\Model\Order;
 use Magento\Framework\App\Action\Action;
 use Magento\Payment\Gateway\ConfigInterface;
 
-//******************************** 
+//********************************
 
 class PostManagement implements PostManagementInterface
 {
     protected $request;
-    
+
+    protected $order;
+
     private $checkoutSession;
     private $config;
 
@@ -23,39 +25,34 @@ class PostManagement implements PostManagementInterface
         ConfigInterface $config,
         \Magento\Sales\Api\Data\OrderInterface $order,
         \Magento\Framework\Webapi\Rest\Request $request)
-{
+    {
         $this->checkoutSession = $checkoutSession;
         $this->order = $order;
         $this->request = $request;
         $this->config = $config;
-}
+    }
 
     public function customPostMethod()
     {
-
-        
         $bodyParams['event'] = $this->request->getBodyParams(); // It will return all params which will pass from body of postman.
-        $referencia = $bodyParams['event']['data']['transaction']['reference'] - 20211021;
+        $referencia = intval($bodyParams['event']['data']['transaction']['reference']) - 20211021;
         $status = $bodyParams['event']['data']['transaction']['status'];
 
-        
         $t_id = $bodyParams['event']['data']['transaction']['id'];
         $t_amount = $bodyParams['event']['data']['transaction']['amount_in_cents'];
-        $t_time = $bodyParams['event']['timestamp']; 
+        $t_time = $bodyParams['event']['timestamp'];
 
-        if($this->config->getValue('test_mode')==='1') {  
-            $event_key = $this->config->getValue('wompisecret');
+        if($this->config->getValue('test_mode')==='1') {
+            $event_key = $this->config->getValue('wompi_event_key_test');
         } else {
-            $event_key = $this->config->getValue('wompisecret_p');
+            $event_key = $this->config->getValue('wompi_event_key');
         }
 
         $check_s = $bodyParams['event']['signature']['checksum'];
-        
+
         $conca = $t_id . $status . $t_amount . $t_time . $event_key;
-        
-       
+
         $secreto = hash ("sha256", $conca);
-        
 
         if($status == "APPROVED")
         {
@@ -68,7 +65,7 @@ class PostManagement implements PostManagementInterface
             $changeBy = Order::STATE_PENDING_PAYMENT;
         }
 
-        $order = $this->order->loadByIncrementId($referencia);
+        $order = $this->order->loadByIncrementId((string)$referencia);
 
         if(hash_equals($secreto, $check_s))
         {

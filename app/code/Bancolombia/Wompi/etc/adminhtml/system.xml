@@ -14,30 +14,66 @@
                 <field id="title" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Title</label>
                 </field>
-                <field id="wompikey" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Llave publica de prueba</label>
-                    <tooltip>Esta llave la puede encontrar en el dashboard de la pagina oficial de wompi.</tooltip>
+
+                <field id="wompi_public_key_test" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Llave pública de prueba</label>
+                    <tooltip>Esta llave la puede encontrar en el dashboard de la página oficial de wompi.</tooltip>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric no-whitespace</validate>
                 </field>
-                <field id="wompikey_p" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Llave publica de produccion</label>
-                    <tooltip>Esta llave la puede encontrar en el dashboard de la pagina oficial de wompi.</tooltip>
+                <field id="wompi_public_key" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Llave pública de producción</label>
+                    <tooltip>Esta llave la puede encontrar en el dashboard de la página oficial de wompi.</tooltip>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric no-whitespace</validate>
                 </field>
-                <field id="wompisecret" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Llave secreta de eventos para pruebas</label>
-                    <tooltip>Esta llave la puede encontrar en el dashboard de la pagina oficial de wompi.</tooltip>
+
+                <field id="wompi_event_key_test" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Llave de eventos para pruebas</label>
+                    <tooltip>Esta llave la puede encontrar en el dashboard de la página oficial de wompi.</tooltip>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric no-whitespace</validate>
                 </field>
-                <field id="wompisecret_p" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
-                    <label>Llave secreta de eventos para produccion</label>
-                    <tooltip>Esta llave la puede encontrar en el dashboard de la pagina oficial de wompi.</tooltip>
+                <field id="wompi_event_key" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Llave de eventos para producción</label>
+                    <tooltip>Esta llave la puede encontrar en el dashboard de la página oficial de wompi.</tooltip>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric no-whitespace</validate>
                 </field>
-                <field id="test_mode" sortOrder="70" translate="label" type="select" showInDefault="1"
+
+                <field id="wompi_integrity_key_test" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Llave de integridad para pruebas</label>
+                    <tooltip>Esta llave la puede encontrar en el dashboard de la página oficial de wompi.</tooltip>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric no-whitespace</validate>
+                </field>
+                <field id="wompi_integrity_key" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Llave de integridad para producción</label>
+                    <tooltip>Esta llave la puede encontrar en el dashboard de la página oficial de wompi.</tooltip>
+                    <depends>
+                        <field id="active">1</field>
+                    </depends>
+                    <validate>required-entry alphanumeric no-whitespace</validate>
+                </field>
+
+                <field id="test_mode" sortOrder="90" translate="label" type="select" showInDefault="1"
                         showInWebsite="1"
                         showInStore="0">
                     <label>Tipo de ambiente</label>
-                    <tooltip>Si quiere realizar pruebas seleccione el tipo de ambiente "Sandbox", para usar el modulo en produccion con dinero real seleccione la opcion "Produccion".</tooltip>
+                    <tooltip>Si quiere realizar pruebas seleccione el tipo de ambiente "Sandbox", para usar el modulo en producción con dinero real seleccione la opcion "Producción".</tooltip>
                     <source_model>Bancolombia\Wompi\Model\System\Config\Mode</source_model>
-                    <comment>ADVERTENCIA Para pruebas "Sandbox" y su llave publica debe comenzar con "pub_test". Para producción "Producción" y su llave publica debe comenzar con "pub_prod".</comment>
-                   
+                    <comment>ADVERTENCIA Para pruebas "Sandbox" y su llave pública debe comenzar con "pub_test". Para producción "Producción" y su llave pública debe comenzar con "pub_prod".</comment>
+
                 </field>
                 <field id="wompiredirect" translate="label" type="text" sortOrder="20" showInDefault="1"
                        showInWebsite="1" showInStore="0">
