@@ -63,7 +63,7 @@ class Result extends Source
             $getJson = file_get_contents($wompi . "/" . $id);
             $json = json_decode($getJson);
             $transaction_status = $json->data->status;
-            if ($transaction_status == "APPROVED") {
+            if ($transaction_status == "APPROVED" && isset($json->data->id)) {
                 $order->setData('state', Order::STATE_PROCESSING);
                 $order->setData('status', Order::STATE_PROCESSING);
                 $reference = explode("-", $json->data->id);
