@@ -228,10 +228,10 @@ class Order extends AbstractHelper
         ];
         $userFields = trim(implode("|", $userFields));
         $slpCode = $this->_configuration->getSlpCode();
+        $incrementId = $order->getIncrementId();
 
-        $addressComplement = isset($order->getShippingAddress()->getStreet()[1]) ?
-            strtoupper($order->getShippingAddress()->getStreet()[1]) : '';
-        $comment = "Complemento Dir: $addressComplement | Metodo de pago: $paymentTitle";
+
+        $comment = "Orden No.: $incrementId | Metodo de pago: $paymentTitle";
 
         return [
             'TipoDocumento' => 17,
@@ -478,6 +478,8 @@ class Order extends AbstractHelper
         $address = strtoupper($orderEntity->getShippingAddress()->getStreet()[0]);
         $postalCode = $orderEntity->getShippingAddress()->getPostcode();
         $userFields = $this->getCustomerUserFields($orderEntity->getShippingAddress());
+        $addressComplement = isset($orderEntity->getShippingAddress()->getStreet()[1]) ?
+            strtoupper($orderEntity->getShippingAddress()->getStreet()[1]) : '';
 
         return [
             "LicTradNum" => $identification,
@@ -494,12 +496,14 @@ class Order extends AbstractHelper
             "CityS" => $city,
             "ZipCodeS" => $postalCode,
             "StateS" => "",
+            "BlockS" => $addressComplement,
             "Address2B" => "",
             "CountryB" => "CO",
             "StreetB" => $address,
             "CityB" => $city,
             "ZipCodeB" => $postalCode,
             "StateB" => "",
+            "BlockB" => $addressComplement,
             "Territory" => $this->_configuration->getTerritory(),
             "CamposUsuario" => $userFields,
             "CamposUsuarioDireccionShip" => "U_HBT_MunMed~$postalCode|U_HBT_DirMM~N",
