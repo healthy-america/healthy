@@ -97,6 +97,14 @@ class LayoutProcessor
             'options' => $this->tributaryInformationOptions->getAllOptions()
         ];
 
+        // Restrict street address length
+        foreach ($shippingForm['street']['children'] as $key => &$line) {
+            $line['validation']['max_text_length'] = 100;
+            if ($key === 1) {
+                $line['placeholder'] = __('Address complement (Neighborhood, apartment, etc)');
+            }
+        }
+
         $result['components']['checkout']['children']['steps']['children']['shipping-step']['children']
         ['shippingAddress']['children']['shipping-address-fieldset']['children']['postcode']['visible'] = false;
 
