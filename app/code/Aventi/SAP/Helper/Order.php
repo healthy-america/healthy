@@ -230,7 +230,6 @@ class Order extends AbstractHelper
         $slpCode = $this->_configuration->getSlpCode();
         $incrementId = $order->getIncrementId();
 
-
         $comment = "Orden No.: $incrementId | Metodo de pago: $paymentTitle";
 
         return [
@@ -520,13 +519,19 @@ class Order extends AbstractHelper
     public function getTransactionId(OrderInterface $order): ?string
     {
         $transactionId = '';
-        if ($order->getPayment()->getMethod() === 'sample_gateway') {
-            $transactionId = $order->getPayment()->getAdditionalInformation("reference");
-        } else {
-            $transaction = $this->paymentTransaction->create()->addOrderIdFilter($order->getId());
-            foreach ($transaction->getItems() as $invoice) {
-                $transactionId = $invoice->getTxnId();
-            }
+        switch ($order->getPayment()->getMethod()) {
+            case 'sample_gateway':
+                $transactionId = $order->getPayment()->getAdditionalInformation("reference");
+                break;
+            case 'purchaseorder':
+                $transactionId = $order->getPayment()->getPoNumber();
+                break;
+            default:
+                $transaction = $this->paymentTransaction->create()->addOrderIdFilter($order->getId());
+                foreach ($transaction->getItems() as $invoice) {
+                    $transactionId = $invoice->getTxnId();
+                }
+                break;
         }
 
         return $transactionId;
