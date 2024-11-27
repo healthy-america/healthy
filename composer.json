@@ -16,7 +16,7 @@
         "preferred-install": "dist",
         "sort-packages": true
     },
-    "version": "2.4.5-p1",
+    "version": "2.4.5-p10",
     "require": {
         "ext-simplexml": "*",
         "ext-soap": "*",
@@ -27,7 +27,7 @@
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/ece-tools": "*",
-        "magento/product-community-edition": "2.4.5-p9",
+        "magento/product-community-edition": "2.4.5-p10",
         "mageplaza/magento-2-social-login": "^4.1",
         "mageplaza/module-smtp": "^4.7",
         "meta/meta-for-magento2": "^1.3"

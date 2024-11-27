@@ -18,6 +18,7 @@ use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order as OrderModel;
 use Magento\Sales\Model\ResourceModel\Order\CollectionFactory;
+use PHPUnit\Exception;
 
 /**
  * @class Order
@@ -60,7 +61,6 @@ class Order extends Integration
      * @return void
      * @throws CouldNotDeleteException
      * @throws LocalizedException
-     * @throws NoSuchEntityException
      */
     public function process($status = null) : void
     {
@@ -85,8 +85,12 @@ class Order extends Integration
                     continue;
                 }
 
-                $orderData = $this->_helperOrder->processDataSAP($order);
-                $response = $this->request($order, $orderData);
+                try {
+                    $orderData = $this->_helperOrder->processDataSAP($order);
+                    $response = $this->request($order, $orderData);
+                } catch (NoSuchEntityException | LocalizedException | Exception $e) {
+                    $response = ['status' => 0, 'body' => $e->getMessage()];
+                }
                 $this->processResponseOrder($order, $response);
             }
         }

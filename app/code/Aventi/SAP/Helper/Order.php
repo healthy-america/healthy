@@ -13,6 +13,7 @@ use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\DB\Transaction;
 use Magento\Framework\Exception\CouldNotDeleteException;
+use Magento\Framework\Exception\InputException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Filter\RemoveAccents;
@@ -24,6 +25,7 @@ use Magento\Sales\Api\OrderRepositoryInterface;
 use Magento\Sales\Model\Order\Status\HistoryRepository;
 use Magento\Sales\Model\ResourceModel\Order\Status\History\CollectionFactory;
 use Magento\Store\Api\WebsiteRepositoryInterface;
+use Magento\Bundle\Api\ProductLinkManagementInterface;
 
 /**
  * @class Order
@@ -43,6 +45,7 @@ class Order extends AbstractHelper
      * @param ProductRepositoryInterface $_productRepository
      * @param WebsiteRepositoryInterface $_websiteRepository
      * @param RemoveAccents $removeAccents
+     * @param ProductLinkManagementInterface $_productLinkManagement
      */
     public function __construct(//NOSONAR
         Context                                                  $context,
@@ -54,7 +57,8 @@ class Order extends AbstractHelper
         private readonly TransactionSearchResultInterfaceFactory $paymentTransaction,
         private readonly ProductRepositoryInterface              $_productRepository,
         private readonly WebsiteRepositoryInterface              $_websiteRepository,
-        private readonly RemoveAccents                           $removeAccents
+        private readonly RemoveAccents                           $removeAccents,
+        private readonly ProductLinkManagementInterface          $_productLinkManagement,
     ) {
         parent::__construct($context);
     }
@@ -65,6 +69,8 @@ class Order extends AbstractHelper
      *
      * @param OrderInterface $orderEntity
      * @return array
+     * @throws NoSuchEntityException
+     * @throws InputException
      */
     private function getStringProductForSAP(OrderInterface $orderEntity): array
     {
@@ -73,16 +79,35 @@ class Order extends AbstractHelper
 
         /** @var OrderItemInterface $item */
         foreach ($items as $item) {
-            $products[] = [
-                'ItemCode' => $item->getSku(),
-                'Quantity' => (int)$item->getQtyOrdered(),
-                'Price' => (int)$item->getOriginalPrice(),
-                'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
-                'WhsCode' => $this->_configuration->getWhsCode(),
-                'OcrCode' => $this->getOcrCode($item),
-                'OcrCode2' => $this->_configuration->getOcrCode2(),
-                'OcrCode3' => $this->_configuration->getOcrCode3()
-            ];
+            if ($item->getProductType() === 'bundle') {
+                $bundleOptions = $item->getProductOptions();
+                $bundleProduct = $this->_productRepository->getById($item->getProductId());
+                $bundleItems = $this->_productLinkManagement->getChildren($bundleProduct->getSku());
+
+                foreach ($bundleItems as $bundleItem) {
+                    $products[] = [
+                        'ItemCode' => $bundleItem->getSku(),
+                        'Quantity' => (int)$bundleOptions['bundle_options'][$bundleItem->getOptionId()]['value'][0]['qty'],
+                        'Price' => (int)$bundleOptions['bundle_options'][$bundleItem->getOptionId()]['value'][0]['price'],
+                        'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
+                        'WhsCode' => $this->_configuration->getWhsCode(),
+                        'OcrCode' => $this->getOcrCode($item),
+                        'OcrCode2' => $this->_configuration->getOcrCode2(),
+                        'OcrCode3' => $this->_configuration->getOcrCode3()
+                    ];
+                }
+            } else {
+                $products[] = [
+                    'ItemCode' => $item->getSku(),
+                    'Quantity' => (int)$item->getQtyOrdered(),
+                    'Price' => (int)$item->getOriginalPrice(),
+                    'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
+                    'WhsCode' => $this->_configuration->getWhsCode(),
+                    'OcrCode' => $this->getOcrCode($item),
+                    'OcrCode2' => $this->_configuration->getOcrCode2(),
+                    'OcrCode3' => $this->_configuration->getOcrCode3()
+                ];
+            }
         }
 
         return $products;
