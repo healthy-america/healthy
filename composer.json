@@ -24,6 +24,7 @@
         "cweagans/composer-patches": "^1.7",
         "facebook/php-business-sdk": "^20.0",
         "firebase/php-jwt": "^6.10",
+        "laminas/laminas-stdlib": "^3.20",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~2.0",
         "magento/ece-tools": "*",
