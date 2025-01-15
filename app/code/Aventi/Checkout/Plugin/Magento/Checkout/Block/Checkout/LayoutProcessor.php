@@ -13,6 +13,13 @@ use Magento\Checkout\Block\Checkout\LayoutProcessor as Source;
 
 class LayoutProcessor
 {
+    protected const FIELDS_DELIMITATION  = [
+        "telephone" => 20,
+        "postcode" => 20,
+        "firstname" => 50,
+        "lastname" => 50,
+        "vat_id" => 32
+    ];
     /**
      * Constructor
      *
@@ -40,7 +47,6 @@ class LayoutProcessor
         ['shippingAddress']['children']['shipping-address-fieldset']['children'];
         $shippingForm['firstname']['placeholder'] = __('Nombre');
         $shippingForm['lastname']['placeholder'] = __('Apellido');
-        $shippingForm['company']['placeholder'] = __('Empresa');
         $shippingForm['vat_id']['placeholder'] = __('Identificación');
         $shippingForm['street']['children'][0]['placeholder'] = __('Dirección');
         $shippingForm['city']['placeholder'] = __('Ciudad');
@@ -114,6 +120,12 @@ class LayoutProcessor
             'required-entry' => true,
             'pattern' => '^[0-9]+(-[0-9])?$'
         ];
+
+        foreach ($shippingForm as $field => $value) {
+            if (array_key_exists($field, self::FIELDS_DELIMITATION)) {
+                $shippingForm[$field]['validation']['max_text_length'] = self::FIELDS_DELIMITATION[$field];
+            }
+        }
 
         return $result;
     }
