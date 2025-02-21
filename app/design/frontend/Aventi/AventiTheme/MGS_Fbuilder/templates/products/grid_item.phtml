@@ -511,7 +511,6 @@ use Magento\Framework\App\Action\Action;
                                            aria-required="true">
                                 <?php endforeach; ?>
                             <?php endif; ?>
-                            <?php echo get_class($block) ?>
                             <?php if ($_product->getTypeId() == 'simple') : ?>
                                 <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary">
                                     <span class="icon pe-7s-shopbag"></span>
