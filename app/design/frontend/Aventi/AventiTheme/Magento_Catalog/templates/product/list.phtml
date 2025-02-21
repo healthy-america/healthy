@@ -185,7 +185,7 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                             <?php
                             $_productNameStripped = $block->stripTags($_product->getName(), null, true);
                             ?>
-                
+
                             <div class="_container_reviews">
                                 <?php if ($_hideReview != 1) : ?>
                                     <?php echo $block->getReviewsSummaryHtml($_product, $templateType) ?>
@@ -224,6 +224,20 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                                    $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
                                                    ?>">
                                             <?= $block->getBlockHtml('formkey') ?>
+                                            <?php if ($_product->getTypeInstance()->hasOptions($_product)) :?>
+                                                <?php  foreach ($block->getBundleOptions($_product) as $optionId => $selectionId): ?>
+                                                    <input readonly
+                                                           id="bundle-option-<?= $optionId ?>-qty-input"
+                                                           class="input-text qty qty-disabled"
+                                                           type="hidden"
+                                                           min="0"
+                                                           data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                                                           name="bundle_option[<?= $optionId ?>]"
+                                                           data-selector="bundle_option[<?= $optionId ?>]"
+                                                           value="<?= $selectionId ?>"
+                                                           aria-required="true">
+                                                <?php endforeach; ?>
+                                            <?php endif; ?>
                                             <button type="submit"
                                                     title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
                                                     class="action tocart btn-cart primary ">
@@ -316,6 +330,20 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                                            /* @noEscape */ $postParams['data'][Action::PARAM_NAME_URL_ENCODED]
                                                            ?>">
                                                     <?= $block->getBlockHtml('formkey') ?>
+                                                    <?php if ($_product->getTypeInstance()->hasOptions($_product)) :?>
+                                                        <?php  foreach ($block->getBundleOptions($_product) as $optionId => $selectionId): ?>
+                                                            <input readonly
+                                                                   id="bundle-option-<?= $optionId ?>-qty-input"
+                                                                   class="input-text qty qty-disabled"
+                                                                   type="hidden"
+                                                                   min="0"
+                                                                   data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                                                                   name="bundle_option[<?= $optionId ?>]"
+                                                                   data-selector="bundle_option[<?= $optionId ?>]"
+                                                                   value="<?= $selectionId ?>"
+                                                                   aria-required="true">
+                                                        <?php endforeach; ?>
+                                                    <?php endif; ?>
                                                     <button type="submit"
                                                             title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"
                                                             class="action tocart primary btn-cart">

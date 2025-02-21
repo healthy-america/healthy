@@ -336,6 +336,20 @@ use Magento\Framework\App\Action\Action;
                                                             Action::PARAM_NAME_URL_ENCODED ?>" value="<?php echo /* @escapeNotVerified */
                                                                                                         $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
                                 <?php echo $block->getBlockHtml('formkey') ?>
+                                <?php if ($_product->getTypeInstance()->hasOptions($_product)) :?>
+                                    <?php  foreach ($block->getBundleOptions($_product) as $optionId => $selectionId): ?>
+                                        <input readonly
+                                               id="bundle-option-<?= $optionId ?>-qty-input"
+                                               class="input-text qty qty-disabled"
+                                               type="hidden"
+                                               min="0"
+                                               data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                                               name="bundle_option[<?= $optionId ?>]"
+                                               data-selector="bundle_option[<?= $optionId ?>]"
+                                               value="<?= $selectionId ?>"
+                                               aria-required="true">
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
                                 <button type="submit" title="<?php echo $block->escapeHtml(__('Add to Cart')) ?>" class="action tocart primary btn-action btn-cart">
                                     <span><?php echo /* @escapeNotVerified */
                                             __('Add to Cart') ?></span>
@@ -483,6 +497,21 @@ use Magento\Framework\App\Action\Action;
                                                         Action::PARAM_NAME_URL_ENCODED ?>" value="<?php echo /* @escapeNotVerified */
                                                                                                         $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
                             <?php echo $block->getBlockHtml('formkey') ?>
+                            <?php if ($_product->getTypeInstance()->hasOptions($_product)) :?>
+                                <?php  foreach ($block->getBundleOptions($_product) as $optionId => $selectionId): ?>
+                                    <input readonly
+                                           id="bundle-option-<?= $optionId ?>-qty-input"
+                                           class="input-text qty qty-disabled"
+                                           type="hidden"
+                                           min="0"
+                                           data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                                           name="bundle_option[<?= $optionId ?>]"
+                                           data-selector="bundle_option[<?= $optionId ?>]"
+                                           value="<?= $selectionId ?>"
+                                           aria-required="true">
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                            <?php echo get_class($block) ?>
                             <?php if ($_product->getTypeId() == 'simple') : ?>
                                 <button type="submit" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart btn-cart primary">
                                     <span class="icon pe-7s-shopbag"></span>
