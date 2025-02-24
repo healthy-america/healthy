@@ -415,7 +415,7 @@ class Order extends AbstractHelper
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $paymentMethod = $order->getPayment()->getMethod();
 
-        if (($paymentMethod === "banktransfer" || $paymentMethod === "cashondelivery") && !$order->hasInvoices()) {
+        if (($paymentMethod === "banktransfer") && !$order->hasInvoices()) {
             if (!$order->canInvoice()) {
                 throw new \Magento\Framework\Exception\LocalizedException(
                     __('The order does not allow an invoice to be created.')
