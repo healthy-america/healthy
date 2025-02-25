@@ -87,7 +87,7 @@ class Order extends AbstractHelper
                 foreach ($bundleItems as $bundleItem) {
                     $products[] = [
                         'ItemCode' => $bundleItem->getSku(),
-                        'Quantity' => (int)$bundleOptions['bundle_options'][$bundleItem->getOptionId()]['value'][0]['qty'],
+                        'Quantity' => (int)$bundleOptions['bundle_options'][$bundleItem->getOptionId()]['value'][0]['qty'] * $item->getQtyOrdered(),
                         'Price' => (int)$bundleOptions['bundle_options'][$bundleItem->getOptionId()]['value'][0]['price'],
                         'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
                         'WhsCode' => $this->_configuration->getWhsCode(),
