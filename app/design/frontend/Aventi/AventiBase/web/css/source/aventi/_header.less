@@ -19,11 +19,7 @@
             top: 0;
 
             .header-area {
-                position: relative !important; // Important from parent theme
-                
-                button.close-myaccount {
-                    display: none;
-                }
+                position: relative !important; // Al hace scroll el tema pone un important y genera un bug
 
                 .top-header {
                     background-color: @white;
@@ -37,11 +33,10 @@
                             form#search_mini_form {
                                 box-shadow: @cardsShadows;
                                 border-radius: 50px;
-                                border: unset;
                                 display: flex;
-                                flex-direction: row;
-                                gap: 0;
-                                padding: 0;
+                                flex-direction: row-reverse;
+                                gap: 15px;
+                                padding: 0 10px;
                                 max-width: 410px;
     
                                 .field.search {
@@ -51,8 +46,8 @@
                                         input#search {
                                             background-color: @white;
                                             border: none;
-                                            border-radius: 50px;
-                                            padding: 0 0 0 20px;
+                                            border-radius: 0;
+                                            padding: 0;
                                             height: 32px;
                                             line-height: 32px;
                                             font-size: 14px;
@@ -72,13 +67,13 @@
                                                     background-color: @gray-neutral-1;
     
                                                     span {
-                                                        color: @color-primary;
+                                                        color: @color-primario2;
                                                         font-weight: 700;
                                                         font-size: 16px;
                                                     }
     
                                                     a {
-                                                        color: @color-primary;
+                                                        color: @color-primario2;
                                                         font-weight: 700;
                                                         font-size: 16px;
     
@@ -174,13 +169,9 @@
                                         opacity: 1;
                                         visibility: visible;
                                         position: unset;
-                                        background-color: @red-error-2;
-                                        width: 40px;
-                                        height: 32px;
-                                        border-radius: 0 50px 50px 0;
     
                                         &::before {
-                                            content: url('https://api.iconify.design/ri:search-line.svg?color=white&width=20&height=20');
+                                            color: @color-primario2;
                                         }
                                     }
                                 }
@@ -204,22 +195,17 @@
                                 gap: 15px;
 
                                 .subtitle {
-                                    font-size: 14px;
-                                    font-weight: 600;
-                                    color: @color-primary;
+                                    font-size: 12px;
+                                    color: @gray-neutral-6;
                                 }
     
                                 .account-container {
                                     .header-top-links {
-                                        display: flex;
-                                        align-items: center;
-                                        gap: 8px;
-
                                         .top-links.theme-header-icon {
                                             text-align: center;
                                             .pe-7s-user {
                                                 &::before {
-                                                    content: url('https://api.iconify.design/qlementine-icons:user-16.svg?color=%23DC041C&width=24&height=24');
+                                                    content: url('https://api.iconify.design/mdi/user-outline.svg?color=%232f5fff&width=24&height=24');
                                                 }
                                             }
                                         }
@@ -227,8 +213,7 @@
                                         .header-acccount {
                                             background: none;
                                             box-shadow: none;
-                                            border-top: 2px solid @color-primary;
-
+                                            border-top: 2px solid @color-primario2;
     
                                             ul.header.links {
                                                 border-radius: 0 0 8px 8px;
@@ -252,7 +237,7 @@
 
                                                 .my-wishlist-link {
                                                     .counter.qty {
-                                                        background: @color-primary;
+                                                        background: @color-primario2;
                                                         padding: 0 5px;
                                                         height: 5px;
                                                         border-radius: 50px;
@@ -291,13 +276,12 @@
                                             flex-direction: column;
                                             
                                             &::before {
-                                                content: url('https://api.iconify.design/mdi/cart-outline.svg?color=%23DC041C&width=24&height=24');
+                                                content: url('https://api.iconify.design/mdi/cart-outline.svg?color=%232f5fff&width=24&height=24');
                                             }
     
                                             .counter.qty {
-                                                background-color: @color-secondary;
+                                                background-color: @color-primario2;
                                                 color: @white;
-                                                top: -5px;
                                             }
                                         }
                                     }
@@ -307,14 +291,21 @@
 
                         .logo-container {
                             img.default-logo {
-                                max-width: 250px;
+                                max-width: 140px;
+                            }
+                        }
+
+                        .logo-mobile {
+                            img.default-logo {
+                                max-width: 150px;
+                                padding: 10px 0;
                             }
                         }
                     }
                 }
     
                 .bottom-header {
-                    background-color: @color-primary; 
+                    background-color: @color-primario2;
                 }
             }
         }
@@ -343,30 +334,10 @@
                                 display: none;
                             }
                         }
-        
-                        .search-container {
-                            .search-close {
-                                display: none;
-                            }
-                        }
-
-                        // .actions-container {
-                        //     .right-content.table-icon-menu {    
-                        //         .account-container {
-                        //             .header-top-links {    
-                        //                 .header-acccount {
-                        //                     button.close-myaccount {
-                        //                         display: none;
-                        //                     }
-                        //                 }
-                        //             }
-                        //         }
-                        //     }
-                        // }
                     }
                 }
                 .bottom-header {
-                    background-color: @color-primary;
+                    background-color: @color-primario2;
     
                     .menu-wrapper {
                         .megamenu-content {
@@ -394,23 +365,16 @@
                                             }
                                         }
                                     }
-
                                     > a {
-                                        color: @white !important; // Important from parent theme
+                                        color: @white;
                                         font-weight: 700;
                                         display: flex;
-                                        align-items: center;
                                         gap: 5px;
-
-                                        > .iconify {
-                                            display: none;
-                                        }
                                     }
     
                                     ul.dropdown-menu {
                                         border-radius: 0 0 8px 8px;
                                         box-shadow: @cardsShadows;
-                                        background-color: @white;
 
                                         .scrolls(hidden, auto, @gray-neutral-6, @white, 70vh, 8px, auto);
     
@@ -419,14 +383,13 @@
                                                 border: 0;
                                                 color: @gray-neutral-6;
                                                 font-weight: 500;
-                                                border-radius: 0;
     
                                                 &:hover {
-                                                    background-color: @gray-neutral-8 !important; // Important from parent theme
+                                                    font-weight: 700;
                                                 }
 
                                                 .mega-menu-sub-title {
-                                                    color: @color-primary;
+                                                    color: @color-primario2;
                                                     font-weight: 700;
                                                     text-transform: unset;
                                                 }
@@ -440,8 +403,9 @@
                                                 }
                                             }
                                         }
-                                        ul {
-                                            :last-child {
+
+                                        :last-child {
+                                            li {
                                                 a {
                                                     border-radius: 0 0 8px 8px;
                                                 }
@@ -464,27 +428,6 @@
 //  _____________________________________________
 
 @media (max-width: @tablet) {
-
-    // ocultar el close nav cuando no esta abierto
-    html {
-        .logo-container {
-            button.action.nav-tg {
-                &::before {
-                    display: none;
-                }
-            }
-        }
-        &.nav-open {
-            .logo-container {
-                button.action.nav-tg {
-                    &::before {
-                        display: inline-block;
-                    }
-                }
-            }
-        }
-    }
-
     #html-body {
         header.page-header {
 
@@ -506,8 +449,12 @@
                             max-width: none;
 
                             .default-logo {
-                                width: 100%;
-                                max-width: 200px;
+                                display: none;
+                            }
+
+                            .mobile-logo {
+                                max-width: 130px;
+                                max-height: 80px;
                                 margin: auto;
                                 object-fit: contain;
                             }
@@ -540,7 +487,7 @@
                                         left: 0;
                                         width: 100%;
                                         z-index: 10;
-                                        background-color: @color-primary; 
+                                        background-color: @color-primario2; 
                                         padding: 16px 25px;
 
                                         form#search_mini_form {
@@ -599,13 +546,13 @@
                                         }
                                     }
                                 }
+                            }
 
-                                .actions-search {
-                                    button {
-                                        svg {
-                                            path {
-                                                fill: @red-error-2;
-                                            }
+                            .actions-search {
+                                button.action-search {
+                                    i {
+                                        &::before {
+                                            content: url('https://api.iconify.design/ion/search.svg?color=%232f5fff&width=24&height=24');
                                         }
                                     }
                                 }
@@ -641,6 +588,7 @@
                 // styles to menu of categories
                 .bottom-header {
                     .menu-wrapper {
+                        padding-right: 5px;
 
                         &::-webkit-scrollbar-track {
                             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -656,9 +604,8 @@
                         &::-webkit-scrollbar-thumb {
                             border-radius: 10px;
                             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-                            background-color: @color-primary;
+                            background-color: @color-primario2;
                         }
-                        
                         .menu-content {
 
                             // styles to tabs
@@ -683,12 +630,12 @@
 
                                     &.active {
                                         a {
-                                            color: @color-primary;
+                                            color: @color-primario2;
                                             position: relative;
 
                                             &::before {
                                                 content: '';
-                                                background-color: @color-primary;
+                                                background-color: @color-primario2;
                                                 height: 3px;
                                                 width: 50%;
                                                 position: absolute;
@@ -703,50 +650,14 @@
                             // style to content
                             .item.tab-content.megamenu-content {
                                 #main-Menucontent {
-                                    padding: 0 10px;
-
                                     ul#mainMenu {
                                         > li {
-                                            border-bottom: unset;
+                                            border-bottom: 1px solid @gray-neutral-2;
 
-                                            > a.level0 {
+                                            > a.dropdown-toggle {
                                                 font-weight: 600;
-                                                display: flex;
-                                                align-items: center;
-                                                gap: 5px;
-
-                                                svg {
-                                                    width: 18px;
-                                                    height: 18px;
-                                                }
-                                            }
-
-                                            &.dropdown.is-active {
-
-                                                > a.level0.dropdown-toggle, > span.toggle-menu {
-                                                    background-color: @color-primary;
-                                                    color: @white;
-                                                    transition: all ease .5s;
-                                                }
-
-                                                > a.level0.dropdown-toggle {
-                                                    border-radius: 10px 0 0 10px;
-                                                }
-
-                                                > span.toggle-menu {
-                                                    border-radius: 0 10px 10px 0;
-
-                                                    a {
-                                                        span.fa  {
-                                                                &::before {
-                                                                content: url('https://api.iconify.design/ep/arrow-up-bold.svg?color=white&width=15&height=15');
-                                                            }
-                                                        } 
-                                                    }
-                                                }
                                             }
                                         }
-
 
                                         li {
                                             position: relative;
@@ -787,7 +698,7 @@
                                                     span.fa {
                                                         display: flex;
                                                         &::before {
-                                                            content: url('https://api.iconify.design/ep/arrow-down-bold.svg?color=%23424242&width=15&height=15');
+                                                            content: url('https://api.iconify.design/ep/arrow-down-bold.svg?color=%232f5fff&width=12&height=12');
                                                             line-height: 1;
                                                         }
                                                     }
@@ -810,7 +721,7 @@
                                                     a {
                                                         span.fa {
                                                             &::before {
-                                                                content: url('https://api.iconify.design/ep/arrow-up-bold.svg?color=%23424242&width=15&height=15');
+                                                                content: url('https://api.iconify.design/ep/arrow-up-bold.svg?color=%232f5fff&width=12&height=12');
                                                             }
                                                         }
                                                     }
@@ -824,19 +735,6 @@
                                                 }
                                             }
 
-                                        }
-                                    }
-                                }
-
-                                #main-Accountcontent {
-                                    padding: 0 10px;
-
-                                    li {
-                                        a {
-                                            color: @gray-neutral-6;
-                                            font-weight: 600;
-                                            font-size: 14px;
-                                            border: none;
                                         }
                                     }
                                 }

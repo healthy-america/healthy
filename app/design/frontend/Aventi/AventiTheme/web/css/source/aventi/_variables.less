@@ -1,0 +1,30 @@
+// Screen sizes
+
+@tablet: 1200px;
+@screen-tablet-xs: 991px;
+@mobile-xs: 470px;
+
+
+//Creacion de mixin para la estilizacion de scroll
+.scrolls(@overflow-x, @overflow-y ,@barColor, @pathColor @maxHeight, @barWidth, @barHeight) {
+    max-height: @maxHeight;
+    overflow-y: @overflow-y;
+    overflow-x: @overflow-x;
+
+    // Scroll styles
+    &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: @pathColor;
+    }
+
+    &::-webkit-scrollbar {
+        width: @barWidth;
+        height: @barHeight;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: @barColor;
+    }
+}

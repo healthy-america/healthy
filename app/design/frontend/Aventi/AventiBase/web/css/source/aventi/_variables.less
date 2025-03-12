@@ -1,0 +1,341 @@
+// Screen sizes
+
+@tablet: 1200px;
+@screen-tablet-xs: 991px;
+@mobile-xs: 470px;
+
+
+// creacion de mixin para la estilizacion de los botones 1
+
+.button(@background, @borderWidth, @borderColor, @color, @backgroundHover, @colorHover, @borderColorHover, @borderRadius) {
+    background-color: @background;
+    border: @borderWidth solid @borderColor;
+    color: @color;
+    border-radius: @borderRadius;
+    font-weight: 500;
+    
+    &:hover {
+        background-color: @backgroundHover;
+        color: @colorHover;
+        border: @borderWidth solid @borderColorHover;
+    }
+}
+
+// creacion de mixin para la estilizacion de los botones 2
+
+.button2(@background, @borderWidth, @borderColor, @color, @backgroundHover, @colorHover, @borderColorHover, @borderRadius, @fontSize) {
+    background-color: @background;
+    color: @color;
+    border: @borderWidth solid @borderColor;
+    border-radius: @borderRadius;
+    font-weight: 600;
+    overflow: hidden;
+    position: relative;
+    font-size: @fontSize;
+    padding: 0 36px;
+    line-height: 40px;
+    z-index: 2;
+
+    &::after {
+        content: '';
+        background-color: @backgroundHover;
+        border: @borderWidth solid @borderColor;
+        color: @color;
+        width: 0%;
+        left: 0%;
+        top: 0;
+        transition: all ease-in-out .4s;
+        position: absolute;
+        height: 105%;
+        opacity: 0;
+        z-index: -1;
+    }
+
+    span {
+        position: relative;
+        font-size: unset;
+    }
+    
+    &:hover {
+        color: @colorHover;
+        border: @borderWidth solid @borderColorHover;
+
+        &::after {
+            width: 100%;
+            opacity: 1;
+            border: @borderWidth solid @borderColorHover;
+        }
+    }
+}
+
+// Creacion de mixin para la estilizacion de los checkbox 1
+
+.inputsCheckbox(@backgroundChecked, @cBorder, @cBorderChecked) {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-radius: 3px;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+    min-height: 17px;
+    border: 1px solid @cBorder;
+
+    &:checked {
+        border: 0;
+        &::after {
+            content: url('https://api.iconify.design/bi/check.svg?color=white&width=24&height=24');
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            transform: scale(0.7);
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 17px;
+            width: 17px;
+            top: 0;
+            left: 0;
+            background: @backgroundChecked;
+            border: 1px solid @cBorderChecked;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+// Creacion de mixin para la estilizacion de los checkbox 2
+
+.inputsCheckbox2(@backgroundChecked, @cBorder, @cBorderChecked) {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-radius: 3px;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+    min-height: 17px;
+    border: 1px solid @cBorder;
+
+    &:checked {
+        border: 1px solid @cBorderChecked;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 11px;
+            width: 11px;
+            top: 2px;
+            left: 2px;
+            background: @backgroundChecked;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+    }
+}
+
+// Creacion de mixin para la estilizacion de los radio 1
+
+.inputsRadio(@backgroundChecked, @cBorder) {
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border-radius: 50%;
+    position: relative;
+    width: 17px;
+    height: 17px;
+    min-width: 17px;
+    min-height: 17px;
+    border: 1px solid @cBorder !important; // tiene un important desde el tema
+
+    &:checked {
+        &::after {
+            content: "";
+            position: absolute;
+            height: 9px;
+            width: 9px;
+            top: 3px;
+            left: 3px;
+            background: @backgroundChecked;
+            border-radius: 50%;
+            box-sizing: border-box;
+        }
+    }
+}
+
+// Creacion de mixin para la estilizacion de los input text
+
+.inputsText(@cBorder, @backgroundSelect, @color, @fontWeight, @radius) {
+    border: 1px solid @cBorder;
+    border-radius: @radius;
+    font-weight: @fontWeight;
+    color: @color;
+    resize: none;
+
+    &:active,
+    &:focus {
+        background-color: @backgroundSelect;
+    }
+}
+
+// mixin para las flechas generales
+.navArrow(@background, @color, @backgroundHover) {
+    background-color: @background;
+    border: none;
+    color: @color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: ~"calc(50% - 2px)";
+
+    &.owl-next {
+        right: 10px;
+    }
+
+    &.owl-prev {
+        left: 10px;
+    }
+
+    span {
+        font-size: 32px;
+        line-height: 32px;
+        height: auto;
+        position: unset;
+        margin: 0;
+
+        .fa {
+            font-size: 32px;
+            line-height: 32px;
+            height: auto;
+            position: unset;
+
+            &.fa-angle-right {
+                &::before {
+                    content: url('https://api.iconify.design/iconamoon/arrow-right-2-duotone.svg?color=white&width=24&height=24');
+                }
+            }
+
+            &.fa-angle-left {
+                &::before {
+                    content: url('https://api.iconify.design/iconamoon/arrow-left-2-duotone.svg?color=white&width=24&height=24');
+                }
+            }
+        }
+    }
+
+
+
+    &:hover {
+        background-color: @backgroundHover;
+    }
+}
+
+// mixin to close modal button
+
+.closeModal(@background, @left, @top, @right) {
+    background: @background;
+    border-radius: 50%;
+    transform: none;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    left: @left;
+    top: @top;
+    right: @right;
+
+    &::before {
+        content: url('https://api.iconify.design/ic/round-close.svg?color=white&width=20&height=20');
+        line-height: 26px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    i {
+        display: none;
+    }
+}
+
+//Creacion de mixin para la estilizacion de scroll
+.scrolls(@overflow-x, @overflow-y ,@barColor, @pathColor @maxHeight, @barWidth, @barHeight) {
+    max-height: @maxHeight;
+    overflow-y: @overflow-y;
+    overflow-x: @overflow-x;
+
+    // Scroll styles
+    &::-webkit-scrollbar-track {
+        border-radius: 8px;
+        background-color: @pathColor;
+    }
+
+    &::-webkit-scrollbar {
+        width: @barWidth;
+        height: @barHeight;
+        background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: @barColor;
+    }
+}
+
+// mixin to pagination
+.pagination(@background, @color, @backgroundHover, @colorHover) {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+
+    li.item {
+        padding: 0;
+        margin: 0;
+        
+        a {
+            background-color: @background;
+            color: @color;
+            width: 25px;
+            height: 25px;
+            font-size: 13px;
+            border-radius: 50%;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:hover {
+                background-color: @backgroundHover;
+                color: @colorHover;
+            }
+
+            &.next,
+            &.previous {
+                &::before {
+                    position: relative;
+                    display: block;
+                    font-size: 14px;
+                    line-height: 14px;
+                    margin: 0;
+                }
+
+                span {
+                    font-size: 0;
+                }
+            }
+
+            &.next {
+                &::before {
+                    content: url('https://api.iconify.design/iconamoon/arrow-right-2.svg?color=white');
+                }
+            }
+
+            &.previous {
+                &::before {
+                    content: url('https://api.iconify.design/iconamoon/arrow-left-2.svg?color=white');
+                }
+            }
+        }
+    }
+}
