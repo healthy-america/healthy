@@ -65,20 +65,24 @@
                                         // search dropdown
                                         .mgs-instant-search-dropdown {
                                             margin-top: 0;
-                                            top: 35px;
+                                            top: 40px;
+
+                                            .mgs-instant-autocomplete-wrapper {
+                                                border-radius: 8px;
+                                            }
     
                                             .products.products-list {
                                                 .title {
-                                                    background-color: @gray-neutral-1;
+                                                    background-color: @color-primary;
     
                                                     span {
-                                                        color: @color-primary;
+                                                        color: @white;
                                                         font-weight: 700;
                                                         font-size: 16px;
                                                     }
     
                                                     a {
-                                                        color: @color-primary;
+                                                        color: @white;
                                                         font-weight: 700;
                                                         font-size: 16px;
     
@@ -94,6 +98,8 @@
                                                     gap: 10px;
     
                                                     li.item.product {
+                                                        box-shadow: none;
+
                                                         .product-item-info {
                                                             display: flex;
     
@@ -109,7 +115,7 @@
                                                                 display: flex;
                                                                 flex-direction: column;
                                                                 justify-content: center;
-                                                                padding: 0;
+                                                                padding: 0 0 0 10px;
                                                                 width: ~'calc(100% - 100px)';
     
                                                                 .product-item-reviews,
@@ -127,6 +133,7 @@
                                                                         a {
                                                                             font-size: 16px;
                                                                             font-weight: 500;
+                                                                            text-align: left;
                                                                             line-height: 1;
                                                                             overflow: hidden;
                                                                             text-overflow: ellipsis;
@@ -140,12 +147,16 @@
                                                                 .product-info-price {
                                                                     .price-box.price-final_price {
                                                                         display: flex;
-                                                                        justify-content: flex-start;
+                                                                        justify-content: left;
+
+                                                                        * {
+                                                                            text-decoration: none;
+                                                                        }
     
                                                                         .special-price {
                                                                             .price {
-                                                                                font-size: 18px;
-                                                                                font-weight: 800;
+                                                                                font-size: 13px;
+                                                                                font-weight: 500;
                                                                                 color: @gray-neutral-6;
                                                                             }
                                                                         }
@@ -155,6 +166,7 @@
                                                                                 font-size: 12px;
                                                                                 font-weight: 500;
                                                                                 color: @gray-neutral-4;
+                                                                                text-decoration: line-through;
                                                                             }
                                                                         }
                                                                     }
