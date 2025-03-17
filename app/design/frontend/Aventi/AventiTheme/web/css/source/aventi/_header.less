@@ -586,6 +586,7 @@
                                             .field.search {
                                                 .control {
                                                     input#search {
+                                                        color: @black;
                                                         position: unset;
                                                         margin: 0 auto;
                                                         width: ~'calc(100% - 20px)';
@@ -593,16 +594,26 @@
                                                     }
 
                                                     .mgs-instant-search-dropdown {
-                                                        width: 98vw;
-                                                        top: 50px;
-                                                        right: 0;
-                                                        left: -25px;
+                                                        width: 95vw;
+                                                        top: 60px;
+                                                        right: unset;
+                                                        left: 0;
 
                                                         .products.products-list {
                                                             ul.products.list.items.product-items {
                                                                 max-height: 500px;
                                                                 overflow: auto;
                                                                 padding: 0 10px;
+
+                                                                li.item.product.product-item {
+                                                                    .product-item-info {
+                                                                        .product-item-details {
+                                                                            .product.name.product-item-name {
+                                                                                justify-content: left;
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }
