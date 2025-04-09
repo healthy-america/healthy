@@ -14,34 +14,34 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 
     const VALIDATE_FIELD = 'validate_field';
 
-    const PATH_START_CREDIT = "/startCredit";
-    const PATH_GET_INFO_CREDIT = "/getInfoCredit?transactionId=";
+    const PATH_START_CREDIT = "/Spay/PasCheckout/checkout/create/transaction/sistecredito";
+    const PATH_GET_INFO_CREDIT = "/Spay/PasCheckout/checkout/getInfoCredit?transactionId=";
 
     const ENDPOINTS = [
         "Development" => [
-            "startCredit" => "https://devapi.credinet.co/paymentgateway" . self::PATH_START_CREDIT,
-            "getInfoCredit" => "https://devapi.credinet.co/paymentgateway" . self::PATH_GET_INFO_CREDIT,
+            "startCredit" => "https://api-co-nop-internal.sistecreditocloud.com" . self::PATH_START_CREDIT,
+            "getInfoCredit" => "https://api-co-nop-internal.sistecreditocloud.com" . self::PATH_GET_INFO_CREDIT,
             "visorJs" => "https://stonprdeu2sistepayecomme.blob.core.windows.net/ecommerce-dev/visor/visor.js",
             "storeApps" => "https://devapi.credinet.co/viewfinder/GetStoreApps?productoCliente=",
             "subscriptionKeyVisor" => "b0dc8eb7924540e1913ab262b8500721",
         ],
         "Qa" => [
-            "startCredit" => "https://devapi.credinet.co/paymentgateway" . self::PATH_START_CREDIT,
-            "getInfoCredit" => "https://devapi.credinet.co/paymentgateway" . self::PATH_GET_INFO_CREDIT,
+            "startCredit" => "https://api-co-nop-internal.sistecreditocloud.com" . self::PATH_START_CREDIT,
+            "getInfoCredit" => "https://api-co-nop-internal.sistecreditocloud.com" . self::PATH_GET_INFO_CREDIT,
             "visorJs" => "https://stonprdeu2sistepayecomme.blob.core.windows.net/ecommerce-qa/visor/visor.js",
             "storeApps" => "https://devapi.credinet.co/viewfinder/GetStoreApps?productoCliente=",
             "subscriptionKeyVisor" => "b0dc8eb7924540e1913ab262b8500721",
         ],
         "Staging" => [
-            "startCredit" => "https://api.credinet.co/paymentpublic" . self::PATH_START_CREDIT,
-            "getInfoCredit" => "https://api.credinet.co/paymentpublic" . self::PATH_GET_INFO_CREDIT,
+            "startCredit" => "https://api-co-stg.sistecreditocloud.com" . self::PATH_START_CREDIT,
+            "getInfoCredit" => "https://api-co-stg.sistecreditocloud.com" . self::PATH_GET_INFO_CREDIT,
             "visorJs" => "https://stostgeu2sistepayecommer.blob.core.windows.net/ecommerce/visor/visor.js",
             "storeApps" => "https://api.credinet.co/viewfinder/api/Visor/GetStoreApps?productoCliente=",
             "subscriptionKeyVisor" => "20a09a82fe574408bcc22d148a684e54",
         ],
         "Production" => [
-            "startCredit" => "https://api.credinet.co/paymentpublic" . self::PATH_START_CREDIT,
-            "getInfoCredit" => "https://api.credinet.co/paymentpublic" . self::PATH_GET_INFO_CREDIT,
+            "startCredit" => "https://api.sistecredito.com" . self::PATH_START_CREDIT,
+            "getInfoCredit" => "https://api.sistecredito.com" . self::PATH_GET_INFO_CREDIT,
             "visorJs" => "https://stoprdeu2sistepayecomerc.blob.core.windows.net/ecommerce/visor/visor.js",
             "storeApps" => "https://api.credinet.co/viewfinder/api/Visor/GetStoreApps?productoCliente=",
             "subscriptionKeyVisor" => "20a09a82fe574408bcc22d148a684e54",
@@ -65,36 +65,36 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 
     public function getVendorId(): string
     {
-        return $this->getValue(self::VENDOR_ID);
+        return $this->getValue(self::VENDOR_ID)??"";
     }
 
     public function getStoreId(): string
     {
-        return $this->getValue(self::STORE_ID);
+        return $this->getValue(self::STORE_ID)??"";
     }
 
     public function getSubscriptionKey(): string
     {
-        return $this->getValue(self::SUBSCRIPTION_KEY);
+        return $this->getValue(self::SUBSCRIPTION_KEY)??"";
     }
 
     public function getValidateField(): string
-      {
-            return $this->getValue(self::VALIDATE_FIELD);
-      }
+    {
+        return $this->getValue(self::VALIDATE_FIELD)??"";
+    }
     public function getEnvironment()
     {
-        return $this->getValue(self::ENVIRONMENT);
+        return $this->getValue(self::ENVIRONMENT)??"Production";
     }
 
     public function getDataKey()
     {
-        return $this->getValue(self::DATA_KEY);
+        return $this->getValue(self::DATA_KEY)??"";
     }
 
     public function getOnSameSite(): string
     {
-        return $this->getValue(self::ON_SAME_SITE);
+        return $this->getValue(self::ON_SAME_SITE)??"";
     }
 
     public function getStoreApps()
@@ -109,6 +109,6 @@ class Config extends \Magento\Payment\Gateway\Config\Config
 
     public function getUrlReturn()
     {
-        return $this->getValue(self::URL_RETURN);
+        return $this->getValue(self::URL_RETURN)??"";
     }
 }

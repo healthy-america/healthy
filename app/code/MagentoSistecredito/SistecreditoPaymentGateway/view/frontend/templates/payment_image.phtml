@@ -1,3 +1,3 @@
-<script>
-window.populateSistecredito = <?php /* @escapeNotVerified */ echo \Zend_Json::encode($block->getSistecreditoConfig()); ?>;
+<script nonce="<?php /* @escapeNotVerified */ echo $block->getNonce(); ?>">
+    window.populateSistecredito = <?php /* @escapeNotVerified */ echo json_encode($block->getSistecreditoConfig()); ?>;
 </script>

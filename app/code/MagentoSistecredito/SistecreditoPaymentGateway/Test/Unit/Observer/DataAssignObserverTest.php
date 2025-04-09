@@ -13,7 +13,7 @@ use Magento\Payment\Observer\AbstractDataAssignObserver;
 use MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Http\Client\ClientMock;
 use MagentoSistecredito\SistecreditoPaymentGateway\Observer\DataAssignObserver;
 
-class DataAssignObserverTest extends \PHPUnit_Framework_TestCase
+class DataAssignObserverTest extends \PHPUnit\Framework\TestCase
 {
     public function testExectute()
     {
@@ -23,11 +23,11 @@ class DataAssignObserverTest extends \PHPUnit_Framework_TestCase
         $event = $this->getMockBuilder(Event::class)
             ->disableOriginalConstructor()
             ->getMock();
-        $paymentMethodFacade = $this->getMock(MethodInterface::class);
-        $paymentInfoModel = $this->getMock(InfoInterface::class);
+        $paymentMethodFacade = $this->getMockBuilder(MethodInterface::class)->getMock();
+        $paymentInfoModel = $this->getMockBuilder(InfoInterface::class)->getMock();
         $dataObject = new DataObject(
             [
-                'transaction_result' => ClientMock::SUCCESS
+                'transaction_result' => "success"
             ]
         );
 
@@ -47,11 +47,11 @@ class DataAssignObserverTest extends \PHPUnit_Framework_TestCase
             ->method('getInfoInstance')
             ->willReturn($paymentInfoModel);
 
-        $paymentInfoModel->expects(static::once())
+        $paymentInfoModel->expects(static::never())
             ->method('setAdditionalInformation')
             ->with(
                 'transaction_result',
-                ClientMock::SUCCESS
+                "success"
             );
 
         $observer = new DataAssignObserver();

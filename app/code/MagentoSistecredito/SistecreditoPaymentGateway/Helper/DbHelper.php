@@ -3,6 +3,8 @@
 namespace MagentoSistecredito\SistecreditoPaymentGateway\Helper;
 
 use DateTime;
+use Firebase\JWT\JWT;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\App\ResourceConnection;
 use Magento\Framework\DB\Adapter\AdapterInterface;
 use Psr\Log\LoggerInterface;
@@ -73,5 +75,50 @@ class DbHelper
         $result = $this->connection->fetchAll($sql);
 
         return $result[0] ?? null;
+    }
+
+    public function filterInputArray($type, $definition = null) {
+        return filter_input_array($type, $definition);
+    }
+
+    public function validUrlRedirect($url){
+
+        // Use get_headers() function
+        $headers = @get_headers($url);
+
+        // Use condition to check the existence of URL
+        if($headers && strpos( $headers[0], '200')) {
+            $status = true;
+        }
+        else {
+            $status = false;
+        }
+
+        // Display result
+        return $status;
+    }
+
+    public function fileGetContents($fileName)
+    {
+        return file_get_contents($fileName);
+    }
+
+    public function decodeJwt($token,$key,$alg){
+        return JWT::decode($token, $key, $alg);
+    }
+
+    public function getObjectManager(): ObjectManager
+    {
+        return ObjectManager::getInstance();
+    }
+
+    public function getShopDomainSsl()
+    {
+        return Tools::getShopDomainSsl(true, true);
+    }
+
+    public function encodeJwt($jwtPayload, $jwtKey, $algorithm): string
+    {
+        return JWT::encode($jwtPayload, $jwtKey, $algorithm);
     }
 }
