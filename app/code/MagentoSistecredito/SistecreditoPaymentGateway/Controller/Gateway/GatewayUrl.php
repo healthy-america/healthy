@@ -187,7 +187,7 @@ class GatewayUrl extends Action
             "nbf" => strtotime("+5 seconds"),
         );
 
-        $this->sistecreditoOrderLog->jwt = JWT::encode($jwtPayload, $this->sistecreditoOrderLog->requestToken, "HS256");
+        $this->sistecreditoOrderLog->jwt = $this->_dbHelper->encodeJwt($jwtPayload, $this->sistecreditoOrderLog->requestToken, "HS256");
         $this->_dbHelper->createSistecreditoOrderLog("Sistecredito [SistecreditoModule::validation]: Token Generated jwtKey -{$this->sistecreditoOrderLog->requestToken},JwtValue - {$this->sistecreditoOrderLog->jwt}", $this->sistecreditoOrderLog);
         return $this->sistecreditoOrderLog->jwt;
 

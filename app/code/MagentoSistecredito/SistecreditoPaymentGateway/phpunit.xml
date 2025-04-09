@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd">
+
+    <coverage>
+        <include>
+            <directory suffix=".php">Controller</directory>
+            <directory suffix=".php">Model/Ui</directory>
+        </include>
+        <exclude>
+            <directory>Test/*</directory>
+            <directory>vendor/*</directory>
+            <directory>view/*</directory>
+            <directory>etc/*</directory>
+            <directory>i18n/*</directory>
+            <directory>Setup/*</directory>
+            <directory>Helper/*</directory>
+            <directory>Gateway/*</directory>
+            <directory>Plugin/*</directory>
+            <directory>Observer/*</directory>
+            <directory>Block/*</directory>
+
+
+        </exclude>
+    </coverage>
+    <testsuites>
+        <testsuite name="magento">
+            <directory>Test</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

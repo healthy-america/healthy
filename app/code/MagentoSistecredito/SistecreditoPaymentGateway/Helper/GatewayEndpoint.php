@@ -6,18 +6,14 @@ use Firebase\JWT\JWT;
 use Zend_Http_Client;
 use Zend_Http_Response;
 use Magento\Framework\Url;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Magento\Sales\Model\Order;
-use Magento\Framework\HTTP\ZendClientFactory;
 use MagentoSistecredito\SistecreditoPaymentGateway\Gateway\Config\Config;
 
 class GatewayEndpoint
 {
     const ERROR_COMMUNICATION = "ERROR_COMMUNICATION";
-
-    /**
-     * @var ZendClientFactory
-     */
-    private $_clientFactory;
 
     /**
      * @var Config
@@ -40,13 +36,11 @@ class GatewayEndpoint
     private SistecreditoOrderLog $sistecreditoOrderLog;
 
     public function __construct(
-        ZendClientFactory $clientFactory,
         Config            $gatewayConfig,
         Url               $urlInterface,
         DbHelper          $_dbHelper
     )
     {
-        $this->_clientFactory = $clientFactory;
         $this->_gatewayConfig = $gatewayConfig;
         $this->_urlInterface = $urlInterface;
         $this->_dbHelper = $_dbHelper;
@@ -56,9 +50,9 @@ class GatewayEndpoint
      * @param Order $order
      * @param string $typeDocument
      * @param string $idDocument
-     * @param $sistecreditoOrderLog SistecreditoOrderLog
+     * @param SistecreditoOrderLog $sistecreditoOrderLog
      * @return string
-     * @throws \Zend_Http_Client_Exception
+     * @throws \Exception
      */
     public function getPaymentProcessUrl(Order $order, string $typeDocument, string $idDocument, SistecreditoOrderLog &$sistecreditoOrderLog): string
     {
@@ -69,18 +63,17 @@ class GatewayEndpoint
         $this->sistecreditoOrderLog->request = $this->_getBody($order, $typeDocument, $idDocument);
         $this->sistecreditoOrderLog->requestUrl = $this->_gatewayConfig->getGatewayUrl();
 
-        $client = $this->_clientFactory->create();
-        $client->setMethod(Zend_Http_Client::POST);
-        $client->setRawData($this->sistecreditoOrderLog->request);
-        $client->setHeaders($requestHeaders);
-        $client->setUri($this->sistecreditoOrderLog->requestUrl);
-
+        $client = new Client();
+        $options = [
+            'headers' => $requestHeaders,
+            'body' => $this->sistecreditoOrderLog->request
+        ];
 
         try {
             $this->sistecreditoOrderLog->action = GatewayActions::REST_API_REQUEST_SENT;
 
-            $response = $client->request();
-            $parsedResponse = $this->_parseResponse($response);
+            $response = $client->post($this->sistecreditoOrderLog->requestUrl, $options);
+            $parsedResponse = $this->_parseResponse($response->getBody()->getContents());
 
             if ($parsedResponse->getErrorCode() == GatewayResponse::SUCCESS_CODE) {
                 $this->sistecreditoOrderLog->transactionId = $parsedResponse->getTransactionId();
@@ -95,7 +88,7 @@ class GatewayEndpoint
             $this->_dbHelper->createSistecreditoOrderLog("Sistecredito [SistecreditoModule::validation]: Error create transaction payment: {$parsedResponse->getErrorCode()} - {$error["message"]} - {$error["description"]}", $this->sistecreditoOrderLog);
 
             throw new \Exception($parsedResponse->getErrorCode() . "-" . $error["description"]);
-        } catch (\Zend_Http_Client_Exception $e) {
+        } catch (RequestException $e) {
             throw new \Exception(self::ERROR_COMMUNICATION);
         }
     }
@@ -104,7 +97,7 @@ class GatewayEndpoint
      * @param $sisteCreditoOrderLog
      * @param Order $order
      * @return mixed
-     * @throws \Zend_Http_Client_Exception
+     * @throws \Exception
      */
     public function getInfoCredit(&$sisteCreditoOrderLog, Order $order)
     {
@@ -113,15 +106,19 @@ class GatewayEndpoint
         $requestHeader = $this->_getHeaders($order);
         $this->sistecreditoOrderLog->request = json_encode($requestHeader);
 
-        $client = $this->_clientFactory->create();
-        $client->setMethod(Zend_Http_Client::GET);
-        $client->setHeaders($requestHeader);
-        $client->setUri($this->sistecreditoOrderLog->requestUrl);
+        $client = new Client();
+        $options = [
+            'headers' => $requestHeader
+        ];
 
-        $response = $client->request();
-        $this->sistecreditoOrderLog->response = $response->getRawBody();
+        try {
+            $response = $client->get($this->sistecreditoOrderLog->requestUrl, $options);
+            $this->sistecreditoOrderLog->response = $response->getBody()->getContents();
 
-        return json_decode($response->getRawBody());
+            return json_decode($this->sistecreditoOrderLog->response);
+        } catch (RequestException $e) {
+            throw new \Exception(self::ERROR_COMMUNICATION);
+        }
     }
 
     private function _getBody(Order $order, string $typeDocument, string $idDocument): string
@@ -171,10 +168,10 @@ class GatewayEndpoint
         return $this->sistecreditoOrderLog->jwt;
     }
 
-    private function _parseResponse(Zend_Http_Response $response): GatewayResponse
+    private function _parseResponse($response): GatewayResponse
     {
-        $this->sistecreditoOrderLog->response = $response->getRawBody();
-        $parsedObject = json_decode($response->getRawBody());
+        $this->sistecreditoOrderLog->response = $response;
+        $parsedObject = json_decode($response);
         $errorCode = $parsedObject->errorCode ?? $parsedObject->statusCode;
 
         if ($errorCode == GatewayResponse::SUCCESS_CODE) {

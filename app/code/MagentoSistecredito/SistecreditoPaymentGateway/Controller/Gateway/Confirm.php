@@ -3,7 +3,7 @@
 namespace MagentoSistecredito\SistecreditoPaymentGateway\Controller\Gateway;
 
 use Exception;
-use Firebase\JWT\JWT;
+
 use Firebase\JWT\Key;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\ObjectManager;
@@ -157,7 +157,7 @@ class Confirm extends Action
         $requestType = $_SERVER['REQUEST_METHOD'];
         switch ($requestType) {
             case 'POST':
-                $requestBody = file_get_contents("php://input");
+                $requestBody = $this->_dbHelper->fileGetContents("php://input");
                 $parsedResponse = json_decode($requestBody, true);
                 $confirmationRequest = filter_var_array($parsedResponse, $this->_confirmationRequestValidations);
                 return $this->confirmPayment($confirmationRequest);
@@ -243,7 +243,7 @@ class Confirm extends Action
      */
     private function payerOrderResponse()
     {
-        $validatedGetParams = filter_input_array(INPUT_GET, $this->_orderStatusRequestValidations);
+        $validatedGetParams = $this->_dbHelper->filterInputArray(INPUT_GET, $this->_orderStatusRequestValidations);
 
         if ($validatedGetParams !== NULL) {
             $isRequestValid = array_reduce($validatedGetParams, function ($previousValue, $currentField) {
@@ -286,7 +286,7 @@ class Confirm extends Action
 
         if($urlReturn){
             try {
-                $response = file_get_contents($urlReturn);
+                $response = $this->_dbHelper->validUrlRedirect($urlReturn);
                 if($response){
                     return $resultRedirect->setPath($urlReturn, ['_secure' => false]);
                 }
@@ -298,6 +298,8 @@ class Confirm extends Action
 
         return $this->redirectMagento($success,$resultRedirect);
     }
+
+
 
     private function redirectMagento($success,$resultRedirect){
         if($success){
@@ -324,7 +326,7 @@ class Confirm extends Action
             );
         }
 
-        $invoice = $this->getObjectManager()
+        $invoice = $this->_dbHelper->getObjectManager()
             ->create('Magento\Sales\Model\Service\InvoiceService')
             ->prepareInvoice($order);
 
@@ -338,15 +340,11 @@ class Confirm extends Action
         $invoice->setRequestedCaptureCase(Order\Invoice::CAPTURE_OFFLINE);
         $invoice->register();
 
-        $transaction = $this->getObjectManager()->create('Magento\Framework\DB\Transaction')
+        $transaction = $this->_dbHelper->getObjectManager()->create('Magento\Framework\DB\Transaction')
             ->addObject($invoice)
             ->addObject($invoice->getOrder());
-        $transaction->save();
-    }
 
-    private function getObjectManager(): ObjectManager
-    {
-        return ObjectManager::getInstance();
+        $transaction->save();
     }
 
     /**
@@ -418,11 +416,11 @@ class Confirm extends Action
     {
         $this->sistecreditoOrderLog->action = GatewayActions::VALIDATE_REQUEST_JWT;
         $jwt = new Key($this->sistecreditoOrderLog->requestToken, "HS256");
-        $decodedJwtToken = JWT::decode($this->sistecreditoOrderLog->jwt, $jwt, array('HS256'));
+        $decodedJwtToken = $this->_dbHelper->decodeJwt($this->sistecreditoOrderLog->jwt, $jwt, array('HS256'));
 
         if ($decodedJwtToken->aud !== $this->_urlInterface->getBaseUrl()) {
             $this->responseClient->errorCode = 824;
-            $this->responseClient->message = __(sprintf('The JWT token has a different audience (%s) than expected (%s)', $decodedJwtToken->aud, Tools::getShopDomainSsl(true, true)), 'confirmation');
+            $this->responseClient->message = __(sprintf('The JWT token has a different audience (%s) than expected (%s)', $decodedJwtToken->aud, $this->_dbHelper->getShopDomainSsl()), 'confirmation');
             $this->saveResponseConfirmation(true, $order);
             return false;
         }
@@ -488,10 +486,8 @@ class Confirm extends Action
                         $payment->addTransaction(Transaction::TYPE_CAPTURE, null, true);
                     }
                     $order->save();
-                } else {
-                    if($order->getState() == "pending" || $order->getState() == "new" ) {
-                        $this->incrementInventory($order->getId());
-                    }
+                }
+                else {
                     $payment = $order->getPayment();
                     $payment->setAmountCanceled($order->getGrandTotal());
                     $order->setState(Order::STATE_CANCELED);
@@ -563,7 +559,7 @@ class Confirm extends Action
     }
 
     public function incrementInventory($orderId){
-        $objectManager = ObjectManager::getInstance();
+        $objectManager = $this->_dbHelper->getObjectManager();
         $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
         $connection = $resource->getConnection();
         $sql = "SELECT sku FROM quote_item WHERE quote_id = '$orderId'";

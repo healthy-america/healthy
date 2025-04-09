@@ -219,7 +219,7 @@ define(['Magento_Checkout/js/view/payment/default', 'Magento_Checkout/js/model/q
                 externalPageRedirection: this.getOnSameSite(),
                 buttonFloating: "false",
                 defaultButtonHidden: "true",
-                openModal: "false"
+                openModal: "true"
             };
 
             appVisor.setAttribute("options", JSON.stringify(dataCheckout));

@@ -8,7 +8,7 @@ namespace MagentoSistecredito\SistecreditoPaymentGateway\Test\Unit\Model\Adminht
 use Magento\Payment\Model\Method\AbstractMethod;
 use MagentoSistecredito\SistecreditoPaymentGateway\Model\Adminhtml\Source\PaymentAction;
 
-class PaymentActionTest extends \PHPUnit_Framework_TestCase
+class PaymentActionTest extends \PHPUnit\Framework\TestCase
 {
     public function testToOptionArray()
     {
