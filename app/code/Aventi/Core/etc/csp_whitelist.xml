@@ -17,6 +17,7 @@
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="jsdelivr" type="host">*.jsdelivr.net</value>
+                <value id="sistecredito" type="host">*.credinet.co</value>
             </values>
         </policy>
         <policy id="style-src">
@@ -49,6 +50,7 @@
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
+                <value id="sistecredito" type="host">*.credinet.co</value>
             </values>
         </policy>
         <policy id="font-src">
