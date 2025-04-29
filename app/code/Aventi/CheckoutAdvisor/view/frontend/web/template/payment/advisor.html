@@ -1,0 +1,33 @@
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-option _collapsible opc-payment-additional advisor"
+     data-bind="mageInit: {'collapsible':{'openedState': '_active'}}">
+    <div class="payment-option-title field choice" data-role="title">
+        <span class="action action-toggle" id="block-advisor-heading" role="heading" aria-level="2">
+            <!-- ko i18n: "Are you Healthy's advisor?"--><!-- /ko -->
+        </span>
+    </div>
+    <div class="payment-option-content" data-role="content">
+        <form class="form form-advisor" id="advisor-form">
+            <div class="payment-option-inner">
+                <div class="field">
+                    <label class="label" for="payment_advisor">
+                        <span data-bind="i18n: 'Advisor'"></span>
+                    </label>
+                    <div class="control">
+                        <input class="input-text"
+                               type="text"
+                               id="payment_advisor"
+                               name="payment_advisor"
+                               data-validate="{'required-entry':true}"
+                               data-bind="value: advisor, attr:{placeholder: $t('Enter advisor code')} " />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="sales_order_payment">
+        <column name="payment_advisor" nullable="true" xsi:type="varchar" comment="Advisor" length="250"/>
+    </table>
+    <table name="quote_payment">
+        <column name="payment_advisor" nullable="true" xsi:type="varchar" comment="Advisor" length="250"/>
+    </table>
+</schema>
