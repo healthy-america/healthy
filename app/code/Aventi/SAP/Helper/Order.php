@@ -255,13 +255,14 @@ class Order extends AbstractHelper
         $slpCode = $this->_configuration->getSlpCode();
         $incrementId = $order->getIncrementId();
 
-        $comment = "Orden No.: $incrementId | Metodo de pago: $paymentTitle";
+        $comment = "Metodo de pago: $paymentTitle | Orden No.: $incrementId";
+        $customSlpCode = $order->getPayment()->getData('payment_advisor');
 
         return [
             'TipoDocumento' => 17,
             'CardCode' => "CN",
             'DocDueDate' => date_format(date_create($order->getCreatedAt()), 'm/d/Y'),
-            "SlpCode" => $slpCode,
+            "SlpCode" => empty($customSlpCode) ? $slpCode : $customSlpCode,
             'Serie' => $this->_configuration->getSerie(),
             'CamposUsuario' => $userFields,
             'CiudadS' => $order->getBillingAddress()->getCity(),
