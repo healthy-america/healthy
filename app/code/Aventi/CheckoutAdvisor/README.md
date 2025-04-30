@@ -1,4 +1,4 @@
-# Mage2 Module Aventi CheckoutAdvisor
+# Module Aventi CheckoutAdvisor
 
     ``aventi/module-checkoutadvisor``
 
