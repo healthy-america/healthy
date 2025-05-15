@@ -384,6 +384,17 @@
                         .megamenu-content {
                             ul#mainMenu {
                                 > li {
+                                    &.item-home {
+                                        > a {
+                                            iconify-icon {
+                                                color: @white;
+                                            }
+
+                                            span {
+                                                line-height: 1;
+                                            }
+                                        }
+                                    }
 
                                     &.dropdown {
                                         > a {
@@ -731,6 +742,23 @@
                                     ul#mainMenu {
                                         > li {
                                             border-bottom: unset;
+
+                                            &.item-home {
+                                                > a {
+                                                    display: flex;
+                                                    flex-direction: row-reverse;
+                                                    justify-content: left;
+                                                    gap: 5px;
+
+                                                    iconify-icon {
+                                                        color: @color-primary;
+                                                    }
+
+                                                    span {
+                                                        margin: 0;
+                                                    }
+                                                }
+                                            }
 
                                             > a.level0 {
                                                 font-weight: 600;
