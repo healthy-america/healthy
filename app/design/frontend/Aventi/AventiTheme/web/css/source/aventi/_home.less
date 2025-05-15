@@ -125,20 +125,33 @@
 
     // Brands slider
 
-    body#html-body .brand-slider {
-        background: @grey-light;
-        .owl-item a {
-            background-size: contain !important;
+    body#html-body {
+        .custom-brand-section {
+            .owl-stage-outer {
+                .owl-stage {
+                    .owl-item {
+                        .slide-text {
+                            padding: 0;
+                        }
+                    }
+                }
+            }
         }
-
-        .owl-nav {
-            .owl-next,
-            .owl-prev {
-                background: rgba(31, 32, 33, 0.6) !important;
-                border-radius: 0;
-                border: 0;
-                color: #fff;
-                top: 47%;
+        .brand-slider {
+            background: @grey-light;
+            .owl-item a {
+                background-size: contain !important;
+            }
+    
+            .owl-nav {
+                .owl-next,
+                .owl-prev {
+                    background: rgba(31, 32, 33, 0.6) !important;
+                    border-radius: 0;
+                    border: 0;
+                    color: #fff;
+                    top: 47%;
+                }
             }
         }
     }
