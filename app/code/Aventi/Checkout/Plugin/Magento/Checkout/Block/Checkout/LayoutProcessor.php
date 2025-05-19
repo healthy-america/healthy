@@ -106,6 +106,7 @@ class LayoutProcessor
         // Restrict street address length
         foreach ($shippingForm['street']['children'] as $key => &$line) {
             $line['validation']['max_text_length'] = 100;
+            $line['config']['elementTmpl'] = 'Aventi_Checkout/form/element/input-address';
             if ($key === 1) {
                 $line['placeholder'] = __('Address complement (Neighborhood, apartment, etc)');
             }
