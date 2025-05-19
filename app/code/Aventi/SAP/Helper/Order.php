@@ -262,7 +262,8 @@ class Order extends AbstractHelper
             'TipoDocumento' => 17,
             'CardCode' => "CN",
             'DocDueDate' => date_format(date_create($order->getCreatedAt()), 'm/d/Y'),
-            "SlpCode" => empty($customSlpCode) ? $slpCode : $customSlpCode,
+            "SlpCode" => empty($customSlpCode) ? $slpCode : "",
+            "SlpName" => empty($customSlpCode) ? "" : $customSlpCode,
             'Serie' => $this->_configuration->getSerie(),
             'CamposUsuario' => $userFields,
             'CiudadS' => $order->getBillingAddress()->getCity(),
@@ -505,6 +506,8 @@ class Order extends AbstractHelper
         $userFields = $this->getCustomerUserFields($orderEntity->getShippingAddress());
         $addressComplement = isset($orderEntity->getShippingAddress()->getStreet()[1]) ?
             strtoupper($orderEntity->getShippingAddress()->getStreet()[1]) : '';
+        $customSlpCode = $orderEntity->getPayment()->getData('payment_advisor');
+        $slpCode = $this->_configuration->getSlpCode();
 
         return [
             "LicTradNum" => $identification,
@@ -512,7 +515,8 @@ class Order extends AbstractHelper
             "CardFName" => "",
             "ListNum" => $this->_configuration->getListNum(),
             "GroupCode" => $this->_configuration->getGroupCode(),
-            "SlpCode" => $this->_configuration->getSlpCode(),
+            "SlpCode" => empty($customSlpCode) ? $slpCode : "",
+            "SlpName" => empty($customSlpCode) ? "" : $customSlpCode,
             "Phone1" => $telephone,
             "Email" => $email,
             "Address2S" => "",
