@@ -296,41 +296,58 @@
                 }
 
                 .product.media {
-                    .owl-carousel.gallery-horizontal {
-                        .owl-nav {
-                            .owl-next ,
-                            .owl-prev {
-                                display: flex;
-                                align-items: center;
-                                justify-content: center;
-                                width: 30px;
-                                height: 30px;
-                                background: rgba(31, 32, 33, 0.60);
-                                border: none;
-                                border-radius: unset;
-                                opacity: 1;
-                                visibility: visible;
+                    .owl-nav {
+                        > div {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50%; 
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            opacity: 1;
+                            visibility: visible;
+                            border: none;
 
-                                .fa {
-                                    color: @white;
-                                    font-size: 24px;
-                                }
+                            &.disabled {
+                                background: @grey-clear;
+                                opacity: .7;
                             }
 
-                            // Arrow next
-                            .owl-next {
-                                right: 0;
-                                .fa {
-                                    margin-left: 3px;
+                            &:not(.disabled) {
+                                background: @blue-selected !important; // Important from parent theme
+                                
+                                i {
+                                    &::before {
+                                        color: @white;
+                                    }
                                 }
                             }
+                        }
 
-                            // Arrow prev
-                            .owl-prev {
-                                left: 0;
-                                .fa {
-                                    margin-right: 3px;
-                                }
+                        .owl-next ,
+                        .owl-prev {
+
+                            .fa {
+                                color: @white;
+                                font-size: 24px;
+                            }
+                        }
+
+                        // Arrow next
+                        .owl-next {
+                            right: 10px;
+
+                            .fa {
+                                margin-left: 3px;
+                            }
+                        }
+
+                        // Arrow prev
+                        .owl-prev {
+                            left: 10px;
+
+                            .fa {
+                                margin-right: 3px;
                             }
                         }
                     }

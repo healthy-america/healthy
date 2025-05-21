@@ -907,6 +907,60 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
+    #html-body {
+        header.page-header {
+            div.header-area {                
+                .top-header {    
+                    .line {    
+                        .logo-container {
+                            .action.nav-tg.hidden-des {
+                                img {
+                                    width: 32px;
+                                    height: 32px;
+                                }
+                            }
+                        }
+                        .search-container {
+                            width: 32px;
 
+                            .search-form {
+                                .actions-search {
+                                    button {
+                                        svg {
+                                            width: 32px;
+                                            height: 32px;
+                                        }
+                                    }
+                                }   
+                            }
+                        }      
+
+                        .actions-container {
+                            .right-content.table-icon-menu {        
+                                .cart-container {
+                                    display: flex;
+                                    flex-direction: column;
+                                    overflow: visible;
+
+                                    .minicart-wrapper {
+                                        margin: 0;
+
+                                        .action.showcart{
+                                            display: flex;
+                                            flex-direction: column;
+                                            
+                                            &::before {
+                                                content: url('https://api.iconify.design/mdi/cart-outline.svg?color=%23DC041C&width=32&height=32');
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 }
