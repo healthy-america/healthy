@@ -542,85 +542,91 @@
                             padding: 0;
 
                             .search-form {
-                                .block.block-search.active {
-                                    button.search-close {
-                                        z-index: 11;
-                                        transform: none;
-                                        width: 30px;
-                                        height: 30px;
-                                        font-size: 30px;
-                                        top: 18px;
+                                .block.block-search {
+                                    display: none;
+                                    
+                                    &.active {
+                                        display: block;
 
-                                        i {
-                                            &::before {
-                                                content: url('https://api.iconify.design/ic/round-close.svg?color=white&width=30&height=30');
-                                            }
-                                        }
-                                    }
-                                    .block.block-content {
-                                        position: fixed;
-                                        top: 0;
-                                        left: 0;
-                                        width: 100%;
-                                        z-index: 10;
-                                        background-color: @color-primary; 
-                                        padding: 16px 25px;
-
-                                        form#search_mini_form {
-                                            margin: 0 40px 0 0;
-                                            padding: 0;
-                                            padding-right: 20px;
-                                            max-width: none;
-                                            background-color: @white;
-                                            box-shadow: none;
-                                            height: 34px;
-
-                                            .actions {
-                                                button.action.search {
-                                                    padding: 5px;
-                                                    background-color: transparent;
-                                                    border: none;
-
-                                                    &::before {
-                                                        content: '\e615';
-                                                        font-family: 'icons-blank-theme';
-                                                        font-size: 22px;
-                                                        line-height: 22px;
-                                                    }
-
-                                                    span {
-                                                        display: none;
-                                                    }
+                                        button.search-close {
+                                            z-index: 11;
+                                            transform: none;
+                                            width: 30px;
+                                            height: 30px;
+                                            font-size: 30px;
+                                            top: 18px;
+    
+                                            i {
+                                                &::before {
+                                                    content: url('https://api.iconify.design/ic/round-close.svg?color=white&width=30&height=30');
                                                 }
                                             }
-
-                                            .field.search {
-                                                .control {
-                                                    input#search {
-                                                        color: @black;
-                                                        position: unset;
-                                                        margin: 0 auto;
-                                                        width: ~'calc(100% - 20px)';
-                                                        height: 34px;
+                                        }
+                                        .block.block-content {
+                                            position: fixed;
+                                            top: 0;
+                                            left: 0;
+                                            width: 100%;
+                                            z-index: 10;
+                                            background-color: @color-primary; 
+                                            padding: 16px 25px;
+    
+                                            form#search_mini_form {
+                                                margin: 0 40px 0 0;
+                                                padding: 0;
+                                                padding-right: 20px;
+                                                max-width: none;
+                                                background-color: @white;
+                                                box-shadow: none;
+                                                height: 34px;
+    
+                                                .actions {
+                                                    button.action.search {
+                                                        padding: 5px;
+                                                        background-color: transparent;
+                                                        border: none;
+    
+                                                        &::before {
+                                                            content: '\e615';
+                                                            font-family: 'icons-blank-theme';
+                                                            font-size: 22px;
+                                                            line-height: 22px;
+                                                        }
+    
+                                                        span {
+                                                            display: none;
+                                                        }
                                                     }
-
-                                                    .mgs-instant-search-dropdown {
-                                                        width: 95vw;
-                                                        top: 60px;
-                                                        right: unset;
-                                                        left: 0;
-
-                                                        .products.products-list {
-                                                            ul.products.list.items.product-items {
-                                                                max-height: 500px;
-                                                                overflow: auto;
-                                                                padding: 0 10px;
-
-                                                                li.item.product.product-item {
-                                                                    .product-item-info {
-                                                                        .product-item-details {
-                                                                            .product.name.product-item-name {
-                                                                                justify-content: left;
+                                                }
+    
+                                                .field.search {
+                                                    .control {
+                                                        input#search {
+                                                            color: @black;
+                                                            position: unset;
+                                                            margin: 0 auto;
+                                                            width: ~'calc(100% - 20px)';
+                                                            height: 34px;
+                                                        }
+    
+                                                        .mgs-instant-search-dropdown {
+                                                            width: 95vw;
+                                                            top: 60px;
+                                                            right: unset;
+                                                            left: 0;
+    
+                                                            .products.products-list {
+                                                                ul.products.list.items.product-items {
+                                                                    max-height: 500px;
+                                                                    overflow: auto;
+                                                                    padding: 0 10px;
+    
+                                                                    li.item.product.product-item {
+                                                                        .product-item-info {
+                                                                            .product-item-details {
+                                                                                .product.name.product-item-name {
+                                                                                    justify-content: left;
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
@@ -632,6 +638,7 @@
                                             }
                                         }
                                     }
+
                                 }
 
                                 .actions-search {
