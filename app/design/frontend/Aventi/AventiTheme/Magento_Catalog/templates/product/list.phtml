@@ -173,13 +173,11 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                             </a>
                             <!-- Product label-->
                             <?php echo $themeHelper->getProductLabel($_product); ?>
-                            <?php if(!$_hideWishlist || !$_hideCompare): ?>
-                                <ul data-role="add-to-links" class="actions-link actions-secondary">
-                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
-                                        <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
-                                    <?php endif; ?>
-                                </ul>
-                            <?php endif ?>
+                            <ul data-role="add-to-links" class="actions-link actions-secondary">
+                                <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                    <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                                <?php endif; ?>
+                            </ul>
                         </div>
                         <div class="product details product-item-details">
                             <?php
