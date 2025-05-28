@@ -55,7 +55,49 @@
                 }
 
                 ul.actions-link {
-                    display: none;
+                    top: 10px;
+                    left: 10px;
+
+                    .action.tocompare,
+                    .action.quickview {
+                        display: none;
+                    }
+
+                    .action.towishlist {
+                            background-color: @white;
+                            border-radius: 50%;
+                            border: none;
+                            width: 35px;
+                            height: 35px;
+                            min-height: unset;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            box-shadow: none;
+    
+                            &::before {
+                                display: none;
+                            }
+    
+                            i {
+                                &::before {
+                                    display: block;
+                                    content: url('https://api.iconify.design/teenyicons/heart-outline.svg?color=%231c3ba3&width=20&height=20');
+                                    line-height: 1;
+                                    margin-top: 1px;
+                                }
+                            }
+                            
+                            &:hover {
+                                background-color: @color-primary;
+
+                                i {
+                                    &::before {
+                                        content: url('https://api.iconify.design/teenyicons/heart-solid.svg?color=white&width=20&height=20');
+                                    }
+                                }
+                            }
+                        }
                 }
 
                 .product-label.multiple-label {
@@ -210,6 +252,226 @@
                 }
             }
         } 
+
+        //styles to wishlist cards
+        .products-grid,
+        .products-list {
+
+            //mosaic cards in wishtlist
+            &.wishlist {
+
+                .product-items {
+                    display: grid;
+                    gap: 20px;
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                    margin: 0;
+                    
+                    .product-item {
+                        border-radius: 0;
+                        background-color: @white;
+                        margin: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        position: relative;
+                        border: none;
+
+                        .product-item-info {
+                            padding: 0;
+                            border-radius: 0;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+
+                            .product-item-photo{
+                                background-color: @white;
+                                border-radius: 0 0 0 0;
+                                padding: 0;
+                                display: flex;
+                
+                                .product-image-wrapper {
+                                    padding-bottom: 100% !important; // Tiene un estilo quemado en el elemento
+                                }
+                            }
+                
+                            .product-item-name {
+                                height: 44px;
+                                text-decoration: none;
+                                display: flex;
+                                align-items: center;
+                                margin: 0;
+                                justify-content: center;
+            
+                                a{
+                                    text-align: center;
+                                    font-size: 16px;
+                                    color: @black; 
+                                    font-size: 14px;
+                                    line-height: normal;
+                                    font-weight: 500;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    display: -webkit-box;
+                                    max-height: 48px;
+                                    -webkit-line-clamp: 2;
+                                    -webkit-box-orient: vertical;
+                                        
+                                    &:hover {
+                                        text-decoration: none;
+                                    }
+                                }
+                            }
+            
+                            .price-box .price-as-configured{
+                                display: flex;
+                                flex-direction: row-reverse;
+                                align-items: center;
+                                justify-content: center;
+                                gap: 6px;
+
+                                .special-price,
+                                > .price-container.price-final_price {
+                                    .price {
+                                        font-size: 20px;
+                                        font-weight: 700;
+                                        color: @black;
+                                    }
+                                }
+
+                                .old-price {
+                                    .price {
+                                        font-size: 12px;
+                                        font-weight: 500;
+                                        color: @gray-neutral-4;
+                                    }
+                                }
+                            }
+
+                            .tooltip.product-item-tooltip {
+                                display: none;
+                            }
+
+                            .product-item-inner {
+                                display: block;
+                                padding: 0;
+
+                                .field.comment-box {
+                                    display: none;
+                                }
+
+                                .box-tocart {
+
+                                    .fieldset {
+                                        margin: 0;
+                                        flex-direction: column;
+                                        gap: 15px;
+    
+                                        .field.qty {
+                                            display: none;
+                                            width: 100%;
+                                            padding: 0;
+
+                                            .input-text.qty {
+                                                width: 100%;
+                                            }
+                                        }
+                    
+                                        .product-item-actions{
+                                            width: 100%;
+                                            margin: 0;
+
+                                            .actions-primary {
+                                                width: 100%;
+    
+                                                button{
+                                                    width: 100%;
+                                                    background-color: @color-secondary;
+                                                    border: 0;
+                                                    color: @white;
+                                                    border-radius: 0;
+
+                                                    span {
+                                                        display: none;
+                                                    }
+    
+                                                    .text {
+                                                        display: flex;
+                                                        justify-content: center;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                } 
+
+                                .product-item-actions {
+                                    display: flex;
+                                    justify-content: center;
+                                    margin: 0;
+
+                                    .action {
+                                        line-height: 40px;
+                                        
+                                        i {
+                                            display: none;
+                                        }
+
+                                        &.edit {
+                                            display: none;
+                                        }
+    
+                                        &.delete {
+                                            position: absolute;
+                                            top: 10px;
+                                            left: 10px;
+                                            background-color: @white;
+                                            border-radius: 50%;
+                                            border: none;
+                                            width: 35px;
+                                            height: 35px;
+                                            min-height: unset;
+                                            display: flex;
+                                            justify-content: center;
+                                            align-items: center;
+                                            box-shadow: none;
+                    
+                                            &::before {
+                                                display: none;
+                                            }
+                    
+                                            i {
+                                                display: block;
+
+                                                &::before {
+                                                    display: block;
+                                                    content: url('https://api.iconify.design/tabler/heart-x.svg?color=%23DC041C&width=20&height=20');
+                                                    line-height: 1;
+                                                    margin-top: 1px;
+                                                }
+                                            }
+                                            
+                                            &:hover {
+                                                background-color: @color-secondary;
+
+                                                i {
+                                                    &::before {
+                                                        content: url('https://api.iconify.design/tabler/heart-x.svg?color=white&width=20&height=20');
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        &:hover {
+                                            border: none;
+                                            background-color: none;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
@@ -254,6 +516,24 @@
                 max-width: 80%;
                 margin-right: 10%;
                 margin-left: 10%;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    body#html-body {
+
+        //styles to wishlist cards
+        .products-grid,
+        .products-list {
+
+            //mosaic cards in wishtlist
+            &.wishlist {
+
+                .product-items {
+                    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                }
             }
         }
     }
