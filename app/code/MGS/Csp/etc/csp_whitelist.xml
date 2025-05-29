@@ -15,8 +15,6 @@
                 <value id="newrelic" type="host">*.newrelic.com</value>
                 <value id="maps.googleapis" type="host">*.maps.googleapis.com</value>
                 <value id="trackedlink" type="host">*.trackedlink.net</value>
-                <value id="cloudfront" type="host">*.cloudfront.net</value>
-                <value id="rdstation" type="host">*.rdstation.com.br</value>
                 <value id="google" type="host">*.google.com</value>
                 <value id="maps-gstatic" type="host">*.maps.gstatic.com</value>
                 <value id="google-maps" type="host">maps.googleapis.com</value>
@@ -24,6 +22,8 @@
                 <value id="googleadservices" type="host">*.googleadservices.com</value>
                 <value id="adobedtm" type="host">*.adobedtm.com</value>
                 <value id="adobe" type="host">*.adobe.com</value>
+                <value id="connect.facebook" type="host">https://connect.facebook.net</value>
+                <value id="sharethis" type="host">*.sharethis.com</value>
                 <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
                 <value id="script-hash" type="hash" algorithm="sha256">RTByaTks5j/yvmwxSb8CM7ngq6JWVbQeTSaq58MYpCA=</value>
             </values>
@@ -45,10 +45,12 @@
                 <value id="google-maps" type="host">maps.googleapis.com</value>
                 <value id="google-fonts" type="host">fonts.googleapis.com</value>
                 <value id="google-analytics.com" type="host">*.google-analytics.com</value>
+                <value id="sharethis" type="host">*.sharethis.com</value>
             </values>
         </policy>
         <policy id="img-src">
             <values>
+                <value id="sharethis" type="host">*.sharethis.com</value>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="klarna-base" type="host">*.klarna.com</value>
                 <value id="googleadservices" type="host">*.googleadservices.com</value>
@@ -68,6 +70,7 @@
                 <value id="google-analytics.com" type="host">*.google-analytics.com</value>
                 <value id="google-analytics.com" type="host">*.google-analytics.com</value>
                 <value id="google-arrowtheme.com" type="host">https://clauem2.arrowtheme.com</value>
+                <value id="cdninstagram" type="host">https://scontent.cdninstagram.com/</value>
                 <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
             </values>
         </policy>
@@ -85,13 +88,13 @@
                 <value id="nrdata" type="host">*.nr-data.net</value>
                 <value id="newrelic" type="host">*.newrelic.com</value>
                 <value id="ampproject" type="host">*.ampproject.org</value>
-                <value id="rdstation" type="host">*.rdstation.com.br</value>
                 <value id="google" type="host">*.google.com</value>
                 <value id="googlein" type="host">*.google.co.in</value>
                 <value id="maps.gstatic.com" type="host">*.maps.gstatic.com</value>
                 <value id="maps.googleapis.com" type="host">*.maps.googleapis.com</value>
                 <value id="google-analytics.com" type="host">*.google-analytics.com</value>
                 <value id="google-maps" type="host">maps.googleapis.com</value>
+                <value id="sharethis" type="host">*.sharethis.com</value>
                 <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
             </values>
         </policy>
@@ -114,6 +117,7 @@
                 <value id="google" type="host">*.google.com</value>
                 <value id="youtube" type="host">*.youtube.com</value>
                 <value id="youtube_nocookie" type="host">*.youtube-nocookie.com</value>
+                <value id="sharethis" type="host">*.sharethis.com</value>
                 <value id="scontent-ams4-1.cdninstagram" type="host">https://scontent-ams4-1.cdninstagram.com</value>
             </values>
         </policy>
