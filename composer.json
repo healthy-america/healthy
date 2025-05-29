@@ -20,6 +20,7 @@
     "require": {
         "ext-simplexml": "*",
         "ext-soap": "*",
+        "amasty/module-company-account-subscription-pack": "^2.6",
         "bcncommerce/json-stream": "^0.4.2",
         "cweagans/composer-patches": "^1.7",
         "facebook/php-business-sdk": "^20.0",
@@ -84,12 +85,16 @@
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
-    "repositories": [
-        {
+    "repositories": {
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/community/"
+        },
+        "0": {
             "type": "composer",
             "url": "https://repo.magento.com/"
         }
-    ],
+    },
     "extra": {
         "magento-force": "override"
     }

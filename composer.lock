@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dca5b74426a0d5b9979e288d1620e41",
+    "content-hash": "3de9a84dba3e8e5275306cd7b031d85e",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -50,6 +50,101 @@
                 "source": "https://github.com/2tvenom/CBOREncode/tree/1.0.2"
             },
             "time": "2020-10-27T07:22:41+00:00"
+        },
+        {
+            "name": "amasty/base",
+            "version": "1.19.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/community/packages/amasty/base-1.19.1.zip"
+            },
+            "require": {
+                "ext-dom": "*",
+                "monolog/monolog": ">=1.17",
+                "php": ">=7.3"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\Base\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Base by Amasty"
+        },
+        {
+            "name": "amasty/module-company-account",
+            "version": "2.6.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/community/packages/amasty/module-company-account-2.6.1.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.19.1",
+                "php": ">=7.3"
+            },
+            "suggest": {
+                "amasty/module-company-account-to-builder": "Install Amasty_CompanyAccountToBuilder module to activate the integration with Custom Reports Builder extension and create valuable reports about your Company Accounts."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\CompanyAccount\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Company Account by Amasty"
+        },
+        {
+            "name": "amasty/module-company-account-subscription-pack",
+            "version": "2.6.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.amasty.com/community/packages/amasty/module-company-account-subscription-pack-2.6.1.zip"
+            },
+            "require": {
+                "amasty/base": ">=1.19.1",
+                "amasty/module-company-account": ">=2.4.0",
+                "php": ">=7.3"
+            },
+            "suggest": {
+                "amasty/module-company-account-custom-attributes": "This package provides the ability to create additional fields for a company registration form.",
+                "amasty/module-company-account-custom-attributes-hyva": "Install this package to ensure the Company Account Custom Attributes functionality works with Hyvä Theme.",
+                "amasty/module-company-account-export-entity": "Install this package for Export Company Accounts compatibility.",
+                "amasty/module-company-account-hyva": "Install this package to ensure the Company Account extension works with Hyvä Theme.",
+                "amasty/module-company-account-import-entity": "Install this package for Import Company Accounts compatibility.",
+                "amasty/module-company-account-order-approval-functionality": "Install this package for compatibility with Order Approvals functionality.",
+                "amasty/module-company-account-order-approval-functionality-hyva": "Install this package to ensure the Order Approvals functionality works with Hyvä Theme.",
+                "amasty/module-company-account-register": "This package allows users to create a Company Account from the 'Sign in' and 'Create an Account' pages.",
+                "amasty/module-company-account-register-hyva": "Install this package to ensure the Account Register functionality works with Hyvä Theme.",
+                "amasty/module-company-account-subaccount": "Install this package for compatibility with Subaccounts functionality.",
+                "amasty/module-company-account-subaccount-hyva": "Install this package to ensure the Subaccounts functionality works with Hyvä Theme.",
+                "amasty/module-company-account-subscription-functionality": "This package provides the ability to flexibly turn off custom email notifications."
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Amasty\\CompanyAccountSubscriptionPack\\": ""
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "description": "Company Account Subscription Pack",
+            "homepage": "https://amasty.com/"
         },
         {
             "name": "astock/stock-api-libphp",
