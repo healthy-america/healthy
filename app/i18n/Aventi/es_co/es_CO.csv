@@ -15029,7 +15029,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "This Wish List has no Items","Los favoritos no tienen artículos",module,Magento_Wishlist
 "%1 has been added to your Wish List.","%1 se ha agregado a su lista de deseos.",module,Magento_Wishlist
 "Click <a href=""%1"">here</a> to continue shopping.","Haga clic <a href=""%1""> aquí</a> para continuar comprando.",module,Magento_Wishlist
-"%1 has been removed from your Wish List.","%1 has been removed from your Wish List.",module,Magento_Wishlist
+"%1 ha sido eliminado de tu lista de deseos.","%1 ha sido eliminado de tu lista de deseos.",module,Magento_Wishlist
 "See Details","Ver información",module,Magento_Wishlist
 "Options Details","Detalles de las opciones",module,Magento_Wishlist
 "RSS link to %1's wishlist","Enlace RSS a la lista de deseos de %1",module,Magento_Wishlist
@@ -15409,3 +15409,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Enter Value","Ingresa un valor."
 "Enter Gift Code","Introduce el código de regalo"
 "Check Status","Chekear Status"
+"%1 has been removed from your Wish List.","%1 ha sido eliminado de tu lista de deseos."
