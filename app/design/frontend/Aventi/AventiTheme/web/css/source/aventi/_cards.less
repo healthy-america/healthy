@@ -320,31 +320,48 @@
                                     }
                                 }
                             }
-            
-                            .price-box .price-as-configured{
+
+                            // Price
+                            .price-box {
                                 display: flex;
                                 flex-direction: row-reverse;
-                                align-items: center;
                                 justify-content: center;
-                                gap: 6px;
 
-                                .special-price,
-                                > .price-container.price-final_price {
-                                    .price {
-                                        font-size: 20px;
-                                        font-weight: 700;
+                                p {
+                                    margin: 0;
+                                }
+
+                                .price {
+                                    font-weight: 600;
+                                    font-size: 16px;
+                                    line-height: 19px;
+                                    text-align: center;
+                                    color: @black;
+                                }
+
+                                .special-price {
+                                    * {
+                                        font-weight: 600;
+                                        font-size: 16px;
+                                        line-height: 19px;
+                                        text-align: center;
                                         color: @black;
                                     }
                                 }
 
                                 .old-price {
-                                    .price {
+                                    text-decoration: unset;
+                                    * {
+                                        font-weight: 600;
                                         font-size: 12px;
-                                        font-weight: 500;
-                                        color: @gray-neutral-4;
+                                        line-height: 11px;
+                                        text-align: center;
+                                        text-decoration-line: line-through;
+                                        color: @color-secondary;
                                     }
                                 }
                             }
+
 
                             .tooltip.product-item-tooltip {
                                 display: none;
