@@ -18,6 +18,8 @@
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="jsdelivr" type="host">*.jsdelivr.net</value>
                 <value id="sistecredito" type="host">*.credinet.co</value>
+                <value id="playervimeo" type="host">player.vimeo.com</value>
+                <value id="facebooknet" type="host">*.facebook.net</value>
             </values>
         </policy>
         <policy id="style-src">
@@ -40,6 +42,7 @@
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="amazonaws" type="host">*.amazonaws.com</value>
                 <value id="kaptcha.com" type="host">*.kaptcha.com</value>
+                <value id="seeklogo" type="host">seeklogo.com</value>
             </values>
         </policy>
         <policy id="connect-src">
