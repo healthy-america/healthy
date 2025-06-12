@@ -62,6 +62,7 @@ class Sincronice extends Command
         $output->writeln("Data to synchronize: " . $option . $msg);
 
         $this->console->execute($option, $output, $option2);
+        return 0;
     }
 
     /**

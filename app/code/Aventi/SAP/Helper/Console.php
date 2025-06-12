@@ -7,18 +7,23 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Helper;
 
+use Bcn\Component\Json\Exception\ReadingError;
+use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Exception\InputException;
+use Magento\Framework\Exception\LocalizedException;
+use Magento\Framework\Exception\NoSuchEntityException;
+use Magento\Framework\ObjectManagerInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Console
 {
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var ObjectManagerInterface
      */
-    private \Magento\Framework\ObjectManagerInterface $objectManager;
+    private ObjectManagerInterface $objectManager;
 
     public function __construct(
-        \Magento\Framework\ObjectManagerInterface $objectmanager,
+        ObjectManagerInterface $objectmanager,
     ) {
         $this->objectManager = $objectmanager;
     }
@@ -28,10 +33,10 @@ class Console
      * @param $output OutputInterface
      * @param null $option2
      * @throws InputException
-     * @throws \Bcn\Component\Json\Exception\ReadingError
-     * @throws \Magento\Framework\Exception\FileSystemException
-     * @throws \Magento\Framework\Exception\LocalizedException
-     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     * @throws ReadingError
+     * @throws FileSystemException
+     * @throws LocalizedException
+     * @throws NoSuchEntityException
      */
     public function execute($option, OutputInterface $output, $option2 = null)
     {
@@ -57,6 +62,10 @@ class Console
                 break;
             case 'brand':
                 $class = \Aventi\SAP\Model\Integration\Brand::class;
+                $data = ['fast' => !empty($option2)];
+                break;
+            case 'customer':
+                $class = \Aventi\SAP\Model\Integration\Customer::class;
                 $data = ['fast' => !empty($option2)];
                 break;
             case 'category':

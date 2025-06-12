@@ -39,10 +39,9 @@ class CheckFields extends AbstractCheck
      * GetHeadData
      *
      * @param $item
-     * @param $data
      * @return array
      */
-    public function getHeadData($item, $data): array
+    public function getHeadData($item): array
     {
         return [
             'name' => $item->getData('name') ?? '',

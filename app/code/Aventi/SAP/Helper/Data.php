@@ -141,6 +141,14 @@ class Data extends AbstractHelper
                 }
                 $uri.= $start . "/" . $rows;
                 break;
+            case 'customer':
+                if ($fast) {
+                    $uri = $this->configHelper->getUrlCustomersFast();
+                } else {
+                    $uri = $this->configHelper->getUrlCustomers();
+                }
+                $uri.= $start . "/" . $rows;
+                break;
             case 'stock':
                 if ($fast) {
                     $uri = $this->configHelper->getUrlStockFast();

@@ -19,7 +19,7 @@ class CheckStock extends AbstractCheck
         return $currentData;
     }
 
-    public function getHeadData($item, $data)
+    public function getHeadData($item)
     {
         $headData = [
             'qty' => $item->getQuantity()

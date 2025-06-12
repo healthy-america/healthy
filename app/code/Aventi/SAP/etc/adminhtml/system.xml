@@ -74,6 +74,12 @@
                         Url to synchronise stock from SAP to Magento. (Fast method).
                     ]]></comment>
                 </field>
+                <field id="ws_customer_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" translate="label comment" type="text">
+                    <label>WS Customer URL</label>
+                    <comment><![CDATA[
+                        Url to sync customers from SAP to Magento.
+                    ]]></comment>
+                </field>
                 <field id="ws_orders_url" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110" translate="label" type="text">
                     <label>WS URL Orders</label>
                     <comment><![CDATA[

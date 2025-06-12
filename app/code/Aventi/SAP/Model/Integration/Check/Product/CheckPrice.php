@@ -20,7 +20,7 @@ class CheckPrice extends AbstractCheck
         return $currentData;
     }
 
-    public function getHeadData($item, $data)
+    public function getHeadData($item)
     {
         $headData = [
             'price' => $item->getPrice()

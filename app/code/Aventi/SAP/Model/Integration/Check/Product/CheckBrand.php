@@ -19,7 +19,7 @@ class CheckBrand extends AbstractCheck
         return $currentData;
     }
 
-    public function getHeadData($item, $data)
+    public function getHeadData($item)
     {
         $headData = [
             'name' => $item->getData('name')

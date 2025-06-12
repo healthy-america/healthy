@@ -22,6 +22,8 @@ class Configuration extends AbstractHelper
     const XML_PATH_WS_SAP_PASSWORD = 'integration/settings/password';
     const XML_PATH_WS_URL_PRODUCT = 'integration/settings/ws_products_url';
     const XML_PATH_WS_URL_PRODUCT_FAST = 'integration/settings/ws_products_fast_url';
+    const XML_PATH_WS_URL_CUSTOMER = 'integration/settings/ws_customer_url';
+    const XML_PATH_WS_URL_CUSTOMER_FAST = 'integration/settings/ws_customer_fast_url';
     const XML_PATH_WS_URL_BRAND = 'integration/settings/ws_brand_url';
     const XML_PATH_WS_URL_STOCK = 'integration/settings/ws_stock_url';
     const XML_PATH_WS_URL_PRICE = 'integration/settings/ws_price_url';
@@ -74,6 +76,28 @@ class Configuration extends AbstractHelper
     public function getUrlProductsFast($store = null): mixed
     {
         return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_PRODUCT_FAST, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    /**
+     * Get URL Products
+     *
+     * @param $store
+     * @return mixed
+     */
+    public function getUrlCustomers($store = null): mixed
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_CUSTOMER, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    /**
+     * Get URL Products Fast
+     *
+     * @param $store
+     * @return mixed
+     */
+    public function getUrlCustomersFast($store = null): mixed
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_CUSTOMER_FAST, ScopeInterface::SCOPE_STORE, $store);
     }
 
     /**
