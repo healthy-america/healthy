@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Aventi Solutions
+~  Julian D Amaya <jamaya@aventi.co>
+  ~ 2022
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+        <add id="Aventi_PriceList::avpricelists/pricelist/index" title="Price List" translate="title"
+             module="Magento_Backend" sortOrder="40" parent="Aventi_Core::home"
+             action="avpricelists/pricelist/index" resource="Magento_Backend::content"
+             dependsOnConfig="price_lists/general/enable"/>
+	</menu>
+</config>

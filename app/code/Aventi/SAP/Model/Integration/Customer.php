@@ -15,6 +15,7 @@ use Aventi\SAP\Helper\Customer as CustomerHelper;
 use Aventi\SAP\Helper\Data;
 use Aventi\SAP\Logger\Logger;
 use Aventi\SAP\Model\Integration;
+use Aventi\SAP\Model\Integration\Manager\Price;
 use Bcn\Component\Json\Exception\ReadingError;
 use Bcn\Component\Json\Reader;
 use Exception;
@@ -56,6 +57,7 @@ class Customer extends Integration
      * @param Filesystem $filesystem
      * @param Attribute $attribute
      * @param Data $data
+     * @param Price $priceManager
      * @param Logger $logger
      */
     public function __construct(
@@ -67,6 +69,7 @@ class Customer extends Integration
         Filesystem $filesystem,
         Attribute $attribute,
         protected Data $data,
+        protected Price $priceManager,
         Logger $logger
     ) {
         parent::__construct($attribute, $logger, $driver, $filesystem);
@@ -194,10 +197,10 @@ class Customer extends Integration
             return;
         }
 
-        $company = $this->customerHelper->prepareCompany($customerObject);
-        $customer = $this->customerHelper->prepareCustomer($customerObject);
-
         try {
+            $company = $this->customerHelper->prepareCompany($customerObject);
+            $customer = $this->customerHelper->prepareCustomer($customerObject);
+
             if ($company['action'] == 'check' && $customer['action'] == 'check') {
                 $this->updateCreditLimit($company['object'], $customerObject);
                 $this->resTable['check']++;
@@ -225,6 +228,13 @@ class Customer extends Integration
             $customerObject->credit_data['credit_limit'],
             $customerObject->credit_data['credit_balance']
         );
+        $priceList = $customerObject->custom_attributes['price_list'];
+        $defaultList = $this->configuration->getDefaultPrice();
+        $customerId = $company->getSuperUserId();
+
+        if ($defaultList && $priceList && ($defaultList !== $priceList)) {
+            $this->priceManager->addCustomerInPriceList($customerId, $priceList);
+        }
     }
 
 //    /**

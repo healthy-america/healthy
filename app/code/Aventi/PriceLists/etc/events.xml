@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="checkout_cart_product_add_after">
+        <observer name="aventi_pricelist_checkout_cart_product_add_after" instance="Aventi\PriceLists\Observer\Checkout\CustomPrice" />
+    </event>
+    <event name="sales_quote_collect_totals_before">
+        <observer name="aventi_pricelists_observer_sales_quotecollecttotalsbefore_sales_quote_collect_totals_before" instance="Aventi\PriceLists\Observer\Sales\QuoteCollectTotalsBefore"/>
+    </event>
+</config>

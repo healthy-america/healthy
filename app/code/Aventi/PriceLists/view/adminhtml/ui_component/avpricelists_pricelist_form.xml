@@ -1,0 +1,361 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">avpricelists_pricelist_form.avpricelists_pricelist_form_data_source</item>
+		</item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button name="back" class="Aventi\PriceLists\Block\Adminhtml\PriceList\Edit\BackButton"/>
+			<button name="delete" class="Aventi\PriceLists\Block\Adminhtml\PriceList\Edit\DeleteButton"/>
+			<button name="save" class="Aventi\PriceLists\Block\Adminhtml\PriceList\Edit\SaveButton"/>
+			<button name="save_and_continue" class="Aventi\PriceLists\Block\Adminhtml\PriceList\Edit\SaveAndContinueButton"/>
+		</buttons>
+        <layout>
+            <navContainerName>left</navContainerName>
+            <type>tabs</type>
+        </layout>
+		<namespace>avpricelists_pricelist_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>avpricelists_pricelist_form.avpricelists_pricelist_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="avpricelists_pricelist_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider name="avpricelists_pricelist_form_data_source" class="Aventi\PriceLists\Model\DataProvider\PriceList\DataProvider">
+			<settings>
+				<requestFieldName>entity_id</requestFieldName>
+				<primaryFieldName>entity_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="name" formElement="input" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">PriceList</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Name</label>
+				<dataScope>name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field name="description" formElement="input" sortOrder="20">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">PriceList</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Description</label>
+				<dataScope>description</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+        <field name="customer_groups" formElement="multiselect">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Customer groups</label>
+                <dataScope>customer_groups</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Aventi\PriceLists\Model\Config\Source\Customer\Groups"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+    </fieldset>
+    <fieldset name="products">
+        <settings>
+            <level>1</level>
+            <collapsible>false</collapsible>
+            <label>Products</label>
+        </settings>
+        <button name="add_product" component="Aventi_PriceLists/js/form/buttons/default">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="buttonClasses" xsi:type="string">add-new-product-button</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.products_update_modal.update_products_form_loader</item>
+                            <item name="actionName" xsi:type="string">destroyInserted</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.products_update_modal</item>
+                            <item name="actionName" xsi:type="string">openModal</item>
+                        </item>
+                        <item name="2" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.products_update_modal.update_products_form_loader</item>
+                            <item name="actionName" xsi:type="string">render</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <title translate="true">Add/Update Product</title>
+                <imports>
+                    <link name="parentId">${ $.provider}:data.general.entity_id</link>
+                </imports>
+            </settings>
+        </button>
+        <modal name="products_update_modal">
+            <settings>
+                <options>
+                    <option name="title" xsi:type="string" translate="true">Add/Update Product</option>
+                </options>
+            </settings>
+            <insertForm name="update_products_form_loader" component="Aventi_PriceLists/js/form/components/products-insert-form">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="priceListProductsListingProvider" xsi:type="string">ns = avpricelists_pricelistproducts_listing, index = avpricelists_pricelistproducts_listing</item>
+                        <item name="priceListProductsModalProvider" xsi:type="string">${ $.parentName }</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataLinks>
+                        <exports>true</exports>
+                        <imports>true</imports>
+                    </dataLinks>
+                    <formSubmitType>ajax</formSubmitType>
+                    <renderUrl path="mui/index/render_handle">
+                        <param name="handle">avpricelists_pricelistproducts_edit</param>
+                        <param name="buttons">1</param>
+                    </renderUrl>
+                    <loading>false</loading>
+                    <toolbarContainer>${ $.parentName }</toolbarContainer>
+                    <externalProvider>${ $.ns }.avpricelists_pricelistproducts_form_data_source</externalProvider>
+                    <ns>avpricelists_pricelistproducts_form</ns>
+                    <exports>
+                        <link name="parentId">${ $.externalProvider }:params.price_list_id</link>
+                    </exports>
+                    <imports>
+                        <link name="parentId">${ $.provider}:data.general.entity_id</link>
+                    </imports>
+                </settings>
+            </insertForm>
+        </modal>
+        <insertListing name="avpricelists_pricelistproducts_listing" component="Magento_Ui/js/form/components/insert-listing">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <autoRender>true</autoRender>
+                <selectionsProvider>avpricelists_pricelistproducts_listing.avpricelists_pricelistproducts_listing.avpricelists_pricelistproducts_columns.ids</selectionsProvider>
+                <dataScope>avpricelists_pricelistproducts_listing</dataScope>
+                <externalProvider>avpricelists_pricelistproducts_listing.avpricelists_pricelistproducts_listing_data_source</externalProvider>
+                <ns>avpricelists_pricelistproducts_listing</ns>
+                <exports>
+                    <link name="price_list_id">${ $.externalProvider }:params.price_list_id</link>
+                </exports>
+                <imports>
+                    <link name="price_list_id">${ $.provider}:data.general.entity_id</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+    <fieldset name="customers">
+        <settings>
+            <level>1</level>
+            <collapsible>false</collapsible>
+            <label>Customers</label>
+        </settings>
+        <button name="add_customer" component="Aventi_PriceLists/js/form/buttons/default">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="buttonClasses" xsi:type="string">add-new-customer-button</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.customers_update_modal.update_customers_form_loader</item>
+                            <item name="actionName" xsi:type="string">destroyInserted</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.customers_update_modal</item>
+                            <item name="actionName" xsi:type="string">openModal</item>
+                        </item>
+                        <item name="2" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.customers_update_modal.update_customers_form_loader</item>
+                            <item name="actionName" xsi:type="string">render</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <title translate="true">Add/Update customer</title>
+                <imports>
+                    <link name="parentId">${ $.provider}:data.general.entity_id</link>
+                </imports>
+            </settings>
+        </button>
+        <modal name="customers_update_modal">
+            <settings>
+                <options>
+                    <option name="title" xsi:type="string" translate="true">Add/Update Customer</option>
+                </options>
+            </settings>
+            <insertForm name="update_customers_form_loader" component="Aventi_PriceLists/js/form/components/customers-insert-form">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="priceListCustomersListingProvider" xsi:type="string">ns = avpricelists_pricelistcustomers_listing, index = avpricelists_pricelistcustomers_listing</item>
+                        <item name="priceListCustomersModalProvider" xsi:type="string">${ $.parentName }</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataLinks>
+                        <exports>true</exports>
+                        <imports>true</imports>
+                    </dataLinks>
+                    <formSubmitType>ajax</formSubmitType>
+                    <renderUrl path="mui/index/render_handle">
+                        <param name="handle">avpricelists_pricelistcustomers_edit</param>
+                        <param name="buttons">1</param>
+                    </renderUrl>
+                    <loading>false</loading>
+                    <toolbarContainer>${ $.parentName }</toolbarContainer>
+                    <externalProvider>${ $.ns }.avpricelists_pricelistcustomers_form_data_source</externalProvider>
+                    <ns>avpricelists_pricelistcustomers_form</ns>
+                    <exports>
+                        <link name="parentId">${ $.externalProvider }:params.price_list_id</link>
+                    </exports>
+                    <imports>
+                        <link name="parentId">${ $.provider}:data.general.entity_id</link>
+                    </imports>
+                </settings>
+            </insertForm>
+        </modal>
+        <insertListing name="avpricelists_pricelistcustomers_listing" component="Magento_Ui/js/form/components/insert-listing">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <autoRender>true</autoRender>
+                <selectionsProvider>avpricelists_pricelistcustomers_listing.avpricelists_pricelistcustomers_listing.avpricelists_pricelistcustomers_columns.ids</selectionsProvider>
+                <dataScope>avpricelists_pricelistcustomers_listing</dataScope>
+                <externalProvider>avpricelists_pricelistcustomers_listing.avpricelists_pricelistcustomers_listing_data_source</externalProvider>
+                <ns>avpricelists_pricelistcustomers_listing</ns>
+                <exports>
+                    <link name="price_list_id">${ $.externalProvider }:params.price_list_id</link>
+                </exports>
+                <imports>
+                    <link name="price_list_id">${ $.provider}:data.general.entity_id</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+    <fieldset name="categories">
+        <settings>
+            <level>1</level>
+            <collapsible>false</collapsible>
+            <label>Categories</label>
+        </settings>
+        <button name="add_category" component="Aventi_PriceLists/js/form/buttons/default">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="formElement" xsi:type="string">container</item>
+                    <item name="buttonClasses" xsi:type="string">add-new-category-button</item>
+                    <item name="actions" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.categories_update_modal.update_categories_form_loader</item>
+                            <item name="actionName" xsi:type="string">destroyInserted</item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.categories_update_modal</item>
+                            <item name="actionName" xsi:type="string">openModal</item>
+                        </item>
+                        <item name="2" xsi:type="array">
+                            <item name="targetName" xsi:type="string">${ $.parentName}.categories_update_modal.update_categories_form_loader</item>
+                            <item name="actionName" xsi:type="string">render</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <title translate="true">Add/Update category</title>
+                <imports>
+                    <link name="parentId">${ $.provider}:data.general.entity_id</link>
+                </imports>
+            </settings>
+        </button>
+        <modal name="categories_update_modal">
+            <settings>
+                <options>
+                    <option name="title" xsi:type="string" translate="true">Add/Update category</option>
+                </options>
+            </settings>
+            <insertForm name="update_categories_form_loader" component="Aventi_PriceLists/js/form/components/categories-insert-form">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="priceListCategoriesListingProvider" xsi:type="string">ns = avpricelists_pricelistcategories_listing, index = avpricelists_pricelistcategories_listing</item>
+                        <item name="priceListCategoriesModalProvider" xsi:type="string">${ $.parentName }</item>
+                    </item>
+                </argument>
+                <settings>
+                    <dataLinks>
+                        <exports>true</exports>
+                        <imports>true</imports>
+                    </dataLinks>
+                    <formSubmitType>ajax</formSubmitType>
+                    <renderUrl path="mui/index/render_handle">
+                        <param name="handle">avpricelists_pricelistcategories_edit</param>
+                        <param name="buttons">1</param>
+                    </renderUrl>
+                    <loading>false</loading>
+                    <toolbarContainer>${ $.parentName }</toolbarContainer>
+                    <externalProvider>${ $.ns }.avpricelists_pricelistcategories_form_data_source</externalProvider>
+                    <ns>avpricelists_pricelistcategories_form</ns>
+                    <exports>
+                        <link name="parentId">${ $.externalProvider }:params.price_list_id</link>
+                    </exports>
+                    <imports>
+                        <link name="parentId">${ $.provider}:data.general.entity_id</link>
+                    </imports>
+                </settings>
+            </insertForm>
+        </modal>
+        <insertListing name="avpricelists_pricelistcategories_listing" component="Magento_Ui/js/form/components/insert-listing">
+            <settings>
+                <dataLinks>
+                    <exports>false</exports>
+                    <imports>true</imports>
+                </dataLinks>
+                <autoRender>true</autoRender>
+                <selectionsProvider>avpricelists_pricelistcategories_listing.avpricelists_pricelistcategories_listing.avpricelists_pricelistcategories_columns.ids</selectionsProvider>
+                <dataScope>avpricelists_pricelistcategories_listing</dataScope>
+                <externalProvider>avpricelists_pricelistcategories_listing.avpricelists_pricelistcategories_listing_data_source</externalProvider>
+                <ns>avpricelists_pricelistcategories_listing</ns>
+                <exports>
+                    <link name="price_list_id">${ $.externalProvider }:params.price_list_id</link>
+                </exports>
+                <imports>
+                    <link name="price_list_id">${ $.provider}:data.general.entity_id</link>
+                </imports>
+            </settings>
+        </insertListing>
+    </fieldset>
+</form>

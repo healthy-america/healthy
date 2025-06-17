@@ -100,7 +100,7 @@ class Order extends AbstractHelper
                 $products[] = [
                     'ItemCode' => $item->getSku(),
                     'Quantity' => (int)$item->getQtyOrdered(),
-                    'Price' => (int)$item->getOriginalPrice(),
+                    'Price' => (int)$item->getPrice(),
                     'DiscountPercent' => $this->getPercentOfSaleIfApply($item),
                     'WhsCode' => $this->_configuration->getWhsCode(),
                     'OcrCode' => $this->getOcrCode($item),
@@ -163,7 +163,7 @@ class Order extends AbstractHelper
     public function getPercentOfSaleIfApply(OrderItemInterface $item): int
     {
         $discountPercent = 0;
-        $originalPrice = $item->getOriginalPrice(); #original_price
+        $originalPrice = $item->getPrice() ?? $item->getOriginalPrice();
         $discountAmount = (int)$item->getDiscountAmount(); #discount_amount
 
         if ($discountAmount !== 0) {

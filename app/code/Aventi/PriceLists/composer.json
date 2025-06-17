@@ -1,0 +1,23 @@
+{
+    "name": "aventi/module-pricelists",
+    "description": "Price List to set product specific store pricing",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "jamaya@aventi.co",
+            "name": "Julian David Amaya"
+        }
+    ],
+    "version": "1.0.1",
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Aventi\\PriceLists\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -44,6 +44,7 @@ class Configuration extends AbstractHelper
     const XML_PATH_SAP_GROUPCODE = 'integration/document/groupcode';
     const XML_PATH_SAP_GROUPNUM = 'integration/document/groupnum';
     const XML_PATH_SAP_TERRITORY = 'integration/document/territory';
+    const XML_PATH_SAP_DEFAULT_PRICE = 'integration/price/default_price';
 
     /**
      * Get URL WS
@@ -296,5 +297,16 @@ class Configuration extends AbstractHelper
     public function getUrlBrand($store = null): mixed
     {
         return $this->scopeConfig->getValue(self::XML_PATH_WS_URL_BRAND, ScopeInterface::SCOPE_STORE, $store);
+    }
+
+    /**
+     * Get default price
+     *
+     * @param $store
+     * @return mixed
+     */
+    public function getDefaultPrice($store = null): mixed
+    {
+        return $this->scopeConfig->getValue(self::XML_PATH_SAP_DEFAULT_PRICE, ScopeInterface::SCOPE_STORE, $store);
     }
 }

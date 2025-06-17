@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Aventi Solutions
+~  Julian D Amaya <jamaya@aventi.co>
+  ~ 2022
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="Aventi_PriceLists" setup_version="1.0.1">
+		<sequence>
+            <module name="Aventi_Core"/>
+			<module name="Magento_Catalog"/>
+            <module name="Aheadworks_Ctq"/>
+		</sequence>
+	</module>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Aventi Solutions
+~  Julian D Amaya <jamaya@aventi.co>
+  ~ 2022
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin disabled="false" name="Aventi_PriceLists_Plugin_Magento_Catalog_Model_Product" sortOrder="10" type="Aventi\PriceLists\Plugin\Magento\Catalog\Model\Product"/>
+    </type>
+
+    <type name="Magento\ConfigurableProduct\Pricing\Price\ConfigurablePriceResolver">
+        <plugin name="pricemaxindetail" type="Aventi\PriceLists\Plugin\Magento\ConfigurableProduct\Pricing\Price\ConfigurablePriceResolver"/>
+    </type>
+
+    <preference for="MGS\InstantSearch\Controller\Ajax\Result" type="Aventi\PriceLists\Rewrite\MGS\InstantSearch\Controller\Ajax\Result"/>
+</config>

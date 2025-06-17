@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Aventi Solutions
+~  Julian D Amaya <jamaya@aventi.co>
+  ~ 2022
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Aventi\PriceLists\Api\PriceListRepositoryInterface" type="Aventi\PriceLists\Model\PriceListRepository"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListInterface" type="Aventi\PriceLists\Model\PriceList"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Aventi\PriceLists\Api\PriceListCustomersRepositoryInterface" type="Aventi\PriceLists\Model\PriceListCustomersRepository"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListCustomersInterface" type="Aventi\PriceLists\Model\PriceListCustomers"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListCustomersSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Aventi\PriceLists\Api\PriceListGroupsRepositoryInterface" type="Aventi\PriceLists\Model\PriceListGroupsRepository"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListGroupsInterface" type="Aventi\PriceLists\Model\PriceListGroups"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListGroupsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Aventi\PriceLists\Api\PriceListProductsRepositoryInterface" type="Aventi\PriceLists\Model\PriceListProductsRepository"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListProductsInterface" type="Aventi\PriceLists\Model\PriceListProducts"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListProductsSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Aventi\PriceLists\Api\PriceListCategoryRepositoryInterface" type="Aventi\PriceLists\Model\PriceListCategoryRepository"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListCategoryInterface" type="Aventi\PriceLists\Model\PriceListCategory"/>
+    <preference for="Aventi\PriceLists\Api\Data\PriceListCategorySearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <virtualType name="Aventi\PriceLists\Model\ResourceModel\PriceList\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">avpricelists_pricelist</argument>
+            <argument name="resourceModel" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceList\Collection</argument>
+        </arguments>
+    </virtualType>
+    <type name="Aventi\PriceLists\Model\ResourceModel\PriceListProducts\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">avpricelists_products</argument>
+            <argument name="resourceModel" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceListProducts\Collection</argument>
+            <argument name="eventPrefix" xsi:type="string">avpricelists_products_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">avpricelists_products_collection</argument>
+        </arguments>
+    </type>
+    <type name="Aventi\PriceLists\Model\ResourceModel\PriceListCustomers\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">avpricelists_customers</argument>
+            <argument name="resourceModel" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceListCustomers\Collection</argument>
+            <argument name="eventPrefix" xsi:type="string">avpricelists_customers_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">avpricelists_customers_collection</argument>
+        </arguments>
+    </type>
+    <type name="Aventi\PriceLists\Model\ResourceModel\PriceListCategory\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">avpricelists_category</argument>
+            <argument name="resourceModel" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceListCategory\Collection</argument>
+            <argument name="eventPrefix" xsi:type="string">avpricelists_category_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">avpricelists_category_collection</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="avpricelists_pricelist_listing_data_source" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceList\Grid\Collection</item>
+                <item name="avpricelists_pricelistproducts_listing_data_source" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceListProducts\Grid\Collection</item>
+                <item name="avpricelists_pricelistcustomers_listing_data_source" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceListCustomers\Grid\Collection</item>
+                <item name="avpricelists_pricelistcategories_listing_data_source" xsi:type="string">Aventi\PriceLists\Model\ResourceModel\PriceListCategory\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+	<type name="Magento\Catalog\Api\ProductRepositoryInterface">
+		<plugin disabled="false" name="Aventi_PriceLists_Plugin_Magento_Catalog_Api_ProductRepositoryInterface" sortOrder="10" type="Aventi\PriceLists\Plugin\Magento\Catalog\Api\ProductRepositoryInterface"/>
+	</type>
+	<type name="Magento\Catalog\Controller\Category\View">
+		<plugin disabled="false" name="Aventi_PriceLists_Plugin_Magento_Catalog_Controller_Category_View" sortOrder="10" type="Aventi\PriceLists\Plugin\Magento\Catalog\Controller\Category\View"/>
+	</type>
+	<type name="Magento\Catalog\Controller\Product\View">
+		<plugin disabled="false" name="Aventi_PriceLists_Plugin_Magento_Catalog_Controller_Product_View" sortOrder="10" type="Aventi\PriceLists\Plugin\Magento\Catalog\Controller\Product\View"/>
+	</type>
+	<type name="Magento\Catalog\Model\Layer">
+		<plugin disabled="false" name="Aventi_PriceLists_Plugin_Magento_Catalog_Block_Product_ListProduct" sortOrder="10" type="Aventi\PriceLists\Plugin\Magento\Catalog\Block\Product\ListProduct"/>
+	</type>
+	<type name="Magento\Catalog\Block\Product\View">
+		<plugin disabled="false" name="Aventi_PriceLists_Plugin_Magento_Catalog_Block_Product_View" sortOrder="1" type="Aventi\PriceLists\Plugin\Magento\Catalog\Block\Product\ProductView"/>
+	</type>
+</config>

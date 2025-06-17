@@ -7,9 +7,22 @@ declare(strict_types=1);
 
 namespace Aventi\SAP\Model\Integration;
 
+use Aventi\SAP\Helper\Attribute;
+use Aventi\SAP\Helper\Configuration;
+use Aventi\SAP\Helper\Data;
+use Aventi\SAP\Logger\Logger;
+use Aventi\SAP\Model\Integration;
+use Aventi\SAP\Model\Integration\Check\Product\CheckPrice;
+use Aventi\SAP\Model\Integration\Manager\Price as PriceManager;
+use Aventi\SAP\Model\Integration\Save\Product\Save;
+use Bcn\Component\Json\Exception\ReadingError;
 use Bcn\Component\Json\Reader;
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Magento\Framework\Exception\FileSystemException;
+use Magento\Framework\Filesystem;
+use Magento\Framework\Filesystem\DriverInterface;
 
-class Price extends \Aventi\SAP\Model\Integration
+class Price extends Integration
 {
     const TYPE_URI = 'price';
 
@@ -20,51 +33,65 @@ class Price extends \Aventi\SAP\Model\Integration
         'updated' => 0
     ];
 
-    /**
-     * @var \Aventi\SAP\Helper\Data
-     */
-    private \Aventi\SAP\Helper\Data $data;
+    private mixed $defaultPriceList;
 
     /**
-     * @var \Aventi\SAP\Model\Integration\Check\Product\CheckPrice
+     * @var Data
      */
-    private \Aventi\SAP\Model\Integration\Check\Product\CheckPrice $check;
+    private Data $data;
 
     /**
-     * @var \Magento\Catalog\Api\ProductRepositoryInterface
+     * @var CheckPrice
      */
-    private \Magento\Catalog\Api\ProductRepositoryInterface $productRepository;
+    private CheckPrice $check;
 
     /**
-     * @var \Aventi\SAP\Model\Integration\Save\Product\Save
+     * @var ProductRepositoryInterface
      */
-    private \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct;
+    private ProductRepositoryInterface $productRepository;
 
     /**
-     * @param \Aventi\SAP\Helper\Attribute $attributeDate
-     * @param \Aventi\SAP\Logger\Logger $logger
-     * @param \Magento\Framework\Filesystem\DriverInterface $driver
-     * @param \Magento\Framework\Filesystem $filesystem
-     * @param \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
-     * @param \Aventi\SAP\Helper\Data $data
-     * @param \Aventi\SAP\Model\Integration\Check\Product\CheckPrice $check
-     * @param \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct
+     * @var Save
+     */
+    private Save $saveProduct;
+
+    /**
+     * @var PriceManager $priceManager
+     */
+    private PriceManager $priceManager;
+
+    /**
+     * @param Attribute $attributeDate
+     * @param Logger $logger
+     * @param DriverInterface $driver
+     * @param Filesystem $filesystem
+     * @param ProductRepositoryInterface $productRepository
+     * @param Data $data
+     * @param CheckPrice $check
+     * @param Save $saveProduct
+     * @param Configuration $configuration
+     * @param PriceManager $priceManager
      */
     public function __construct(
-        \Aventi\SAP\Helper\Attribute $attributeDate,
-        \Aventi\SAP\Logger\Logger $logger,
-        \Magento\Framework\Filesystem\DriverInterface $driver,
-        \Magento\Framework\Filesystem $filesystem,
-        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
-        \Aventi\SAP\Helper\Data $data,
-        \Aventi\SAP\Model\Integration\Check\Product\CheckPrice $check,
-        \Aventi\SAP\Model\Integration\Save\Product\Save $saveProduct,
+        Attribute $attributeDate,
+        Logger $logger,
+        DriverInterface $driver,
+        Filesystem $filesystem,
+        ProductRepositoryInterface $productRepository,
+        Data $data,
+        CheckPrice $check,
+        Save $saveProduct,
+        Configuration $configuration,
+        PriceManager  $priceManager,
     ) {
         parent::__construct($attributeDate, $logger, $driver, $filesystem);
         $this->productRepository = $productRepository;
         $this->data = $data;
         $this->check = $check;
         $this->saveProduct = $saveProduct;
+        $this->priceManager = $priceManager;
+        $this->defaultPriceList = $configuration->getDefaultPrice();
+        $this->priceManager->setLogger($logger);
     }
 
     public function test(array $data = null): void
@@ -94,10 +121,10 @@ class Price extends \Aventi\SAP\Model\Integration
     }
 
     /**
-     *  @param array $data
+     * @param array|null $data
      * @return void
-     * @throws \Bcn\Component\Json\Exception\ReadingError
-     * @throws \Magento\Framework\Exception\FileSystemException
+     * @throws FileSystemException
+     * @throws ReadingError
      */
     public function process(array $data = null): void
     {
@@ -115,11 +142,16 @@ class Price extends \Aventi\SAP\Model\Integration
                 $products = $reader->read('data');
                 $progressBar = $this->startProgressBar($total);
                 foreach ($products as $product) {
-                    $priceObject = (object) [
-                        'sku' => $product['ItemCode'],
-                        'price' => !empty($product['Price']) ? $product['Price'] : 0
-                    ];
-                    $this->managerPrice($priceObject);
+                    foreach ($product['Detalle'] as $priceList) {
+                        $priceObject = (object) [
+                            'sku' => $product['ItemCode'],
+                            'price' => (float)(!empty($priceList['Price']) ? $priceList['Price'] : 0),
+                            'price_sug' => (float)$priceList['PriceList'],
+                            'list' => $priceList['PriceList'],
+                            'description' => $priceList['ListName']
+                        ];
+                        $this->managerPrice($priceObject);
+                    }
                     $this->advanceProgressBar($progressBar);
                     // Debug only.
                     //$total--;
@@ -142,22 +174,25 @@ class Price extends \Aventi\SAP\Model\Integration
      * @param object $priceObject
      * @return void
      */
-    private function managerPrice(object $priceObject)
+    private function managerPrice(object $priceObject): void
     {
         try {
             $item = $this->productRepository->get($priceObject->sku);
-            $resultCheck = $this->check->checkData($priceObject, $item);
-            if (!$resultCheck) {
-                $this->resTable['check']++;
-            } else {
-                $this->resTable['updated']++;
-                $this->saveProduct->saveFields($item, $resultCheck);
+            if ($priceObject->list === $this->defaultPriceList) {
+                $resultCheck = $this->check->checkData($priceObject, $item);
+                if (!$resultCheck) {
+                    $this->resTable['check']++;
+                } else {
+                    $this->saveProduct->saveFields($item, $resultCheck);
+                    $this->resTable['updated']++;
+                }
             }
-        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            $index = $this->priceManager->addPriceList($item, $priceObject);
+
+            $this->resTable[$index]++;
+        } catch (\Exception $e) {
+            $this->logger->error('SAP managerPrice: ' . $e->getMessage());
             $this->resTable['fail']++;
-        } catch (\Magento\Framework\Exception\LocalizedException $e) {
-            $this->resTable['fail']++;
-            $this->logger->error("An error has occurred creating price: " . $e->getMessage());
         }
     }
 

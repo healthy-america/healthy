@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<!--
+  ~ Aventi Solutions
+~  Julian D Amaya <jamaya@aventi.co>
+  ~ 2022
+  ~
+  -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route method="POST" url="/V1/aventi-pricelists/pricelist">
+		<service class="Aventi\PriceLists\Api\PriceListRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceList_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/aventi-pricelists/pricelist/search">
+		<service class="Aventi\PriceLists\Api\PriceListRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceList_view"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/aventi-pricelists/pricelist/:pricelistId">
+		<service class="Aventi\PriceLists\Api\PriceListRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceList_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/aventi-pricelists/pricelist/:pricelistId">
+		<service class="Aventi\PriceLists\Api\PriceListRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceList_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/aventi-pricelists/pricelist/:pricelistId">
+		<service class="Aventi\PriceLists\Api\PriceListRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceList_delete"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/aventi-pricelists/pricelistcustomers">
+		<service class="Aventi\PriceLists\Api\PriceListCustomersRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListCustomers_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/aventi-pricelists/pricelistcustomers/search">
+		<service class="Aventi\PriceLists\Api\PriceListCustomersRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListCustomers_view"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/aventi-pricelists/pricelistcustomers/:pricelistcustomersId">
+		<service class="Aventi\PriceLists\Api\PriceListCustomersRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListCustomers_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/aventi-pricelists/pricelistcustomers/:pricelistcustomersId">
+		<service class="Aventi\PriceLists\Api\PriceListCustomersRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListCustomers_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/aventi-pricelists/pricelistcustomers/:pricelistcustomersId">
+		<service class="Aventi\PriceLists\Api\PriceListCustomersRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListCustomers_delete"/>
+		</resources>
+	</route>
+	<route method="POST" url="/V1/aventi-pricelists/pricelistproducts">
+		<service class="Aventi\PriceLists\Api\PriceListProductsRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListProducts_save"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/aventi-pricelists/pricelistproducts/search">
+		<service class="Aventi\PriceLists\Api\PriceListProductsRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListProducts_view"/>
+		</resources>
+	</route>
+	<route method="GET" url="/V1/aventi-pricelists/pricelistproducts/:pricelistproductsId">
+		<service class="Aventi\PriceLists\Api\PriceListProductsRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListProducts_view"/>
+		</resources>
+	</route>
+	<route method="PUT" url="/V1/aventi-pricelists/pricelistproducts/:pricelistproductsId">
+		<service class="Aventi\PriceLists\Api\PriceListProductsRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListProducts_update"/>
+		</resources>
+	</route>
+	<route method="DELETE" url="/V1/aventi-pricelists/pricelistproducts/:pricelistproductsId">
+		<service class="Aventi\PriceLists\Api\PriceListProductsRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Aventi_PriceLists::PriceListProducts_delete"/>
+		</resources>
+	</route>
+</routes>

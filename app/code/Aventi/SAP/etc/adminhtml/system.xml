@@ -92,6 +92,13 @@
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
             </group>
+            <group id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label">
+                <label>Sync prices</label>
+                <field id="default_price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Default price list</label>
+                    <comment>Default price list for clients</comment>
+                </field>
+            </group>
             <group id="document" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label">
                 <label>Create document default values</label>
                 <field id="serie" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">

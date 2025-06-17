@@ -1,0 +1,155 @@
+<?xml version="1.0" ?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">avpricelists_pricelistproducts_form.avpricelists_pricelistproducts_form_data_source</item>
+		</item>
+        <item name="config" xsi:type="array">
+            <item name="deleteConfirmationMessage" translate="true" xsi:type="string">Are you sure you want to delete this product relation?</item>
+        </item>
+		<item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="reverseMetadataMerge" xsi:type="boolean">true</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+            <button name="cancel" class="Aventi\PriceLists\Block\Adminhtml\PriceListProducts\Edit\CancelButton"/>
+            <button name="save" class="Aventi\PriceLists\Block\Adminhtml\PriceListProducts\Edit\SaveButton"/>
+		</buttons>
+		<namespace>avpricelists_pricelistproducts_form</namespace>
+        <ajaxSave>true</ajaxSave>
+        <ajaxSaveType>simple</ajaxSaveType>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>avpricelists_pricelistproducts_form.avpricelists_pricelistproducts_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="avpricelists_pricelistproducts_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+        <settings>
+            <submitUrl path="avpricelists/pricelistproducts/save" />
+        </settings>
+		<dataProvider name="avpricelists_pricelistproducts_form_data_source" class="Aventi\PriceLists\Model\DataProvider\PriceListProducts\DataProvider">
+			<settings>
+				<requestFieldName>entity_id</requestFieldName>
+				<primaryFieldName>entity_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+    <container name="messages" component="Magento_Ui/js/form/components/html">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="additionalClasses" xsi:type="string">message message-error</item>
+                <item name="visible" xsi:type="boolean">false</item>
+                <item name="imports" xsi:type="array">
+                    <item name="responseData" xsi:type="string">${ $.parentName }:responseData</item>
+                </item>
+                <item name="listens" xsi:type="array">
+                    <item name="responseData.error" xsi:type="string">visible</item>
+                    <item name="responseData.messages" xsi:type="string">content</item>
+                </item>
+            </item>
+        </argument>
+    </container>
+	<fieldset name="general">
+		<settings>
+			<label/>
+		</settings>
+        <field name="entity_id" formElement="hidden">
+            <settings>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+        <field name="price_list_id" formElement="hidden">
+            <settings>
+                <dataType>text</dataType>
+                <dataScope>price_list_id</dataScope>
+            </settings>
+        </field>
+        <field name="product_ids" formElement="select" component="Magento_Ui/js/form/element/ui-select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="template" xsi:type="string">Aventi_PriceLists/grid/filters/elements/ui-select</item>
+                    <item name="label" xsi:type="string">Products</item>
+                    <item name="filterOptions" xsi:type="boolean">true</item>
+                    <item name="searchOptions" xsi:type="boolean">true</item>
+                    <item name="multiple" xsi:type="boolean">true</item>
+                    <item name="filterPlaceholder" xsi:type="string" translate="true">Product Name or SKU</item>
+                    <item name="emptyOptionsHtml" xsi:type="string" translate="true">Start typing to find products</item>
+                    <item name="missingValuePlaceholder" xsi:type="string" translate="true">Product with ID: %s doesn\'t exist</item>
+                    <item name="isDisplayMissingValuePlaceholder" xsi:type="boolean">true</item>
+                    <item name="filterRateLimit" xsi:type="string" translate="true">1000</item>
+                    <item name="searchUrl" xsi:type="url" path="catalog/product/search"/>
+                    <item name="validationUrl" xsi:type="url" path="avpricelists/pricelist/edit"/>
+                    <item name="fit" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Products</label>
+                <componentType>field</componentType>
+            </settings>
+        </field>
+        <field name="product_price" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fit" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label>Product Price / Discount %</label>
+            </settings>
+        </field>
+        <field name="product_price_sug" formElement="input">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="fit" xsi:type="boolean">true</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                    <rule name="validate-number" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>number</dataType>
+                <label>Product price sug</label>
+            </settings>
+        </field>
+        <field name="product_rule_type" formElement="select">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/select</item>
+                    <item name="fit" xsi:type="boolean">true</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="0" xsi:type="array">
+                        <item name="value" xsi:type="string">price</item>
+                        <item name="label" xsi:type="string" translate="true">Fixed price</item>
+                    </item>
+                    <item name="1" xsi:type="array">
+                        <item name="value" xsi:type="string">discount</item>
+                        <item name="label" xsi:type="string" translate="true">Discount %</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <label translate="true">Type</label>
+            </settings>
+        </field>
+	</fieldset>
+</form>
