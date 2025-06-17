@@ -1,17 +1,12 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © 2025
- * Aventi SAS All rights reserved.
+ * Copyright © Aventi SAS All rights reserved.
  * See COPYING.txt for license details.
- * Refactor module: Cesar Robledo <arobledo@aventi.co>
- * Magento 2.4.5-p3
  */
 -->
-<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-               xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
+<csp_whitelist xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Csp/etc/csp_whitelist.xsd">
     <policies>
-        <!-- script-src -->
         <policy id="script-src">
             <values>
                 <value id="salesmanago" type="host">*.salesmanago.pl</value>
@@ -25,14 +20,8 @@
                 <value id="sistecredito" type="host">*.credinet.co</value>
                 <value id="playervimeo" type="host">player.vimeo.com</value>
                 <value id="facebooknet" type="host">*.facebook.net</value>
-				<value id="facebook_pixel" type="host">connect.facebook.net</value>
-				<value id="facebook_pixel_img" type="host">www.facebook.com</value>
-                <value id="cloudfront_loader" type="host">d335luupugsy2.cloudfront.net</value>
-                <value id="gtag_google" type="host">www.googletagmanager.com</value>
-               
             </values>
         </policy>
-        <!-- style-src -->
         <policy id="style-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
@@ -43,7 +32,6 @@
                 <value id="jsdelivr" type="host">*.jsdelivr.net</value>
             </values>
         </policy>
-        <!-- img-src -->
         <policy id="img-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
@@ -53,12 +41,10 @@
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="amazonaws" type="host">*.amazonaws.com</value>
-                <value id="kaptcha" type="host">*.kaptcha.com</value>
+                <value id="kaptcha.com" type="host">*.kaptcha.com</value>
                 <value id="seeklogo" type="host">seeklogo.com</value>
-                <value id="facebook_pixel_img" type="host">www.facebook.com</value>
             </values>
         </policy>
-        <!-- connect-src -->
         <policy id="connect-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
@@ -70,7 +56,6 @@
                 <value id="sistecredito" type="host">*.credinet.co</value>
             </values>
         </policy>
-        <!-- font-src -->
         <policy id="font-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
@@ -78,22 +63,20 @@
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-                <value id="fontawesome_fonts" type="host">cdnjs.cloudflare.com</value>
             </values>
         </policy>
-        <!-- frame-src -->
         <policy id="frame-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-                <value id="twitter" type="host">*.twitter.com</value>
+                <value id="twitter.com" type="host">*.twitter.com</value>
                 <value id="iconify" type="host">*.iconify.design</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-                <value id="kaptcha" type="host">*.kaptcha.com</value>
+                <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="kaptcha.com" type="host">*.kaptcha.com</value>
             </values>
         </policy>
-        <!-- form-action -->
         <policy id="form-action">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
@@ -101,7 +84,8 @@
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-                <value id="twitter" type="host">*.twitter.com</value>
+                <value id="twitter.com" type="host">*.twitter.com</value>
+                <value id="iconify" type="host">*.iconify.design</value>
             </values>
         </policy>
     </policies>

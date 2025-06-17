@@ -9,10 +9,4 @@
     <type name="Magento\Csp\Observer\Render">
         <plugin name="ByPassCSPValidation" type="Aventi\Core\Plugin\ByPassCSPValidation" />
     </type>
-    <!-- Reduce the size of the indexing batch -->
-    <type name="Magento\Indexer\Model\Indexer\Collection">
-        <arguments>
-            <argument name="batchIndexingSize" xsi:type="number">100</argument>
-        </arguments>
-    </type>
 </config>
