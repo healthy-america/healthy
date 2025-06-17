@@ -1,10 +1,9 @@
-var config = {
+let config = {
     map: {
         '*': {
-            'Magento_Checkout/template/billing-address/details':
-                'Aventi_AventiTheme/template/billing-address/details',
-            'Magento_Checkout/template/shipping-address/address-renderer':
-                'Aventi_AventiTheme/template/shipping-address/address-renderer',
+            'Magento_Checkout/template/billing-address/details': 'Aventi_AventiTheme/template/billing-address/details',
+            'Magento_Checkout/template/shipping-address/address-renderer': 'Aventi_AventiTheme/template/shipping-address/address-renderer',
+            'jquery/jquery-migrate': 'Aventi_AventiTheme/js/disable-log-jquery-migrate'
         }
     }
 };
