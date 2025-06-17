@@ -38,6 +38,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Exception\State\InputMismatchException;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
+use Amasty\CompanyAccount\Model\ResourceModel\Customer as CustomerCompanyResource;
 
 class Customer extends AbstractHelper
 {
@@ -94,7 +95,8 @@ class Customer extends AbstractHelper
         protected GroupRepositoryInterface $groupRepository,
         protected SearchCriteriaBuilder $searchCriteriaBuilder,
         protected CustomerDataProvider $customerDataProvider,
-        protected CompanyRepositoryInterface $companyRepository
+        protected CompanyRepositoryInterface $companyRepository,
+        protected CustomerCompanyResource $customerCompanyResource
     ) {
         parent::__construct($context);
     }
@@ -167,7 +169,8 @@ class Customer extends AbstractHelper
         try {
             $customer = $this->customerRepository->save($customer);
             $company->setSuperUserId($customer->getId());
-            $this->companyRepository->save($company);
+            $company = $this->companyRepository->save($company);
+            $this->customerCompanyResource->assignCompany($company->getCompanyId(), [$customer->getId()], false);
         } catch (InputException|InputMismatchException|LocalizedException|CouldNotSaveException $e) {
             $this->_logger->error($e);
             throw new Exception($e->getMessage());

@@ -68,7 +68,7 @@ class CustomerData extends Check
             'group_id' =>  $item->getGroupId(),
             'doc_type' => array_key_exists(0, $item->getAddresses()) ? $item->getAddresses()[0]->getFax() : '',
             'person_type' => array_key_exists(0, $item->getAddresses()) ? $item->getAddresses()[0]->getPrefix() : '',
-            'tax_information' => array_key_exists(0, $item->getAddresses()) ? $item->getAddresses()[0]->setCompany() : '',
+            'tax_information' => array_key_exists(0, $item->getAddresses()) ? $item->getAddresses()[0]->getCompany() : '',
         ];
     }
 }
