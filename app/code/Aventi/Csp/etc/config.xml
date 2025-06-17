@@ -1,11 +1,15 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © Aventi SAS All rights reserved.
+ * Copyright © 2025
+ * Aventi SAS All rights reserved.
  * See COPYING.txt for license details.
+ * Refactor module: Cesar Robledo <arobledo@aventi.co>
+ * Magento 2.4.5-p3
  */
 -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <csp>
             <mode>
