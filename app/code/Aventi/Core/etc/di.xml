@@ -6,9 +6,6 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <type name="Magento\Csp\Observer\Render">
-        <plugin name="ByPassCSPValidation" type="Aventi\Core\Plugin\ByPassCSPValidation" />
-    </type>
     <!-- Reduce the size of the indexing batch -->
     <type name="Magento\Indexer\Model\Indexer\Collection">
         <arguments>

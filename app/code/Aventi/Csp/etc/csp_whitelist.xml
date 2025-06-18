@@ -14,7 +14,6 @@
         <!-- script-src -->
         <policy id="script-src">
             <values>
-                <value id="salesmanago" type="host">*.salesmanago.pl</value>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
                 <value id="adobedtm" type="host">*.adobedtm.com</value>
                 <value id="iconify" type="host">*.iconify.design</value>
@@ -24,12 +23,18 @@
                 <value id="jsdelivr" type="host">*.jsdelivr.net</value>
                 <value id="sistecredito" type="host">*.credinet.co</value>
                 <value id="playervimeo" type="host">player.vimeo.com</value>
+                <value id="facebook" type="host">facebook.com</value>
                 <value id="facebooknet" type="host">*.facebook.net</value>
-				<value id="facebook_pixel" type="host">connect.facebook.net</value>
-				<value id="facebook_pixel_img" type="host">www.facebook.com</value>
+                <value id="facebook_pixel" type="host">connect.facebook.net</value>
+                <value id="facebook_pixel_img" type="host">www.facebook.com</value>
                 <value id="cloudfront_loader" type="host">d335luupugsy2.cloudfront.net</value>
+                <value id="google-analytics" type="host">www.googleadservices.com</value>
+                <value id="google-analytics2" type="host">www.google-analytics.com</value>
                 <value id="gtag_google" type="host">www.googletagmanager.com</value>
-               
+                <value id="paypal" type="host">www.paypal.com</value>
+                <value id="paypalobjects" type="host">www.paypalobjects.com</value>
+                <value id="googleapiscom" type="host">firebasestorage.googleapis.com</value>
+                <value id="sandboxpaypal" type="host">www.sandbox.paypal.com</value>
             </values>
         </policy>
         <!-- style-src -->
@@ -46,28 +51,54 @@
         <!-- img-src -->
         <policy id="img-src">
             <values>
+                <value id="healthy-america-root" type="host">healthy-america.com.co</value>
+                <value id="healthy-america-sub" type="host">*.healthy-america.com.co</value>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-                <value id="salesmanago" type="host">*.salesmanago.pl</value>
                 <value id="iconify" type="host">*.iconify.design</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="amazonaws" type="host">*.amazonaws.com</value>
-                <value id="kaptcha" type="host">*.kaptcha.com</value>
                 <value id="seeklogo" type="host">seeklogo.com</value>
+                <value id="seeklogoalt" type="host">*.seeklogo.com</value>
                 <value id="facebook_pixel_img" type="host">www.facebook.com</value>
+                <value id="usercentrics" type="host">*.usercentrics.eu</value>
+                <value id="maps" type="host">maps.googleapis.com</value>
+                <value id="mapsstatic" type="host">maps.gstatic.com</value>
+                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="paypalstats" type="host">b.stats.paypal.com</value>
+                <value id="paypalstats2" type="host">dub.stats.paypal.com</value>
+                <value id="braintree" type="host">assets.braintreegateway.com</value>
+                <value id="ppcheckout" type="host">checkout.paypal.com</value>
+                <value id="cpaypal" type="host">c.paypal.com</value>
+                <value id="fpdbs" type="host">fpdbs.paypal.com</value>
+                <value id="fpdbs_sandbox" type="host">fpdbs.sandbox.paypal.com</value>
+                <value id="ytimg" type="host">i.ytimg.com</value>
+                <value id="youtube" type="host">*.youtube.com</value>
+                <value id="twimg" type="host">*.twimg.com</value>
+                <value id="twitter" type="host">*.twitter.com</value>
             </values>
         </policy>
         <!-- connect-src -->
         <policy id="connect-src">
             <values>
                 <value id="cloudflare" type="host">*.cloudflare.com</value>
-                <value id="salesmanago" type="host">*.salesmanago.pl</value>
+
                 <value id="iconify" type="host">*.iconify.design</value>
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="sistecredito" type="host">*.credinet.co</value>
+                <value id="gtag_google" type="host">www.googletagmanager.com</value>
+                <value id="paypal" type="host">www.paypal.com</value>
+                <value id="paypalobjects" type="host">www.paypalobjects.com</value>
+                <value id="facebook" type="host">facebook.com</value>
+                <value id="facebooknet" type="host">*.facebook.net</value>
+                <value id="facebook_pixel" type="host">connect.facebook.net</value>
+                <value id="facebook_pixel_img" type="host">www.facebook.com</value>
+                <value id="googleapiscom" type="host">firebasestorage.googleapis.com</value>
+                <value id="sandboxpaypal" type="host">www.sandbox.paypal.com</value>
+                <value id="seeklogo" type="host">*.seeklogo.com</value>
             </values>
         </policy>
         <!-- font-src -->
@@ -90,7 +121,6 @@
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-                <value id="kaptcha" type="host">*.kaptcha.com</value>
             </values>
         </policy>
         <!-- form-action -->
@@ -102,6 +132,15 @@
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="twitter" type="host">*.twitter.com</value>
+                <value id="gtag_google" type="host">www.googletagmanager.com</value>
+                <value id="paypal" type="host">www.paypal.com</value>
+                <value id="paypalobjects" type="host">www.paypalobjects.com</value>
+                <value id="facebook" type="host">facebook.com</value>
+                <value id="facebooknet" type="host">*.facebook.net</value>
+                <value id="facebook_pixel" type="host">connect.facebook.net</value>
+                <value id="facebook_pixel_img" type="host">www.facebook.com</value>
+                <value id="googleapiscom" type="host">firebasestorage.googleapis.com</value>
+                <value id="sandboxpaypal" type="host">www.sandbox.paypal.com</value>
             </values>
         </policy>
     </policies>
