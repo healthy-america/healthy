@@ -223,18 +223,23 @@ $_hideCompare = $themeHelper->getStoreConfig('themesettings/catalog/compare_butt
                                                    ?>">
                                             <?= $block->getBlockHtml('formkey') ?>
                                             <?php if ($_product->getTypeInstance()->hasOptions($_product)) :?>
-                                                <?php  foreach ($block->getBundleOptions($_product) as $optionId => $selectionId): ?>
-                                                    <input readonly
-                                                           id="bundle-option-<?= $optionId ?>-qty-input"
-                                                           class="input-text qty qty-disabled"
-                                                           type="hidden"
-                                                           min="0"
-                                                           data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
-                                                           name="bundle_option[<?= $optionId ?>]"
-                                                           data-selector="bundle_option[<?= $optionId ?>]"
-                                                           value="<?= $selectionId ?>"
-                                                           aria-required="true">
-                                                <?php endforeach; ?>
+
+                                             <?php
+                                                 $bundleOptions = $block->getBundleOptions($_product);
+                                                 if (is_array($bundleOptions)) : ?>
+                                                     <?php  foreach ($bundleOptions as $optionId => $selectionId): ?>
+                                                        <input readonly
+                                                               id="bundle-option-<?= $optionId ?>-qty-input"
+                                                               class="input-text qty qty-disabled"
+                                                               type="hidden"
+                                                               min="0"
+                                                               data-validate="{'required-number':true,'validate-item-quantity':{'minAllowed':1,'maxAllowed':10000}}"
+                                                               name="bundle_option[<?= $optionId ?>]"
+                                                               data-selector="bundle_option[<?= $optionId ?>]"
+                                                               value="<?= $selectionId ?>"
+                                                               aria-required="true">
+                                                     <?php endforeach; ?>
+                                                 <?php endif; ?>
                                             <?php endif; ?>
                                             <button type="submit"
                                                     title="<?= $escaper->escapeHtmlAttr(__('Add to Cart')) ?>"

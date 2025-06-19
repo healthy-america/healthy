@@ -1,8 +1,7 @@
 var config = {
     map: {
         '*': {
-            'Magento_Customer/template/default-address':
-                'Aventi_AventiTheme/template/default-address'
+            'Magento_Customer/template/default-address': 'Aventi_AventiTheme/template/default-address'
         }
     }
 };
