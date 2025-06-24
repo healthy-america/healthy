@@ -30,7 +30,8 @@
         "magento/ece-tools": "*",
         "magento/product-community-edition": "2.4.5-p11",
         "mageplaza/magento-2-social-login": "^4.1",
-        "mageplaza/module-smtp": "^4.7"
+        "mageplaza/module-smtp": "^4.7",
+        "meta/meta-for-magento2": "^1.4"
     },
     "autoload": {
         "exclude-from-classmap": [
