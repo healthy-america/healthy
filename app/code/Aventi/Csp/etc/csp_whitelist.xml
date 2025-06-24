@@ -23,7 +23,7 @@
                 <value id="jsdelivr" type="host">*.jsdelivr.net</value>
                 <value id="sistecredito" type="host">*.credinet.co</value>
                 <value id="playervimeo" type="host">player.vimeo.com</value>
-                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-all" type="host">*.facebook.com</value>
                 <value id="facebooknet" type="host">*.facebook.net</value>
                 <value id="facebook_pixel" type="host">connect.facebook.net</value>
                 <value id="facebook_pixel_img" type="host">www.facebook.com</value>
@@ -46,7 +46,7 @@
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="jsdelivr" type="host">*.jsdelivr.net</value>
-				<value id="facebook" type="host">*.facebook.com</value>
+				<value id="facebook-all" type="host">*.facebook.com</value>
             </values>
         </policy>
         <!-- img-src -->
@@ -66,7 +66,7 @@
                 <value id="usercentrics" type="host">*.usercentrics.eu</value>
                 <value id="maps" type="host">maps.googleapis.com</value>
                 <value id="mapsstatic" type="host">maps.gstatic.com</value>
-                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-all" type="host">*.facebook.com</value>
                 <value id="paypalstats" type="host">b.stats.paypal.com</value>
                 <value id="paypalstats2" type="host">dub.stats.paypal.com</value>
                 <value id="braintree" type="host">assets.braintreegateway.com</value>
@@ -92,7 +92,7 @@
                 <value id="gtag_google" type="host">www.googletagmanager.com</value>
                 <value id="paypal" type="host">www.paypal.com</value>
                 <value id="paypalobjects" type="host">www.paypalobjects.com</value>
-                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-all" type="host">*.facebook.com</value>
                 <value id="facebooknet" type="host">*.facebook.net</value>
                 <value id="facebook_pixel" type="host">connect.facebook.net</value>
                 <value id="facebook_pixel_img" type="host">www.facebook.com</value>
@@ -110,7 +110,7 @@
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
                 <value id="fontawesome_fonts" type="host">cdnjs.cloudflare.com</value>
-				<value id="facebook" type="host">*.facebook.com</value>
+				<value id="facebook-all" type="host">*.facebook.com</value>
             </values>
         </policy>
         <!-- frame-src -->
@@ -122,7 +122,7 @@
                 <value id="googleapis" type="host">*.googleapis.com</value>
                 <value id="gstatic" type="host">*.gstatic.com</value>
                 <value id="fontawesome" type="host">*.fontawesome.com</value>
-				<value id="facebook" type="host">*.facebook.com</value>
+				<value id="facebook-all" type="host">*.facebook.com</value>
             </values>
         </policy>
         <!-- form-action -->
@@ -137,7 +137,7 @@
                 <value id="gtag_google" type="host">www.googletagmanager.com</value>
                 <value id="paypal" type="host">www.paypal.com</value>
                 <value id="paypalobjects" type="host">www.paypalobjects.com</value>
-                <value id="facebook" type="host">*.facebook.com</value>
+                <value id="facebook-all" type="host">*.facebook.com</value>
                 <value id="facebooknet" type="host">*.facebook.net</value>
                 <value id="facebook_pixel" type="host">connect.facebook.net</value>
                 <value id="facebook_pixel_img" type="host">www.facebook.com</value>
