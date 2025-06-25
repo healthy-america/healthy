@@ -114,7 +114,8 @@
         .primary .action:not(.btn-secondary),
         .authentication-wrapper .action,
         a.btn-default,
-        .action.delete {
+        .action.delete,
+        .amcompany-button.-primary {
             color: @primary-button-color-text;
             background: @primary-button-background;
             border: 1px solid @color-primary;
@@ -140,31 +141,26 @@
         button.btn-secondary,
         .secondary a.action.btn-default,
         a.action.edit.btn,
-        &.checkout-index-index .primary button.action-cancel{
+        &.checkout-index-index .primary button.action-cancel,
+        .amcompany-button.-link,
+        a.action.view {
             background: @background-footer;
             border: 1px solid @color-primary;
             color: @color-primary;
             transition: all 0.1s ease-in-out;
+            padding: 10px;
 
             span {
                 color: @color-primary;
             }
 
             &:hover {
-                border: 2px solid @blue-hover;
-                color: @blue-hover;
-                background: @background-footer;
+                background: @primary-button-background-hover;
+                border: 1px solid @primary-button-background;
+                color: @white;
 
                 span {
-                    color: @blue-hover;
-                }
-            }
-
-            &:active {
-                border: 1px solid @blue-selected;
-                color: @blue-selected;
-                span {
-                    color: @blue-selected;
+                    color: @white;
                 }
             }
         }
