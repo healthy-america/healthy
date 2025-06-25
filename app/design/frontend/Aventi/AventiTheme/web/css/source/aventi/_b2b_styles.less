@@ -1,0 +1,352 @@
+//**
+//** Aventi
+//** https://www.aventi.co/ 
+//**
+//  *********************************************
+
+
+//
+//  All devices
+//  _____________________________________________
+
+& when (@media-common = true)  {
+
+    #html-body {
+
+        &.amcompany-customer-account.amasty_company-credit-index {
+            #page-title-wrapper {
+                display: none;
+            }
+
+            #maincontent {
+                .column.main {
+                    .amcompany-credit-cards-wrapper {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
+                        margin-bottom: 20px;
+                        
+                        .amcompany-paycard-block {
+                            background-color: @grey-light;
+                            border: none;
+                            justify-content: center;
+                            padding: 15px;
+                            flex: 1;
+                            min-width: 290px;
+                            margin: 0;
+                            max-width: unset;
+                            border-radius: 8px;
+                            min-height: unset;
+    
+                            .amcompany-head {
+                                align-items: center;
+    
+                                .amcompany-paycard-current {
+                                    margin: 0;
+                                    h3.amcompany-title {
+                                        color: @color-primary;
+                                        font-size: 22px;
+                                        margin: 0;
+
+                                        .amcompany-tooltip-block {
+                                            display: none;
+                                        }
+                                    }
+        
+                                    .amcompany-value {
+                                        white-space: normal;    
+                                        font-size: 22px;
+                                    }
+                                }
+    
+                                .amcompany-icon-paycard {
+                                    margin: 0;
+                                }
+                            }
+                        } 
+                    }
+
+                    .table-wrapper.orders-history {
+                        table.data.table.table-order-items.history {
+                            display: table;
+                            th, td {
+                                text-align: center;
+                            }
+
+                            tbody {
+                                display: table-row-group;
+                                tr {
+                                    display: table-row;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+
+        &.amcompany-customer-account.amasty_company-profile-index {
+            #page-title-wrapper {
+                display: none;
+            }
+            .column.main {
+                a.action.view {
+                    margin-bottom: 20px;
+                }
+
+                .amcompany-title {
+                    display: block;
+                    text-align: center;
+                    color: @color-primary;
+                    font-size: 22px;
+                }
+
+                > .block {
+                    background-color: @grey-light;
+                    border-radius: 8px;
+                    padding: 15px;
+                    margin-bottom: 20px;
+
+                    .box {
+                        margin: 0;
+
+                        .box-title {
+                            span {
+                                font-size: 18px;
+                                color: @gray-neutral-7;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+
+                    p {
+                        color: @gray-neutral-7;
+                    }
+
+                    .block-title {
+                        strong {
+                            font-size: 20px;
+                            font-weight: 600;
+                            color: @color-primary;
+                        }
+                    }
+                }
+            }
+        } 
+
+        &.amcompany-customer-account.amasty_company-profile-edit {
+            #page-title-wrapper {
+                display: none;
+            }
+
+            div.page-wrapper #maincontent div.column.main {
+                padding: 0;
+
+                .form.create.form-create-account {
+                    background-color: @grey-light;
+                    padding: 20px;
+                    border-radius: 8px;
+    
+                    .fieldset.info {
+                        .legend {
+                            font-size: 20px;
+                            color: @color-primary;
+                            font-weight: 600;
+                            display: block;
+                        }
+    
+                        select {
+                            background-color: @white;
+                        }
+                    }
+    
+                    .actions-toolbar {
+                        .primary {
+                            width: 100%;
+                            padding: 0;
+    
+                            button {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+
+        &.amcompany-customer-account.amasty_company-role-index {
+            #page-title-wrapper {
+                display: none;
+            }
+            #maincontent {
+                .column.main {
+                    .table-wrapper.orders-history {
+                        table.data.table.table-role-items {
+                            display: table;
+                            th, td {
+                                text-align: center;
+                            }
+
+                            tbody {
+                                display: table-row-group;
+                                tr {
+                                    display: table-row;
+
+                                    td {
+
+                                        &.col.actions {
+                                            a.action.view {
+                                                background-color: unset;
+                                                padding: 0;
+                                                color: @color-primary;
+                                                text-decoration: underline;
+                                                border: none;
+                                                margin: auto;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+
+        &.amcompany-customer-account.amasty_company-role-edit {
+            #page-title-wrapper {
+                display: none;
+            }
+            #maincontent {
+                .column.main {
+                    form#form-validate {
+                        background-color: @grey-light;
+                        padding: 20px;
+                        border-radius: 8px;
+
+                        
+                        .amcompany-tree-block {
+                            .amcompany-collapsible-root .jstree-children .jstree-last:before {
+                                background-color: unset;
+                            }
+
+                            label.label {
+                                font-size: 20px;
+                                color: @color-primary;
+                                font-weight: 600;
+                                display: block;
+                            }
+
+                            .amcompany-toolbar {
+                                gap: 10px;
+                            }
+                        } 
+
+                        .amcompany-toolbar {
+                            button {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        
+    }
+}
+
+
+//
+//  Desktop
+//  _____________________________________________
+
+@media (min-width: @tablet) {
+    body#html-body {
+
+    }
+
+}
+
+//
+//  Tablet
+//  _____________________________________________
+
+@media (max-width: @tablet) {
+
+    body#html-body {
+
+    }
+
+}
+
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    body#html-body {
+        &.amcompany-customer-account.amasty_company-credit-index {
+            div.page-wrapper {
+                #maincontent {
+                    .columns {
+                        .column.main {
+                            padding: 0;
+        
+                            .table-wrapper.orders-history {
+                                table.data.table.table-order-items.history {
+                                    display: table;
+        
+                                    tbody {
+                                        display: table-row-group;
+        
+                                        tr {
+                                            display: table-row;
+        
+                                            td {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        } 
+        
+        &.amcompany-customer-account.amasty_company-role-index {
+            div.page-wrapper {
+                #maincontent {
+                    .columns {
+                        .column.main {
+                            padding: 0;
+        
+                            .table-wrapper.orders-history {
+                                table.data.table.table-role-items {
+                                    display: table;
+        
+                                    tbody {
+                                        display: table-row-group;
+        
+                                        tr {
+                                            display: table-row;
+        
+                                            td {
+                                                display: block;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            } 
+        } 
+    }
+}

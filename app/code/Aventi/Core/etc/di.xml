@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <!-- Reduce the size of the indexing batch -->
+    <type name="Magento\Indexer\Model\Indexer\Collection">
+        <arguments>
+            <argument name="batchIndexingSize" xsi:type="number">100</argument>
+        </arguments>
+    </type>
+</config>

@@ -15410,3 +15410,27 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Enter Gift Code","Introduce el código de regalo"
 "Check Status","Chekear Status"
 "%1 has been removed from your Wish List.","%1 ha sido eliminado de tu lista de deseos."
+"Company Account","Cuenta de empresa",module,Amasty_CompanyAccount
+"Role Title","Título del rol",module,Amasty_CompanyAccount
+"Role Access Permissions","Permisos de acceso",module,Amasty_CompanyAccount
+"New Role","Nuevo Rol",module,Amasty_CompanyAccount
+"Place (Checkout)","Realizar (Checkout)",module,Amasty_CompanyAccount
+"Use Company Store Credit","Usar Crédito de Tienda de la Empresa",module,Amasty_CompanyAccount
+"View (own orders)","Ver (pedidos propios)",module,Amasty_CompanyAccount
+"View (orders of all Users)","Ver (pedidos de todos los Usuarios)",module,Amasty_CompanyAccount
+"+ New User","Nuevo Usuario",module,Amasty_CompanyAccount
+Users,"Usuarios",module,Amasty_CompanyAccount
+Name,"Nombre",module,Amasty_CompanyAccount
+"Company Role","Rol de la Empresa",module,Amasty_CompanyAccount
+"Current Balance","Saldo Actual",module,Amasty_CompanyAccount
+"Overdraft Limit","Límite de Sobregiro",module,Amasty_CompanyAccount
+"To Be Paid","Por Pagar",module,Amasty_CompanyAccount
+"Placed Order","Pedido Realizado",module,Amasty_CompanyAccount
+"Placed Order (Overdraft Used)","Pedido Realizado (Sobregiro Utilizado)",module,Amasty_CompanyAccount
+"Canceled Order","Pedido Cancelado",module,Amasty_CompanyAccount
+"Refunded Order","Pedido Reembolsado",module,Amasty_CompanyAccount
+"Order: <a href=""%1"">#%2</a>","Pedido: <a href=""%1"">#%2</a>",module,Amasty_CompanyAccount
+"Calculated as {used_store_credit} minus {repayment_amount}, where: {used_store_credit} is the sum of orders paid with store credit less refunded amounts, {repayment_amount} is the sum of real money actually paid by Company to cover store credit usage. Positive amount - the Company owes. Negative amount - the Store owes.","Calculado como {used_store_credit} menos {repayment_amount}, donde: {used_store_credit} es la suma de pedidos pagados con crédito de tienda menos los montos reembolsados, {repayment_amount} es la suma de dinero real pagado por la Compañía para cubrir el uso de crédito de tienda. Monto positivo – la Compañía debe. Monto negativo – la Tienda debe.",module,Amasty_CompanyAccount
+"Company Legal Address","Dirección Legal de la Empresa",module,Amasty_CompanyAccount
+"+ New Role","+ Nuevo Rol",module,Amasty_CompanyAccount
+"Qty of Associated Users","Cantidad de usuarios asociados",module,Amasty_CompanyAccount
