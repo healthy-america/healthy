@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "16dcccebcd349d860c13cfff4600f70f",
+    "content-hash": "c266ecfa5eba88c99b0f2443f21db24f",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -18132,6 +18132,217 @@
                 "source": "https://github.com/mageplaza/magento-2-smtp/tree/v4.7.14"
             },
             "time": "2024-12-03T06:30:24+00:00"
+        },
+        {
+            "name": "meta/meta-for-magento2",
+            "version": "1.4.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/meta/meta-for-magento2/meta-meta-for-magento2-1.4.3.0.zip",
+                "shasum": "ba2a358d8da28ff17ce09b99f4c00d204a22d2da"
+            },
+            "require": {
+                "meta/module-business-extension": "1.4.3",
+                "meta/module-catalog": "1.4.3",
+                "meta/module-conversion": "1.4.3",
+                "meta/module-promotions": "1.4.3",
+                "meta/module-sales": "1.4.3"
+            },
+            "conflict": {
+                "facebook/facebook-for-magento2": "*"
+            },
+            "type": "metapackage",
+            "description": "Meta Business Extension for Magento 2"
+        },
+        {
+            "name": "meta/module-business-extension",
+            "version": "1.4.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/meta/module-business-extension/meta-module-business-extension-1.4.3.0.zip",
+                "shasum": "dc25a97c8c1f734a0156ec2ad3a201df74403330"
+            },
+            "require": {
+                "ext-json": "*",
+                "facebook/php-business-sdk": ">=15.0.0",
+                "magento/framework": ">=103.0.4",
+                "magento/framework-message-queue": ">=100.4.4",
+                "magento/module-backend": ">=102.0.4",
+                "magento/module-config": ">=101.2.4",
+                "magento/module-eav": ">=102.1.4",
+                "magento/module-security": ">=100.4.4",
+                "magento/module-store": ">=101.1.4",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Meta\\BusinessExtension\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Meta Business Extension core module"
+        },
+        {
+            "name": "meta/module-catalog",
+            "version": "1.4.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/meta/module-catalog/meta-module-catalog-1.4.3.0.zip",
+                "shasum": "0f2b919bd434436438b29b3d4c5b2bac0c5b7453"
+            },
+            "require": {
+                "ext-zlib": "*",
+                "magento/framework": ">=103.0.4",
+                "magento/module-backend": ">=102.0.4",
+                "magento/module-bundle": ">=101.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-catalog-inventory": ">=100.4.4",
+                "magento/module-catalog-rule": ">=101.2.4",
+                "magento/module-config": ">=101.2.4",
+                "magento/module-configurable-product": ">=100.4.4",
+                "magento/module-downloadable": ">=100.4.4",
+                "magento/module-eav": ">=102.1.4",
+                "magento/module-grouped-product": ">=100.4.4",
+                "magento/module-indexer": ">=100.4.4",
+                "magento/module-inventory-configuration-api": ">=1.2.1",
+                "magento/module-inventory-sales-api": ">=1.2.1",
+                "magento/module-review": ">=100.4.4",
+                "magento/module-store": ">=101.1.4",
+                "meta/module-business-extension": "1.4.3",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Meta\\Catalog\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Meta Business Extension Catalog module"
+        },
+        {
+            "name": "meta/module-conversion",
+            "version": "1.4.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/meta/module-conversion/meta-module-conversion-1.4.3.0.zip",
+                "shasum": "cf1313f7b4bee25d82da409e7a5d5af6eb131621"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-bundle": ">=101.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-checkout": ">=100.4.4",
+                "magento/module-configurable-product": ">=100.4.4",
+                "magento/module-contact": ">=100.4.4",
+                "magento/module-cookie": ">=100.4.4",
+                "magento/module-customer": ">=103.0.4",
+                "magento/module-grouped-product": ">=100.4.4",
+                "magento/module-quote": ">=101.2.4",
+                "magento/module-sales": ">=103.0.4",
+                "magento/module-store": ">=101.1.4",
+                "meta/module-business-extension": "1.4.3",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Meta\\Conversion\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Meta Business Extension Conversion module"
+        },
+        {
+            "name": "meta/module-promotions",
+            "version": "1.4.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/meta/module-promotions/meta-module-promotions-1.4.3.0.zip",
+                "shasum": "6f2d4c635c01154bea709021e19384e847ae7327"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-backend": ">=102.0.4",
+                "magento/module-config": ">=101.2.4",
+                "magento/module-offline-shipping": ">=100.4.3",
+                "magento/module-sales-rule": ">=101.2.4",
+                "meta/module-business-extension": "1.4.3",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Meta\\Promotions\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Meta Business Extension Promotions module"
+        },
+        {
+            "name": "meta/module-sales",
+            "version": "1.4.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://repo.magento.com/archives/meta/module-sales/meta-module-sales-1.4.3.0.zip",
+                "shasum": "89dd26bf3e35a67c9da4bb3fa569c04781ac6472"
+            },
+            "require": {
+                "magento/framework": ">=103.0.4",
+                "magento/module-backend": ">=102.0.4",
+                "magento/module-catalog": ">=104.0.4",
+                "magento/module-checkout": ">=100.4.4",
+                "magento/module-config": ">=101.2.4",
+                "magento/module-configurable-product": ">=100.4.4",
+                "magento/module-customer": ">=103.0.4",
+                "magento/module-directory": ">=100.4.4",
+                "magento/module-newsletter": ">=100.4.4",
+                "magento/module-offline-shipping": ">=100.4.3",
+                "magento/module-payment": ">=100.4.4",
+                "magento/module-quote": ">=101.2.4",
+                "magento/module-sales": ">=103.0.4",
+                "magento/module-sales-rule": ">=101.2.4",
+                "magento/module-sales-sequence": ">=100.4.2",
+                "magento/module-shipping": ">=100.4.4",
+                "magento/module-store": ">=101.1.4",
+                "magento/module-tax": ">=100.4.4",
+                "meta/module-business-extension": "1.4.3",
+                "php": "~8.1.0||~8.2.0||~8.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Meta\\Sales\\": ""
+                }
+            },
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Meta Business Extension Sales module"
         },
         {
             "name": "monolog/monolog",
