@@ -104,6 +104,7 @@ class Customer extends Integration
                 foreach ($customers as $customer) {
                     $cardName = str_replace($rule, " ", $customer['CardName']);
                     $email = str_replace($ruleEmail, "", $customer['E_Mail']);
+                    $documentId = array_key_exists('LicTradNum', $customer) ? $customer['LicTradNum'] : '';
                     $customerObject = (object) [
                         // General.
                         'name' => $cardName,
@@ -118,6 +119,7 @@ class Customer extends Integration
                         // Company Admin Information.
                         'firstname' => $cardName,
                         'lastname' => '.',//$customer['LastName'] ?: '.',
+                        'taxvat' => $documentId,
                         'custom_attributes' => [
                             'sap_customer_id' => $customer['CardCode'] ?: '',
                             'price_list' => $customer['ListNum'],

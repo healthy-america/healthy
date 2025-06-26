@@ -22,7 +22,7 @@ class CustomerData extends Check
             'sap_customer_id' => $data->custom_attributes['sap_customer_id'],
             'price_list' => $data->custom_attributes['price_list'],
             'group_num' => $data->custom_attributes['group_num'],
-            'taxvat' => $data->address_data['document_id'],
+            'taxvat' => $data->taxvat,
             'street' => $data->address_data['street'],
             'city' => $data->address_data['city'],
             'country_id' => $data->address_data['country_id'],

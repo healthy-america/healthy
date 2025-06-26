@@ -19,7 +19,7 @@ class CompanyData extends Check
             'name' => $data->name,
             'email' => $data->email,
             'legal_name' => $data->legal_name,
-            'tax_id' => $data->address_data['document_id'],
+            'tax_id' => $data->taxvat,
             'street' => $data->address_data['street'],
             'city' => $data->address_data['city'],
             'country_id' => $data->address_data['country_id'],

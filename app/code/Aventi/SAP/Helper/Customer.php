@@ -118,6 +118,7 @@ class Customer extends AbstractHelper
                 $regionCode = $this->getRegionCode($addressItem['State']);
                 $region = $this->regionModel->loadByCode($regionCode, 'CO');
 
+//                if ($region->getId()) {
                 return [
                     'document_id' => $documentId,
                     'doc_type' => $this->getDocumentType($docType),
@@ -135,6 +136,7 @@ class Customer extends AbstractHelper
                     ) ? $customerData['U_HBT_MunMed'] : $addressItem['ZipCode'],
                     'telephone' => $addressItem['Phone1']
                 ];
+//                }
             }
         }
 
@@ -318,7 +320,7 @@ class Customer extends AbstractHelper
         $customer->setLastname($data->lastname);
         $customer->setEmail($data->email);
         $customer->setGroupId($data->group_id);
-        $customer->setTaxvat($data->address_data['document_id']);
+        $customer->setTaxvat($data->taxvat);
         $customer->setCustomAttribute('sap_customer_id', $data->custom_attributes['sap_customer_id']);
         $customer->setCustomAttribute('price_list', $data->custom_attributes['price_list']);
         $customer->setCustomAttribute('group_num', $data->custom_attributes['group_num']);
@@ -329,6 +331,7 @@ class Customer extends AbstractHelper
         } else {
             $address = $this->addressInterfaceFactory->create();
         }
+//        if (!empty($data->address_data)) {
         $address->setCustomerId($customer->getId());
         $address->setFirstname($data->firstname);
         $address->setLastname($data->lastname);
@@ -355,6 +358,7 @@ class Customer extends AbstractHelper
         $address->setIsDefaultBilling(true);
         $address->setIsDefaultShipping(true);
         $customer->setAddresses([$address]);
+//        }
 
         return $customer;
     }
@@ -381,7 +385,7 @@ class Customer extends AbstractHelper
         $companyObject->setCompanyName($data->name);
         $companyObject->setCompanyEmail($data->email);
         $companyObject->setLegalName($data->legal_name);
-        $companyObject->setVatTaxId($data->address_data['document_id']);
+        $companyObject->setVatTaxId($data->taxvat);
         $companyObject->setStreet($data->address_data['street']);
         $companyObject->setCity($data->address_data['city']);
         $companyObject->setCountryId($data->address_data['country_id']);
