@@ -12,4 +12,8 @@
             <argument name="batchIndexingSize" xsi:type="number">100</argument>
         </arguments>
     </type>
+    <type name="Smile\ElasticsuiteCore\Search\Request\Query\QueryFactory">
+        <plugin name="aventianalyzer_query_expansion"
+                type="Aventi\Core\Plugin\Search\QueryExpansionPlugin" />
+    </type>
 </config>
