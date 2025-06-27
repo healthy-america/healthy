@@ -1,3 +1,8 @@
+/**
+ * Copyright © Aventi SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
 define([
     'jquery'
 ], function ($) {
