@@ -126,6 +126,12 @@ class LayoutProcessor
             if (array_key_exists($field, self::FIELDS_DELIMITATION)) {
                 $shippingForm[$field]['validation']['max_text_length'] = self::FIELDS_DELIMITATION[$field];
             }
+            // Validación especial para teléfono
+            if ($field === 'telephone') {
+                $shippingForm[$field]['validation']['validate-digits'] = true;
+                $shippingForm[$field]['validation']['min_text_length'] = 10;
+                $shippingForm[$field]['validation']['max_text_length'] = 10;
+            }
         }
 
         return $result;
