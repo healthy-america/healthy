@@ -239,6 +239,8 @@ class Order extends AbstractHelper
      *
      * @param OrderInterface $order
      * @return array
+     * @throws InputException
+     * @throws NoSuchEntityException
      */
     public function processDataSAP(OrderInterface $order): array
     {
@@ -249,7 +251,8 @@ class Order extends AbstractHelper
 
         $userFields = [
             "U_medipagoe~" . $paymentTitle,
-            "U_idtransaccion~" . $paymentTransId
+            "U_idtransaccion~" . $paymentTransId,
+            "U_HBT_consumFinal~" . 'N'
         ];
         $userFields = trim(implode("|", $userFields));
         $slpCode = $this->_configuration->getSlpCode();
