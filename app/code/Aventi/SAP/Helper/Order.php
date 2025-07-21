@@ -251,8 +251,7 @@ class Order extends AbstractHelper
 
         $userFields = [
             "U_medipagoe~" . $paymentTitle,
-            "U_idtransaccion~" . $paymentTransId,
-            "U_HBT_consumFinal~" . 'N'
+            "U_idtransaccion~" . $paymentTransId
         ];
         $userFields = trim(implode("|", $userFields));
         $slpCode = $this->_configuration->getSlpCode();
@@ -614,7 +613,7 @@ class Order extends AbstractHelper
             " ",
             strtoupper(str_replace('Ñ', 'N', $address->getLastname()))
         );
-        $formatUserFields = "U_HBT_ConsumFinal~Y|U_regional1~R810|U_centroc1~20263|U_HBT_RegTrib~RS";
+        $formatUserFields = "U_HBT_ConsumFinal~N|U_regional1~R810|U_centroc1~20263|U_HBT_RegTrib~RS";
         $userFileds = [
             "U_HBT_TipDoc" => $this->getDocumentType($address->getFax()),
             "U_HBT_ActEco" => $address->getFax() === "RUT" ? "0010" : null,
