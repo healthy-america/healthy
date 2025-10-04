@@ -6,21 +6,17 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
-	<system>
-		<section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
-			<group id="servientrega" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
-				<label>Servientrega</label>
-				<field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
-					<label>Enabled</label>
-					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-				</field>
-				<field id="name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
-					<label>Method Name</label>
-				</field>
-				<field id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
-					<label>Price</label>
-					<validate>validate-number validate-zero-or-greater</validate>
-				</field>
+    <system>
+        <section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
+            <group id="servientrega" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Servientrega</label>
+                <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Method Name</label>
+                </field>
                 <field id="free_shipping" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="select">
                     <label>Allow free shipping?</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -34,30 +30,575 @@
                         <field id="free_shipping">1</field>
                     </depends>
                 </field>
-				<field id="sort_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
-					<label>Sort Order</label>
-				</field>
-				<field id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="text">
-					<label>Title</label>
-				</field>
-				<field id="sallowspecific" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="select">
-					<label>Ship to Applicable Countries</label>
-					<frontend_class>shipping-applicable-country</frontend_class>
-					<source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
-				</field>
-				<field id="specificcountry" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="multiselect">
-					<label>Ship to Specific Countries</label>
-					<can_be_empty>1</can_be_empty>
-					<source_model>Magento\Directory\Model\Config\Source\Country</source_model>
-				</field>
-                <field id="allow_regions" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="multiselect">
-                    <label>Ship to Specific Regions</label>
-                    <can_be_empty>1</can_be_empty>
-                    <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                <field id="sort_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" translate="label" type="text">
+                    <label>Sort Order</label>
                 </field>
-				<field id="specificerrmsg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label" type="textarea">
-					<label>Displayed Error Message</label>
-				</field>
+                <field id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="70" translate="label" type="text">
+                    <label>Title</label>
+                </field>
+                <field id="sallowspecific" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="select">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+                <field id="specificcountry" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="90" translate="label" type="multiselect">
+                    <label>Ship to Specific Countries</label>
+                    <can_be_empty>1</can_be_empty>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+
+                <!-- Bloque de precios por región -->
+                <group id="region_prices" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="200" translate="label">
+                    <label>Regiones y Precios</label>
+                    <!-- Habilitar precios por región -->
+                    <field id="enable_region_prices" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1" translate="label" type="select">
+                        <label>¿Configurar precios por región?</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <comment>
+                            Si está en "No", se aplicará un solo precio para todas las regiones.  
+                            Si está en "Sí", podrá configurar un precio específico por cada región.
+                        </comment>
+                    </field>
+
+                    <!-- Precio único global -->
+                    <field id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="2" translate="label" type="text">
+                        <label>Precio Global</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">0</field>
+                        </depends>
+                    </field>
+
+                    <!-- Región global -->
+                    <field id="allow_regions" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="3" type="multiselect" translate="label">
+                        <label>Regiónes</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">0</field>
+                        </depends>
+                    </field>
+
+                    <!-- Región -->
+                    <field id="region_1" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="4" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_1" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="5" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+
+                    <!-- Región -->
+                    <field id="region_2" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="6" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_2" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="7" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_3" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="8" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_3" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="9" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>                    
+                    <!-- Región -->
+                    <field id="region_4" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_4" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="11" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_5" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="12" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_5" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="13" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_6" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="14" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_6" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="15" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_7" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="16" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_7" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="17" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_8" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="18" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_8" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="19" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_9" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_9" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="21" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_10" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="22" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_10" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="23" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_11" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="24" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_11" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="25" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_12" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="26" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_12" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="27" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_13" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="28" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_13" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="29" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_14" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_14" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="31" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_15" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="32" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_15" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="33" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_16" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="34" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_16" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="35" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_17" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="36" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_17" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="37" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_18" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="38" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_18" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="39" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_19" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_19" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="41" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_20" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="43" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_20" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="45" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_21" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="46" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_21" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="47" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_22" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="48" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_22" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="49" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_23" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="50" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_23" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="51" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_24" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="52" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_24" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="53" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_25" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="54" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_25" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="55" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_26" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="56" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_26" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="57" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_27" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="58" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_27" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="59" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_28" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="60" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_28" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="61" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_29" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="62" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_29" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="63" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_30" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="64" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_30" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="65" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_31" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="66" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_31" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="67" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <!-- Región -->
+                    <field id="region_32" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="68" type="select" translate="label">
+                        <label>Región</label>
+                        <source_model>Aventi\Servientrega\Model\Config\Source\Region</source_model>
+                        <can_be_empty>1</can_be_empty>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+                    <field id="price_region_32" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="69" type="text" translate="label">
+                        <label>Precio Región</label>
+                        <validate>validate-number validate-zero-or-greater</validate>
+                        <depends>
+                            <field id="enable_region_prices">1</field>
+                        </depends>
+                    </field>
+
+                    <!-- ... repetir hasta Región0 con <depends> enable_region_prices = 1 -->
+                </group>
+
+                <field id="specificerrmsg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="100" translate="label" type="textarea">
+                    <label>Displayed Error Message</label>
+                </field>
                 <field id="mode" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="110" translate="label" type="select">
                     <label>Mode</label>
                     <source_model>Aventi\Servientrega\Model\Config\Source\Mode</source_model>
@@ -156,7 +697,7 @@
                         The default directory is the Magento public directory. Ex: pub/guias.
                     </comment>
                 </field>
-			</group>
-		</section>
-	</system>
+            </group>
+        </section>
+    </system>
 </config>
