@@ -67,7 +67,12 @@ class Servientrega extends \Magento\Shipping\Model\Carrier\AbstractCarrier imple
     public function collectRates(RateRequest $request)
     {
         $region = $request->getDestRegionId();
-        if (!$this->getConfigFlag('active') || !$this->checkRegion($region)) {
+        if (!$this->getConfigFlag('active')) {
+            return false;
+        }
+
+        // Verificación de regiones
+        if (!$this->checkRegion($region)) {
             return false;
         }
 
@@ -75,7 +80,8 @@ class Servientrega extends \Magento\Shipping\Model\Carrier\AbstractCarrier imple
             $request->setFreeShipping(true);
         }
 
-        $shippingPrice = $this->getConfigData('price');
+        // Determinar precio según configuración
+        $shippingPrice = $this->resolveShippingPrice($region);
 
         $result = $this->_rateResultFactory->create();
 
@@ -142,16 +148,60 @@ class Servientrega extends \Magento\Shipping\Model\Carrier\AbstractCarrier imple
     }
 
     /**
-     * Checks the allowed regions to ship.
+     * Resuelve el precio del envío según configuración XML.
+     *
+     * @param int|string $region
+     * @return float|false
+     */
+    private function resolveShippingPrice($region)
+    {
+        $enableRegionPrices = $this->getConfigData('region_prices/enable_region_prices');
+
+        // Caso 1: Precios por región
+        if ($enableRegionPrices) {
+            for ($i = 1; $i <= 32; $i++) {
+                $configRegion = $this->getConfigData("region_prices/region_$i");
+                $configPrice  = $this->getConfigData("region_prices/price_region_$i");
+
+                if ($configRegion && $configRegion == $region) {
+                    return (float) $configPrice;
+                }
+            }
+            return false; // región no configurada
+        }
+
+        // Caso 2: Precio global
+        $allowedRegions = explode(',', (string) $this->getConfigData('region_prices/allow_regions'));
+        if (in_array($region, $allowedRegions)) {
+            return (float) $this->getConfigData('region_prices/price');
+        }
+
+        return false;
+    }
+
+    /**
+     * Valida si la región está permitida según la configuración.
+     *
      * @param $region
      * @return bool
      */
     private function checkRegion($region): bool
     {
-        $regions = explode(',', $this->_configuration->getAllowRegions());
-        if (in_array($region, $regions)) {
-            return true;
+        $enableRegionPrices = $this->getConfigData('region_prices/enable_region_prices');
+
+        if ($enableRegionPrices) {
+            // Basta con que la región esté configurada
+            for ($i = 1; $i <= 32; $i++) {
+                $configRegion = $this->getConfigData("region_prices/region_$i");
+                if ($configRegion && $configRegion == $region) {
+                    return true;
+                }
+            }
+            return false;
         }
-        return false;
+
+        // Caso global: validar en allow_regions
+        $regions = explode(',', (string) $this->getConfigData('region_prices/allow_regions'));
+        return in_array($region, $regions);
     }
 }

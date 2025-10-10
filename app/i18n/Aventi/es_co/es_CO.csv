@@ -3129,7 +3129,7 @@ Time in seconds between the widget updates.,module,Magento_CatalogWidget
 "New Address","Nueva dirección",module,Magento_Checkout
 "Shipping Methods","Shipping Methods",module,Magento_Checkout
 "Next","Next",module,Magento_Checkout
-"Sorry, no quotes are available for this order at this time","Sorry, no quotes are available for this order at this time",module,Magento_Checkout
+"Sorry, no quotes are available for this order at this time","Asegúrate de elegir una ciudad con cobertura de envío.",module,Magento_Checkout
 "Order Summary","RESUMEN",module,Magento_Checkout
 "View Details","Mostrar detalles",module,Magento_Checkout
 "Provided Zip/Postal Code seems to be invalid.","El Código Postal parece no ser válido.",module,Magento_Checkout
@@ -8329,7 +8329,7 @@ Ahora puede seleccionar la fecha de caducidad que desee.",module,Magento_Negotia
 "Your shipping address is locked. To change your shipping address, go ","Your shipping address is locked. To change your shipping address, go ",module,Magento_NegotiableQuote
 "Shipping Methods","Shipping Methods",module,Magento_NegotiableQuote
 "Next","Next",module,Magento_NegotiableQuote
-"Sorry, no quotes are available for this order at this time","Sorry, no quotes are available for this order at this time",module,Magento_NegotiableQuote
+"Sorry, no quotes are available for this order at this time","Asegúrate de elegir una ciudad con cobertura de envío.",module,Magento_NegotiableQuote
 "Update Catalog Prices","Actualizar Catálogo de Precios",module,Magento_NegotiableQuote
 "If you proceed, catalog prices and cart discounts on this quote will be updated as per the latest changes in the catalog and the price rules.","Si procede, el catalogo de precios y los descuentos sobre el carrito en el pedido serán actualizados con los últimos cambios.",module,Magento_NegotiableQuote
 "No ordered items","No hay artículos pedidos",module,Magento_NegotiableQuote
