@@ -81,13 +81,22 @@
 
                     .field.qty {
                         display: flex;
-                        max-width: 25%;
+                        width: 30%;
                         padding: unset;
                         overflow: hidden;
 
+                        & > .label {
+                            display: none;
+                        }
+
                         .control {
-                            border-radius: 8px;
-                            width: -webkit-fill-available;
+                            border-radius: 4px;
+                            border: none;
+                            width: 100%;
+                            max-width: 115px;
+                            display: flex;
+                            position: absolute;
+                            border: 1px solid #222;
 
                             input.input-text.qty {
                                 padding: 0 40px;
@@ -97,6 +106,24 @@
                                 display: none;
                             }
 
+                            span.edit-qty {
+                                left: 7px;
+                                display: block;
+                                text-align: center;
+                                font-size: 22px;
+                                color: #222;
+                                font-weight: 600;
+                                line-height: 1;
+                                position: absolute;
+                                top: 2px;
+                                // left: 16px;
+                                cursor: pointer;
+                                padding-top: 7px;
+                                &.plus {
+                                    right: 7px;
+                                    left: unset;
+                                }
+                            }
                         }
                     }
 
@@ -109,10 +136,14 @@
 
                     //precio y descripcion
                     .product-info-price {
+                            display: flex;
+                            flex-direction: column;
+
                         .price-box.price-final_price {
                             display: flex;
                             align-items: center;
                             gap: 10px;
+                            order: 1;
                             
                             .price-final_price {
                                 margin: 10px 0;
@@ -137,6 +168,8 @@
                         }
 
                         .product.attribute.overview {
+                            order: 3;
+
                             p{
                                 font-weight: 400;
                                 font-size: 14px;
@@ -144,12 +177,18 @@
                                 color: @grey;
                             }
                         }
+
+                        .custom-atribute.one {
+                            order: 4;
+                        }
                     }
 
                     //añadir al carrito
                     .box-tocart {
+                        order: 2;
+
                         .actions {
-                            width: 75%;
+                            width: 70%;
 
                             button.action.primary.tocart{
                                 width: 90%;
@@ -446,6 +485,71 @@
                                     }
                                 }
                             }
+
+                            //añadir al carrito
+                            .box-tocart {
+                                .field.qty{
+                                    display: flex;
+                                    width: 40%;
+
+                                    // & > .label {
+                                    //     display: none;
+                                    // }
+
+                                    .control{
+                                        background: #D9DFE7;
+                                        border-radius: 4px;
+                                        border: none;
+                                        width: 100%;
+                                        max-width: 115px;
+                                        display: flex;
+                                        position: absolute;
+
+                                        input{
+                                            width: 100%;
+                                            font-weight: 300;
+
+                                            &.input-text.qty {
+                                                padding: 0 26px;
+                                            }
+
+                                        }
+
+                                        span{
+                                            padding-top: 7px;
+                                            font-weight: 100;
+                                        }
+
+                                        span.edit-qty {
+                                            left: 7px;
+                                            display: block;
+                                            text-align: center;
+                                            font-size: 22px;
+                                            color: #222;
+                                            font-weight: 600;
+                                            line-height: 1;
+                                            position: absolute;
+                                            top: 2px;
+                                            // left: 16px;
+                                            cursor: pointer;
+                                            padding-top: 7px;
+
+                                            &.plus {
+                                                right: 7px;
+                                                left: unset;
+                                            }
+                                        }
+
+                                    }
+                                }
+
+                                .actions{
+                                    white-space: nowrap;
+                                    flex: 1;
+                                    width: 60%;
+                                    padding: 0px;
+                                }
+                            }
                         }
 
                         //descripcion 2
@@ -456,53 +560,6 @@
                             }
                             &.two{
                                 order: 3;
-                            }
-                        }
-
-                        //añadir al carrito
-                        .box-tocart {
-                            .field.qty{
-                                display: flex;
-                                width: 40%;
-
-                                .control{
-                                    width: 100%;
-                                    background: #D9DFE7;
-                                    border-radius: 4px;
-                                    border: none;
-
-                                    input{
-                                        width: 100%;
-                                        font-weight: 300;
-
-                                        &.input-text.qty {
-                                            padding: 0 26px;
-                                        }
-
-                                    }
-
-                                    span{
-                                        padding-top: 7px;
-                                        font-weight: 100;
-                                    }
-
-                                    span.edit-qty {
-                                        left: 7px;
-
-                                        &.plus {
-                                            right: 7px;
-                                            left: unset;
-                                        }
-                                    }
-
-                                }
-                            }
-
-                            .actions{
-                                white-space: nowrap;
-                                flex: 1;
-                                width: 60%;
-                                padding: 0px;
                             }
                         }
 
