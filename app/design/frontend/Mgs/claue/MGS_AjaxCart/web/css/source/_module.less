@@ -112,22 +112,24 @@
 			left: 0 !important;
 			right: 0;
 			top: 50%;
-			margin: auto !important;
-			max-height: 178px;
+			padding: 0;
+			margin: 0 auto !important;
 			max-width: calc(~'100% - 30px');
 			max-height: calc(~'100vh - 30px');
 			.lib-transition(all .3s);
 			opacity: 0;
 			visibility: hidden;
+
 			.modal-header {
-				width: 95% !important;
+				width: 100% !important;
 				position: absolute;
 				top: 0;
 				
-					.action-close {
-						right: -6% !important;
-					}
+				.action-close {
+					right: -4% !important;
+				}
 			}
+
 			.lib-transform(translateY(-50%) scale(0.95));
             &.popup-related {
                 width: 768px;
@@ -387,12 +389,6 @@
 			.modal-inner-wrap {
 				position: absolute;
 				min-height: unset;
-
-				.modal-header {
-					.action-close {
-						right: -10% !important;
-					}
-				}
 			}
 		}
 		.modal-popup._inner-scroll.ajaxCartForm {
@@ -817,8 +813,10 @@
         aside.modal-popup.success-ajax--popup.viewBox.modal-slide._inner-scroll._show {
             .modal-inner-wrap {
                 min-height: auto;
+				height: fit-content !important;
             }
         }
+
         .products-grid.products-related.mgs-products {
             padding: 0 10px;
         }
