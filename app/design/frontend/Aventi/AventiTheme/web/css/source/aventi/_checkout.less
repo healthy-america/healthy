@@ -27,26 +27,36 @@
             display: flex;
             flex-wrap: wrap;
 
-            .authentication-wrapper {
+            .authentication-wrapper,
+            .opc-estimated-wrapper {
                  display: none;
             }
                            
             aside.modal-custom.opc-sidebar.opc-summary-wrapper {
-                    order: 30;
-                    width: 40%;
-                    position: relative;
-                    margin: unset;
+                    width: -webkit-fill-available;
+                    order: 21;
+                    max-width: 40%;
+                    position: initial;
+                    margin: 0 0 25px;
+                    visibility: visible;
+                    opacity: initial;
+                    z-index: initial;
 
                     header.modal-header {
                         display: none;
                     }
 
+                    .modal-inner-wrap {
+                        transform: none;
+                        padding: 0;
+                        margin: auto !important;
+                        width: 100% !important;
+                    }
+
                     div.opc-block-summary {
                         background: @grey-clear;
-                        margin-top: 5em;
-                        width: 90%;
                         max-width: 886px;
-                        position: unset;
+                        margin: 0;
 
                         span.title {
                             font-style: normal;
@@ -128,11 +138,10 @@
                         table.data.table.table-totals {
                             tbody {
                                 tr {
-
                                     th strong,
                                     th {
                                         font-weight: 400;
-                                        font-size: 12px;
+                                        font-size: 16px;
                                         color: @color-text-checkout;
                                     }
 
@@ -143,16 +152,20 @@
                                     td {
                                         span {
                                             font-weight: 700;
-                                            font-size: 12px;
+                                            font-size: 16px;
                                             color: @color-text-checkout;
                                         }
                                     }
+                                }
 
+                                .grand.totals {
+                                    th strong,
+                                    td span {
+                                        font-size: 20px;
+                                    }
                                 }
                             }
                         }
-
-
                     }
 
                     div.opc-block-shipping-information {
@@ -167,6 +180,7 @@
                 align-items: center;
                 order: 10;
                 width: -webkit-fill-available;
+                margin: 0 auto 5%;
 
                 li._active {
 
@@ -179,6 +193,7 @@
                         &:before {
                             background: @white;
                             border: 3px solid @primary-button-background;
+                            top: -4px;
                         }
 
                         &:after {
@@ -193,31 +208,31 @@
                 li {
                     max-width: 23%;
                     width: 248px;
+
                     &::before {
                         background: @disabled-backgroun-checkout;
                     }
 
                     span {
-
                         font-size: 0;
+
                         &::before {
                             height: 49.5px;
                             width: 49.5px;
                             background: @white;
                             border: 3px solid @disabled-backgroun-checkout;
+                            top: -4px;
                         }
 
                         &::after {
-                            top: 11px;
+                            top: 8px;
                             width: 44px;
                             transform: translateY(1px);
                             content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=30');
                             //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
                         }
                     }
-
                 }
-
             }
 
             div.opc-wrapper {
@@ -228,7 +243,7 @@
                 
                     li#shipping {
                         position: relative;
-                        padding-top: 5em;
+                        padding: 0;
 
                         div.step-title {
                             display: none;
@@ -586,7 +601,7 @@
                     }
 
                     li.checkout-payment-method {
-                        margin-top: 5em;
+                        margin: 0;
 
                         div#checkout-step-payment {
                             form {
@@ -1117,12 +1132,6 @@
     body#html-body.checkout-index-index {
 
         div#checkout {
-
-            ul.opc-progress-bar {
-                margin-top: 80px;
-                margin-bottom: unset;
-            }
-
             .opc-estimated-wrapper {
                 display: none;
             }
@@ -1147,6 +1156,40 @@
 
         div#checkout {
             margin-bottom: 1.5em;
+
+            aside.modal-custom.opc-sidebar.opc-summary-wrapper {
+                max-width: 100%;
+                order: 2;
+
+                div.opc-block-summary {
+                        margin: 10px;
+
+                    table.data.table.table-totals {
+                        tbody {
+                            tr {
+                                th strong,
+                                th {
+                                    font-size: 14px;
+                                }
+
+                                td {
+                                    span {
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+
+                            .grand.totals {
+                                th strong,
+                                td span {
+                                    font-size: 18px;
+                                }
+                            }
+                        }
+                    }                       
+                }
+            }
+
             ul.opc-progress-bar {
                 display: flex;
 
@@ -1160,7 +1203,7 @@
                     span {
     
                         &:after {
-                            top: 9px;
+                            top: 2px;
                             content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=22&height=22');
                             //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
                         }
@@ -1168,17 +1211,18 @@
                     }
                 }
     
-                li {    
+                li.opc-progress-bar-item {    
                         
                     span {
     
                         &::before {
                                 height: 33.5px;
                                 width: 33.5px;
+                                top: 4px;
                         }
     
                         &::after {
-                                top: 5px;
+                                top: 11px;
                                 width: 28px;
                                 content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=22&height=22');
                                 //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
@@ -1187,16 +1231,16 @@
 
                     &:nth-child(2) {
                         span {
-    
+                            &::before {
+                                top: 2px;
+                            }
+
                             &:after {
                                 top: 9px;
                             }
-        
                         }
                     }
-    
                 }
-    
             }
 
             div.opc-wrapper {
@@ -1206,7 +1250,7 @@
                     display: flex;
                     flex-direction: column;
                     position: relative;
-                    margin-top: 2em;
+                    margin-top: 0;
 
                     li#opc-shipping_method {
                         margin-bottom: 1em;
@@ -1263,6 +1307,7 @@
 
                             form#co-shipping-form {
                                 margin-top: 85px;
+
                                  &::after {
                                      position: absolute;
                                      top: -1em;
@@ -1276,7 +1321,6 @@
                                      font-weight: 700;
                                      line-height: 24px;
                                  }
- 
                             }
 
                         }
@@ -1284,7 +1328,8 @@
 
 
                     li.checkout-payment-method {
-                        margin-top: 2em;
+                        margin: 0;
+
                         div#checkout-step-payment {
                             form {
                                 fieldset {
@@ -1380,20 +1425,13 @@
 
 
                     }
-
-                
                 }
-
             }
-
         }
 
         .modals-wrapper {
-
             aside {
-        
                 header.modal-header {
-
                    h1 {
                         font-style: normal;
                         font-weight: 800;
@@ -1473,11 +1511,6 @@
                 ul.opc-progress-bar {
                     margin-top: unset;
                 }
-
-                aside.modal-custom.opc-sidebar.opc-summary-wrapper {
-                    display: none;
-                }
-
             }
 
             .checkout-payment-method 
@@ -1501,6 +1534,105 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body#html-body.checkout-index-index {
+            form#co-shipping-form {
+                .fieldset.address {
+                    display: flex;
+                    flex-wrap: wrap;
+
+                    div[name="shippingAddress.firstname"],
+                    div[name="shippingAddress.lastname"],
+                    div[name="shippingAddress.vat_id"],
+                    div[name="shippingAddress.country_id"],
+                    div[name="shippingAddress.region_id"],
+                    div[name="shippingAddress.city_id"],
+                    div[name="shippingAddress.telephone"],
+                    div[name="shippingAddress.fax"] {
+                        width: 50%;
+                        margin: 10px 0 0;
+                        padding: 10px 15px 0 0;
+                    }
+
+                    fieldset.field.street.admin__control-fields.required,
+                    div[name="shippingAddress.suffix"] {
+                        width: 100%;
+                        margin: 10px 0 0;
+                    }
+
+                    div[name="shippingAddress.firstname"]{
+                        order: 1; 
+                    }
+
+                    div[name="shippingAddress.lastname"]{
+                        order: 2;
+                    }
+
+                    div[name="shippingAddress.suffix"]{
+                        order: 3;
+                        padding: 10px 15px 0 0;
+                    }
+
+                    div[name="shippingAddress.vat_id"]{
+                        order: 5;
+                    }
+
+                    div[name="shippingAddress.country_id"]{
+                        order: 7;
+                    }
+
+                    div[name="shippingAddress.region_id"]{
+                        order: 8;
+                    }
+
+                    div[name="shippingAddress.city_id"]{
+                        order: 9;
+                    }
+
+                    fieldset.field.street.admin__control-fields.required{
+                        order: 10;
+                        padding: 10 0 0 0;
+
+                        .control {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            .field {
+                                width: 50%;
+                                padding: 0 15px 0 0;
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    div[name="shippingAddress.telephone"]{
+                        order: 6;
+                    }
+
+                    div[name="shippingAddress.fax"]{
+                        order: 4;
+                    }
+
+                }
+
+                &::after {
+                    position: absolute;
+                    top: -1em;
+                    left: 0;
+                    content: 'Datos de envio';
+                    width: 100%;
+                    height: 3em;
+                    color: @primary-button-background;
+                    text-align: left;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 24px;
+                }
+                
         }
     }
 }
