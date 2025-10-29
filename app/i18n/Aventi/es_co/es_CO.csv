@@ -15365,7 +15365,7 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Product Name","Nombre ",Magento_VisualMerchandiser
 "Your email address", "Tú dirección Email"
 "Adding...","Añadiendo..."
-"Proceed to Checkout","Proceder al checkout"
+"Proceed to Checkout","Proceder a pagar"
 "Account Navigation","Navegación de mi cuenta"
 "Order number","Número de orden"
 "Filtered by","Filtrado por"

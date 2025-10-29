@@ -55,7 +55,6 @@
 
                     div.opc-block-summary {
                         background: @grey-clear;
-                        max-width: 886px;
                         margin: 0;
 
                         span.title {
@@ -139,7 +138,8 @@
                             tbody {
                                 tr {
                                     th strong,
-                                    th {
+                                    th,
+                                    .label {
                                         font-weight: 400;
                                         font-size: 16px;
                                         color: @color-text-checkout;
@@ -1168,7 +1168,8 @@
                         tbody {
                             tr {
                                 th strong,
-                                th {
+                                th,
+                                .label {
                                     font-size: 14px;
                                 }
 
@@ -1552,7 +1553,8 @@
                     div[name="shippingAddress.region_id"],
                     div[name="shippingAddress.city_id"],
                     div[name="shippingAddress.telephone"],
-                    div[name="shippingAddress.fax"] {
+                    div[name="shippingAddress.fax"],
+                    div[name="shippingAddress.company"] {
                         width: 50%;
                         margin: 10px 0 0;
                         padding: 10px 15px 0 0;
@@ -1564,36 +1566,37 @@
                         margin: 10px 0 0;
                     }
 
-                    div[name="shippingAddress.firstname"]{
+                    div[name="shippingAddress.firstname"] {
                         order: 1; 
                     }
 
-                    div[name="shippingAddress.lastname"]{
+                    div[name="shippingAddress.lastname"] {
                         order: 2;
                     }
 
-                    div[name="shippingAddress.suffix"]{
+                    div[name="shippingAddress.suffix"],
+                    div[name="shippingAddress.company"] {
                         order: 3;
                         padding: 10px 15px 0 0;
                     }
 
-                    div[name="shippingAddress.vat_id"]{
+                    div[name="shippingAddress.vat_id"] {
                         order: 5;
                     }
 
-                    div[name="shippingAddress.country_id"]{
+                    div[name="shippingAddress.country_id"] {
                         order: 7;
                     }
 
-                    div[name="shippingAddress.region_id"]{
+                    div[name="shippingAddress.region_id"] {
                         order: 8;
                     }
 
-                    div[name="shippingAddress.city_id"]{
+                    div[name="shippingAddress.city_id"] {
                         order: 9;
                     }
 
-                    fieldset.field.street.admin__control-fields.required{
+                    fieldset.field.street.admin__control-fields.required {
                         order: 10;
                         padding: 10 0 0 0;
 
@@ -1609,11 +1612,11 @@
                         }
                     }
 
-                    div[name="shippingAddress.telephone"]{
+                    div[name="shippingAddress.telephone"] {
                         order: 6;
                     }
 
-                    div[name="shippingAddress.fax"]{
+                    div[name="shippingAddress.fax"] {
                         order: 4;
                     }
 
