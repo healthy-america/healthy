@@ -158,6 +158,12 @@
                                     }
                                 }
 
+                                .shipping {
+                                    .value {
+                                        display: none;
+                                    }
+                                }
+
                                 .grand.totals {
                                     th strong,
                                     td span {
@@ -189,6 +195,7 @@
                     }
 
                     span {
+                        color: @primary-button-background;
 
                         &:before {
                             background: @white;
@@ -199,9 +206,7 @@
                         &:after {
                             transform: translateY(1px);
                             content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=30&height=30');
-                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
                         }
-
                     }
                 }
 
@@ -214,7 +219,9 @@
                     }
 
                     span {
-                        font-size: 0;
+                        font-size: 18px;
+                        font-weight: 600;
+                        padding: 50px 0 0;
 
                         &::before {
                             height: 49.5px;
@@ -222,14 +229,26 @@
                             background: @white;
                             border: 3px solid @disabled-backgroun-checkout;
                             top: -4px;
+                            left: 47%;
                         }
 
                         &::after {
                             top: 8px;
                             width: 44px;
+                            left: 47%;
+                            font-size: 26px;
+                            transform: translateY(2px);
+                        }
+                    }
+                }
+
+                ._complete {
+                    span {
+                        color: @disabled-backgroun-checkout;
+
+                        &:after {
                             transform: translateY(1px);
                             content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=30');
-                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
                         }
                     }
                 }
@@ -456,7 +475,7 @@
                                     position: absolute;
                                     top: -1em;
                                     left: 0;
-                                    content: 'Datos de envio';
+                                    content: 'Datos de envío';
                                     width: 100%;
                                     height: 3em;
                                     color: var(--negro, #050202);
@@ -1194,51 +1213,46 @@
             ul.opc-progress-bar {
                 display: flex;
 
-                li {
-                    max-width: 42%;
-
-                }
-
-                li._active {  
-
+                li.opc-progress-bar-item._active {  
                     span {
-    
                         &:after {
-                            top: 2px;
-                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=22&height=22');
-                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
+                            top: 9px;
+                            transform: translateY(2px);
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=30&height=22');
                         }
-    
                     }
                 }
     
-                li.opc-progress-bar-item {    
-                        
+                li.opc-progress-bar-item { 
+                    max-width: 45%;   
                     span {
-    
+                        font-size: 16px;
+
                         &::before {
-                                height: 33.5px;
-                                width: 33.5px;
-                                top: 4px;
+                            height: 33.5px;
+                            width: 33.5px;
+                            top: 2px;
+                            left: 50%;
+                            transform: translateY(0);
                         }
     
                         &::after {
-                                top: 11px;
-                                width: 28px;
-                                content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=22&height=22');
-                                //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
+                            top: 9px;
+                            width: 28px;
+                            left: 50%;
+                            font-size: 20px;
+                            transform: translateY(0);
                         }
                     }
+                }
 
-                    &:nth-child(2) {
-                        span {
-                            &::before {
-                                top: 2px;
-                            }
-
-                            &:after {
-                                top: 9px;
-                            }
+                li.opc-progress-bar-item._complete {
+                    span {
+                        &::after {
+                            top: 9px;
+                            font-size: x-large;
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=22');
+                            transform: translateY(0);
                         }
                     }
                 }
@@ -1313,7 +1327,7 @@
                                      position: absolute;
                                      top: -1em;
                                      left: 0;
-                                     content: 'Datos de envio';
+                                     content: 'Datos de envío';
                                      width: 100%;
                                      height: 3em;
                                      color: @primary-button-background;
@@ -1631,7 +1645,7 @@
                     position: absolute;
                     top: -1em;
                     left: 0;
-                    content: 'Datos de envio';
+                    content: 'Datos de envío';
                     width: 100%;
                     height: 3em;
                     color: @primary-button-background;
