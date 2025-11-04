@@ -55,15 +55,16 @@
 
                     div.opc-block-summary {
                         background: @grey-clear;
-                        margin: 0;
+                        margin: 0 auto 0 6%;
 
                         span.title {
                             font-style: normal;
                             font-weight: 800;
                             font-size: 18px;
                             line-height: 24px;
-                            text-align: left;
-                            margin-top: 0.7em;
+                            text-transform: uppercase;
+                            text-align: center;
+                            margin: 12px auto;
                         }
 
                         div.block.items-in-cart {
@@ -1172,6 +1173,17 @@
 
 
     body#html-body.checkout-index-index {
+        .form.payments {
+            ._title_payment_ {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .fieldset  {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
 
         div#checkout {
             margin-bottom: 1.5em;
@@ -1180,8 +1192,16 @@
                 max-width: 100%;
                 order: 2;
 
+                .modal-inner-wrap {
+                    max-width: 600px;
+                } 
+
                 div.opc-block-summary {
-                        margin: 10px;
+                    margin: 0 auto;
+
+                    span.title {
+                        margin: 5px auto 10px;
+                    }
 
                     table.data.table.table-totals {
                         tbody {
@@ -1345,6 +1365,10 @@
                     li.checkout-payment-method {
                         margin: 0;
 
+                        .payment-option-title {
+                            padding: 20px 15px;
+                        }
+
                         div#checkout-step-payment {
                             form {
                                 fieldset {
@@ -1358,7 +1382,6 @@
                                                         div.payment-method-billing-address {
 
                                                             fieldset.fieldset {
-
                                                                 div.actions-toolbar {
                                                                     
                                                                     div.primary {
