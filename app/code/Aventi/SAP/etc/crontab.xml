@@ -1,59 +1,64 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Copyright © Aventi SAS All rights reserved.
- * See COPYING.txt for license details.
+ * Copyright © Aventi SAS
+ * Optimized cron schedule to avoid overlapping over time
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="sap">
+
         <!-- Sincronización completa de productos (pesado) -->
         <job name="aventi_sap_product" instance="Aventi\SAP\Cron\Product" method="execute">
-            <!-- Cada 4 horas a los 5 minutos -->
-            <schedule>5 */4 * * *</schedule>
+            <!-- Cada 4 horas, inicia al minuto 15 -->
+            <schedule>15 */4 * * *</schedule>
         </job>
 
-        <!-- Sincronización rápida de productos (ligera, resumen incremental) -->
+        <!-- Sincronización rápida de productos -->
         <job name="aventi_sap_product_fast" instance="Aventi\SAP\Cron\ProductFast" method="execute">
-            <!-- Cada hora a los 10 minutos -->
-            <schedule>10 * * * *</schedule>
+            <!-- Cada hora, inicia al minuto 20 -->
+            <schedule>20 * * * *</schedule>
         </job>
 
         <!-- Sincronización de stock general -->
         <job name="aventi_sap_stock" instance="Aventi\SAP\Cron\Stock" method="execute">
-            <!-- Cada 2 horas, pero desfasado 20 minutos respecto a productos -->
-            <schedule>25 */2 * * *</schedule>
+            <!-- Cada 2 horas, inicia al minuto 30 -->
+            <schedule>30 */2 * * *</schedule>
         </job>
 
         <!-- Sincronización de precios -->
         <job name="aventi_sap_price" instance="Aventi\SAP\Cron\Price" method="execute">
-            <!-- Cada 2 horas, desfasado 40 minutos -->
-            <schedule>40 */2 * * *</schedule>
+            <!-- Cada 2 horas, inicia al minuto 45 -->
+            <schedule>45 */2 * * *</schedule>
         </job>
 
         <!-- Sincronización rápida de precios -->
         <job name="aventi_sap_price_fast" instance="Aventi\SAP\Cron\PriceFast" method="execute">
-            <!-- Cada 45 minutos -->
-            <schedule>*/45 * * * *</schedule>
+            <!-- Cada hora, comienza en el minuto 27 -->
+            <schedule>23 * * * *</schedule>
+            <!-- (45 min + offset irregular para romper coincidencia con otros múltiplos) -->
         </job>
 
         <!-- Sincronización rápida de stock -->
         <job name="aventi_sap_stock_faster" instance="Aventi\SAP\Cron\StockFaster" method="execute">
-            <!-- Cada 15 minutos -->
-            <schedule>*/15 * * * *</schedule>
+            <!-- Cada hora, inicia en los minutos 5, 40 -->
+            <schedule>5,40 * * * *</schedule>
+            <!-- (Desfase de +3 minutos para evitar coincidencias con los de 5 y 20 min) -->
         </job>
 
         <!-- Envío de pedidos nuevos -->
         <job name="aventi_sap_order_new" instance="Aventi\SAP\Cron\OrderNew" method="execute">
-            <!-- Cada 5 minutos -->
-            <schedule>*/5 * * * *</schedule>
+            <!-- Cada 5 minutos, comienza en 0,10,25,35,50 -->
+            <schedule>0,10,25,35,50 * * * *</schedule>
+            <!-- (Inicia en 3 para no chocar con tareas de 15 o 45 min) -->
         </job>
 
         <!-- Reintento de pedidos con error -->
         <job name="aventi_sap_order_error" instance="Aventi\SAP\Cron\OrderError" method="execute">
-            <!-- Cada 20 minutos -->
-            <schedule>*/20 * * * *</schedule>
+            <!-- Cada hora, comienza en el minuto 55 -->
+            <schedule>55 * * * *</schedule>
         </job>
+
     </group>
 </config>
