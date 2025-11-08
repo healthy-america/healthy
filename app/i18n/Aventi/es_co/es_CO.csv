@@ -4837,7 +4837,7 @@ You need to create a simple product for each configuration (Ex: a product for ea
 "Registered Customers","Clientes registrados",module,Magento_Customer
 "If you have an account, sign in with your email address.","Si tiene una cuenta, inicie sesión con su dirección de correo electrónico.",module,Magento_Customer
 "Password","Contraseña",module,Magento_Customer
-"Forgot Your Password?","Olvidaste tu contraseña?",module,Magento_Customer
+"Forgot Your Password?","Recuperar contraseña",module,Magento_Customer
 "Subscription option","Opciones de suscripción",module,Magento_Customer
 "General Subscription","Suscripción general",module,Magento_Customer
 "Sign Up for Newsletter","Suscribirse al boletín",module,Magento_Customer
@@ -15411,3 +15411,4 @@ formElements/*[name(.)=../../@formElement]/settings/title,module,Magento_Ui
 "Check Status","Chekear Status"
 "%1 has been removed from your Wish List.","%1 ha sido eliminado de tu lista de deseos."
 "Customer Login","Inicio de sesión"
+"Create New Customer Account","Crear nueva cuenta"

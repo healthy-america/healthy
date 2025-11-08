@@ -263,30 +263,140 @@
             display: none;
         }
 
-        #page-title-wrapper {
-            display: flex;
-            justify-content: flex-start;
-            align-items: end;
-            align-items: center;
-            height: 100px;
-            padding: 10px 0;
-            margin: 0 0 5%;
-            overflow: hidden;
-
-            h1 {
-                margin: 0 auto;
-                padding: 0 15px;
-                width: 100%;
-                max-width: 1200px;
-                text-align: center;
-                font-size: ~"clamp(25px, 5vw, 42px)";
-                height: 100%;
-                max-height: 60px;
-                white-space: nowrap;
+        &.contact-index-index,
+        &.customer-account-create,
+        &.catalogsearch-result-index,
+        &.account,
+        &.customer-account-login,
+        &.customer-account-forgotpassword,
+        &.checkout-cart-index,
+        &.checkout-onepage-success {
+            div.page-wrapper div#page-title-wrapper {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                height: ~"clamp(55px, 10vw, 100px)";
+                padding: 10px 0;
+                margin: 0 0 4%;
                 overflow: hidden;
-                text-overflow: ellipsis;
+                background-color: #f7f7f7;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    background: rgba(0, 0, 0, 0.5);
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                h1.page-title,
+                h1 {
+                    margin: 0 auto;
+                    padding: 0 15px;
+                    width: 100%;
+                    max-width: 1200px;
+                    text-align: center;
+                    font-size: ~"clamp(25px, 5vw, 42px)";
+                    height: 100%;
+                    max-height: 60px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-transform: uppercase;
+                    font-weight: bold;
+
+                    span,
+                    span.base {
+                        font-size: ~"clamp(25px, 5vw, 42px)";
+                    } 
+                }
+            }
+
+            .breadcrumbs {
+                display: none;
             }
         }
+
+        &.catalog-category-view {
+            div.page-wrapper div#page-title-wrapper {
+                background-image: url('/media/aventi/images/myAccount.png');
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                height: ~"clamp(120px, 15vw, 200px)";
+                padding: 10px 0;
+                margin: 0 0 1%;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    background: rgba(0, 0, 0, 0.5);
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                h1 {
+                    margin: 0 auto;
+                    padding: 0 15px;
+                    width: 100%;
+                    max-width: 1200px;
+                    text-align: center;
+                    font-size: ~"clamp(25px, 5vw, 42px)";
+                    height: 100%;
+                    max-height: ~"clamp(30px, 9vw, 60px)";
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    text-transform: uppercase;
+                    font-weight: bold;
+
+                    span {
+                        font-size: ~"clamp(25px, 5vw, 42px)";
+                    }
+                }
+            }
+
+            div.page-wrapper div.breadcrumbs {
+                display: block;
+            }
+        }
+
+        &.catalog-product-view {
+            div.page-wrapper div#page-title-wrapper {
+                display: none;
+            }
+
+            .page-wrapper {
+                #maincontent {
+                    .column.main {
+                        .product-info-main {
+                            margin: 0;
+
+                            h2.product-name {
+                                margin: 10% auto 10px;
+                            }
+                        }
+                    } 
+                } 
+            } 
+        }
+
+        &.contact-index-index,
+        &.customer-account-create,
+        &.catalogsearch-result-index,
+        &.account,
+        &.checkout-cart-index,
+        &.checkout-onepage-success{
+            div.page-wrapper div#page-title-wrapper {
+                background-image: #f7f7f7;
+            }
+        }
+        
         .display-none_ {
             display: none;
         }
@@ -357,6 +467,23 @@ html {
                     img {
                         max-width: 70px;
                     }
+                }
+            }
+        }
+
+        &.contact-index-index,
+        &.customer-account-create,
+        &.catalogsearch-result-index,
+        &.account,
+        &.checkout-cart-index,
+        &.customer-account-login,
+        &.customer-account-forgotpassword,
+        &.checkout-onepage-success{
+            div.page-wrapper div#page-title-wrapper {
+                background: var(--theme__color__primary);
+
+                &::before {
+                    background: transparent;
                 }
             }
         }

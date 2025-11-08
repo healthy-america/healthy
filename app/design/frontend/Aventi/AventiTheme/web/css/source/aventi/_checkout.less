@@ -23,6 +23,59 @@
             margin-top: 3.4em;
         }
 
+        form.form.form-login,
+        form#co-shipping-form {   
+            .fieldset.address {
+                display: flex;
+                flex-direction: column;
+
+                .field.choice {
+                    order: 0;
+                }
+
+                div[name="shippingAddress.firstname"] {
+                    order: 1; 
+                }
+
+                div[name="shippingAddress.lastname"] {
+                    order: 2;
+                }
+
+                div[name="shippingAddress.suffix"],
+                div[name="shippingAddress.company"] {
+                    order: 3;
+                }
+
+                div[name="shippingAddress.vat_id"] {
+                    order: 5;
+                }
+
+                div[name="shippingAddress.country_id"] {
+                    order: 7;
+                }
+
+                div[name="shippingAddress.region_id"] {
+                    order: 8;
+                }
+
+                div[name="shippingAddress.city_id"] {
+                    order: 9;
+                }
+
+                fieldset.field.street.admin__control-fields.required {
+                    order: 10;
+                }
+
+                div[name="shippingAddress.telephone"] {
+                    order: 6;
+                }
+
+                div[name="shippingAddress.fax"] {
+                    order: 4;
+                }
+            }  
+        }                       
+
         div#checkout {
             display: flex;
             flex-wrap: wrap;
@@ -424,48 +477,44 @@
                             }
 
                             form.form.form-login,
-                            form#co-shipping-form {
+                            form#co-shipping-form { 
+                                div.field {
 
-                                        
-                                        div.field {
-
-                                            label.label {
-                                            
-                                                span {
-                                                    font-style: normal;
-                                                    font-weight: 400;
-                                                    font-size: 14px;
-                                                    line-height: 18px;
-                                                    color: @grey-dark;
-                                                }
-
-                                                &::after {
-                                                    color: @grey-dark;
-                                                }
-
-                                            }
-
-                                            
-
+                                    label.label {
+                                    
+                                        span {
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: @grey-dark;
                                         }
 
-
-                                        fieldset.field {
-                                            legend.label {
-                                                span {
-                                                    font-style: normal;
-                                                    font-weight: 400;
-                                                    font-size: 14px;
-                                                    line-height: 18px;
-                                                    color: @grey-dark;
-                                                }
-
-                                                &::after {
-                                                    color: @grey-dark;
-                                                }
-                                            }
+                                        &::after {
+                                            color: @grey-dark;
                                         }
 
+                                    }
+
+                                    
+
+                                }
+
+                                fieldset.field {
+                                    legend.label {
+                                        span {
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: @grey-dark;
+                                        }
+
+                                        &::after {
+                                            color: @grey-dark;
+                                        }
+                                    }
+                                }
                             }
 
                             form#co-shipping-form {
@@ -1578,9 +1627,10 @@
 
 @media screen and (min-width: 768px) {
     body#html-body.checkout-index-index {
-            form#co-shipping-form {
+            form#co-shipping-form { 
                 .fieldset.address {
                     display: flex;
+                    flex-direction: row;
                     flex-wrap: wrap;
 
                     div[name="shippingAddress.firstname"],
@@ -1604,42 +1654,12 @@
                         margin: 10px 0 0;
                     }
 
-                    .field.choice {
-                        order: 0;
-                    }
-
-                    div[name="shippingAddress.firstname"] {
-                        order: 1; 
-                    }
-
-                    div[name="shippingAddress.lastname"] {
-                        order: 2;
-                    }
-
                     div[name="shippingAddress.suffix"],
                     div[name="shippingAddress.company"] {
-                        order: 3;
                         padding: 10px 15px 0 0;
                     }
 
-                    div[name="shippingAddress.vat_id"] {
-                        order: 5;
-                    }
-
-                    div[name="shippingAddress.country_id"] {
-                        order: 7;
-                    }
-
-                    div[name="shippingAddress.region_id"] {
-                        order: 8;
-                    }
-
-                    div[name="shippingAddress.city_id"] {
-                        order: 9;
-                    }
-
                     fieldset.field.street.admin__control-fields.required {
-                        order: 10;
                         padding: 10 0 0 0;
 
                         .control {
@@ -1653,15 +1673,6 @@
                             }
                         }
                     }
-
-                    div[name="shippingAddress.telephone"] {
-                        order: 6;
-                    }
-
-                    div[name="shippingAddress.fax"] {
-                        order: 4;
-                    }
-
                 }
 
                 &::after {
