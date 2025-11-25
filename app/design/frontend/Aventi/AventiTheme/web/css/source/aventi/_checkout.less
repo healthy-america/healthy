@@ -23,38 +23,101 @@
             margin-top: 3.4em;
         }
 
+        form.form.form-login,
+        form#co-shipping-form {   
+            .fieldset.address {
+                display: flex;
+                flex-direction: column;
+
+                .field.choice {
+                    order: 0;
+                }
+
+                div[name="shippingAddress.firstname"] {
+                    order: 1; 
+                }
+
+                div[name="shippingAddress.lastname"] {
+                    order: 2;
+                }
+
+                div[name="shippingAddress.suffix"],
+                div[name="shippingAddress.company"] {
+                    order: 3;
+                }
+
+                div[name="shippingAddress.vat_id"] {
+                    order: 5;
+                }
+
+                div[name="shippingAddress.country_id"] {
+                    order: 7;
+                }
+
+                div[name="shippingAddress.region_id"] {
+                    order: 8;
+                }
+
+                div[name="shippingAddress.city_id"] {
+                    order: 9;
+                }
+
+                fieldset.field.street.admin__control-fields.required {
+                    order: 10;
+                }
+
+                div[name="shippingAddress.telephone"] {
+                    order: 6;
+                }
+
+                div[name="shippingAddress.fax"] {
+                    order: 4;
+                }
+            }  
+        }                       
+
         div#checkout {
             display: flex;
             flex-wrap: wrap;
 
-            .authentication-wrapper {
+            .authentication-wrapper,
+            .opc-estimated-wrapper {
                  display: none;
             }
                            
             aside.modal-custom.opc-sidebar.opc-summary-wrapper {
-                    order: 30;
-                    width: 40%;
-                    position: relative;
-                    margin: unset;
+                    width: -webkit-fill-available;
+                    order: 21;
+                    max-width: 40%;
+                    position: initial;
+                    margin: 0 0 25px;
+                    visibility: visible;
+                    opacity: initial;
+                    z-index: initial;
 
                     header.modal-header {
                         display: none;
                     }
 
+                    .modal-inner-wrap {
+                        transform: none;
+                        padding: 0;
+                        margin: auto !important;
+                        width: 100% !important;
+                    }
+
                     div.opc-block-summary {
                         background: @grey-clear;
-                        margin-top: 5em;
-                        width: 90%;
-                        max-width: 886px;
-                        position: unset;
+                        margin: 0 auto 0 6%;
 
                         span.title {
                             font-style: normal;
                             font-weight: 800;
                             font-size: 18px;
                             line-height: 24px;
-                            text-align: left;
-                            margin-top: 0.7em;
+                            text-transform: uppercase;
+                            text-align: center;
+                            margin: 12px auto;
                         }
 
                         div.block.items-in-cart {
@@ -128,11 +191,11 @@
                         table.data.table.table-totals {
                             tbody {
                                 tr {
-
                                     th strong,
-                                    th {
+                                    th,
+                                    .label {
                                         font-weight: 400;
-                                        font-size: 12px;
+                                        font-size: 16px;
                                         color: @color-text-checkout;
                                     }
 
@@ -143,16 +206,26 @@
                                     td {
                                         span {
                                             font-weight: 700;
-                                            font-size: 12px;
+                                            font-size: 16px;
                                             color: @color-text-checkout;
                                         }
                                     }
+                                }
 
+                                .shipping {
+                                    .value {
+                                        display: none;
+                                    }
+                                }
+
+                                .grand.totals {
+                                    th strong,
+                                    td span {
+                                        font-size: 20px;
+                                    }
                                 }
                             }
                         }
-
-
                     }
 
                     div.opc-block-shipping-information {
@@ -167,6 +240,7 @@
                 align-items: center;
                 order: 10;
                 width: -webkit-fill-available;
+                margin: 0 auto 6%;
 
                 li._active {
 
@@ -175,49 +249,63 @@
                     }
 
                     span {
+                        color: @primary-button-background;
 
                         &:before {
                             background: @white;
                             border: 3px solid @primary-button-background;
+                            top: -4px;
                         }
 
                         &:after {
                             transform: translateY(1px);
                             content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=30&height=30');
-                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
                         }
-
                     }
                 }
 
                 li {
                     max-width: 23%;
                     width: 248px;
+
                     &::before {
                         background: @disabled-backgroun-checkout;
                     }
 
                     span {
+                        font-size: 18px;
+                        font-weight: 600;
+                        padding: 50px 0 0;
 
-                        font-size: 0;
                         &::before {
                             height: 49.5px;
                             width: 49.5px;
                             background: @white;
                             border: 3px solid @disabled-backgroun-checkout;
+                            top: -4px;
+                            left: 47%;
                         }
 
                         &::after {
-                            top: 11px;
+                            top: 8px;
                             width: 44px;
-                            transform: translateY(1px);
-                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=30');
-                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
+                            left: 47%;
+                            font-size: 26px;
+                            transform: translateY(2px);
                         }
                     }
-
                 }
 
+                ._complete {
+                    span {
+                        color: @disabled-backgroun-checkout;
+
+                        &:after {
+                            transform: translateY(1px);
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=30');
+                        }
+                    }
+                }
             }
 
             div.opc-wrapper {
@@ -228,7 +316,7 @@
                 
                     li#shipping {
                         position: relative;
-                        padding-top: 5em;
+                        padding: 0;
 
                         div.step-title {
                             display: none;
@@ -389,48 +477,44 @@
                             }
 
                             form.form.form-login,
-                            form#co-shipping-form {
+                            form#co-shipping-form { 
+                                div.field {
 
-                                        
-                                        div.field {
-
-                                            label.label {
-                                            
-                                                span {
-                                                    font-style: normal;
-                                                    font-weight: 400;
-                                                    font-size: 14px;
-                                                    line-height: 18px;
-                                                    color: @grey-dark;
-                                                }
-
-                                                &::after {
-                                                    color: @grey-dark;
-                                                }
-
-                                            }
-
-                                            
-
+                                    label.label {
+                                    
+                                        span {
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: @grey-dark;
                                         }
 
-
-                                        fieldset.field {
-                                            legend.label {
-                                                span {
-                                                    font-style: normal;
-                                                    font-weight: 400;
-                                                    font-size: 14px;
-                                                    line-height: 18px;
-                                                    color: @grey-dark;
-                                                }
-
-                                                &::after {
-                                                    color: @grey-dark;
-                                                }
-                                            }
+                                        &::after {
+                                            color: @grey-dark;
                                         }
 
+                                    }
+
+                                    
+
+                                }
+
+                                fieldset.field {
+                                    legend.label {
+                                        span {
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            font-size: 14px;
+                                            line-height: 18px;
+                                            color: @grey-dark;
+                                        }
+
+                                        &::after {
+                                            color: @grey-dark;
+                                        }
+                                    }
+                                }
                             }
 
                             form#co-shipping-form {
@@ -441,7 +525,7 @@
                                     position: absolute;
                                     top: -1em;
                                     left: 0;
-                                    content: 'Datos de envio';
+                                    content: 'Datos de envío';
                                     width: 100%;
                                     height: 3em;
                                     color: var(--negro, #050202);
@@ -586,7 +670,7 @@
                     }
 
                     li.checkout-payment-method {
-                        margin-top: 5em;
+                        margin: 0;
 
                         div#checkout-step-payment {
                             form {
@@ -1117,12 +1201,6 @@
     body#html-body.checkout-index-index {
 
         div#checkout {
-
-            ul.opc-progress-bar {
-                margin-top: 80px;
-                margin-bottom: unset;
-            }
-
             .opc-estimated-wrapper {
                 display: none;
             }
@@ -1144,59 +1222,109 @@
 
 
     body#html-body.checkout-index-index {
+        .form.payments {
+            ._title_payment_ {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .fieldset  {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
 
         div#checkout {
             margin-bottom: 1.5em;
+
+            aside.modal-custom.opc-sidebar.opc-summary-wrapper {
+                max-width: 100%;
+                order: 2;
+
+                .modal-inner-wrap {
+                    max-width: 600px;
+                } 
+
+                div.opc-block-summary {
+                    margin: 0 auto;
+
+                    span.title {
+                        margin: 5px auto 10px;
+                    }
+
+                    table.data.table.table-totals {
+                        tbody {
+                            tr {
+                                th strong,
+                                th,
+                                .label {
+                                    font-size: 14px;
+                                }
+
+                                td {
+                                    span {
+                                        font-size: 14px;
+                                    }
+                                }
+                            }
+
+                            .grand.totals {
+                                th strong,
+                                td span {
+                                    font-size: 18px;
+                                }
+                            }
+                        }
+                    }                       
+                }
+            }
+
             ul.opc-progress-bar {
                 display: flex;
 
-                li {
-                    max-width: 42%;
-
-                }
-
-                li._active {  
-
+                li.opc-progress-bar-item._active {  
                     span {
-    
                         &:after {
                             top: 9px;
-                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=22&height=22');
-                            //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23004088&width=23&height=23');
+                            transform: translateY(2px);
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23004088&width=30&height=22');
                         }
-    
                     }
                 }
     
-                li {    
-                        
+                li.opc-progress-bar-item { 
+                    max-width: 45%;   
                     span {
-    
+                        font-size: 16px;
+
                         &::before {
-                                height: 33.5px;
-                                width: 33.5px;
+                            height: 33.5px;
+                            width: 33.5px;
+                            top: 2px;
+                            left: 50%;
+                            transform: translateY(0);
                         }
     
                         &::after {
-                                top: 5px;
-                                width: 28px;
-                                content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=22&height=22');
-                                //content: url('https://api.iconify.design/material-symbols/check.svg?color=%23b6bac0&width=23&height=23');
+                            top: 9px;
+                            width: 28px;
+                            left: 50%;
+                            font-size: 20px;
+                            transform: translateY(0);
                         }
                     }
-
-                    &:nth-child(2) {
-                        span {
-    
-                            &:after {
-                                top: 9px;
-                            }
-        
-                        }
-                    }
-    
                 }
-    
+
+                li.opc-progress-bar-item._complete {
+                    span {
+                        &::after {
+                            top: 9px;
+                            font-size: x-large;
+                            content: url('https://api.iconify.design/iconamoon/check-bold.svg?color=%23b6bac0&width=30&height=22');
+                            transform: translateY(0);
+                        }
+                    }
+                }
             }
 
             div.opc-wrapper {
@@ -1206,7 +1334,7 @@
                     display: flex;
                     flex-direction: column;
                     position: relative;
-                    margin-top: 2em;
+                    margin-top: 0;
 
                     li#opc-shipping_method {
                         margin-bottom: 1em;
@@ -1263,11 +1391,12 @@
 
                             form#co-shipping-form {
                                 margin-top: 85px;
+
                                  &::after {
                                      position: absolute;
                                      top: -1em;
                                      left: 0;
-                                     content: 'Datos de envio';
+                                     content: 'Datos de envío';
                                      width: 100%;
                                      height: 3em;
                                      color: @primary-button-background;
@@ -1276,7 +1405,6 @@
                                      font-weight: 700;
                                      line-height: 24px;
                                  }
- 
                             }
 
                         }
@@ -1284,7 +1412,12 @@
 
 
                     li.checkout-payment-method {
-                        margin-top: 2em;
+                        margin: 0;
+
+                        .payment-option-title {
+                            padding: 20px 15px;
+                        }
+
                         div#checkout-step-payment {
                             form {
                                 fieldset {
@@ -1298,7 +1431,6 @@
                                                         div.payment-method-billing-address {
 
                                                             fieldset.fieldset {
-
                                                                 div.actions-toolbar {
                                                                     
                                                                     div.primary {
@@ -1380,20 +1512,13 @@
 
 
                     }
-
-                
                 }
-
             }
-
         }
 
         .modals-wrapper {
-
             aside {
-        
                 header.modal-header {
-
                    h1 {
                         font-style: normal;
                         font-weight: 800;
@@ -1473,11 +1598,6 @@
                 ul.opc-progress-bar {
                     margin-top: unset;
                 }
-
-                aside.modal-custom.opc-sidebar.opc-summary-wrapper {
-                    display: none;
-                }
-
             }
 
             .checkout-payment-method 
@@ -1501,6 +1621,74 @@
                     }
                 }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body#html-body.checkout-index-index {
+            form#co-shipping-form { 
+                .fieldset.address {
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+
+                    div[name="shippingAddress.firstname"],
+                    div[name="shippingAddress.lastname"],
+                    div[name="shippingAddress.vat_id"],
+                    div[name="shippingAddress.country_id"],
+                    div[name="shippingAddress.region_id"],
+                    div[name="shippingAddress.city_id"],
+                    div[name="shippingAddress.telephone"],
+                    div[name="shippingAddress.fax"],
+                    div[name="shippingAddress.company"] {
+                        width: 50%;
+                        margin: 10px 0 0;
+                        padding: 10px 15px 0 0;
+                    }
+
+                    fieldset.field.street.admin__control-fields.required,
+                    .field.choice,
+                    div[name="shippingAddress.suffix"] {
+                        width: 100%;
+                        margin: 10px 0 0;
+                    }
+
+                    div[name="shippingAddress.suffix"],
+                    div[name="shippingAddress.company"] {
+                        padding: 10px 15px 0 0;
+                    }
+
+                    fieldset.field.street.admin__control-fields.required {
+                        padding: 10 0 0 0;
+
+                        .control {
+                            display: flex;
+                            flex-wrap: wrap;
+
+                            .field {
+                                width: 50%;
+                                padding: 0 15px 0 0;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+                &::after {
+                    position: absolute;
+                    top: -1em;
+                    left: 0;
+                    content: 'Datos de envío';
+                    width: 100%;
+                    height: 3em;
+                    color: @primary-button-background;
+                    text-align: left;
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 24px;
+                }
+                
         }
     }
 }

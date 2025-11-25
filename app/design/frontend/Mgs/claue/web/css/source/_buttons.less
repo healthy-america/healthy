@@ -8,11 +8,38 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+	body#html-body {
+		&.checkout-cart-index {
+			.product-item {
+				&:hover {
+					box-shadow: none;
+				}
+
+				.actions {
+					display: flex;
+					justify-content: center;
+					padding: 0 5px;
+
+					form {
+						width: 100%;
+					}
+				}
+				.btn-secondary {
+					padding: 0 10px;
+					width: 100%;
+					max-width: 240px;
+    				margin: 10px auto 0;
+				}
+			}
+		}
+	}
+
 	button  {
 		font-family: @font-family__base;
         -webkit-appearance: button;
         cursor: pointer;
 	}
+
 	.btn,
 	.btn-secondary,
 	.action-secondary,

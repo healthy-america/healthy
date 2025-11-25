@@ -57,6 +57,7 @@
                                                                         <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.region_id]]></item>
                                                                         <item name="field" xsi:type="string">region_id</item>
                                                                     </item>
+                                                                    <item name="additionalClasses" xsi:type="string">required</item>
                                                                 </item>
                                                                 <item name="city" xsi:type="array">
                                                                     <item name="component" xsi:type="string">Aventi_CityDropDown/js/form/element/city</item>
