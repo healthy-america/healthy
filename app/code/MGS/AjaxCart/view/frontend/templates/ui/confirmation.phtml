@@ -38,11 +38,12 @@
 </div>
 
 <script>
-    const quickviewFrame = document.querySelector('.mfp-mgs-quickview-frame'),
-            successAjaxPopup = document.querySelector('.success-ajax--popup'),
-            popupClose = document.querySelector('.popup__action-close'),
-            popupViewCart = document.querySelector('.popup__result-view-cart'),
-            popupRedirectCheckout = document.querySelector('.popup__action-redirect--checkout');
+(function() {
+    const quickviewFrame = document.querySelector('.mfp-mgs-quickview-frame');
+    const successAjaxPopup = document.querySelector('.success-ajax--popup');
+    const popupClose = document.querySelector('.popup__action-close');
+    const popupViewCart = document.querySelector('.popup__result-view-cart');
+    const popupRedirectCheckout = document.querySelector('.popup__action-redirect--checkout');
 
     if (quickviewFrame) {
         quickviewFrame.classList.add('success-ajax--popup');
@@ -55,7 +56,6 @@
     if (popupClose) {
         popupClose.addEventListener('click', function() {
             const close = document.querySelector('.mfp-close');
-
             if (close) {
                 close.click();
             }
@@ -73,4 +73,5 @@
             window.location.href = this.getAttribute('data-href');
         });
     }
+})();
 </script>
