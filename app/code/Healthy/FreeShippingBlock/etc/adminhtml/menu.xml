@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Healthy_FreeShippingBlock::main"
+             title="Free Shipping Block"
+             translate="title"
+             module="Healthy_FreeShippingBlock"
+             sortOrder="90"
+             parent="Magento_Backend::stores"
+             action="adminhtml/system_config/edit/section/healthy_freeshipping"
+             resource="Healthy_FreeshippingBlock::config_healthy_freeShippingblock"/>
+    </menu>
+</config>

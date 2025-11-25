@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+<!-- /**
+ * Copyright © Healthy SAS All rights reserved.
+ * See COPYING.txt for license details.
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="healthy" sortOrder="999" translate="label">
+            <label>HEALTHY AMERICA</label>
+        </tab>
+        <section id="healthy_freeshipping" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+            <label>Free Shipping Block</label>
+            <tab>healthy</tab>
+            <resource>Healthy_FreeshippingBlock::config_healthy_freeShippingblock</resource>
+            <group id="settings" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Free Shipping Block Settings</label>
+                <field id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="text">
+                    <label>Price (COP)</label>
+                    <comment>Set a minimum amount for free shipping. Example: 200,000</comment>
+                </field>
+                <field id="message_default" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text">
+                    <label>Default message</label>
+                    <comment>Message displayed when the cart is empty or the subtotal cannot be calculated</comment>
+                </field>
+                <field id="message_items_in_cart" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="30" translate="label" type="text">
+                    <label>Message with remaining amount</label>
+                    <comment>Use $x.xxx as a placeholder for the remaining amount</comment>
+                </field>
+                <field id="message_free_shipping" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label" type="text">
+                    <label>Free shipping message</label>
+                    <comment>Message displayed when the order already has free shipping</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

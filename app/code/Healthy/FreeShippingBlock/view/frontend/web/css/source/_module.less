@@ -1,0 +1,47 @@
+& when (@media-common = true)  {
+    #free-shipping-banner {
+        width: 100%;
+        background: #254083;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+    }
+
+
+    .content-message {
+        text-align: center;
+        position: relative;
+        color: #ffffff;
+        padding: 6px 30px 6px 0px;
+        font-size: 13px;
+        margin: 0;
+        
+        &.free::after,
+        &.free1::after,
+        &.free2::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            padding: 4px;
+            border-radius: 50%;
+            display: inline-block;
+            position: absolute;
+            margin: 0 0 0 4px;
+            top: 3px;
+        }
+
+        &.free::after {
+            content: url('@{baseDir}images/icons/humbleicons-check.svg');
+            background: #00a200;
+        }
+
+        &.free1::after {
+            content: url('@{baseDir}images/icons/truck-light.svg');
+            background: #e00606;
+        }
+
+        &.free2::after {
+            content: url('@{baseDir}images/icons/truck-light.svg');
+            background: #b87802;
+        }
+    } 
+}

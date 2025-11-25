@@ -1,0 +1,22 @@
+{
+    "name": "healthy/module-freeshippingblock",
+    "description": "Muestra un bloque anunciando cuanto es el monto para obtener envi\u00f3 gratis cuanto te falta para obtenerlo y cuando ya cuentas con el envi\u00f3 gratis",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Mage2Gen",
+            "email": "info@mage2gen.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Healthy\\FreeShippingBlock\\": ""
+        }
+    }
+}

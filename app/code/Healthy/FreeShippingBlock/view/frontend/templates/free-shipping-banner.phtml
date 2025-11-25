@@ -1,0 +1,16 @@
+<?php
+/** @var $block \\Healthy\\FreeShippingBlock\\Block\\FreeShipping */
+// Use block to get admin config values and output a proper data-mage-init JSON
+$initJson = '';
+if (method_exists($block, 'getInitConfigJson')) {
+    $initJson = $block->getInitConfigJson();
+}
+?>
+
+<div id="free-shipping-banner" data-bind="scope: 'free-shipping-banner'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+<?php echo $initJson ?: '{}'; ?>
+</script>
