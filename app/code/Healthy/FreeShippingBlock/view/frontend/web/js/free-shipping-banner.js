@@ -1,73 +1,67 @@
 define([
     'uiComponent',
     'Magento_Customer/js/customer-data',
-    'underscore',
     'ko'
-], function(
+], function (
     Component,
     customerData,
-    _,
     ko
 ) {
     'use strict';
-    
+
     return Component.extend({
-        defaults: { 
+        defaults: {
             subtotal: 0,
+            freeShippingThreshold: 200000,
             template: 'Healthy_FreeShippingBlock/free-shipping-banner',
             tracks: {
                 subtotal: true
             }
         },
-        initialize: function() {
+
+        initialize: function () {
             this._super();
 
-            var self = this;
-            var cart = customerData.get('cart');
+            const cart = customerData.get('cart');
 
-            customerData.getInitCustomerData().done(function() {
-                if (!_.isEmpty(cart()) && !_.isUndefined(cart().subtotalAmount)) {
-                    self.subtotal = parseFloat(cart().subtotalAmount);
-                }
-            });
+            // Carga inicial
+            this.updateSubtotal(cart());
 
-            cart.subscribe(function(cart) {
-                if (!_.isEmpty(cart) && !_.isUndefined(cart.subtotalAmount)) {
-                    self.subtotal = parseFloat(cart.subtotalAmount)
-                }
-            });
+            // Actualiza cuando cambia
+            cart.subscribe(this.updateSubtotal.bind(this));
 
-            self.message = ko.pureComputed(function() {
-                if (_.isUndefined(self.subtotal) || self.subtotal === 0) {
-                    return self.messageDefault.replace('$x.xxx', self.formatCurrency(self.freeShippingThreshold));
-                }
+            this.message = ko.pureComputed(this.getMessage.bind(this));
 
-                if (self.subtotal > 0 && self.subtotal < self.freeShippingThreshold) {
-                    var subtotalRemaining = self.freeShippingThreshold - self.subtotal;
-                    var formattedSubtotalRamining = self.formatCurrency(subtotalRemaining);
-                    return self.messageItemsInCart.replace('$x.xxx', formattedSubtotalRamining);
-                }
+            this.freeStatus = ko.pureComputed(this.getFreeStatus.bind(this));
 
-                if (self.subtotal >= self.freeShippingThreshold) {
-                    return self.messageFreeShipping
-                }
-            });
-
-            self.isFreeShipping = ko.pureComputed(function () {
-                return self.subtotal >= self.freeShippingThreshold;
-            });
-
-            self.isFreeShipping2 = ko.pureComputed(function () {
-                return self.subtotal > 0 && self.subtotal < self.freeShippingThreshold;
-            });
-
-            self.isFreeShipping1 = ko.pureComputed(function () {
-                return _.isUndefined(self.subtotal) || self.subtotal === 0;
-            });
-
+            return this;
         },
 
-        formatCurrency: function(value) {
+        updateSubtotal: function (cart) {
+            this.subtotal = parseFloat(cart?.subtotalAmount || 0);
+        },
+
+        getMessage: function () {
+            if (this.freeStatus() === 'empty') {
+                return this.messageDefault.replace('$x.xxx', this.formatCurrency(this.freeShippingThreshold));
+            }
+
+            if (this.freeStatus() === 'partial') {
+                const remaining = this.freeShippingThreshold - this.subtotal;
+                return this.messageItemsInCart.replace('$x.xxx', this.formatCurrency(remaining));
+            }
+
+            return this.messageFreeShipping;
+        },
+
+        // Un solo computed para clases CSS
+        getFreeStatus: function () {
+            if (this.subtotal === 0) return 'empty';
+            if (this.subtotal < this.freeShippingThreshold) return 'partial';
+            return 'free';
+        },
+
+        formatCurrency: function (value) {
             return new Intl.NumberFormat('es-CO', {
                 style: 'currency',
                 currency: 'COP',

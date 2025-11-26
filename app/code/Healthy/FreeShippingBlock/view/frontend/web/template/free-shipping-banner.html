@@ -1,1 +1,7 @@
-<p class="content-message" data-bind="html: message, css: { free: isFreeShipping(), free1: isFreeShipping1(),free2: isFreeShipping2() }"></p>
+<p class="content-message"
+   data-bind="html: message,
+              css: {
+                 free: freeStatus() === 'free',
+                 partial: freeStatus() === 'partial',
+                 empty: freeStatus() === 'empty'
+              }"></p>

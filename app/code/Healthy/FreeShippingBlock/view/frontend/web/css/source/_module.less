@@ -16,8 +16,8 @@
         margin: 0;
         
         &.free::after,
-        &.free1::after,
-        &.free2::after {
+        &.empty::after,
+        &.partial::after {
             content: '';
             width: 20px;
             height: 20px;
@@ -34,12 +34,12 @@
             background: #00a200;
         }
 
-        &.free1::after {
+        &.empty::after {
             content: url('@{baseDir}images/icons/truck-light.svg');
             background: #e00606;
         }
 
-        &.free2::after {
+        &.partial::after {
             content: url('@{baseDir}images/icons/truck-light.svg');
             background: #b87802;
         }
